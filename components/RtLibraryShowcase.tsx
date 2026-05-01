@@ -212,8 +212,13 @@ export default function RtLibraryShowcase() {
           ░ TYPE TOKENS ░
         </div>
         <div
-          className="cartridge p-6 sm:p-8 bg-white text-[#0A162F]"
-          style={{ fontFamily: "var(--font-roboto), system-ui, sans-serif" }}
+          className="p-6 sm:p-8"
+          style={{
+            background: "#FFFFFF",
+            color: "#0A162F",
+            border: "1px solid rgba(34,211,238,0.18)",
+            fontFamily: "var(--font-roboto), system-ui, sans-serif",
+          }}
         >
           <ul className="list-none p-0 m-0 divide-y" style={{ borderColor: "#DEE5EB" }}>
             {TYPE_TOKENS.map((t) => (
@@ -240,10 +245,11 @@ export default function RtLibraryShowcase() {
           ░ STAMPED COMPONENTS ░
         </div>
         <div
-          className="cartridge p-6 sm:p-8"
+          className="p-6 sm:p-8"
           style={{
-            background: "#F2F5F8" /* surface-gray */,
-            color: "#0A162F" /* text-dark */,
+            background: "#F2F5F8" /* Color/Surfaces/surface-gray */,
+            color: "#0A162F" /* Color/Text/text-dark */,
+            border: "1px solid rgba(34,211,238,0.18)",
             fontFamily: "var(--font-roboto), system-ui, sans-serif",
           }}
         >
