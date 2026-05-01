@@ -22,11 +22,8 @@ export const CAREER_STAGES: CareerStage[] = [
     period: "2014 – 2018",
     accent: "amber",
     headline: "PROLOGUE",
-    win: { label: "Practice", value: "International antitrust" },
-    bullets: [
-      "Litigation project assistant on international antitrust matters: cross-border investigations, document review, deposition prep.",
-      "Four years training to read complex systems, hold a line of argument, and synthesize a sprawling record into one clear story, habits that later transferred straight into design research.",
-    ],
+    win: { label: "Practice", value: "International Antitrust" },
+    bullets: [],
     tools: "Discovery · Document Review · Antitrust",
   },
   {
