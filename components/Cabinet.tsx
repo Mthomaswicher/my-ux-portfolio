@@ -175,10 +175,18 @@ function HardCabinet() {
     }, 1500);
   }
 
-  // Click-to-insert (also covers keyboard Enter)
+  // Click-to-insert (also covers keyboard Enter on desktop). On touch
+  // we skip the cartridge-into-console animation entirely and navigate
+  // straight to the case study — the animation hijacks the foreground
+  // for 1.5s without giving the user any visible feedback that they
+  // tapped, which feels broken on a phone.
   function clickInsert(p: Project, target: HTMLElement) {
     if (drag.phase !== "idle") return;
     if (p.external) return;
+    if (isCoarse) {
+      router.push(p.href);
+      return;
+    }
     const rect = target.getBoundingClientRect();
     triggerInsert(p, {
       x: rect.left + rect.width / 2,
