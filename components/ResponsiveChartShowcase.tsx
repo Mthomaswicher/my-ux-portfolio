@@ -19,18 +19,18 @@ const SERIES: Array<{
   {
     name: "Purchases",
     color: "#0E1B3F",
-    values: [48, 56, 60, 66, 70, 90, 108, 122, 130],
+    values: [38, 46, 52, 58, 62, 78, 94, 108, 118],
   },
   {
     name: "Conforming Subs",
     color: "#3246D3",
-    values: [52, 68, 80, 90, 98, 115, 128, 148, 160],
+    values: [56, 72, 84, 95, 105, 122, 138, 156, 168],
   },
   {
     name: "All Subs",
-    color: "#C9D8FF",
+    color: "#7A98E8",
     dashed: true,
-    values: [55, 72, 85, 96, 105, 122, 135, 156, 168],
+    values: [70, 92, 108, 124, 138, 158, 175, 192, 205],
   },
 ];
 
@@ -46,7 +46,7 @@ const X_LABELS = [
   "5/7",
 ];
 
-const Y_TICKS = [50, 75, 100, 125, 150, 175];
+const Y_TICKS = [50, 100, 150, 200];
 
 const MIN_WIDTH = 280;
 const MAX_WIDTH = 880;
@@ -207,7 +207,7 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
   const innerW = Math.max(40, width - padding.left - padding.right);
   const innerH = height - padding.top - padding.bottom;
   const yMin = 0;
-  const yMax = 175;
+  const yMax = 220;
 
   function xFor(i: number) {
     if (X_LABELS.length <= 1) return padding.left;
@@ -226,7 +226,7 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
   })();
 
   const visibleYTicks =
-    tier === "xs" ? [50, 100, 150] : tier === "sm" ? [50, 100, 150, 175] : Y_TICKS;
+    tier === "xs" ? [50, 100, 150, 200] : tier === "sm" ? [50, 100, 150, 200] : Y_TICKS;
 
   return (
     <svg
