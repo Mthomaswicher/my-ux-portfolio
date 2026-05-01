@@ -56,7 +56,7 @@ export default function About() {
             <span className="caret" aria-hidden="true" />
           </h1>
 
-          <section className="grid md:grid-cols-[200px_1fr] gap-6 sm:gap-8 mb-14">
+          <section className="grid lg:grid-cols-[200px_1fr] gap-6 sm:gap-8 mb-14">
             <div className="cartridge p-1 w-[160px] sm:w-[200px] self-start">
               <Image
                 src="/about-photo.jpg"
@@ -99,7 +99,7 @@ export default function About() {
             >
               <span aria-hidden="true">▌</span>STATS
             </h2>
-            <div className="cartridge grid grid-cols-2 md:grid-cols-4 border-ink-ghost">
+            <div className="cartridge grid grid-cols-2 lg:grid-cols-4 border-ink-ghost">
               {STATS.map((s, i) => {
                 const mobileLeft = i % 2 === 1 ? "border-l" : "";
                 const mobileTop = i >= 2 ? "border-t" : "";
@@ -129,7 +129,7 @@ export default function About() {
             >
               <span aria-hidden="true">▌</span>GUILDS
             </h2>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {COMMUNITIES.map((c) => (
                 <div key={c.name} className="cartridge p-4 space-y-2">
                   <div className="font-pixel text-[10px] tracking-widest text-glow-cyan">
@@ -151,7 +151,7 @@ export default function About() {
             >
               <span aria-hidden="true">▌</span>FAVES
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {FAVES.map((f) => (
                 <div
                   key={f.name}

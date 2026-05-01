@@ -123,7 +123,7 @@ export default function Lab() {
               </div>
             </a>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
               <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
                 A personal-finance app concept built for a 19-day hackathon, and the
                 winning entry. The premise: instead of guilt-tripping users about every
@@ -166,7 +166,7 @@ export default function Lab() {
               </span>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
               <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
                 A 3-tier token system for Berkeley Research Group&apos;s Roundtable
                 research platform. Refactoring the design library into Primitives,

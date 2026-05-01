@@ -132,7 +132,7 @@ export default function RtLibraryShowcase() {
   return (
     <div className="space-y-12">
       {/* ─── Tier diagram ─── */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3">
         <Tier number="01" label="Primitives" subtitle="Raw brand values" accent="#22d3ee">
           <ul className="list-none p-0 m-0 space-y-1">
             {PRIMITIVES.map((p) => (
@@ -222,7 +222,7 @@ export default function RtLibraryShowcase() {
         >
           <ul className="list-none p-0 m-0 divide-y" style={{ borderColor: "#DEE5EB" }}>
             {TYPE_TOKENS.map((t) => (
-              <li key={t.name} className="py-3 flex flex-col sm:grid sm:grid-cols-[2fr_3fr_1fr] sm:items-baseline gap-x-6 gap-y-1">
+              <li key={t.name} className="py-3 flex flex-col lg:grid lg:grid-cols-[2fr_3fr_1fr] lg:items-baseline gap-x-6 gap-y-1">
                 <code
                   className="font-mono text-[11px]"
                   style={{ color: "#25265E" }}
@@ -253,11 +253,11 @@ export default function RtLibraryShowcase() {
             fontFamily: "var(--font-roboto), system-ui, sans-serif",
           }}
         >
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             <RoundupArticleCard />
             <PolicyCard />
           </div>
-          <div className="mt-6 grid gap-6 md:grid-cols-[2fr_1fr]">
+          <div className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
             <ChipCluster />
             <CategoryEyebrow />
           </div>

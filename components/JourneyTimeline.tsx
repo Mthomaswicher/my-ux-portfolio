@@ -97,7 +97,7 @@ export default function JourneyTimeline() {
       </div>
 
       {/* ────── Sticky stage indicator (left rail) ────── */}
-      <div className="hidden md:block absolute top-0 left-0 h-full w-[120px]">
+      <div className="hidden lg:block absolute top-0 left-0 h-full w-[120px]">
         <div className="sticky top-1/2 -translate-y-1/2 px-2">
           <StageIndicator
             current={activeIdx}
@@ -117,7 +117,7 @@ export default function JourneyTimeline() {
       <Trail scrollYProgress={scrollYProgress} />
 
       {/* ────── Stages ────── */}
-      <ol className="relative z-10 list-none p-0 m-0 md:pl-[120px] space-y-24 md:space-y-32 py-16">
+      <ol className="relative z-10 list-none p-0 m-0 lg:pl-[120px] space-y-24 md:space-y-32 py-16">
         {CAREER_STAGES.map((s, i) => (
           <StageCardItem
             key={s.no}
@@ -178,7 +178,7 @@ function Trail({
   return (
     <div
       aria-hidden="true"
-      className="absolute top-0 bottom-0 left-[150px] hidden md:block w-[2px] z-0"
+      className="absolute top-0 bottom-0 left-[150px] hidden lg:block w-[2px] z-0"
     >
       {/* Faint full-length spine */}
       <div
@@ -249,17 +249,17 @@ function StageCardItem({
     <li ref={ref} className="relative">
       <div
         className={`grid gap-6 md:gap-10 ${
-          isLeft ? "md:grid-cols-[1fr_auto]" : "md:grid-cols-[auto_1fr]"
+          isLeft ? "lg:grid-cols-[1fr_auto]" : "lg:grid-cols-[auto_1fr]"
         } items-center`}
       >
         {/* On odd rows the marker comes first to flip the layout */}
-        {!isLeft && <StageMarker stage={stage} className="hidden md:block" />}
+        {!isLeft && <StageMarker stage={stage} className="hidden lg:block" />}
 
         <motion.div
           initial={initial}
           animate={animate}
           transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
-          className={isLeft ? "md:order-1" : "md:order-2"}
+          className={isLeft ? "lg:order-1" : "lg:order-2"}
         >
           <motion.div
             onPointerMove={handleMove}
@@ -342,7 +342,7 @@ function StageCardItem({
           </motion.div>
         </motion.div>
 
-        {isLeft && <StageMarker stage={stage} className="hidden md:block md:order-2" />}
+        {isLeft && <StageMarker stage={stage} className="hidden lg:block lg:order-2" />}
       </div>
     </li>
   );
