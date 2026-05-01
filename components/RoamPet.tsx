@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useSound } from "./SoundProvider";
+import { getPublicClient } from "@/lib/supabase";
 
 /**
  * Site pet that roams the bottom of the viewport. A small dark robot with
@@ -72,17 +73,77 @@ const FOOT_UP = 41;
 const PET_W = 44;
 const PET_H = 62;
 
-const POKE_KEY = "mtw.pet.pokes";
+const VISITOR_KEY = "mtw.visitorId";
+const RANK_KEY = "mtw.pet.rank";
 
-/** A pokes-counter pickup phrase, picked at random so it hits often
- *  enough to be noticed but not every time. */
-function counterLine(n: number): string {
-  if (n === 1) return "first poke unlocked.";
-  if (n === 10) return "10 pokes! achievement unlocked.";
-  if (n === 25) return "25 pokes! you might need a hobby.";
-  if (n === 50) return "50 pokes. ok, calm down.";
-  if (n === 100) return "100 pokes. legend.";
-  return `poke #${n}.`;
+/** "you're the Nth person…" copy. Special-cases small ranks so the
+ *  ordinal reads naturally in the bubble. */
+function rankLine(n: number): string {
+  if (n === 1) return "you're the first person to pick me up!";
+  if (n === 2) return "you're the 2nd person to pick me up!";
+  if (n === 3) return "you're the 3rd person to pick me up!";
+  return `you're the ${n}th person to pick me up!`;
+}
+
+/** Make-or-fetch a stable per-browser id used to dedupe pickups. */
+function getVisitorId(): string {
+  let id = "";
+  try {
+    id = localStorage.getItem(VISITOR_KEY) ?? "";
+  } catch {
+    /* ignore */
+  }
+  if (!id) {
+    id =
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `v_${Date.now().toString(36)}_${Math.random()
+            .toString(36)
+            .slice(2, 10)}`;
+    try {
+      localStorage.setItem(VISITOR_KEY, id);
+    } catch {
+      /* ignore */
+    }
+  }
+  return id;
+}
+
+/** Insert this visitor (no-op if already present), then return the total
+ *  unique-visitor count. Returns null if Supabase isn't configured or the
+ *  network call fails — caller should fall back to a non-rank phrase. */
+async function recordPickupGetRank(): Promise<number | null> {
+  const client = getPublicClient();
+  if (!client) return null;
+  const visitor = getVisitorId();
+  try {
+    // Cached: we've already learned our rank. Skip the network call so the
+    // bubble pops instantly on subsequent pickups.
+    const cached = Number(localStorage.getItem(RANK_KEY) || "");
+    if (Number.isFinite(cached) && cached > 0) return cached;
+  } catch {
+    /* ignore */
+  }
+  try {
+    // Insert; if visitor already exists, the unique constraint makes this
+    // a no-op so the count reflects truly unique pickers.
+    const { error } = await client
+      .from("pet_pokes")
+      .upsert({ visitor_id: visitor }, { onConflict: "visitor_id" });
+    if (error) return null;
+    const { count, error: countErr } = await client
+      .from("pet_pokes")
+      .select("visitor_id", { count: "exact", head: true });
+    if (countErr || count == null) return null;
+    try {
+      localStorage.setItem(RANK_KEY, String(count));
+    } catch {
+      /* ignore */
+    }
+    return count;
+  } catch {
+    return null;
+  }
 }
 
 export default function RoamPet() {
@@ -104,8 +165,11 @@ export default function RoamPet() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const dragOffsetRef = useRef({ x: 0, y: 0 });
   const bubbleTimerRef = useRef<number | null>(null);
-  // Persisted counter: how many times this visitor has picked the pet up.
-  const pokesRef = useRef(0);
+  // Cached global rank (1-based) once we've learned it from Supabase.
+  const rankRef = useRef<number | null>(null);
+  // Track whether the visitor has already heard the rank line this session
+  // so we don't spam it on every single pickup.
+  const rankShownRef = useRef(false);
 
   function floorY() {
     if (typeof window === "undefined") return 0;
@@ -125,8 +189,8 @@ export default function RoamPet() {
     const coarse = window.matchMedia("(pointer: coarse)").matches;
     if (reduce || small || coarse) return;
     try {
-      const stored = Number(localStorage.getItem(POKE_KEY) || "0");
-      if (Number.isFinite(stored)) pokesRef.current = stored;
+      const cached = Number(localStorage.getItem(RANK_KEY) || "");
+      if (Number.isFinite(cached) && cached > 0) rankRef.current = cached;
     } catch {
       /* ignore */
     }
@@ -236,23 +300,32 @@ export default function RoamPet() {
     setWalking(false);
     play("pop");
 
-    // Bump the persistent poke counter and persist it.
-    pokesRef.current += 1;
-    try {
-      localStorage.setItem(POKE_KEY, String(pokesRef.current));
-    } catch {
-      /* ignore */
+    // First pickup of the session: try to fetch / register this visitor's
+    // rank from Supabase. On every later pickup, just play a regular line.
+    if (!rankShownRef.current) {
+      rankShownRef.current = true;
+      // If we already know the rank from a previous visit, show it now.
+      if (rankRef.current && rankRef.current > 0) {
+        flashBubble(rankLine(rankRef.current), 2800);
+      } else {
+        // Optimistic placeholder while we wait on the network.
+        flashBubble(
+          PICKUP_PHRASES[Math.floor(Math.random() * PICKUP_PHRASES.length)],
+          1800,
+        );
+        recordPickupGetRank().then((rank) => {
+          if (rank && rank > 0) {
+            rankRef.current = rank;
+            flashBubble(rankLine(rank), 2800);
+          }
+        });
+      }
+    } else {
+      flashBubble(
+        PICKUP_PHRASES[Math.floor(Math.random() * PICKUP_PHRASES.length)],
+        1800,
+      );
     }
-
-    // First poke and milestones always show the counter; otherwise it shows
-    // ~1 in 3 picks so it doesn't crowd out the gaming one-liners.
-    const n = pokesRef.current;
-    const isMilestone = n === 1 || n === 10 || n === 25 || n === 50 || n === 100;
-    const useCounter = isMilestone || Math.random() < 0.35;
-    const phrase = useCounter
-      ? counterLine(n)
-      : PICKUP_PHRASES[Math.floor(Math.random() * PICKUP_PHRASES.length)];
-    flashBubble(phrase, isMilestone ? 2600 : 1800);
 
     const rect = e.currentTarget.getBoundingClientRect();
     dragOffsetRef.current = {
