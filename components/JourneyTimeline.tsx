@@ -503,7 +503,7 @@ function BonusTrack() {
         <div className="font-pixel text-[10px] tracking-widest text-glow-lime mb-2 motion-safe:animate-pulse">
           ★ BONUS LEVEL UNLOCKED ★
         </div>
-        <h2 className="font-display text-[44px] sm:text-[56px] leading-none text-glow-amber">
+        <h2 className="font-display text-[clamp(2rem,9vw,2.75rem)] sm:text-[56px] leading-[1.05] sm:leading-none text-glow-amber">
           Off the beaten path.
         </h2>
         <p className="font-mono text-[13px] text-ink-dim mt-3 max-w-xl mx-auto leading-relaxed">
@@ -513,10 +513,10 @@ function BonusTrack() {
       </div>
 
       <div className="relative max-w-3xl mx-auto">
-        {/* center spine */}
+        {/* center spine — desktop runs through the middle, mobile hugs the left */}
         <div
           aria-hidden="true"
-          className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px]"
+          className="absolute top-0 bottom-0 w-[2px] left-3 md:left-1/2 md:-translate-x-1/2"
           style={{
             background:
               "linear-gradient(180deg, transparent, #a3e63555 10%, #a3e63555 90%, transparent)",
@@ -528,30 +528,33 @@ function BonusTrack() {
             return (
               <li
                 key={`${b.year}-${b.title}`}
-                className={`relative grid grid-cols-[1fr_auto_1fr] items-center gap-4`}
+                className="relative grid grid-cols-[2rem_1fr] md:grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-4"
               >
-                <div className={left ? "text-right" : "col-start-3 text-left"}>
+                <span
+                  aria-hidden="true"
+                  className="w-3 h-3 rotate-45 bg-bg-deep justify-self-center md:col-start-2"
+                  style={{
+                    boxShadow: "0 0 0 2px #a3e635, 0 0 10px rgba(163,230,53,0.7)",
+                  }}
+                />
+                <div
+                  className={`md:row-start-1 ${
+                    left ? "md:col-start-1 md:text-right" : "md:col-start-3 md:text-left"
+                  }`}
+                >
                   <div className="font-pixel text-[9px] tracking-widest text-glow-amber mb-1">
                     {b.year}
                   </div>
-                  <div className="font-display text-[22px] leading-none text-glow-cyan">
+                  <div className="font-display text-[22px] leading-tight text-glow-cyan">
                     {b.title}
                   </div>
                   <div className="font-mono text-[11px] uppercase tracking-widest text-ink-mute mt-1">
                     {b.org}
                   </div>
-                  <p className="font-mono text-[12.5px] text-ink-dim leading-relaxed mt-2 max-w-xs ml-auto md:ml-auto">
+                  <p className="font-mono text-[12.5px] text-ink-dim leading-relaxed mt-2 max-w-xs md:ml-auto">
                     {b.body}
                   </p>
                 </div>
-                <span
-                  aria-hidden="true"
-                  className="col-start-2 w-3 h-3 rotate-45 bg-bg-deep"
-                  style={{
-                    boxShadow: "0 0 0 2px #a3e635, 0 0 10px rgba(163,230,53,0.7)",
-                  }}
-                />
-                {left ? <span aria-hidden="true" /> : null}
               </li>
             );
           })}

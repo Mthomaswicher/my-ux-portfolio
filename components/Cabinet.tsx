@@ -77,14 +77,14 @@ export default function Cabinet() {
 function EasyGrid() {
   return (
     <section aria-labelledby="cartridges-heading">
-      <div className="flex items-baseline justify-between gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-3 mb-6">
         <h2
           id="cartridges-heading"
           className="font-pixel text-[11px] sm:text-[12px] tracking-widest text-glow-magenta"
         >
           <span aria-hidden="true">▌</span>SELECT YOUR GAME
         </h2>
-        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute whitespace-nowrap">
+        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute">
           {projects.length} CARTRIDGES
         </span>
       </div>
@@ -241,14 +241,14 @@ function HardCabinet() {
         from={drag.phase === "inserting" ? drag.from : null}
       />
 
-      <div className="flex items-baseline justify-between gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-3 mb-6">
         <h2
           id="cartridges-heading"
           className="font-pixel text-[11px] sm:text-[12px] tracking-widest text-glow-magenta"
         >
           <span aria-hidden="true">▌</span>AVAILABLE CARTRIDGES
         </h2>
-        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute whitespace-nowrap">
+        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute">
           {projects.length} CARTRIDGES · DRAG OR TAP
         </span>
       </div>
