@@ -31,8 +31,9 @@ export type CaseStudy = {
   accent: "magenta" | "cyan" | "lime" | "amber" | "rose";
   /** Optional brand re-skin applied to the case-study header + accent
    *  tokens within the article scope (e.g. "oportun" pulls in the green
-   *  palette + logo, "capital-one" pulls in navy + ribbon red). */
-  brand?: "oportun" | "capital-one";
+   *  palette + logo, "capital-one" pulls in navy + ribbon red, "demex"
+   *  pulls in electric purple + deep navy). */
+  brand?: "oportun" | "capital-one" | "demex";
   sections: CaseStudySection[];
   results?: Array<{ stat: string; label: string; sub?: string }>;
 };
@@ -706,6 +707,7 @@ export const caseStudies: CaseStudy[] = [
     timeframe: "First public-facing product launch",
     tools: "Figma · React · UserTesting · Strategy",
     accent: "lime",
+    brand: "demex",
     sections: [
         {
           id: "overview",

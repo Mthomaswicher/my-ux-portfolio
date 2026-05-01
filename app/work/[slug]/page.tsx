@@ -7,6 +7,7 @@ import CaseStudyVideo from "@/components/CaseStudyVideo";
 import CaseStudyGate from "@/components/CaseStudyGate";
 import OportunBrandHeader from "@/components/OportunBrandHeader";
 import CapitalOneBrandHeader from "@/components/CapitalOneBrandHeader";
+import DemexBrandHeader from "@/components/DemexBrandHeader";
 import { caseStudies, getCaseStudy } from "@/lib/caseStudies";
 import type { Block } from "@/lib/caseStudies";
 
@@ -305,13 +306,23 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                     ["--neon-cyan" as string]: "1 61 91",
                     ["--glow-cyan" as string]: "2 118 177",
                   }
-                : undefined
+                : study.brand === "demex"
+                  ? {
+                      // Demex: lime tokens swap to electric purple
+                      // (#501AFF) with a paler companion (#A89DFF) for
+                      // body glow text on the dark sections.
+                      ["--neon-lime" as string]: "80 26 255",
+                      ["--glow-lime" as string]: "168 157 255",
+                    }
+                  : undefined
           }
         >
           {study.brand === "oportun" ? (
             <OportunBrandHeader study={study} />
           ) : study.brand === "capital-one" ? (
             <CapitalOneBrandHeader study={study} />
+          ) : study.brand === "demex" ? (
+            <DemexBrandHeader study={study} />
           ) : (
             <header className="mb-10 md:mb-12">
               <div className="flex flex-wrap items-baseline gap-3 mb-4">
