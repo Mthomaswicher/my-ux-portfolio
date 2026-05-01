@@ -10,9 +10,10 @@ import { log } from "@/lib/log";
 
 const NAV = [
   { no: "01", label: "WORK", href: "/home" },
-  { no: "02", label: "ABOUT", href: "/about" },
-  { no: "03", label: "LAB", href: "/lab" },
-  { no: "04", label: "GUESTBOOK", href: "/guestbook" },
+  { no: "02", label: "JOURNEY", href: "/experience" },
+  { no: "03", label: "ABOUT", href: "/about" },
+  { no: "04", label: "LAB", href: "/lab" },
+  { no: "05", label: "GUESTBOOK", href: "/guestbook" },
 ];
 
 const SOCIALS = [
