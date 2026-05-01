@@ -125,12 +125,16 @@ async function recordPickupGetRank(): Promise<number | null> {
     /* ignore */
   }
   try {
-    // Insert; if visitor already exists, the unique constraint makes this
-    // a no-op so the count reflects truly unique pickers.
-    const { error } = await client
+    // INSERT … ON CONFLICT DO NOTHING — no UPDATE policy needed because
+    // existing rows are skipped at the conflict, not updated. We then count
+    // unconditionally so we still get a rank even when the visitor was
+    // already in the table from a prior session.
+    await client
       .from("pet_pokes")
-      .upsert({ visitor_id: visitor }, { onConflict: "visitor_id" });
-    if (error) return null;
+      .upsert(
+        { visitor_id: visitor },
+        { onConflict: "visitor_id", ignoreDuplicates: true },
+      );
     const { count, error: countErr } = await client
       .from("pet_pokes")
       .select("visitor_id", { count: "exact", head: true });
@@ -300,25 +304,46 @@ export default function RoamPet() {
     setWalking(false);
     play("pop");
 
-    // First pickup of the session: try to fetch / register this visitor's
-    // rank from Supabase. On every later pickup, just play a regular line.
+    // First pickup of the session: try to surface the visitor's rank.
+    // On every later pickup, just play a regular line so the rank line
+    // doesn't repeat to exhaustion.
     if (!rankShownRef.current) {
       rankShownRef.current = true;
-      // If we already know the rank from a previous visit, show it now.
       if (rankRef.current && rankRef.current > 0) {
-        flashBubble(rankLine(rankRef.current), 2800);
+        // We already know the rank from a previous visit — show it instantly.
+        flashBubble(rankLine(rankRef.current), 3200);
       } else {
-        // Optimistic placeholder while we wait on the network.
-        flashBubble(
-          PICKUP_PHRASES[Math.floor(Math.random() * PICKUP_PHRASES.length)],
-          1800,
-        );
+        // Don't flash a placeholder; kick off the network call and either
+        // pop the rank when it lands or fall back to a regular line if
+        // the call is slow / fails.
+        let resolved = false;
         recordPickupGetRank().then((rank) => {
+          resolved = true;
           if (rank && rank > 0) {
             rankRef.current = rank;
-            flashBubble(rankLine(rank), 2800);
+            flashBubble(rankLine(rank), 3200);
+          } else {
+            flashBubble(
+              PICKUP_PHRASES[
+                Math.floor(Math.random() * PICKUP_PHRASES.length)
+              ],
+              1800,
+            );
           }
         });
+        // Watchdog: if the rank request takes longer than 1.2s, stop
+        // waiting and play a normal line — we'll still cache the rank
+        // for the next pickup once it eventually resolves.
+        window.setTimeout(() => {
+          if (!resolved) {
+            flashBubble(
+              PICKUP_PHRASES[
+                Math.floor(Math.random() * PICKUP_PHRASES.length)
+              ],
+              1800,
+            );
+          }
+        }, 1200);
       }
     } else {
       flashBubble(
