@@ -31,8 +31,8 @@ export type CaseStudy = {
   accent: "magenta" | "cyan" | "lime" | "amber" | "rose";
   /** Optional brand re-skin applied to the case-study header + accent
    *  tokens within the article scope (e.g. "oportun" pulls in the green
-   *  palette + logo). */
-  brand?: "oportun";
+   *  palette + logo, "capital-one" pulls in navy + ribbon red). */
+  brand?: "oportun" | "capital-one";
   sections: CaseStudySection[];
   results?: Array<{ stat: string; label: string; sub?: string }>;
 };
@@ -61,6 +61,7 @@ export const caseStudies: CaseStudy[] = [
     timeframe: "32 weeks",
     tools: "Figma · Lucid · Confluence · Jira",
     accent: "cyan",
+    brand: "capital-one",
     sections: [
       {
         id: "problem",

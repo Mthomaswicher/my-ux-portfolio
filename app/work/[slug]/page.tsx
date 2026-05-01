@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 import HoloDisplay from "@/components/HoloDisplay";
 import CaseStudyVideo from "@/components/CaseStudyVideo";
-import DevNavHubBanner from "@/components/DevNavHubBanner";
 import CaseStudyGate from "@/components/CaseStudyGate";
 import OportunBrandHeader from "@/components/OportunBrandHeader";
+import CapitalOneBrandHeader from "@/components/CapitalOneBrandHeader";
 import { caseStudies, getCaseStudy } from "@/lib/caseStudies";
 import type { Block } from "@/lib/caseStudies";
 
@@ -187,8 +187,6 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   return (
     <main id="main" className="min-h-[100dvh]">
-      {study.slug === "idp-release-plugin" && <DevNavHubBanner />}
-
       <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 pt-6 pb-6 md:py-10">
         <Link
           href="/home"
@@ -300,11 +298,20 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                   ["--neon-lime" as string]: "0 200 89",
                   ["--glow-lime" as string]: "0 135 29",
                 }
-              : undefined
+              : study.brand === "capital-one"
+                ? {
+                    // Capital One: cyan tokens swap to C1 navy (#013D5B)
+                    // and a related teal blue (#0276B1) for the soft glow.
+                    ["--neon-cyan" as string]: "1 61 91",
+                    ["--glow-cyan" as string]: "2 118 177",
+                  }
+                : undefined
           }
         >
           {study.brand === "oportun" ? (
             <OportunBrandHeader study={study} />
+          ) : study.brand === "capital-one" ? (
+            <CapitalOneBrandHeader study={study} />
           ) : (
             <header className="mb-10 md:mb-12">
               <div className="flex flex-wrap items-baseline gap-3 mb-4">
