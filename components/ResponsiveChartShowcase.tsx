@@ -174,7 +174,7 @@ export default function ResponsiveChartShowcase() {
       <p className="font-mono text-[12px] text-ink-mute leading-relaxed text-center">
         Drag the cyan handle on the right edge — or use the slider — to shrink
         and grow the chart. Watch the axis density, label rotation, and legend
-        collapse as it crosses 720px and 380px.
+        collapse as it crosses 720px and 440px.
       </p>
     </div>
   );
@@ -185,9 +185,11 @@ export default function ResponsiveChartShowcase() {
 type Tier = "xs" | "sm" | "lg";
 
 function breakpointFor(width: number): Tier {
-  if (width < 380) return "xs";
+  // Below 440px the full legend labels ("Conforming Subs") don't fit
+  // even as a chip-stack — fall back to abbreviated chips.
+  if (width < 440) return "xs";
   // The full top-right legend only fits cleanly past ~720px; below that
-  // the chip-stack reads better than crowding into the title row.
+  // the chip-stack with full labels reads better than crowding the title row.
   if (width < 720) return "sm";
   return "lg";
 }
@@ -258,7 +260,7 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
           item ("Conforming Subs"). */}
       {!useStackedLegend ? (
         (() => {
-          const slot = 138;
+          const slot = 130;
           const startX = width - padding.right - slot * SERIES.length;
           return (
             <g transform={`translate(${startX}, 32)`}>
@@ -282,7 +284,7 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
       ) : (
         <g transform={`translate(${padding.left}, ${tier === "xs" ? 42 : 50})`}>
           {SERIES.map((s, i) => {
-            const slot = tier === "xs" ? 70 : 100;
+            const slot = tier === "xs" ? 70 : 116;
             return (
               <g key={s.name} transform={`translate(${i * slot}, 0)`}>
                 <circle cx={4} cy={-4} r={3} fill={s.color} />

@@ -213,7 +213,7 @@ export default function Lab() {
                 variants for tight mobile widths. Drag the cyan handle on the
                 right edge (or use the slider) to stretch and shrink the
                 container; watch the axis density, label rotation, and legend
-                collapse as the chart crosses 720px and 380px.
+                collapse as the chart crosses 720px and 440px.
               </p>
               <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
