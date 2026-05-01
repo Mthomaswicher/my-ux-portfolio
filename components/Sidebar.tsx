@@ -19,6 +19,7 @@ const NAV = [
 const SOCIALS = [
   { label: "Email", href: "mailto:mthomaswicher@gmail.com" },
   { label: "LinkedIn", href: "https://linkedin.com/in/mthomaswicher" },
+  { label: "GitHub", href: "https://github.com/Mthomaswicher" },
   { label: "Dribbble", href: "https://dribbble.com/mthomaswicher" },
   { label: "Instagram", href: "https://www.instagram.com/urban_voyager" },
 ];

@@ -44,6 +44,15 @@ export default function Footer() {
             </a>
             <span>·</span>
             <a
+              href="https://github.com/Mthomaswicher"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-glow-cyan"
+            >
+              GITHUB
+            </a>
+            <span>·</span>
+            <a
               href="https://dribbble.com/mthomaswicher"
               target="_blank"
               rel="noreferrer"
