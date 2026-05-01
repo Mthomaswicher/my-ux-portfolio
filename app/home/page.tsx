@@ -31,7 +31,7 @@ export default function Home() {
               </Link>{" "}
               on your way in, or skip the intro and head straight to the{" "}
               <a href="#cabinet" className="underline hover:text-glow-cyan">
-                cartridges
+                game cartridges
               </a>
               .
             </p>
