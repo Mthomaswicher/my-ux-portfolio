@@ -125,11 +125,20 @@ function HardCabinet() {
     setIsCoarse(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
+  // Inflate the hit zone around the console so the drop is forgiving — the
+  // pointer doesn't have to land precisely on the console rectangle.
+  const HIT_PADDING_X = 96;
+  const HIT_PADDING_Y = 64;
   function pointInConsole(x: number, y: number) {
     const c = consoleRef.current;
     if (!c) return false;
     const r = c.getBoundingClientRect();
-    return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+    return (
+      x >= r.left - HIT_PADDING_X &&
+      x <= r.right + HIT_PADDING_X &&
+      y >= r.top - HIT_PADDING_Y &&
+      y <= r.bottom + HIT_PADDING_Y
+    );
   }
 
   function startDrag(p: Project, e: React.PointerEvent<HTMLElement>) {
@@ -338,6 +347,25 @@ function Console({
 
   return (
     <div className="relative mb-10 mx-auto max-w-md">
+      {/* Forgiving drop-zone halo — fades in while dragging so the user sees
+          that the area around the console counts as "over". Sized to match
+          the inflated hit-test in pointInConsole(). */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute -inset-x-24 -inset-y-16 transition-opacity duration-200 ${
+          active && !inserting ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <div
+          className={`absolute inset-0 transition-colors duration-200 ${
+            highlight
+              ? "border-2 border-dashed border-neon-magenta/70 shadow-[0_0_30px_rgba(255,43,214,0.25)]"
+              : "border-2 border-dashed border-ink-ghost"
+          }`}
+          style={{ borderRadius: 12 }}
+        />
+      </div>
+
       <div
         ref={innerRef}
         className={`relative cartridge p-4 transition-all duration-200 ${
