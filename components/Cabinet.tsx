@@ -105,6 +105,13 @@ function HardCabinet() {
   const consoleRef = useRef<HTMLDivElement>(null);
   const [drag, setDrag] = useState<DragState>({ phase: "idle" });
   const [overConsole, setOverConsole] = useState(false);
+  // Drag interactions are mouse/pen-only. On touch we attach a plain
+  // onClick handler — no pointer events at all — so nothing in the
+  // browser's touch pipeline can swallow the tap.
+  const [isCoarse, setIsCoarse] = useState(false);
+  useEffect(() => {
+    setIsCoarse(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   function pointInConsole(x: number, y: number) {
     const c = consoleRef.current;
@@ -115,8 +122,6 @@ function HardCabinet() {
 
   function startDrag(p: Project, e: React.PointerEvent<HTMLElement>) {
     if (p.external) return; // external links never drag
-    // Touch users get the click-to-insert path so vertical scrolling
-    // through the cabinet always works. Drag stays on mouse/pen.
     if (e.pointerType === "touch") return;
     e.preventDefault();
     const rect = e.currentTarget.getBoundingClientRect();
@@ -148,23 +153,14 @@ function HardCabinet() {
     }
   }
 
-  function endDrag(e: React.PointerEvent, p?: Project) {
-    if (drag.phase === "dragging") {
-      const isOver = pointInConsole(e.clientX, e.clientY);
-      setOverConsole(false);
-      if (isOver) {
-        triggerInsert(drag.project, { x: e.clientX, y: e.clientY });
-      } else {
-        setDrag({ phase: "idle" });
-      }
-      return;
-    }
-    // Touch tap fallback. iOS Safari sometimes drops the synthetic `click`
-    // on a <div role="button"> that also has pointer-event handlers, so we
-    // trigger insert directly from pointerup. clickInsert is idempotent
-    // because it early-returns when drag.phase isn't "idle".
-    if (e.type === "pointerup" && e.pointerType === "touch" && p) {
-      clickInsert(p, e.currentTarget as HTMLElement);
+  function endDrag(e: React.PointerEvent) {
+    if (drag.phase !== "dragging") return;
+    const isOver = pointInConsole(e.clientX, e.clientY);
+    setOverConsole(false);
+    if (isOver) {
+      triggerInsert(drag.project, { x: e.clientX, y: e.clientY });
+    } else {
+      setDrag({ phase: "idle" });
     }
   }
 
@@ -222,31 +218,34 @@ function HardCabinet() {
           const dimmed = isBeingDragged || isInserting;
           const isExternal = !!p.external;
 
+          // Touch devices get a real <button> with onClick only — no
+          // pointer-event handlers. Mouse/pen devices get the full
+          // drag-and-drop pipeline.
+          const dragHandlers = isCoarse
+            ? {}
+            : {
+                onPointerDown: (e: React.PointerEvent<HTMLElement>) =>
+                  startDrag(p, e),
+                onPointerMove: move,
+                onPointerUp: endDrag,
+                onPointerCancel: endDrag,
+              };
+
           return (
-            <div
+            <button
               key={p.no}
-              role="button"
-              tabIndex={0}
+              type="button"
               aria-label={`${p.title} — ${isExternal ? "external link" : "load this cartridge"}`}
               aria-describedby="cabinet-help"
-              className={`${cardClasses(p)} touch-pan-y cursor-pointer md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
+              className={`${cardClasses(p)} text-left w-full touch-manipulation cursor-pointer md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
                 dimmed ? "opacity-30 pointer-events-none" : "opacity-100"
               }`}
               style={cardStyleFor(p)}
-              onPointerDown={(e) => startDrag(p, e)}
-              onPointerMove={move}
-              onPointerUp={(e) => endDrag(e, p)}
-              onPointerCancel={(e) => endDrag(e, p)}
+              {...dragHandlers}
               onClick={(e) => clickInsert(p, e.currentTarget)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  clickInsert(p, e.currentTarget);
-                }
-              }}
             >
               <ProjectCardBody project={p} />
-            </div>
+            </button>
           );
         })}
       </div>
