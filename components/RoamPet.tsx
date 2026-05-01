@@ -14,27 +14,58 @@ import { useSound } from "./SoundProvider";
  */
 
 const ROAM_PHRASES = [
-  "hi.",
-  "matt is open to work.",
-  "try the konami code.",
-  "press M to toggle sound.",
-  "8 stages on the journey page.",
-  "drag a cartridge into the console.",
-  "this site has a light mode now.",
-  "1UP hidden on /experience",
-  "thx for hanging out.",
+  "Hey! Listen!",
+  "It's dangerous to go alone.",
+  "Press F to pay respects.",
+  "↑ ↑ ↓ ↓ ← → ← → B A",
+  "Stay awhile and listen.",
+  "Would you kindly read the patch notes?",
+  "All your cartridge are belong to us.",
+  "Achievement unlocked: hover.",
+  "Do a barrel roll.",
+  "git gud.",
+  "Finish him!",
+  "The cake is a lie.",
+  "Save game? [Y / N]",
+  "Insert coin to continue.",
+  "Boss approaches.",
+  "1UP somewhere on /experience.",
+  "Wololo.",
+  "Touch grass.",
+  "Side quest: hire matt.",
+  "Buffering… 99%.",
+  "Player 2 has joined.",
+  "RTX off.",
+  "no scope.",
+  "GG no re.",
 ];
 
 const PICKUP_PHRASES = [
-  "wheee.",
-  "put me down.",
-  "ow.",
-  "hi :)",
-  "where to?",
-  "this is fine.",
+  "Hey! Listen!",
+  "Get over here!",
+  "Stop poking me.",
+  "Snake? Snake?! SNAAAAAKE!",
+  "FALL DAMAGE incoming.",
+  "Wololo?",
+  "Where to, hero?",
+  "Health: low. Mana: also low.",
+  "TAUNT!",
+  "I'm too young to die.",
+  "PHYSICS engaged.",
 ];
 
-const DROP_PHRASES = ["oof.", "thanks.", "k.", "."];
+const DROP_PHRASES = [
+  "FATALITY.",
+  "Achievement unlocked: gravity.",
+  "+10 XP.",
+  "GG.",
+  "Mission complete.",
+  "Saving… do not turn off.",
+  "Press F.",
+  "Crit.",
+  "Phew.",
+  "RESPAWN.",
+];
 
 const FOOT_DOWN = 44;
 const FOOT_UP = 41;
