@@ -94,32 +94,6 @@ export default function ProductReel({
         </motion.div>
       </AnimatePresence>
 
-      {/* scanline overlay (scoped to this card) */}
-      <div
-        className="absolute inset-0 pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, rgba(0,0,0,0.32) 0px, rgba(0,0,0,0.32) 1px, transparent 1px, transparent 3px)",
-          opacity: 0.45,
-        }}
-      />
-
-      {/* inner edge tint */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          boxShadow: `inset 0 0 36px ${accentHex}33, inset 0 -40px 60px ${accentHex}10`,
-        }}
-      />
-
-      {/* drifting bright band */}
-      <motion.div
-        className="absolute left-0 right-0 h-[2px] pointer-events-none"
-        style={{ background: `${accentHex}60`, mixBlendMode: "screen" }}
-        animate={reduced ? undefined : { top: ["-2%", "102%"] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-      />
-
       {/* dot indicators */}
       {screens.length > 1 && (
         <div className="absolute bottom-2 left-2 flex gap-1.5 pointer-events-none">
