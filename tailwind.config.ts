@@ -48,6 +48,7 @@ const config: Config = {
         boot: "boot 1.6s steps(8) 1 forwards",
         walk: "walk 0.5s steps(2) infinite",
         slowpan: "slowpan 30s linear infinite alternate",
+        shake: "shake 0.4s ease-in-out",
       },
       keyframes: {
         blink: {
@@ -75,6 +76,11 @@ const config: Config = {
         slowpan: {
           "0%": { backgroundPosition: "0% 0%" },
           "100%": { backgroundPosition: "100% 100%" },
+        },
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "20%, 60%": { transform: "translateX(-6px)" },
+          "40%, 80%": { transform: "translateX(6px)" },
         },
       },
     },

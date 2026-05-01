@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import HoloDisplay from "@/components/HoloDisplay";
 import CaseStudyVideo from "@/components/CaseStudyVideo";
 import DevNavHubBanner from "@/components/DevNavHubBanner";
+import CaseStudyGate from "@/components/CaseStudyGate";
 import { caseStudies, getCaseStudy } from "@/lib/caseStudies";
 import type { Block } from "@/lib/caseStudies";
 
@@ -196,6 +197,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </Link>
       </div>
 
+      <CaseStudyGate
+        enabled={study.slug === "idp-release-plugin"}
+        slug={study.slug}
+        password="tokens"
+        hint="If you don't have it, ask Matt."
+      >
       <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 grid md:grid-cols-[220px_1fr] gap-6 md:gap-10">
         <aside className="md:sticky md:top-6 self-start" aria-labelledby="toc-heading">
           {/* Mobile: collapsible. Desktop: always-visible TOC. */}
@@ -406,6 +413,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <Footer />
         </article>
       </div>
+      </CaseStudyGate>
     </main>
   );
 }
