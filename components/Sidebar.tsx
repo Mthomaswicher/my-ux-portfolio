@@ -73,7 +73,7 @@ export default function Sidebar() {
     <>
       <button
         type="button"
-        className="md:hidden fixed top-[max(0.75rem,env(safe-area-inset-top))] left-3 z-50 px-4 py-2.5 min-h-[44px] min-w-[44px] font-pixel text-[10px] tracking-widest text-glow-cyan border border-neon-cyan/70 bg-bg-deep/95 backdrop-blur-sm shadow-neon-cyan"
+        className="md:hidden fixed top-[max(0.75rem,env(safe-area-inset-top))] right-3 z-50 px-4 py-2.5 min-h-[44px] min-w-[44px] font-pixel text-[10px] tracking-widest text-glow-cyan border border-neon-cyan/70 bg-bg-deep/95 backdrop-blur-sm shadow-neon-cyan"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="primary-sidebar"
