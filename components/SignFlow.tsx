@@ -106,7 +106,7 @@ export default function SignFlow() {
           >
             ░ NEW PLAYER REGISTRATION ░
           </div>
-          <h1 className="font-display text-[44px] sm:text-[64px] md:text-[88px] leading-none text-glow-cyan">
+          <h1 className="font-display text-[clamp(2.5rem,11vw,3.5rem)] sm:text-[64px] md:text-[88px] leading-[1.05] sm:leading-none text-glow-cyan">
             Sign in.<span className="caret" aria-hidden="true" />
           </h1>
           <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">

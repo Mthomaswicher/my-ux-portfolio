@@ -68,7 +68,7 @@ export default function Lab() {
           >
             ░ B-SIDES ░
           </div>
-          <h1 className="font-display text-[44px] sm:text-[56px] md:text-[80px] leading-none text-glow-amber mb-8">
+          <h1 className="font-display text-[clamp(2.25rem,10vw,3rem)] sm:text-[56px] md:text-[80px] leading-[1.05] sm:leading-none text-glow-amber mb-8">
             The Lab
             <span className="caret" aria-hidden="true" />
           </h1>

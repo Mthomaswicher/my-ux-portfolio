@@ -51,7 +51,7 @@ export default function About() {
           >
             ░ PLAYER PROFILE ░
           </div>
-          <h1 className="font-display text-[44px] sm:text-[56px] md:text-[80px] leading-none text-glow-magenta mb-8">
+          <h1 className="font-display text-[clamp(1.75rem,8vw,2.5rem)] sm:text-[56px] md:text-[80px] leading-[1.05] sm:leading-none text-glow-magenta mb-8">
             Player 1: Matt
             <span className="caret" aria-hidden="true" />
           </h1>

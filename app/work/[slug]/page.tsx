@@ -292,7 +292,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               </span>
             </div>
             <h1
-              className={`font-display text-[44px] sm:text-[64px] md:text-[96px] leading-none mb-5 ${ACCENT_TEXT[study.accent]}`}
+              className={`font-display text-[clamp(2.25rem,9vw,3rem)] sm:text-[64px] md:text-[96px] leading-[1.05] sm:leading-none mb-5 break-words ${ACCENT_TEXT[study.accent]}`}
             >
               {study.title}
             </h1>
@@ -351,7 +351,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               </div>
               <h2
                 id={`${s.id}-heading`}
-                className={`font-display text-[30px] sm:text-[36px] md:text-[44px] leading-tight mb-5 ${ACCENT_TEXT[study.accent]}`}
+                className={`font-display text-[clamp(1.75rem,7vw,2rem)] sm:text-[36px] md:text-[44px] leading-tight mb-5 break-words ${ACCENT_TEXT[study.accent]}`}
               >
                 {s.title}
               </h2>
