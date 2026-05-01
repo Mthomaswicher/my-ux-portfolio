@@ -3,85 +3,102 @@
 import { useState } from "react";
 
 /**
- * Interactive demo of the 3-tier token architecture used in the RT (Roundtable)
- * design library at Berkeley Research Group. Tiers:
+ * Interactive demo of the actual 3-tier token graph from the RT (Roundtable)
+ * design library at Berkeley Research Group. All token names and hex values
+ * below were pulled directly from the Figma file's variable definitions
+ * (Color/*, Header/*, Body/*, etc.) — none are invented.
  *
- *   1. Primitives — raw, brand-agnostic values (blue.700, gray.50)
- *   2. Semantic   — purpose-bound aliases (action.primary, surface.canvas)
- *   3. Component  — slot-specific bindings (button.primary.bg, card.bg)
+ * Architecture:
+ *   1. Primitives — raw color and type values (Color/Neutrals/*, Color/Primary/*)
+ *   2. Semantic   — purpose-bound aliases (Color/Text/*, Color/Borders/*, Color/Surfaces/*)
+ *   3. Component  — slot-specific bindings (Core/card-bg, Cards/Data-primary)
  *
- * Hover any tier and the cascade lights up across all three so the path is
- * visible. Click to pin. The component samples below re-render against a
- * pinned palette so you can see the system in motion.
+ * Hover any token and the cascade lights up across all three tiers so the
+ * resolution path is visible. Click to pin focus.
  */
 
+/* ─── Real tokens from Figma (file: KfGd38GHhnEUEQHL9XWn95) ─────────────── */
+
 const PRIMITIVES = [
-  { name: "blue.700", value: "#0E2A5A" },
-  { name: "blue.500", value: "#1B449A" },
-  { name: "blue.300", value: "#5C7BC2" },
-  { name: "blue.50",  value: "#E6ECF7" },
-  { name: "gray.900", value: "#1A1A22" },
-  { name: "gray.700", value: "#3D3D49" },
-  { name: "gray.300", value: "#C2C2CC" },
-  { name: "gray.50",  value: "#F5F5F2" },
-  { name: "coral.500", value: "#E66B5C" },
+  { name: "Color/Neutrals/white",        value: "#FFFFFF" },
+  { name: "Color/Neutrals/gray-1",       value: "#F2F5F8" },
+  { name: "Color/Neutrals/gray-2",       value: "#E8EDF3" },
+  { name: "Color/Neutrals/gray-3",       value: "#DEE5EB" },
+  { name: "Color/Neutrals/gray-4",       value: "#ADBBC8" },
+  { name: "Color/Neutrals/gray-5",       value: "#718291" },
+  { name: "Color/Neutrals/gray-6",       value: "#636366" },
+  { name: "Color/Neutrals/midnight",     value: "#0A162F" },
+  { name: "Color/Primary/deep-indigo",   value: "#25265E" },
+  { name: "Color/Primary/cerulean-blue", value: "#3246D3" },
+  { name: "Color/Primary/light-blue",    value: "#C9D8FF" },
+  { name: "Color/System/green",          value: "#24B668" },
+  { name: "Color/System/green-light",    value: "#DEF8EA" },
 ] as const;
 
 type PrimitiveName = (typeof PRIMITIVES)[number]["name"];
 
+/* Semantic tier: every entry resolves to exactly one primitive above. */
 const SEMANTIC: Array<{
   name: string;
   primitive: PrimitiveName;
   use: string;
 }> = [
-  { name: "action.primary",     primitive: "blue.500", use: "Primary CTA · links" },
-  { name: "action.primaryHover",primitive: "blue.700", use: "CTA hover state" },
-  { name: "surface.canvas",     primitive: "gray.50",  use: "Page background" },
-  { name: "surface.raised",     primitive: "blue.50",  use: "Card · panel" },
-  { name: "text.primary",       primitive: "gray.900", use: "Body copy" },
-  { name: "text.secondary",     primitive: "gray.700", use: "Captions · meta" },
-  { name: "border.default",     primitive: "gray.300", use: "Dividers · inputs" },
-  { name: "status.alert",       primitive: "coral.500",use: "Errors · alerts" },
+  { name: "Color/Text/text-dark",     primitive: "Color/Neutrals/midnight",     use: "Body copy, headings" },
+  { name: "Color/Text/text-white",    primitive: "Color/Neutrals/white",        use: "Type on dark surfaces" },
+  { name: "Color/Text/text-category", primitive: "Color/Primary/cerulean-blue", use: "Category eyebrow" },
+  { name: "Color/Text/subtext-dark",  primitive: "Color/Neutrals/gray-6",       use: "Secondary copy, meta" },
+  { name: "Color/Text/subtext-light", primitive: "Color/Neutrals/gray-4",       use: "Disabled / placeholder" },
+  { name: "Color/Text/link-active",   primitive: "Color/Primary/deep-indigo",   use: "Active link state" },
+  { name: "Color/Borders/border-light", primitive: "Color/Neutrals/gray-3",     use: "Card / divider line" },
+  { name: "Color/Borders/border-dark",  primitive: "Color/Neutrals/midnight",   use: "Strong divider, focus" },
+  { name: "Color/Surfaces/surface-gray", primitive: "Color/Neutrals/gray-1",    use: "Page / panel surface" },
 ];
 
 type SemanticName = (typeof SEMANTIC)[number]["name"];
 
+/* Component tier: slots that point at semantic (or, in this library, at a
+   primitive directly when no purpose-bound alias was defined yet). */
 const COMPONENT_TOKENS: Array<{
   name: string;
-  semantic: SemanticName;
+  semantic: SemanticName | PrimitiveName;
   slot: string;
 }> = [
-  { name: "button.primary.bg",        semantic: "action.primary",      slot: "Primary button fill" },
-  { name: "button.primary.bgHover",   semantic: "action.primaryHover", slot: "Primary button hover" },
-  { name: "card.bg",                  semantic: "surface.raised",      slot: "Card surface" },
-  { name: "card.borderColor",         semantic: "border.default",      slot: "Card border" },
-  { name: "input.borderColor",        semantic: "border.default",      slot: "Form input border" },
-  { name: "chip.label.color",         semantic: "text.secondary",      slot: "Chip text" },
-  { name: "alert.banner.bg",          semantic: "status.alert",        slot: "Alert banner" },
+  { name: "Core/card-bg",         semantic: "Color/Neutrals/white",         slot: "Card surface fill" },
+  { name: "Cards/Data-primary",   semantic: "Color/Primary/cerulean-blue",  slot: "Card data accent" },
 ];
 
+/* Type tokens (real names from Figma; UI uses Roboto, editorial uses EB Garamond) */
+const TYPE_TOKENS = [
+  { name: "Header/Garamond H1",     spec: "EB Garamond Regular · 44 / -1 letter-spacing", role: "Editorial headline" },
+  { name: "Header/Garamond H3",     spec: "EB Garamond SemiBold · 24 / 36 / 10 caps",     role: "Roundup section title" },
+  { name: "Header/Roboto H4 Caps",  spec: "Roboto Bold · 14 / 10 letter-spacing / UPPER", role: "Eyebrow label" },
+  { name: "Body/Body 2",            spec: "Roboto Regular · 16 / 24",                      role: "Default body copy" },
+  { name: "Body/Body 3 Bold",       spec: "Roboto SemiBold · 14 / 24 / 7 letter-spacing",  role: "CTA, button label" },
+  { name: "Chips",                  spec: "Roboto SemiBold · 14 / 24",                     role: "Filter chip text" },
+  { name: "10 MEDIUM - Label 1",    spec: "Roboto Medium · 10",                            role: "Micro label" },
+];
+
+/* ───────────────────────────────────────────────────────────────────────── */
+
 export default function RtLibraryShowcase() {
-  // Hovered/pinned can be a primitive or semantic name; we light up the chain.
   const [hovered, setHovered] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);
   const focus = pinned ?? hovered;
 
-  // For a given token, decide if it's lit up by the focus cascade.
   function isLit(level: "primitive" | "semantic" | "component", name: string) {
     if (!focus) return false;
     if (focus === name) return true;
     if (level === "primitive") {
-      // Lit if any focused semantic uses me, OR a component → semantic → me.
       const sem = SEMANTIC.find((s) => s.name === focus);
       if (sem) return sem.primitive === name;
       const comp = COMPONENT_TOKENS.find((c) => c.name === focus);
       if (comp) {
+        if (comp.semantic === name) return true;
         const s = SEMANTIC.find((s) => s.name === comp.semantic);
         return s?.primitive === name;
       }
     }
     if (level === "semantic") {
-      // Lit if focused primitive feeds me, OR focused component points at me.
       if (PRIMITIVES.find((p) => p.name === focus)) {
         const sem = SEMANTIC.find((s) => s.name === name);
         return sem?.primitive === focus;
@@ -90,8 +107,6 @@ export default function RtLibraryShowcase() {
       if (comp) return comp.semantic === name;
     }
     if (level === "component") {
-      // Lit if I trace back through semantic to focused primitive, or my
-      // semantic IS the focus.
       const me = COMPONENT_TOKENS.find((c) => c.name === name);
       if (!me) return false;
       if (me.semantic === focus) return true;
@@ -101,26 +116,24 @@ export default function RtLibraryShowcase() {
     return false;
   }
 
-  function valueFor(level: "semantic" | "component", name: string) {
+  function valueFor(level: "semantic" | "component", name: string): string {
     if (level === "semantic") {
       const sem = SEMANTIC.find((s) => s.name === name);
-      return PRIMITIVES.find((p) => p.name === sem?.primitive)?.value;
+      return PRIMITIVES.find((p) => p.name === sem?.primitive)?.value ?? "#000";
     }
     const comp = COMPONENT_TOKENS.find((c) => c.name === name);
-    const sem = SEMANTIC.find((s) => s.name === comp?.semantic);
-    return PRIMITIVES.find((p) => p.name === sem?.primitive)?.value;
+    if (!comp) return "#000";
+    const direct = PRIMITIVES.find((p) => p.name === comp.semantic);
+    if (direct) return direct.value;
+    const sem = SEMANTIC.find((s) => s.name === comp.semantic);
+    return PRIMITIVES.find((p) => p.name === sem?.primitive)?.value ?? "#000";
   }
 
   return (
     <div className="space-y-12">
       {/* ─── Tier diagram ─── */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Tier
-          number="01"
-          label="Primitives"
-          subtitle="Raw brand values"
-          accent="#22d3ee"
-        >
+        <Tier number="01" label="Primitives" subtitle="Raw brand values" accent="#22d3ee">
           <ul className="list-none p-0 m-0 space-y-1">
             {PRIMITIVES.map((p) => (
               <TokenRow
@@ -138,21 +151,16 @@ export default function RtLibraryShowcase() {
           </ul>
         </Tier>
 
-        <Tier
-          number="02"
-          label="Semantic"
-          subtitle="Purpose-bound aliases"
-          accent="#ff2bd6"
-        >
+        <Tier number="02" label="Semantic" subtitle="Purpose-bound aliases" accent="#ff2bd6">
           <ul className="list-none p-0 m-0 space-y-1">
             {SEMANTIC.map((s) => (
               <TokenRow
                 key={s.name}
                 name={s.name}
-                value={s.use}
+                value={`→ ${s.primitive.split("/").pop()}`}
                 lit={isLit("semantic", s.name)}
                 isFocus={focus === s.name}
-                swatch={valueFor("semantic", s.name) ?? "#000"}
+                swatch={valueFor("semantic", s.name)}
                 onHover={() => setHovered(s.name)}
                 onLeave={() => setHovered(null)}
                 onPin={() => setPinned(pinned === s.name ? null : s.name)}
@@ -161,27 +169,27 @@ export default function RtLibraryShowcase() {
           </ul>
         </Tier>
 
-        <Tier
-          number="03"
-          label="Component"
-          subtitle="Slot-specific bindings"
-          accent="#a3e635"
-        >
+        <Tier number="03" label="Component" subtitle="Slot-specific bindings" accent="#a3e635">
           <ul className="list-none p-0 m-0 space-y-1">
             {COMPONENT_TOKENS.map((c) => (
               <TokenRow
                 key={c.name}
                 name={c.name}
-                value={c.slot}
+                value={`→ ${c.semantic.split("/").pop()}`}
                 lit={isLit("component", c.name)}
                 isFocus={focus === c.name}
-                swatch={valueFor("component", c.name) ?? "#000"}
+                swatch={valueFor("component", c.name)}
                 onHover={() => setHovered(c.name)}
                 onLeave={() => setHovered(null)}
                 onPin={() => setPinned(pinned === c.name ? null : c.name)}
               />
             ))}
           </ul>
+          <p className="mt-3 text-[11px] text-ink-mute font-mono leading-relaxed">
+            The library leans heavily on semantic tokens; component-level
+            bindings are reserved for slots that don&apos;t fit a generic alias
+            (e.g. the cerulean used to tag data cards).
+          </p>
         </Tier>
       </div>
 
@@ -198,54 +206,54 @@ export default function RtLibraryShowcase() {
         )}
       </p>
 
-      {/* ─── Live components stamped from those tokens ─── */}
+      {/* ─── Type tokens ─── */}
+      <div>
+        <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
+          ░ TYPE TOKENS ░
+        </div>
+        <div
+          className="cartridge p-6 sm:p-8 bg-white text-[#0A162F]"
+          style={{ fontFamily: "var(--font-roboto), system-ui, sans-serif" }}
+        >
+          <ul className="list-none p-0 m-0 divide-y" style={{ borderColor: "#DEE5EB" }}>
+            {TYPE_TOKENS.map((t) => (
+              <li key={t.name} className="py-3 flex flex-col sm:grid sm:grid-cols-[2fr_3fr_1fr] sm:items-baseline gap-x-6 gap-y-1">
+                <code
+                  className="font-mono text-[11px]"
+                  style={{ color: "#25265E" }}
+                >
+                  {t.name}
+                </code>
+                <TypePreview token={t.name}>{t.role}</TypePreview>
+                <span className="text-[11px]" style={{ color: "#636366" }}>
+                  {t.spec}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ─── Stamped components against the real chain ─── */}
       <div>
         <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
           ░ STAMPED COMPONENTS ░
         </div>
-        <div className="cartridge p-6 sm:p-8 bg-[#F5F5F2] text-[#1A1A22]">
+        <div
+          className="cartridge p-6 sm:p-8"
+          style={{
+            background: "#F2F5F8" /* surface-gray */,
+            color: "#0A162F" /* text-dark */,
+            fontFamily: "var(--font-roboto), system-ui, sans-serif",
+          }}
+        >
           <div className="grid gap-6 md:grid-cols-2">
+            <RoundupArticleCard />
             <PolicyCard />
-            <ButtonStack />
           </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-[1fr_auto]">
+          <div className="mt-6 grid gap-6 md:grid-cols-[2fr_1fr]">
             <ChipCluster />
-            <AlertBanner />
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Image / thumbnail scale ─── */}
-      <div>
-        <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
-          ░ IMAGE SCALE ░
-        </div>
-        <div className="cartridge p-5 sm:p-6 bg-bg-deep">
-          <div className="flex items-end gap-3 sm:gap-4 flex-wrap">
-            {[
-              ["xxsm", 32],
-              ["xsm", 48],
-              ["sm", 64],
-              ["md", 80],
-              ["lg", 96],
-              ["xl", 112],
-              ["xxl", 128],
-            ].map(([label, size]) => (
-              <figure key={label} className="text-center">
-                <div
-                  className="bg-gradient-to-br from-[#0E2A5A] to-[#5C7BC2]"
-                  style={{
-                    width: size as number,
-                    height: size as number,
-                    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)",
-                  }}
-                  aria-hidden="true"
-                />
-                <figcaption className="mt-2 font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-                  {label}
-                </figcaption>
-              </figure>
-            ))}
+            <CategoryEyebrow />
           </div>
         </div>
       </div>
@@ -254,6 +262,86 @@ export default function RtLibraryShowcase() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────── */
+
+function TypePreview({ token, children }: { token: string; children: React.ReactNode }) {
+  switch (token) {
+    case "Header/Garamond H1":
+      return (
+        <span
+          style={{
+            fontFamily: "var(--font-garamond), Georgia, serif",
+            fontWeight: 400,
+            fontSize: 32,
+            lineHeight: 1,
+            letterSpacing: "-0.5px",
+          }}
+        >
+          {children}
+        </span>
+      );
+    case "Header/Garamond H3":
+      return (
+        <span
+          style={{
+            fontFamily: "var(--font-garamond), Georgia, serif",
+            fontWeight: 600,
+            fontSize: 18,
+            letterSpacing: "0.5em",
+            textTransform: "uppercase",
+          }}
+        >
+          {children}
+        </span>
+      );
+    case "Header/Roboto H4 Caps":
+      return (
+        <span
+          style={{
+            fontWeight: 700,
+            fontSize: 14,
+            letterSpacing: "0.5em",
+            textTransform: "uppercase",
+          }}
+        >
+          {children}
+        </span>
+      );
+    case "Body/Body 2":
+      return (
+        <span style={{ fontWeight: 400, fontSize: 16, lineHeight: "24px" }}>
+          {children}
+        </span>
+      );
+    case "Body/Body 3 Bold":
+      return (
+        <span
+          style={{
+            fontWeight: 500,
+            fontSize: 14,
+            lineHeight: "24px",
+            letterSpacing: "0.35em",
+            textTransform: "uppercase",
+          }}
+        >
+          {children}
+        </span>
+      );
+    case "Chips":
+      return (
+        <span style={{ fontWeight: 500, fontSize: 14, lineHeight: "24px" }}>
+          {children}
+        </span>
+      );
+    default:
+      return (
+        <span style={{ fontWeight: 500, fontSize: 10, letterSpacing: "0.05em" }}>
+          {children}
+        </span>
+      );
+  }
+}
+
+/* ─── Tier shell + token row ────────────────────────────────────────── */
 
 function Tier({
   number,
@@ -316,10 +404,14 @@ function TokenRow({
   onLeave: () => void;
   onPin: () => void;
 }) {
+  // Show only the leaf segment of the path so rows stay readable;
+  // full path is in the title attribute for hover reveal.
+  const leaf = name.split("/").pop() ?? name;
   return (
     <li>
       <button
         type="button"
+        title={name}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
         onFocus={onHover}
@@ -339,7 +431,7 @@ function TokenRow({
             boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.15)",
           }}
         />
-        <span className="font-mono text-[11.5px] truncate flex-1">{name}</span>
+        <span className="font-mono text-[11.5px] truncate flex-1">{leaf}</span>
         <span className="font-mono text-[10.5px] text-ink-mute truncate hidden sm:inline">
           {value}
         </span>
@@ -348,140 +440,204 @@ function TokenRow({
   );
 }
 
-/* ─── Stamped component samples (rendered against the real token chain) ── */
+/* ─── Stamped components (each prop annotated with the token it uses) ───── */
 
-function PolicyCard() {
+function RoundupArticleCard() {
   return (
     <article
+      className="p-5"
       style={{
-        background: "#FFFFFF",
-        border: "1px solid #C2C2CC",
-        boxShadow: "0 1px 0 rgba(0,0,0,0.04)",
+        background: "#FFFFFF" /* Core/card-bg → Color/Neutrals/white */,
+        border: "1px solid #DEE5EB" /* Color/Borders/border-light */,
+        boxShadow: "0 6px 14px 0 #4C549933" /* Drop Shadow / Elevation 02 */,
       }}
-      className="p-4"
     >
       <div
-        className="font-mono text-[10px] tracking-widest uppercase mb-2"
-        style={{ color: "#3D3D49" }}
+        className="mb-3"
+        style={{
+          color: "#3246D3" /* Color/Text/text-category */,
+          fontWeight: 700,
+          fontSize: 14,
+          letterSpacing: "0.5em",
+          textTransform: "uppercase",
+        }}
       >
-        Maryland · HB-247
+        Roundup
       </div>
       <h4
-        className="text-[18px] leading-tight mb-1"
-        style={{ color: "#1A1A22", fontWeight: 600 }}
+        style={{
+          fontFamily: "var(--font-garamond), Georgia, serif",
+          fontWeight: 400,
+          fontSize: 28,
+          lineHeight: 1.1,
+          color: "#0A162F" /* Color/Text/text-dark */,
+          marginBottom: 8,
+          letterSpacing: "-0.4px",
+        }}
       >
-        Energy Storage Procurement
+        Energy Storage Procurement, Reconsidered
       </h4>
-      <p className="text-[13px] leading-relaxed mb-3" style={{ color: "#3D3D49" }}>
-        Tracks legislative progress through committee, floor, and signature
-        stages.
+      <p
+        style={{
+          color: "#636366" /* Color/Text/subtext-dark */,
+          fontWeight: 400,
+          fontSize: 14,
+          lineHeight: "20px",
+          marginBottom: 16,
+        }}
+      >
+        Three states moved bills to committee this week. Here&apos;s what the
+        record signals about the next legislative session.
       </p>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between">
         <span
-          className="text-[10px] uppercase tracking-widest px-2 py-0.5"
-          style={{ background: "#E6ECF7", color: "#0E2A5A" }}
+          style={{
+            color: "#25265E" /* Color/Text/link-active */,
+            fontWeight: 500,
+            fontSize: 14,
+            lineHeight: "24px",
+            letterSpacing: "0.35em",
+            textTransform: "uppercase",
+          }}
         >
-          In committee
+          Read full ›
         </span>
-        <span className="text-[10px]" style={{ color: "#3D3D49" }}>
-          Updated 3d ago
+        <span style={{ color: "#ADBBC8", fontSize: 12 }}>
+          {/* Color/Text/subtext-light */}
+          Updated 2d ago
         </span>
       </div>
     </article>
   );
 }
 
-function ButtonStack() {
+function PolicyCard() {
   return (
-    <div className="flex flex-col gap-3 self-start">
-      <SystemButton variant="primary">Read full report</SystemButton>
-      <SystemButton variant="secondary">Save for later</SystemButton>
-      <SystemButton variant="ghost">View 12 related</SystemButton>
-    </div>
-  );
-}
-
-function SystemButton({
-  children,
-  variant,
-}: {
-  children: React.ReactNode;
-  variant: "primary" | "secondary" | "ghost";
-}) {
-  const [hover, setHover] = useState(false);
-  const styles = (() => {
-    if (variant === "primary") {
-      return {
-        background: hover ? "#0E2A5A" : "#1B449A",
-        color: "#FFFFFF",
-        border: "1px solid transparent",
-      };
-    }
-    if (variant === "secondary") {
-      return {
-        background: hover ? "#E6ECF7" : "#FFFFFF",
-        color: "#0E2A5A",
-        border: "1px solid #1B449A",
-      };
-    }
-    return {
-      background: "transparent",
-      color: hover ? "#0E2A5A" : "#1B449A",
-      border: "1px solid transparent",
-      textDecoration: "underline",
-    };
-  })();
-  return (
-    <button
-      type="button"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onFocus={() => setHover(true)}
-      onBlur={() => setHover(false)}
-      style={styles}
-      className="text-[13px] font-medium px-4 py-2 transition-colors text-left"
+    <article
+      className="p-5"
+      style={{
+        background: "#FFFFFF" /* Core/card-bg */,
+        borderTop: "4px solid #3246D3" /* Cards/Data-primary */,
+        border: "1px solid #DEE5EB" /* border-light */,
+        borderTopWidth: 4,
+        borderTopColor: "#3246D3",
+      }}
     >
-      {children}
-    </button>
+      <div
+        style={{
+          color: "#636366",
+          fontSize: 10,
+          fontWeight: 500,
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          marginBottom: 6,
+        }}
+      >
+        Maryland · HB-247
+      </div>
+      <h4
+        style={{
+          color: "#0A162F",
+          fontWeight: 500,
+          fontSize: 18,
+          lineHeight: 1.2,
+          marginBottom: 12,
+        }}
+      >
+        Energy Storage Procurement
+      </h4>
+      <div className="flex items-center gap-2">
+        <span
+          style={{
+            background: "#DEF8EA" /* System/green-light */,
+            color: "#0A162F",
+            padding: "2px 8px",
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+          }}
+        >
+          Passed
+        </span>
+        <span style={{ color: "#636366", fontSize: 12 }}>Updated 3d ago</span>
+      </div>
+    </article>
   );
 }
 
 function ChipCluster() {
-  const chips = ["Energy", "Climate", "Tax Policy", "Healthcare", "Labor"];
+  const chips = ["Energy", "Climate", "Tax", "Health", "Labor", "Trade"];
   const [active, setActive] = useState(0);
   return (
-    <div className="flex flex-wrap gap-2">
-      {chips.map((c, i) => (
-        <button
-          key={c}
-          type="button"
-          onClick={() => setActive(i)}
-          className="text-[11px] px-3 py-1 transition-colors"
-          style={{
-            background: i === active ? "#0E2A5A" : "transparent",
-            color: i === active ? "#FFFFFF" : "#3D3D49",
-            border: `1px solid ${i === active ? "#0E2A5A" : "#C2C2CC"}`,
-          }}
-        >
-          {c}
-        </button>
-      ))}
+    <div>
+      <div
+        style={{
+          color: "#636366",
+          fontSize: 10,
+          fontWeight: 500,
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          marginBottom: 8,
+        }}
+      >
+        Filter / Categories
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {chips.map((c, i) => {
+          const isActive = i === active;
+          return (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setActive(i)}
+              style={{
+                background: isActive ? "#25265E" : "transparent",
+                color: isActive ? "#FFFFFF" : "#0A162F",
+                border: `1px solid ${isActive ? "#25265E" : "#DEE5EB"}`,
+                padding: "6px 14px",
+                fontWeight: 500,
+                fontSize: 14,
+                lineHeight: "24px",
+                cursor: "pointer",
+              }}
+            >
+              {c}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
-function AlertBanner() {
+function CategoryEyebrow() {
   return (
-    <div
-      className="text-[12px] px-3 py-2 self-start"
-      style={{
-        background: "#FCEEEC",
-        color: "#7A2118",
-        borderLeft: "3px solid #E66B5C",
-      }}
-    >
-      <strong style={{ fontWeight: 600 }}>Heads up:</strong> 3 bills updated
-      since your last visit.
+    <div>
+      <div
+        style={{
+          color: "#636366",
+          fontSize: 10,
+          fontWeight: 500,
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          marginBottom: 8,
+        }}
+      >
+        Category Eyebrow
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-garamond), Georgia, serif",
+          color: "#3246D3",
+          fontWeight: 600,
+          fontSize: 18,
+          letterSpacing: "0.5em",
+          textTransform: "uppercase",
+        }}
+      >
+        Research
+      </div>
     </div>
   );
 }

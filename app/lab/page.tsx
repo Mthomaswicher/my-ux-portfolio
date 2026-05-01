@@ -171,9 +171,10 @@ export default function Lab() {
                 A 3-tier token system for Berkeley Research Group&apos;s Roundtable
                 research platform. Refactoring the design library into Primitives,
                 Semantic, and Component layers untangled engineering pain-points
-                and accelerated front-end delivery by ~25%. The toy below traces
-                a single value through all three tiers, then stamps real
-                components against them.
+                and accelerated front-end delivery by ~25%. Every token name and
+                hex below was pulled directly from the live Figma file (Color/*,
+                Header/*, Body/*); the components are stamped against those tokens
+                in EB Garamond + Roboto, the system&apos;s real typefaces.
               </p>
               <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>

@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Press_Start_2P, VT323, JetBrains_Mono } from "next/font/google";
+import {
+  Press_Start_2P,
+  VT323,
+  JetBrains_Mono,
+  Roboto,
+  EB_Garamond,
+} from "next/font/google";
 import "./globals.css";
 import CrtOverlays from "@/components/CrtOverlays";
 import KonamiCode from "@/components/KonamiCode";
@@ -25,6 +31,23 @@ const pixel = Press_Start_2P({
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+// Loaded specifically for the RT Library lab exhibit so the stamped
+// components render in the system's real typefaces.
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
+const garamond = EB_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-garamond",
   display: "swap",
 });
 
@@ -54,7 +77,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${pixel.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${pixel.variable} ${mono.variable} ${roboto.variable} ${garamond.variable}`}
+    >
       <body className="bg-bg-void text-ink antialiased">
         <SoundProvider>
           <a href="#main" className="skip-link">
