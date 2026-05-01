@@ -2,14 +2,30 @@
 
 import { useSound } from "./SoundProvider";
 
+type Props = { variant?: "floating" | "inline" };
+
 /**
- * Mounted as a fixed pill in the layout so it's always visible. On mobile it
- * sits at the top-left corner (the burger menu lives at top-right) and shows
- * an icon-only chip. On desktop it sits at the top-right with the full
- * "SOUND ON / SOUND OFF" label since the sidebar takes the left side.
+ * Sound on/off toggle.
+ *
+ * - `floating` (default): a fixed pill in the layout, top-right of the
+ *   viewport. Hidden on mobile (the burger menu is there); the inline
+ *   variant is exposed inside the sidebar for mobile users.
+ * - `inline`: a regular button you can drop inside any container (used
+ *   inside the sidebar so the toggle is reachable on mobile too).
  */
-export default function SoundToggle() {
+export default function SoundToggle({ variant = "floating" }: Props) {
   const { enabled, toggle } = useSound();
+
+  const baseChip =
+    "inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-3 py-2 font-pixel text-[10px] tracking-widest uppercase border bg-bg-deep/95 backdrop-blur-sm transition-all";
+  const stateChip = enabled
+    ? "border-neon-lime/70 text-glow-lime shadow-neon-lime"
+    : "border-ink-ghost text-ink-mute hover:text-ink hover:border-neon-cyan/60";
+
+  const positional =
+    variant === "floating"
+      ? "hidden md:inline-flex fixed top-[max(0.75rem,env(safe-area-inset-top))] right-3 z-50"
+      : "";
 
   return (
     <button
@@ -18,17 +34,12 @@ export default function SoundToggle() {
       aria-pressed={enabled}
       aria-label={enabled ? "Mute arcade sound effects" : "Enable arcade sound effects"}
       title={`${enabled ? "Sound on" : "Sound off"} (press M to toggle)`}
-      className={`fixed top-[max(0.75rem,env(safe-area-inset-top))] left-3 md:left-auto md:right-3 z-50 inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-3 py-2 font-pixel text-[10px] tracking-widest uppercase border bg-bg-deep/95 backdrop-blur-sm transition-all ${
-        enabled
-          ? "border-neon-lime/70 text-glow-lime shadow-neon-lime"
-          : "border-ink-ghost text-ink-mute hover:text-ink hover:border-neon-cyan/60"
-      }`}
+      className={`${positional} ${baseChip} ${stateChip}`}
     >
-      <span aria-hidden="true" className="text-[16px] md:text-[11px] leading-none">
+      <span aria-hidden="true" className="text-[14px] md:text-[11px] leading-none">
         {enabled ? "♪" : "·"}
       </span>
-      {/* Full label only on desktop where there's space; mobile is icon-only */}
-      <span className="hidden md:inline">{enabled ? "SOUND ON" : "SOUND OFF"}</span>
+      <span>{enabled ? "SOUND ON" : "SOUND OFF"}</span>
       <span className="sr-only">{enabled ? "Sound on" : "Sound off"}, press M to toggle</span>
     </button>
   );

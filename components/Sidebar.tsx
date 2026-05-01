@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LiveClock from "./LiveClock";
+import SoundToggle from "./SoundToggle";
 import { useSound } from "./SoundProvider";
 import { log } from "@/lib/log";
 
@@ -226,7 +227,7 @@ export default function Sidebar() {
 
           <div className="dash-divider" aria-hidden="true" />
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <div className="font-mono text-[11px] flex items-center gap-2">
               <span
                 className="inline-block w-2 h-2 rounded-full bg-neon-lime shadow-neon-lime animate-pulse"
@@ -239,6 +240,10 @@ export default function Sidebar() {
               aria-live="off"
             >
               All systems operational
+            </div>
+            {/* Mobile reaches the sound toggle here (the floating one is hidden on md down). */}
+            <div className="md:hidden pt-1">
+              <SoundToggle variant="inline" />
             </div>
           </div>
 
