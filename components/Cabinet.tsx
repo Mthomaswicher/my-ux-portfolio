@@ -105,10 +105,22 @@ function HardCabinet() {
   const consoleRef = useRef<HTMLDivElement>(null);
   const [drag, setDrag] = useState<DragState>({ phase: "idle" });
   const [overConsole, setOverConsole] = useState(false);
-  // Drag interactions are mouse/pen-only. On touch we attach a plain
-  // onClick handler — no pointer events at all — so nothing in the
-  // browser's touch pipeline can swallow the tap.
   const [isCoarse, setIsCoarse] = useState(false);
+  // pointerdown stages a "potential drag" so taps don't immediately enter
+  // drag mode. Only after the pointer moves past a small threshold do we
+  // commit to drag — that way a quick tap still fires a normal click.
+  const dragStartRef = useRef<{
+    project: Project;
+    pointerId: number;
+    target: HTMLElement;
+    x: number;
+    y: number;
+    rect: DOMRect;
+  } | null>(null);
+  // Track when a drag just ended so the synthesized click that follows
+  // pointerup doesn't double-trigger navigation.
+  const lastDragEndRef = useRef(0);
+
   useEffect(() => {
     setIsCoarse(window.matchMedia("(pointer: coarse)").matches);
   }, []);
@@ -122,39 +134,63 @@ function HardCabinet() {
 
   function startDrag(p: Project, e: React.PointerEvent<HTMLElement>) {
     if (p.external) return; // external links never drag
-    if (e.pointerType === "touch") return;
-    e.preventDefault();
-    const rect = e.currentTarget.getBoundingClientRect();
-    setDrag({
-      phase: "dragging",
+    // Stage a potential drag. Don't preventDefault yet — we want the
+    // browser to fire `click` if this turns out to be a stationary tap.
+    dragStartRef.current = {
       project: p,
       pointerId: e.pointerId,
+      target: e.currentTarget,
       x: e.clientX,
       y: e.clientY,
-      offsetX: e.clientX - rect.left,
-      offsetY: e.clientY - rect.top,
-      grabRect: rect,
-    });
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {
-      /* ignore */
-    }
-    play("pop");
+      rect: e.currentTarget.getBoundingClientRect(),
+    };
   }
 
   function move(e: React.PointerEvent) {
-    if (drag.phase !== "dragging") return;
-    setDrag({ ...drag, x: e.clientX, y: e.clientY });
-    const isOver = pointInConsole(e.clientX, e.clientY);
-    if (isOver !== overConsole) {
-      setOverConsole(isOver);
-      if (isOver) play("hover");
+    // Already dragging — track the pointer.
+    if (drag.phase === "dragging") {
+      e.preventDefault();
+      setDrag({ ...drag, x: e.clientX, y: e.clientY });
+      const isOver = pointInConsole(e.clientX, e.clientY);
+      if (isOver !== overConsole) {
+        setOverConsole(isOver);
+        if (isOver) play("hover");
+      }
+      return;
+    }
+
+    // Movement past the threshold promotes the staged press into a drag.
+    const start = dragStartRef.current;
+    if (!start) return;
+    const dx = e.clientX - start.x;
+    const dy = e.clientY - start.y;
+    if (dx * dx + dy * dy > 64) {
+      // 8px threshold
+      e.preventDefault();
+      setDrag({
+        phase: "dragging",
+        project: start.project,
+        pointerId: start.pointerId,
+        x: e.clientX,
+        y: e.clientY,
+        offsetX: start.x - start.rect.left,
+        offsetY: start.y - start.rect.top,
+        grabRect: start.rect,
+      });
+      try {
+        start.target.setPointerCapture(start.pointerId);
+      } catch {
+        /* ignore */
+      }
+      play("pop");
+      dragStartRef.current = null;
     }
   }
 
   function endDrag(e: React.PointerEvent) {
+    dragStartRef.current = null;
     if (drag.phase !== "dragging") return;
+    lastDragEndRef.current = Date.now();
     const isOver = pointInConsole(e.clientX, e.clientY);
     setOverConsole(false);
     if (isOver) {
@@ -175,12 +211,12 @@ function HardCabinet() {
     }, 1500);
   }
 
-  // Click-to-insert (also covers keyboard Enter on desktop). On touch
-  // we skip the cartridge-into-console animation entirely and navigate
-  // straight to the case study — the animation hijacks the foreground
-  // for 1.5s without giving the user any visible feedback that they
-  // tapped, which feels broken on a phone.
+  // Click-to-insert. On touch we navigate directly because the Console is
+  // off-screen at the top of the page and a 1.5s animation feels broken.
+  // On mouse/pen we play the full insert animation. Drag-then-drop-outside
+  // also fires a click; we suppress it via lastDragEndRef.
   function clickInsert(p: Project, target: HTMLElement) {
+    if (Date.now() - lastDragEndRef.current < 250) return;
     if (drag.phase !== "idle") return;
     if (p.external) return;
     if (isCoarse) {
@@ -213,7 +249,7 @@ function HardCabinet() {
           <span aria-hidden="true">▌</span>AVAILABLE CARTRIDGES
         </h2>
         <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute whitespace-nowrap">
-          {projects.length} CARTRIDGES<span className="hidden md:inline"> · DRAG OR CLICK</span>
+          {projects.length} CARTRIDGES · DRAG OR TAP
         </span>
       </div>
 
@@ -226,30 +262,24 @@ function HardCabinet() {
           const dimmed = isBeingDragged || isInserting;
           const isExternal = !!p.external;
 
-          // Touch devices get a real <button> with onClick only — no
-          // pointer-event handlers. Mouse/pen devices get the full
-          // drag-and-drop pipeline.
-          const dragHandlers = isCoarse
-            ? {}
-            : {
-                onPointerDown: (e: React.PointerEvent<HTMLElement>) =>
-                  startDrag(p, e),
-                onPointerMove: move,
-                onPointerUp: endDrag,
-                onPointerCancel: endDrag,
-              };
-
           return (
             <button
               key={p.no}
               type="button"
               aria-label={`${p.title} — ${isExternal ? "external link" : "load this cartridge"}`}
               aria-describedby="cabinet-help"
-              className={`${cardClasses(p)} text-left w-full touch-manipulation cursor-pointer md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
+              // touch-none keeps the browser from stealing the gesture
+              // for vertical scroll once the user starts dragging. The
+              // page is still scrollable through the gaps and side
+              // padding around the cartridge grid.
+              className={`${cardClasses(p)} text-left w-full touch-none cursor-pointer md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
                 dimmed ? "opacity-30 pointer-events-none" : "opacity-100"
               }`}
               style={cardStyleFor(p)}
-              {...dragHandlers}
+              onPointerDown={(e) => startDrag(p, e)}
+              onPointerMove={move}
+              onPointerUp={endDrag}
+              onPointerCancel={endDrag}
               onClick={(e) => clickInsert(p, e.currentTarget)}
             >
               <ProjectCardBody project={p} />
@@ -262,7 +292,7 @@ function HardCabinet() {
         id="cabinet-help"
         className="mt-6 font-mono text-[11px] text-ink-mute uppercase tracking-widest"
       >
-        <span className="md:hidden">Tip — Tap a cartridge to auto-load.</span>
+        <span className="md:hidden">Tip — Tap to auto-load. Drag a cartridge up to the console for the full kerchunk.</span>
         <span className="hidden md:inline">Tip — Press Enter or click to auto-load. Drag for the full kerchunk.</span>
       </p>
 
