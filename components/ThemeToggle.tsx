@@ -19,10 +19,10 @@ export default function ThemeToggle({ variant = "floating" }: Props) {
     ? "border-ink-ghost text-ink-mute hover:text-ink hover:border-neon-cyan/60"
     : "border-neon-amber/70 text-glow-amber shadow-neon-amber";
 
-  // Two slots from the right edge (sound is at right-3, theme sits left of it)
+  // Bottom-right corner so it never overlaps the SoundToggle at top-right.
   const positional =
     variant === "floating"
-      ? "hidden md:inline-flex fixed top-[max(0.75rem,env(safe-area-inset-top))] right-[3.75rem] z-50"
+      ? "hidden md:inline-flex fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-50"
       : "";
 
   return (
