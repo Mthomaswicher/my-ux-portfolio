@@ -23,7 +23,7 @@ const COMMUNITIES = [
   {
     name: "Salute Military BRG",
     role: "Active Member",
-    body: "Military spouse advocate. Supporting veteran and military family associates across 15+ local chapters.",
+    body: "Military spouse advocate. Supporting veteran and military family associates across 15 local chapters.",
   },
   {
     name: "Flatiron Alumni · Hackonomics",

@@ -181,7 +181,7 @@ export default function Lab() {
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">When</dt>
                 <dd>2023&ndash;2025</dd>
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Impact</dt>
-                <dd>+25% delivery velocity</dd>
+                <dd>25% delivery velocity</dd>
               </dl>
             </div>
 

@@ -40,7 +40,7 @@ export default function KonamiCode() {
           const ni = (accentIdx + 1) % ACCENTS.length;
           setAccentIdx(ni);
           document.documentElement.style.setProperty("--accent", ACCENTS[ni].value);
-          setToast(`+1UP · ACCENT: ${ACCENTS[ni].name}`);
+          setToast(`1UP · ACCENT: ${ACCENTS[ni].name}`);
           play("oneUp");
           setHits([]);
           window.setTimeout(() => setToast(null), 2400);

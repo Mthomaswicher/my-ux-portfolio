@@ -12,7 +12,7 @@ type Props = {
 };
 
 /**
- * Client-side password gate for a case study. Casual gate only — the gated
+ * Client-side password gate for a case study. Casual gate only the gated
  * content still ships in the static HTML, so a determined viewer can read it
  * via view-source. This is good enough for "please don't share publicly."
  *

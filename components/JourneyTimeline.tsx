@@ -513,7 +513,7 @@ function BonusTrack() {
       </div>
 
       <div className="relative max-w-3xl mx-auto">
-        {/* center spine — desktop runs through the middle, mobile hugs the left */}
+        {/* center spine desktop runs through the middle, mobile hugs the left */}
         <div
           aria-hidden="true"
           className="absolute top-0 bottom-0 w-[2px] left-3 md:left-1/2 md:-translate-x-1/2"

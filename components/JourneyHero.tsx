@@ -26,7 +26,7 @@ export default function JourneyHero() {
       </p>
 
       <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-md">
-        <Stat label="Years" value="9+" accent="#22d3ee" />
+        <Stat label="Years" value="9" accent="#22d3ee" />
         <Stat label="Cities" value="3" accent="#a3e635" />
         <Stat label="Stages" value="05" accent="#fbbf24" />
       </div>

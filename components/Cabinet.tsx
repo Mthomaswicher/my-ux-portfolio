@@ -37,7 +37,7 @@ export default function Cabinet() {
   const [mode, setMode] = useState<Difficulty>("easy");
   const [hydrated, setHydrated] = useState(false);
   // Coarse pointer (touch) or narrow viewport (mobile) forces Easy mode and
-  // hides the difficulty toggle — drag-into-the-console is too finicky on
+  // hides the difficulty toggle drag-into-the-console is too finicky on
   // touch and there's no room for the console anyway.
   const [isMobile, setIsMobile] = useState(false);
 
@@ -134,7 +134,7 @@ function HardCabinet() {
     setIsCoarse(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
-  // Inflate the hit zone around the console so the drop is forgiving — the
+  // Inflate the hit zone around the console so the drop is forgiving the
   // pointer doesn't have to land precisely on the console rectangle.
   const HIT_PADDING_X = 96;
   const HIT_PADDING_Y = 64;
@@ -356,7 +356,7 @@ function Console({
 
   return (
     <div className="relative mb-10 mx-auto max-w-md">
-      {/* Forgiving drop-zone halo — fades in while dragging so the user sees
+      {/* Forgiving drop-zone halo fades in while dragging so the user sees
           that the area around the console counts as "over". Sized to match
           the inflated hit-test in pointInConsole(). */}
       <div

@@ -7,9 +7,9 @@ import { useState } from "react";
  * Group's Roundtable design library. All names + values were pulled from
  * the Figma file's variable definitions (Color/*).
  *
- *   Tier 1 — Primitives  (raw color values)
- *   Tier 2 — Semantic    (purpose-bound color aliases)
- *   Tier 3 — Component   (slot-specific bindings on a component instance)
+ *   Tier 1 Primitives  (raw color values)
+ *   Tier 2 Semantic    (purpose-bound color aliases)
+ *   Tier 3 Component   (slot-specific bindings on a component instance)
  *
  * Hover any token in any tier and the cascade lights up across all three so
  * the resolution path is visible. Click to pin focus.
