@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import RtLibraryShowcase from "@/components/RtLibraryShowcase";
 
 export const metadata = {
   title: "Lab · MTW.ARCADE",
@@ -145,6 +146,48 @@ export default function Lab() {
                 <PhoneMockup key={screen.src} screen={screen} />
               ))}
             </div>
+          </section>
+
+          <hr className="border-0 border-t border-ink-ghost my-16 sm:my-20" />
+
+          <section aria-labelledby="exhibit-rt-library">
+            <header className="mb-6 flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 gap-y-2">
+              <span className="font-pixel text-[10px] tracking-widest text-ink-mute">
+                EXHIBIT 02
+              </span>
+              <h2
+                id="exhibit-rt-library"
+                className="font-display text-[32px] sm:text-[36px] md:text-[44px] leading-none text-glow-cyan"
+              >
+                RT Library
+              </h2>
+              <span className="font-pixel text-[9px] tracking-widest text-glow-cyan">
+                BRG · 2023&ndash;2025
+              </span>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
+              <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
+                A 3-tier token system for Berkeley Research Group&apos;s Roundtable
+                research platform. Refactoring the design library into Primitives,
+                Semantic, and Component layers untangled engineering pain-points
+                and accelerated front-end delivery by ~25%. The toy below traces
+                a single value through all three tiers, then stamps real
+                components against them.
+              </p>
+              <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
+                <dd>Sr. Product Designer</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Tools</dt>
+                <dd>Figma · Tokens Studio</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">When</dt>
+                <dd>2023&ndash;2025</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Impact</dt>
+                <dd>+25% delivery velocity</dd>
+              </dl>
+            </div>
+
+            <RtLibraryShowcase />
           </section>
 
           <Footer />
