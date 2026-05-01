@@ -73,7 +73,7 @@ export default function Sidebar() {
     <>
       <button
         type="button"
-        className="md:hidden fixed top-[max(0.75rem,env(safe-area-inset-top))] left-3 z-50 cartridge px-4 py-2.5 font-mono text-xs uppercase tracking-widest min-h-[44px] min-w-[44px]"
+        className="md:hidden fixed top-[max(0.75rem,env(safe-area-inset-top))] left-3 z-50 px-4 py-2.5 min-h-[44px] min-w-[44px] font-pixel text-[10px] tracking-widest text-glow-cyan border border-neon-cyan/70 bg-bg-deep/95 backdrop-blur-sm shadow-neon-cyan"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="primary-sidebar"
@@ -98,7 +98,7 @@ export default function Sidebar() {
         // @ts-expect-error inert is valid HTML but TS lib types may lag on older versions
         inert={offCanvas ? "" : undefined}
         className={`${
-          open ? "translate-x-0" : "-translate-x-full"
+          open ? "translate-x-0" : "-translate-x-[101%]"
         } md:translate-x-0 fixed md:sticky top-0 left-0 z-40 h-[100dvh] md:h-screen w-[min(85vw,300px)] md:w-[300px] flex-shrink-0 transition-transform duration-200 border-r border-ink-ghost bg-bg-deep/95 backdrop-blur-sm overflow-y-auto overscroll-contain`}
       >
         <div className="flex flex-col gap-6 p-5 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] min-h-[100dvh]">

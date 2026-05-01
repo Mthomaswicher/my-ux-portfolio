@@ -41,7 +41,7 @@ const FAVES = [
 
 export default function About() {
   return (
-    <div className="flex min-h-screen">
+    <div className="min-h-screen md:flex">
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
         <div className="mx-auto max-w-4xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
