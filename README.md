@@ -42,11 +42,20 @@ To make it real:
    ```
    NEXT_PUBLIC_SUPABASE_URL=https://<project>.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-   SUPABASE_SERVICE_ROLE_KEY=...      # optional but recommended for server inserts
    ```
 4. Restart `npm run dev`.
 
-The `/api/guestbook` route handles writes server-side with a 5-minute IP-hash rate limit. RLS is on; inserts are length-validated at the DB level.
+The browser talks to Supabase directly (anon key + RLS). Insert policy enforces length limits at the DB level. To enable Supabase on the deployed site, add the same two `NEXT_PUBLIC_*` values as repository secrets named `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Settings → Secrets and variables → Actions).
+
+## Deploy (GitHub Pages)
+
+This site is a static Next.js export, published to GitHub Pages.
+
+1. Push to `main` — the workflow in `.github/workflows/deploy.yml` builds `out/` and deploys.
+2. In repo Settings → Pages, set Source to **GitHub Actions**.
+3. Site is served at `https://mthomaswicher.github.io/my-ux-portfolio/`.
+
+`NEXT_PUBLIC_BASE_PATH=/my-ux-portfolio` is hardcoded in the workflow so all asset URLs are correctly prefixed. To deploy under a different repo name or a custom domain, change that env (or remove it for a custom domain).
 
 ## Adding work
 

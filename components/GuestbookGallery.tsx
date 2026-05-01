@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import GuestbookCard from "./GuestbookCard";
-import type { GuestbookRow } from "@/lib/supabase";
+import { getPublicClient, type GuestbookRow } from "@/lib/supabase";
 
 type Stats = {
   total: number;
@@ -72,25 +72,38 @@ export default function GuestbookGallery() {
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      try {
-        const res = await fetch("/api/guestbook", { cache: "no-store" });
-        const data = await res.json();
-        if (cancelled) return;
-
-        if (data?.configured) {
-          const list = (data.entries as GuestbookRow[]) || [];
-          setEntries(list);
-          setStats(data.stats || statsFromEntries(list));
-          setUsingLocal(false);
-        } else {
-          const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]") as GuestbookRow[];
+      const client = getPublicClient();
+      if (!client) {
+        const local = JSON.parse(
+          localStorage.getItem("mtw.guestbook") || "[]",
+        ) as GuestbookRow[];
+        if (!cancelled) {
           setEntries(local);
           setStats(statsFromEntries(local));
           setUsingLocal(true);
+          setLoading(false);
         }
+        return;
+      }
+      try {
+        const { data, error } = await client
+          .from("guestbook_entries")
+          .select(
+            "id, tag, name, color, signature_png, card_number, created_at",
+          )
+          .order("created_at", { ascending: false })
+          .limit(120);
+        if (cancelled) return;
+        if (error) throw error;
+        const list = (data ?? []) as GuestbookRow[];
+        setEntries(list);
+        setStats(statsFromEntries(list));
+        setUsingLocal(false);
       } catch {
         if (cancelled) return;
-        const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]") as GuestbookRow[];
+        const local = JSON.parse(
+          localStorage.getItem("mtw.guestbook") || "[]",
+        ) as GuestbookRow[];
         setEntries(local);
         setStats(statsFromEntries(local));
         setUsingLocal(true);

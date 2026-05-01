@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { withBase } from "@/lib/path";
 
 export default function CaseStudyVideo({
   src,
@@ -59,8 +60,8 @@ export default function CaseStudyVideo({
       <div className="cartridge p-1 bg-bg-deep relative group/video">
         <video
           ref={ref}
-          src={src}
-          poster={poster}
+          src={withBase(src)}
+          poster={poster ? withBase(poster) : undefined}
           loop
           muted
           playsInline

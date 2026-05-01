@@ -6,6 +6,7 @@ import { useId, useRef, useState } from "react";
 import SignatureCanvas, { SignatureCanvasHandle } from "./SignatureCanvas";
 import { useSound } from "./SoundProvider";
 import { normalizeTag, randomTag } from "@/lib/visitorTags";
+import { getPublicClient } from "@/lib/supabase";
 
 const COLORS: Array<{ key: "magenta" | "cyan" | "lime" | "amber"; hex: string; label: string }> = [
   { key: "magenta", hex: "#ff2bd6", label: "MAGENTA" },
@@ -47,39 +48,39 @@ export default function SignFlow() {
       signature_png,
     };
 
+    const client = getPublicClient();
+
+    if (!client) {
+      // No Supabase configured — write to localStorage and continue
+      const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]");
+      const entry = {
+        id: Date.now(),
+        tag: payload.tag,
+        name: payload.name || null,
+        color: payload.color,
+        signature_png: payload.signature_png,
+        card_number: local.length + 1,
+        created_at: new Date().toISOString(),
+      };
+      localStorage.setItem("mtw.guestbook", JSON.stringify([entry, ...local]));
+      play("save");
+      router.push("/guestbook?welcome=1&local=1");
+      setSubmitting(false);
+      return;
+    }
+
     try {
-      const res = await fetch("/api/guestbook", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (res.ok) {
-        play("save");
-        router.push("/guestbook?welcome=1");
-        return;
-      }
-
-      if (res.status === 503) {
-        const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]");
-        const entry = {
-          id: Date.now(),
+      const { error: insertErr } = await client
+        .from("guestbook_entries")
+        .insert({
           tag: payload.tag,
           name: payload.name || null,
           color: payload.color,
           signature_png: payload.signature_png,
-          card_number: local.length + 1,
-          created_at: new Date().toISOString(),
-        };
-        localStorage.setItem("mtw.guestbook", JSON.stringify([entry, ...local]));
-        play("save");
-        router.push("/guestbook?welcome=1&local=1");
-        return;
-      }
-
-      const data = await res.json().catch(() => ({}));
-      setError(data?.error || "Something went sideways. Try again.");
-      play("error");
+        });
+      if (insertErr) throw insertErr;
+      play("save");
+      router.push("/guestbook?welcome=1");
     } catch (e: any) {
       setError(e?.message || "Network error.");
       play("error");

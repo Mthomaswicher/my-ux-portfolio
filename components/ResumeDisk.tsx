@@ -2,8 +2,9 @@
 
 import { useRef, useState } from "react";
 import { useSound } from "./SoundProvider";
+import { withBase } from "@/lib/path";
 
-const HREF = "/MTW_Resume_2026.pdf";
+const HREF = withBase("/MTW_Resume_2026.pdf");
 const FILENAME = "MTW_Resume_2026.pdf";
 
 export default function ResumeDisk() {
