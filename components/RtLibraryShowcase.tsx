@@ -35,14 +35,6 @@ const COLOR_PRIMITIVES = [
 
 type PrimitiveName = (typeof COLOR_PRIMITIVES)[number]["name"];
 
-/* Effect primitives. */
-const EFFECT_PRIMITIVES = [
-  {
-    name: "Effect/DropShadow/Elevation-02",
-    value: "0 6px 14px 0 #4C549933",
-  },
-] as const;
-
 /* ─── TIER 2: SEMANTIC ─────────────────────────────────────────────────── */
 
 const SEMANTIC_COLORS: Array<{
@@ -195,28 +187,6 @@ export default function RtLibraryShowcase() {
             </p>
           </Tier>
         </div>
-      </div>
-
-      {/* ─── Effect tier ─── */}
-      <div>
-        <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
-          ░ EFFECT TOKENS ░
-        </div>
-        <ul className="list-none p-0 m-0 space-y-1 max-w-md">
-          {EFFECT_PRIMITIVES.map((e) => (
-            <TokenRow
-              key={e.name}
-              name={e.name}
-              value={e.value}
-              lit={false}
-              isFocus={false}
-              swatch="#FFFFFF"
-              onHover={() => {}}
-              onLeave={() => {}}
-              onPin={() => {}}
-            />
-          ))}
-        </ul>
       </div>
 
       <p className="font-mono text-[12px] text-ink-mute leading-relaxed text-center">
