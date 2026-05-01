@@ -6,6 +6,7 @@ import HoloDisplay from "@/components/HoloDisplay";
 import CaseStudyVideo from "@/components/CaseStudyVideo";
 import DevNavHubBanner from "@/components/DevNavHubBanner";
 import CaseStudyGate from "@/components/CaseStudyGate";
+import OportunBrandHeader from "@/components/OportunBrandHeader";
 import { caseStudies, getCaseStudy } from "@/lib/caseStudies";
 import type { Block } from "@/lib/caseStudies";
 
@@ -288,60 +289,77 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
         </aside>
 
-        <article className="min-w-0">
-          <header className="mb-10 md:mb-12">
-            <div className="flex flex-wrap items-baseline gap-3 mb-4">
-              <span className={`font-pixel text-[10px] tracking-widest ${STATUS_TEXT[study.status]}`}>
-                {study.status}
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-widest text-ink-mute">
-                {study.org}
-              </span>
-            </div>
-            <h1
-              className={`font-display text-[clamp(2.25rem,9vw,3rem)] sm:text-[64px] md:text-[96px] leading-[1.05] sm:leading-none mb-5 break-words ${ACCENT_TEXT[study.accent]}`}
-            >
-              {study.title}
-            </h1>
-            <p className="font-mono text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed text-ink-dim max-w-2xl">
-              {study.tagline}
-            </p>
-
-            <dl className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 cartridge p-4 sm:p-5">
-              {[
-                { label: "Role", value: study.role },
-                { label: "Team", value: study.team },
-                { label: "When", value: study.timeframe },
-                { label: "Tools", value: study.tools },
-              ].map((row) => (
-                <div key={row.label}>
-                  <dt className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-1">
-                    {row.label}
-                  </dt>
-                  <dd className="font-mono text-[12.5px] text-ink-dim leading-snug break-words">{row.value}</dd>
-                </div>
-              ))}
-            </dl>
-
-            {(study.heroScreens?.length || study.hero) && (
-              <div className="mt-10">
-                <div className="cartridge p-1 bg-bg-deep relative aspect-[16/9]">
-                  <HoloDisplay
-                    screens={study.heroScreens ?? (study.hero ? [study.hero] : [])}
-                    alt={`${study.title} screens`}
-                    accent={
-                      study.accent === "rose"
-                        ? "magenta"
-                        : (study.accent as "cyan" | "magenta" | "lime" | "amber")
-                    }
-                    fit="cover"
-                    showCounter
-                    priority
-                  />
-                </div>
+        <article
+          className="min-w-0"
+          style={
+            study.brand === "oportun"
+              ? {
+                  // Re-skin the lime accent within this article scope so
+                  // every glow / chip / divider that uses neon-lime renders
+                  // in Oportun's actual brand green.
+                  ["--neon-lime" as string]: "0 200 89",
+                  ["--glow-lime" as string]: "0 135 29",
+                }
+              : undefined
+          }
+        >
+          {study.brand === "oportun" ? (
+            <OportunBrandHeader study={study} />
+          ) : (
+            <header className="mb-10 md:mb-12">
+              <div className="flex flex-wrap items-baseline gap-3 mb-4">
+                <span className={`font-pixel text-[10px] tracking-widest ${STATUS_TEXT[study.status]}`}>
+                  {study.status}
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-ink-mute">
+                  {study.org}
+                </span>
               </div>
-            )}
-          </header>
+              <h1
+                className={`font-display text-[clamp(2.25rem,9vw,3rem)] sm:text-[64px] md:text-[96px] leading-[1.05] sm:leading-none mb-5 break-words ${ACCENT_TEXT[study.accent]}`}
+              >
+                {study.title}
+              </h1>
+              <p className="font-mono text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed text-ink-dim max-w-2xl">
+                {study.tagline}
+              </p>
+
+              <dl className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 cartridge p-4 sm:p-5">
+                {[
+                  { label: "Role", value: study.role },
+                  { label: "Team", value: study.team },
+                  { label: "When", value: study.timeframe },
+                  { label: "Tools", value: study.tools },
+                ].map((row) => (
+                  <div key={row.label}>
+                    <dt className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-1">
+                      {row.label}
+                    </dt>
+                    <dd className="font-mono text-[12.5px] text-ink-dim leading-snug break-words">{row.value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              {(study.heroScreens?.length || study.hero) && (
+                <div className="mt-10">
+                  <div className="cartridge p-1 bg-bg-deep relative aspect-[16/9]">
+                    <HoloDisplay
+                      screens={study.heroScreens ?? (study.hero ? [study.hero] : [])}
+                      alt={`${study.title} screens`}
+                      accent={
+                        study.accent === "rose"
+                          ? "magenta"
+                          : (study.accent as "cyan" | "magenta" | "lime" | "amber")
+                      }
+                      fit="cover"
+                      showCounter
+                      priority
+                    />
+                  </div>
+                </div>
+              )}
+            </header>
+          )}
 
           {study.sections.map((s) => (
             <section

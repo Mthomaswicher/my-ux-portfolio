@@ -29,6 +29,10 @@ export type CaseStudy = {
   timeframe: string;
   tools: string;
   accent: "magenta" | "cyan" | "lime" | "amber" | "rose";
+  /** Optional brand re-skin applied to the case-study header + accent
+   *  tokens within the article scope (e.g. "oportun" pulls in the green
+   *  palette + logo). */
+  brand?: "oportun";
   sections: CaseStudySection[];
   results?: Array<{ stat: string; label: string; sub?: string }>;
 };
@@ -548,7 +552,8 @@ export const caseStudies: CaseStudy[] = [
     team: "Design · Loans, Savings, Credit PODs",
     timeframe: "32 weeks",
     tools: "Figma · A/B testing · Heuristic eval",
-    accent: "magenta",
+    accent: "lime",
+    brand: "oportun",
     sections: [
       {
         id: "problem",
