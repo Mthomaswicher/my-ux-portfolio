@@ -12,10 +12,10 @@ const PIXEL_MARK = `
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-ink-ghost">
-      <div className="mx-auto max-w-5xl px-6 py-12 grid gap-10 md:grid-cols-[auto_1fr_auto]">
+    <footer className="mt-20 sm:mt-24 border-t border-ink-ghost">
+      <div className="mx-auto max-w-5xl px-5 sm:px-6 py-10 sm:py-12 grid gap-8 md:gap-10 md:grid-cols-[auto_1fr_auto]">
         <pre
-          className="font-mono text-[10px] leading-tight text-glow-magenta whitespace-pre"
+          className="hidden sm:block font-mono text-[10px] leading-tight text-glow-magenta whitespace-pre overflow-x-auto"
           aria-hidden="true"
         >
           {PIXEL_MARK}
@@ -29,50 +29,50 @@ export default function Footer() {
             Built in Washington, D.C. A small love letter to late-night arcades, design
             systems, and the people who actually read the patch notes.
           </p>
-          <div className="flex gap-3 font-mono text-[11px] text-ink-mute">
-            <a href="mailto:mthomaswicher@gmail.com" className="hover:text-glow-cyan">
+          <div className="flex flex-wrap gap-x-3 gap-y-2 font-mono text-[11px] text-ink-mute">
+            <a href="mailto:mthomaswicher@gmail.com" className="py-1 hover:text-glow-cyan">
               EMAIL
             </a>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <a
               href="https://linkedin.com/in/mthomaswicher"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-glow-cyan"
+              className="py-1 hover:text-glow-cyan"
             >
               LINKEDIN
             </a>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <a
               href="https://github.com/Mthomaswicher"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-glow-cyan"
+              className="py-1 hover:text-glow-cyan"
             >
               GITHUB
             </a>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <a
               href="https://dribbble.com/mthomaswicher"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-glow-cyan"
+              className="py-1 hover:text-glow-cyan"
             >
               DRIBBBLE
             </a>
           </div>
         </div>
 
-        <div className="self-end space-y-2">
+        <div className="self-end flex md:flex-col gap-4 md:gap-2">
           <Link
             href="/"
-            className="font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta block"
+            className="py-1 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta block"
           >
             <span aria-hidden="true">↩ </span>INSERT COIN
           </Link>
           <Link
             href="/guestbook"
-            className="font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber block"
+            className="py-1 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber block"
           >
             <span aria-hidden="true">✦ </span>HIGH SCORES
           </Link>

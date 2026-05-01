@@ -21,7 +21,7 @@ export default function DifficultySelector({
 
   return (
     <div
-      className="cartridge p-3 mb-8 flex items-center gap-4 flex-wrap"
+      className="cartridge p-3 mb-8 flex items-center gap-3 sm:gap-4 flex-wrap"
       role="group"
       aria-labelledby="difficulty-label"
     >
@@ -43,7 +43,7 @@ export default function DifficultySelector({
               aria-checked={active}
               onClick={() => pick(m)}
               onMouseEnter={() => !active && play("hover")}
-              className={`px-4 py-2 font-pixel text-[10px] tracking-widest border transition-shadow focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:outline-none ${
+              className={`px-4 py-2 min-h-[40px] font-pixel text-[10px] tracking-widest border transition-shadow focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:outline-none ${
                 active
                   ? m === "hard"
                     ? "border-transparent text-glow-magenta shadow-neon-magenta"
@@ -57,12 +57,15 @@ export default function DifficultySelector({
         })}
       </div>
 
-      <span className="font-mono text-[11px] text-ink-dim leading-snug">
+      <span className="font-mono text-[11px] text-ink-dim leading-snug basis-full sm:basis-auto">
         {mode === "easy" ? (
-          <>Click a cartridge to play.</>
+          <>Tap a cartridge to play.</>
         ) : (
           <>
-            Drag a cartridge into the console — or click to auto-load.
+            <span className="md:hidden">Tap a cartridge to auto-load.</span>
+            <span className="hidden md:inline">
+              Drag a cartridge into the console — or click to auto-load.
+            </span>
           </>
         )}
       </span>

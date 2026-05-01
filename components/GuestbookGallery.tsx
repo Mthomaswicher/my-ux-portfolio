@@ -136,24 +136,24 @@ export default function GuestbookGallery() {
       )}
 
       <section className="mb-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 cartridge p-1">
-          <div className="p-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 cartridge p-1">
+          <div className="p-3 sm:p-4">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
               TOTAL SIGNS
             </div>
-            <div className="font-display text-[40px] leading-none text-glow-amber mt-1">
+            <div className="font-display text-[32px] sm:text-[40px] leading-none text-glow-amber mt-1">
               {stats.total.toString().padStart(4, "0")}
             </div>
           </div>
-          <div className="p-4 border-l border-ink-ghost">
+          <div className="p-3 sm:p-4 border-l border-ink-ghost">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
               LAST SIGN-IN
             </div>
-            <div className="font-display text-[28px] leading-none text-glow-cyan mt-1">
+            <div className="font-display text-[24px] sm:text-[28px] leading-none text-glow-cyan mt-1 break-words">
               {formatRelative(stats.latestAt)}
             </div>
           </div>
-          <div className="p-4 border-l border-ink-ghost col-span-2">
+          <div className="p-3 sm:p-4 border-t md:border-t-0 md:border-l border-ink-ghost col-span-2">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-2">
               COLOR PICKS
             </div>
@@ -164,20 +164,20 @@ export default function GuestbookGallery() {
                 return (
                   <li
                     key={c.key}
-                    className="flex items-center gap-3 font-mono text-[11px] text-ink-dim"
+                    className="flex items-center gap-2 sm:gap-3 font-mono text-[11px] text-ink-dim"
                   >
                     <span
-                      className="inline-block w-2.5 h-2.5"
+                      className="inline-block w-2.5 h-2.5 shrink-0"
                       style={{ background: c.hex, boxShadow: `0 0 6px ${c.hex}` }}
                     />
-                    <span className="w-16 tracking-widest">{c.label}</span>
+                    <span className="w-14 sm:w-16 tracking-widest shrink-0">{c.label}</span>
                     <span className="flex-1 bg-bg-deep h-1.5 overflow-hidden">
                       <span
                         className="block h-full"
                         style={{ width: `${pct}%`, background: c.hex }}
                       />
                     </span>
-                    <span className="w-14 text-right tabular-nums text-ink-mute">
+                    <span className="w-12 sm:w-14 text-right tabular-nums text-ink-mute shrink-0">
                       {pct}% ({n})
                     </span>
                   </li>

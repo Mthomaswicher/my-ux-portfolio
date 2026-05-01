@@ -126,7 +126,7 @@ const SignatureCanvas = forwardRef<
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full max-w-[600px]">
       <canvas
         ref={canvasRef}
         width={600}
@@ -141,14 +141,14 @@ const SignatureCanvas = forwardRef<
         onPointerMove={move}
         onPointerUp={up}
         onPointerLeave={up}
-        className="block w-full max-w-[600px] aspect-[600/360] cartridge cursor-crosshair touch-none"
+        className="block w-full aspect-[600/360] cartridge cursor-crosshair touch-none"
       />
       {empty && (
         <div
           className="absolute inset-0 pointer-events-none flex items-center justify-center"
           aria-hidden="true"
         >
-          <div className="font-pixel text-[10px] tracking-widest text-ink-mute">
+          <div className="font-pixel text-[9px] sm:text-[10px] tracking-widest text-ink-mute">
             ░ DRAW YOUR MARK ░
           </div>
         </div>

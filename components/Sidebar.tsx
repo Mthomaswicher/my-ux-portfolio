@@ -50,6 +50,22 @@ export default function Sidebar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // Lock body scroll while the drawer is open on mobile so the page
+  // behind doesn't scroll under the user's finger.
+  useEffect(() => {
+    if (!isMobile) return;
+    const root = document.documentElement;
+    if (open) root.setAttribute("data-scroll-locked", "true");
+    else root.removeAttribute("data-scroll-locked");
+    return () => root.removeAttribute("data-scroll-locked");
+  }, [open, isMobile]);
+
+  // Auto-close the drawer when transitioning to desktop so it doesn't
+  // come back open on next mobile resize.
+  useEffect(() => {
+    if (!isMobile && open) setOpen(false);
+  }, [isMobile, open]);
+
   // Hidden from AT + tab order whenever it's off-canvas on mobile
   const offCanvas = isMobile && !open;
 
@@ -57,7 +73,7 @@ export default function Sidebar() {
     <>
       <button
         type="button"
-        className="md:hidden fixed top-3 left-3 z-50 cartridge px-3 py-1.5 font-mono text-xs uppercase tracking-widest"
+        className="md:hidden fixed top-[max(0.75rem,env(safe-area-inset-top))] left-3 z-50 cartridge px-4 py-2.5 font-mono text-xs uppercase tracking-widest min-h-[44px] min-w-[44px]"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="primary-sidebar"
@@ -83,9 +99,9 @@ export default function Sidebar() {
         inert={offCanvas ? "" : undefined}
         className={`${
           open ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 fixed md:sticky top-0 left-0 z-40 h-screen w-[300px] flex-shrink-0 transition-transform duration-200 border-r border-ink-ghost bg-bg-deep/95 backdrop-blur-sm overflow-y-auto`}
+        } md:translate-x-0 fixed md:sticky top-0 left-0 z-40 h-[100dvh] md:h-screen w-[min(85vw,300px)] md:w-[300px] flex-shrink-0 transition-transform duration-200 border-r border-ink-ghost bg-bg-deep/95 backdrop-blur-sm overflow-y-auto overscroll-contain`}
       >
-        <div className="flex flex-col gap-6 p-5 pt-6 min-h-screen">
+        <div className="flex flex-col gap-6 p-5 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] min-h-[100dvh]">
           <Link
             href="/home"
             className="flex items-center gap-3 group"
@@ -145,7 +161,7 @@ export default function Sidebar() {
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`group flex items-baseline gap-2 px-2 py-1.5 -mx-2 hover:bg-bg-ridge/60 transition-colors ${
+                      className={`group flex items-baseline gap-2 px-2 py-2.5 md:py-1.5 -mx-2 hover:bg-bg-ridge/60 transition-colors ${
                         active ? "bg-bg-ridge/40" : ""
                       }`}
                       onMouseEnter={() => play("hover")}
@@ -196,7 +212,7 @@ export default function Sidebar() {
                     href={s.href}
                     target={s.href.startsWith("http") ? "_blank" : undefined}
                     rel={s.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="hover:text-glow-cyan transition-colors"
+                    className="block py-1.5 md:py-0.5 hover:text-glow-cyan transition-colors"
                   >
                     <span aria-hidden="true">›</span> {s.label}
                     {s.href.startsWith("http") && (

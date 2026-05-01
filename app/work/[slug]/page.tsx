@@ -53,7 +53,7 @@ function CaseStudyImage({
           alt={alt}
           width={1920}
           height={1080}
-          sizes="(max-width: 768px) 100vw, 800px"
+          sizes="(max-width: 640px) 95vw, (max-width: 1024px) 80vw, 800px"
           className="w-full h-auto block"
         />
       </div>
@@ -131,7 +131,7 @@ function renderBlock(b: Block, key: number, accent: keyof typeof ACCENT_TEXT) {
       return (
         <blockquote
           key={key}
-          className="border-l-2 border-neon-cyan pl-4 my-3 font-display text-[24px] leading-tight text-glow-cyan"
+          className="border-l-2 border-neon-cyan pl-4 my-3 font-display text-[22px] sm:text-[24px] leading-tight text-glow-cyan"
         >
           &ldquo;{b.text}&rdquo;
           {b.speaker && (
@@ -184,60 +184,105 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   if (!study) notFound();
 
   return (
-    <main id="main" className="min-h-screen">
+    <main id="main" className="min-h-[100dvh]">
       {study.slug === "idp-release-plugin" && <DevNavHubBanner />}
 
-      <div className="mx-auto max-w-6xl px-6 md:px-10 py-10">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 pt-6 pb-6 md:py-10">
         <Link
           href="/home"
-          className="font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
+          className="inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
         >
           <span aria-hidden="true">← </span>BACK TO CABINET
         </Link>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 md:px-10 grid md:grid-cols-[220px_1fr] gap-10">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 grid md:grid-cols-[220px_1fr] gap-6 md:gap-10">
         <aside className="md:sticky md:top-6 self-start" aria-labelledby="toc-heading">
-          <h2
-            id="toc-heading"
-            className="font-pixel text-[10px] tracking-widest text-ink-mute mb-4"
-          >
-            CONTENTS
-          </h2>
-          <nav aria-label="Sections in this case study">
-            <ul className="space-y-1 list-none p-0">
-              {study.sections.map((s) => (
-                <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
-                    className="block group font-mono text-[12px] text-ink-dim hover:text-glow-cyan focus-visible:text-glow-cyan py-1"
-                  >
-                    <span className="text-ink-mute mr-2" aria-hidden="true">
-                      {s.no}.
-                    </span>
-                    {s.title}
-                  </a>
-                </li>
-              ))}
-              {study.results && (
-                <li>
-                  <a
-                    href="#results"
-                    className="block font-mono text-[12px] text-ink-dim hover:text-glow-magenta focus-visible:text-glow-magenta py-1"
-                  >
-                    <span className="text-ink-mute mr-2" aria-hidden="true">
-                      ★
-                    </span>
-                    Results
-                  </a>
-                </li>
-              )}
-            </ul>
-          </nav>
+          {/* Mobile: collapsible. Desktop: always-visible TOC. */}
+          <details className="md:hidden group cartridge">
+            <summary className="cursor-pointer list-none flex items-center justify-between p-3 font-pixel text-[10px] tracking-widest text-ink-mute">
+              <span id="toc-heading">▤ CONTENTS</span>
+              <span
+                className="font-mono text-[10px] text-ink-mute group-open:rotate-180 transition-transform"
+                aria-hidden="true"
+              >
+                ▾
+              </span>
+            </summary>
+            <nav aria-label="Sections in this case study" className="px-3 pb-3">
+              <ul className="space-y-1 list-none p-0">
+                {study.sections.map((s) => (
+                  <li key={s.id}>
+                    <a
+                      href={`#${s.id}`}
+                      className="block font-mono text-[13px] text-ink-dim hover:text-glow-cyan focus-visible:text-glow-cyan py-2"
+                    >
+                      <span className="text-ink-mute mr-2" aria-hidden="true">
+                        {s.no}.
+                      </span>
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+                {study.results && (
+                  <li>
+                    <a
+                      href="#results"
+                      className="block font-mono text-[13px] text-ink-dim hover:text-glow-magenta focus-visible:text-glow-magenta py-2"
+                    >
+                      <span className="text-ink-mute mr-2" aria-hidden="true">
+                        ★
+                      </span>
+                      Results
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </nav>
+          </details>
+
+          <div className="hidden md:block">
+            <h2
+              id="toc-heading"
+              className="font-pixel text-[10px] tracking-widest text-ink-mute mb-4"
+            >
+              CONTENTS
+            </h2>
+            <nav aria-label="Sections in this case study">
+              <ul className="space-y-1 list-none p-0">
+                {study.sections.map((s) => (
+                  <li key={s.id}>
+                    <a
+                      href={`#${s.id}`}
+                      className="block group font-mono text-[12px] text-ink-dim hover:text-glow-cyan focus-visible:text-glow-cyan py-1"
+                    >
+                      <span className="text-ink-mute mr-2" aria-hidden="true">
+                        {s.no}.
+                      </span>
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+                {study.results && (
+                  <li>
+                    <a
+                      href="#results"
+                      className="block font-mono text-[12px] text-ink-dim hover:text-glow-magenta focus-visible:text-glow-magenta py-1"
+                    >
+                      <span className="text-ink-mute mr-2" aria-hidden="true">
+                        ★
+                      </span>
+                      Results
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </nav>
+          </div>
         </aside>
 
         <article className="min-w-0">
-          <header className="mb-12">
+          <header className="mb-10 md:mb-12">
             <div className="flex flex-wrap items-baseline gap-3 mb-4">
               <span className={`font-pixel text-[10px] tracking-widest ${STATUS_TEXT[study.status]}`}>
                 {study.status}
@@ -247,15 +292,15 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               </span>
             </div>
             <h1
-              className={`font-display text-[64px] md:text-[96px] leading-none mb-5 ${ACCENT_TEXT[study.accent]}`}
+              className={`font-display text-[44px] sm:text-[64px] md:text-[96px] leading-none mb-5 ${ACCENT_TEXT[study.accent]}`}
             >
               {study.title}
             </h1>
-            <p className="font-mono text-[16px] md:text-[18px] leading-relaxed text-ink-dim max-w-2xl">
+            <p className="font-mono text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed text-ink-dim max-w-2xl">
               {study.tagline}
             </p>
 
-            <dl className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 cartridge p-5">
+            <dl className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 cartridge p-4 sm:p-5">
               {[
                 { label: "Role", value: study.role },
                 { label: "Team", value: study.team },
@@ -266,7 +311,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                   <dt className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-1">
                     {row.label}
                   </dt>
-                  <dd className="font-mono text-[12.5px] text-ink-dim leading-snug">{row.value}</dd>
+                  <dd className="font-mono text-[12.5px] text-ink-dim leading-snug break-words">{row.value}</dd>
                 </div>
               ))}
             </dl>
@@ -306,7 +351,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               </div>
               <h2
                 id={`${s.id}-heading`}
-                className={`font-display text-[36px] md:text-[44px] leading-none mb-5 ${ACCENT_TEXT[study.accent]}`}
+                className={`font-display text-[30px] sm:text-[36px] md:text-[44px] leading-tight mb-5 ${ACCENT_TEXT[study.accent]}`}
               >
                 {s.title}
               </h2>
@@ -326,14 +371,14 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               </div>
               <h2
                 id="results-heading"
-                className="font-display text-[36px] md:text-[44px] leading-none mb-6 text-glow-amber"
+                className="font-display text-[30px] sm:text-[36px] md:text-[44px] leading-tight mb-6 text-glow-amber"
               >
                 High score.
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {study.results.map((r) => (
-                  <div key={r.label} className="cartridge p-5">
-                    <div className="font-display text-[56px] leading-none text-glow-amber">
+                  <div key={r.label} className="cartridge p-4 sm:p-5">
+                    <div className="font-display text-[44px] sm:text-[56px] leading-none text-glow-amber break-words">
                       {r.stat}
                     </div>
                     <div className="font-mono text-[12.5px] text-ink-dim mt-2 leading-snug">

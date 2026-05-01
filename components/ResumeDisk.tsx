@@ -43,7 +43,7 @@ export default function ResumeDisk() {
         onClick={handleClick}
         onMouseEnter={() => play("hover")}
         onFocus={() => play("hover")}
-        className="floppy group relative grid grid-cols-[120px_1fr_auto] items-stretch gap-0 outline-none"
+        className="floppy group relative grid grid-cols-[80px_1fr_auto] sm:grid-cols-[120px_1fr_auto] items-stretch gap-0 outline-none"
         aria-label="Download Matthew's resume (PDF)"
       >
         {/* ─── Disk left half: metal shutter + label corner ─── */}
@@ -91,7 +91,7 @@ export default function ResumeDisk() {
 
         {/* ─── Center label sticker ─── */}
         <div
-          className="relative bg-[#f4ecd6] text-[#1a1a14] px-4 py-3 overflow-hidden"
+          className="relative bg-[#f4ecd6] text-[#1a1a14] px-3 sm:px-4 py-3 overflow-hidden min-w-0"
           style={{
             boxShadow:
               "inset 0 0 0 1px rgba(0,0,0,0.25), inset 0 -8px 0 rgba(0,0,0,0.04)",
@@ -107,13 +107,13 @@ export default function ResumeDisk() {
             aria-hidden="true"
           />
           <div className="relative">
-            <div className="font-pixel text-[9px] tracking-widest text-[#8a4f12]">
+            <div className="font-pixel text-[8px] sm:text-[9px] tracking-widest text-[#8a4f12]">
               ▶ DISK 01 / RESUME.PDF
             </div>
-            <div className="font-display text-[26px] leading-none mt-1">
+            <div className="font-display text-[20px] sm:text-[26px] leading-tight mt-1 break-words">
               MATTHEW THOMAS-WICHER
             </div>
-            <div className="font-mono text-[11px] uppercase tracking-widest mt-1 text-[#3a3a30]">
+            <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest mt-1 text-[#3a3a30]">
               SR. PRODUCT DESIGNER · 2026
             </div>
             <div className="font-mono text-[11px] mt-3 text-[#5a5a48]">

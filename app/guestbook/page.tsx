@@ -11,14 +11,14 @@ export default function GuestbookPage() {
     <div className="flex min-h-screen">
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
-        <div className="mx-auto max-w-5xl px-6 md:px-10 py-12 md:py-16">
+        <div className="mx-auto max-w-5xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
           <div
             className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
             aria-hidden="true"
           >
             ░ HALL OF FAME ░
           </div>
-          <h1 className="font-display text-[64px] md:text-[88px] leading-none text-glow-amber mb-4">
+          <h1 className="font-display text-[44px] sm:text-[64px] md:text-[88px] leading-none text-glow-amber mb-4">
             High Scores
             <span className="caret" aria-hidden="true" />
           </h1>

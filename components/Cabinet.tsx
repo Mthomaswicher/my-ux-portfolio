@@ -77,14 +77,14 @@ export default function Cabinet() {
 function EasyGrid() {
   return (
     <section aria-labelledby="cartridges-heading">
-      <div className="flex items-baseline justify-between mb-6">
+      <div className="flex items-baseline justify-between gap-3 mb-6">
         <h2
           id="cartridges-heading"
-          className="font-pixel text-[12px] tracking-widest text-glow-magenta"
+          className="font-pixel text-[11px] sm:text-[12px] tracking-widest text-glow-magenta"
         >
           <span aria-hidden="true">▌</span>SELECT YOUR GAME
         </h2>
-        <span className="font-mono text-[11px] text-ink-mute">
+        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute whitespace-nowrap">
           {projects.length} CARTRIDGES
         </span>
       </div>
@@ -115,6 +115,9 @@ function HardCabinet() {
 
   function startDrag(p: Project, e: React.PointerEvent<HTMLElement>) {
     if (p.external) return; // external links never drag
+    // Touch users get the click-to-insert path so vertical scrolling
+    // through the cabinet always works. Drag stays on mouse/pen.
+    if (e.pointerType === "touch") return;
     e.preventDefault();
     const rect = e.currentTarget.getBoundingClientRect();
     setDrag({
@@ -191,15 +194,15 @@ function HardCabinet() {
         from={drag.phase === "inserting" ? drag.from : null}
       />
 
-      <div className="flex items-baseline justify-between mb-6">
+      <div className="flex items-baseline justify-between gap-3 mb-6">
         <h2
           id="cartridges-heading"
-          className="font-pixel text-[12px] tracking-widest text-glow-magenta"
+          className="font-pixel text-[11px] sm:text-[12px] tracking-widest text-glow-magenta"
         >
           <span aria-hidden="true">▌</span>AVAILABLE CARTRIDGES
         </h2>
-        <span className="font-mono text-[11px] text-ink-mute">
-          {projects.length} CARTRIDGES · DRAG OR CLICK
+        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute whitespace-nowrap">
+          {projects.length} CARTRIDGES<span className="hidden md:inline"> · DRAG OR CLICK</span>
         </span>
       </div>
 
@@ -219,7 +222,7 @@ function HardCabinet() {
               tabIndex={0}
               aria-label={`${p.title} — ${isExternal ? "external link" : "load this cartridge"}`}
               aria-describedby="cabinet-help"
-              className={`${cardClasses(p)} touch-none cursor-grab active:cursor-grabbing transition-opacity duration-200 ${
+              className={`${cardClasses(p)} touch-pan-y md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
                 dimmed ? "opacity-30 pointer-events-none" : "opacity-100"
               }`}
               style={cardStyleFor(p)}
@@ -245,7 +248,8 @@ function HardCabinet() {
         id="cabinet-help"
         className="mt-6 font-mono text-[11px] text-ink-mute uppercase tracking-widest"
       >
-        Tip — Press Enter or click to auto-load. Drag for the full kerchunk.
+        <span className="md:hidden">Tip — Tap a cartridge to auto-load.</span>
+        <span className="hidden md:inline">Tip — Press Enter or click to auto-load. Drag for the full kerchunk.</span>
       </p>
 
       {/* Floating drag ghost */}

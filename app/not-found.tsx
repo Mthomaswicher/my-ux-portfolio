@@ -6,16 +6,16 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <main id="main" className="min-h-screen flex items-center justify-center px-6 py-12">
+    <main id="main" className="min-h-[100dvh] flex items-center justify-center px-5 sm:px-6 py-10 sm:py-12">
       <div className="w-full max-w-2xl">
         <div
-          className="font-pixel text-[14px] sm:text-[18px] tracking-widest text-glow-magenta mb-6"
+          className="font-pixel text-[12px] sm:text-[18px] tracking-widest text-glow-magenta mb-6"
           aria-hidden="true"
         >
           ░ ░ ░ GAME OVER ░ ░ ░
         </div>
 
-        <h1 className="font-display text-[80px] sm:text-[120px] leading-none text-glow-cyan mb-2">
+        <h1 className="font-display text-[64px] sm:text-[120px] leading-none text-glow-cyan mb-2">
           404
         </h1>
         <p className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-amber mb-8">
@@ -31,19 +31,19 @@ export default function NotFound() {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/home"
-            className="cartridge px-5 py-3 font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
+            className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
           >
             [ CABINET ]
           </Link>
           <Link
             href="/"
-            className="cartridge px-5 py-3 font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"
+            className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"
           >
             [ INSERT COIN ]
           </Link>
           <Link
             href="/guestbook"
-            className="cartridge px-5 py-3 font-pixel text-[12px] tracking-widest text-ink hover:text-glow-amber hover:shadow-neon-amber transition-shadow"
+            className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-ink hover:text-glow-amber hover:shadow-neon-amber transition-shadow"
           >
             [ HIGH SCORES ]
           </Link>

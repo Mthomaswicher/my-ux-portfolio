@@ -60,7 +60,7 @@ export default function KonamiCode() {
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 cartridge px-4 py-2 font-pixel text-[10px] tracking-widest text-glow-magenta motion-safe:animate-flicker"
+      className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-3 md:right-6 left-3 md:left-auto z-50 cartridge px-3 md:px-4 py-2 font-pixel text-[10px] tracking-widest text-glow-magenta motion-safe:animate-flicker text-center md:text-left max-w-[calc(100vw-1.5rem)] md:max-w-none"
       role="status"
       aria-live="polite"
     >

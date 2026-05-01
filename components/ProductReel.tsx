@@ -87,7 +87,7 @@ export default function ProductReel({
             src={screens[idx]}
             alt={alt}
             fill
-            sizes="(max-width: 640px) 100vw, 640px"
+            sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 640px"
             className="object-cover"
             priority={idx === 0}
           />
@@ -126,7 +126,7 @@ export default function ProductReel({
           {screens.map((_, i) => (
             <span
               key={i}
-              className="block w-1.5 h-1.5"
+              className="block w-2 h-2 sm:w-2.5 sm:h-2.5"
               style={{
                 background: i === idx ? accentHex : "#3a3a55",
                 boxShadow: i === idx ? `0 0 6px ${accentHex}` : "none",

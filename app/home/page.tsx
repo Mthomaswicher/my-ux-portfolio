@@ -12,15 +12,15 @@ export default function Home() {
     <div className="flex min-h-screen">
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
-        <div className="mx-auto max-w-5xl px-6 md:px-10 py-12 md:py-16">
-          <header className="mb-12">
+        <div className="mx-auto max-w-5xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
+          <header className="mb-10 md:mb-12">
             <div
               className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
               aria-hidden="true"
             >
               ░ ░ ░ NOW PLAYING ░ ░ ░
             </div>
-            <h1 className="font-display text-[56px] md:text-[88px] leading-none text-glow-cyan mb-4">
+            <h1 className="font-display text-[44px] sm:text-[56px] md:text-[88px] leading-none text-glow-cyan mb-4">
               Hello, player.
               <span className="caret" aria-hidden="true" />
             </h1>

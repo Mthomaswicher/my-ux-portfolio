@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Press_Start_2P, VT323, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CrtOverlays from "@/components/CrtOverlays";
@@ -27,11 +27,22 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#05050a",
+};
+
 export const metadata: Metadata = {
   title: "Matthew Thomas-Wicher · MTW.ARCADE",
   description:
     "Sr. Product Designer in Washington, D.C. Building thoughtful, data-informed software in highly regulated environments.",
   metadataBase: new URL("http://localhost:3000"),
+  formatDetection: {
+    telephone: false,
+  },
   openGraph: {
     title: "Matthew Thomas-Wicher · MTW.ARCADE",
     description:

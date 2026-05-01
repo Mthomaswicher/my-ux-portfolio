@@ -33,7 +33,7 @@ export default function BootSequence() {
   }, [shown]);
 
   return (
-    <main id="main" className="min-h-screen flex items-center justify-center px-6 py-12">
+    <main id="main" className="min-h-[100dvh] flex items-center justify-center px-5 sm:px-6 py-10 sm:py-12">
       <div className="w-full max-w-2xl">
         <div
           className="font-mono text-[13px] leading-relaxed text-ink-dim space-y-1 mb-10"
@@ -87,7 +87,7 @@ export default function BootSequence() {
               aria-label="Enter — sign the guestbook"
               onClick={() => play("insertCoin")}
               onMouseEnter={() => play("hover")}
-              className="cartridge px-5 py-3 font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
+              className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
             >
               <span aria-hidden="true">[ </span>ENTER<span aria-hidden="true"> ]</span>
             </Link>
@@ -96,7 +96,7 @@ export default function BootSequence() {
               aria-label="Skip intro — go directly to work"
               onClick={() => play("select")}
               onMouseEnter={() => play("hover")}
-              className="cartridge px-5 py-3 font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"
+              className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"
             >
               <span aria-hidden="true">[ </span>SKIP INTRO<span aria-hidden="true"> ]</span>
             </Link>

@@ -90,23 +90,23 @@ export default function SignFlow() {
   }
 
   return (
-    <main id="main" className="min-h-screen px-6 py-10">
+    <main id="main" className="min-h-[100dvh] px-5 sm:px-6 pt-6 pb-10">
       <div className="mx-auto max-w-3xl">
         <Link
           href="/"
-          className="font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan"
+          className="inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan"
         >
           <span aria-hidden="true">← </span>BACK TO BOOT
         </Link>
 
-        <header className="mt-8 mb-10">
+        <header className="mt-6 sm:mt-8 mb-8 sm:mb-10">
           <div
             className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-3"
             aria-hidden="true"
           >
             ░ NEW PLAYER REGISTRATION ░
           </div>
-          <h1 className="font-display text-[64px] md:text-[88px] leading-none text-glow-cyan">
+          <h1 className="font-display text-[44px] sm:text-[64px] md:text-[88px] leading-none text-glow-cyan">
             Sign in.<span className="caret" aria-hidden="true" />
           </h1>
           <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">
@@ -122,7 +122,7 @@ export default function SignFlow() {
           }}
           noValidate
         >
-          <section className="grid gap-6 md:grid-cols-[1fr_auto] mb-8">
+          <section className="grid gap-5 sm:gap-6 md:grid-cols-[1fr_auto] mb-8">
             <div>
               <label
                 htmlFor={nameId}
@@ -138,7 +138,7 @@ export default function SignFlow() {
                 placeholder="Matt T-W"
                 maxLength={40}
                 autoComplete="nickname"
-                className="w-full bg-bg-deep border border-ink-ghost px-3 py-2.5 font-mono text-[14px] text-ink placeholder:text-ink-mute focus:outline-none focus:border-neon-cyan focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-0"
+                className="w-full bg-bg-deep border border-ink-ghost px-3 py-3 md:py-2.5 font-mono text-[16px] md:text-[14px] text-ink placeholder:text-ink-mute focus:outline-none focus:border-neon-cyan focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-0"
               />
             </div>
 
@@ -149,7 +149,7 @@ export default function SignFlow() {
               >
                 3-letter tag
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <input
                   id={tagId}
                   type="text"
@@ -159,7 +159,7 @@ export default function SignFlow() {
                   pattern="[A-Z0-9]{3}"
                   inputMode="text"
                   aria-describedby={tagHelpId}
-                  className="w-24 bg-bg-deep border border-ink-ghost px-3 py-2.5 font-pixel text-[14px] text-glow-cyan tracking-widest text-center focus:outline-none focus:border-neon-cyan"
+                  className="w-24 bg-bg-deep border border-ink-ghost px-3 py-3 md:py-2.5 font-pixel text-[16px] md:text-[14px] text-glow-cyan tracking-widest text-center focus:outline-none focus:border-neon-cyan"
                 />
                 <button
                   type="button"
@@ -167,7 +167,7 @@ export default function SignFlow() {
                     setTag(randomTag());
                     play("roll");
                   }}
-                  className="font-pixel text-[9px] tracking-widest text-ink-mute hover:text-glow-magenta focus-visible:text-glow-magenta"
+                  className="px-3 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta focus-visible:text-glow-magenta"
                   aria-label="Roll a new random tag"
                 >
                   <span aria-hidden="true">⟳ </span>ROLL
@@ -200,7 +200,7 @@ export default function SignFlow() {
                     setColor(c.key);
                     play("pop");
                   }}
-                  className={`px-4 py-2 font-pixel text-[10px] tracking-widest border transition-shadow ${
+                  className={`px-4 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest border transition-shadow ${
                     color === c.key
                       ? "border-transparent shadow-[0_0_0_1px_var(--col),0_0_12px_var(--col)]"
                       : "border-ink-ghost text-ink-dim hover:text-ink"
@@ -223,14 +223,14 @@ export default function SignFlow() {
               Sign the cartridge
             </div>
             <SignatureCanvas ref={ref} color={color} />
-            <div className="mt-3 flex items-center justify-between">
+            <div className="mt-3 flex items-center justify-between gap-3">
               <button
                 type="button"
                 onClick={() => {
                   ref.current?.clear();
                   play("back");
                 }}
-                className="font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber focus-visible:text-glow-amber"
+                className="-ml-2 px-2 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber focus-visible:text-glow-amber"
                 aria-label="Clear signature canvas"
               >
                 <span aria-hidden="true">⌫ </span>CLEAR
@@ -261,7 +261,7 @@ export default function SignFlow() {
               type="submit"
               disabled={submitting}
               aria-describedby={error ? errorId : undefined}
-              className="cartridge px-6 py-3 font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+              className="cartridge px-6 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submitting ? "SAVING…" : (
                 <>
@@ -271,7 +271,7 @@ export default function SignFlow() {
             </button>
             <Link
               href="/home"
-              className="font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
+              className="py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
             >
               SKIP — TAKE ME TO THE WORK
             </Link>

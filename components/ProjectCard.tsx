@@ -49,7 +49,7 @@ export function ProjectCardBody({ project }: { project: Project }) {
         : [];
 
   return (
-    <div className="p-3">
+    <div className="p-2 sm:p-3">
       {/* Cartridge shell */}
       <div
         className="relative"

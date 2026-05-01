@@ -12,7 +12,11 @@ export default function PixelPet() {
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    // The pet wanders the full viewport width — on phones it crashes
+    // through stacked content. Skip it on small / coarse screens.
+    const small = window.matchMedia("(max-width: 767px)").matches;
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    if (reduced || small || coarse) return;
     const ready = window.setTimeout(() => setEnabled(true), 4000);
     return () => window.clearTimeout(ready);
   }, []);

@@ -42,12 +42,14 @@ export default function HoloDisplay({
   const [idx, setIdx] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const [coarse, setCoarse] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const accentHex = ACCENT_HEX[accent];
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setCoarse(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
   useEffect(() => {
@@ -71,7 +73,8 @@ export default function HoloDisplay({
   });
 
   function onMove(e: React.PointerEvent) {
-    if (!interactive || reduced || !ref.current) return;
+    // Touch devices skip the 3D tilt — it fires only on hover-capable pointers.
+    if (!interactive || reduced || coarse || !ref.current) return;
     const r = ref.current.getBoundingClientRect();
     mx.set((e.clientX - r.left) / r.width - 0.5);
     my.set((e.clientY - r.top) / r.height - 0.5);
@@ -117,7 +120,7 @@ export default function HoloDisplay({
                 src={screens[idx]}
                 alt={alt}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 800px"
+                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 80vw, 800px"
                 className={
                   fit === "contain"
                     ? "object-contain"

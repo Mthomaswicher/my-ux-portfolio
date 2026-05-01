@@ -44,25 +44,26 @@ export default function About() {
     <div className="flex min-h-screen">
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
-        <div className="mx-auto max-w-4xl px-6 md:px-10 py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
           <div
             className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
             aria-hidden="true"
           >
             ░ PLAYER PROFILE ░
           </div>
-          <h1 className="font-display text-[56px] md:text-[80px] leading-none text-glow-magenta mb-8">
+          <h1 className="font-display text-[44px] sm:text-[56px] md:text-[80px] leading-none text-glow-magenta mb-8">
             Player 1: Matt
             <span className="caret" aria-hidden="true" />
           </h1>
 
-          <section className="grid md:grid-cols-[200px_1fr] gap-8 mb-14">
-            <div className="cartridge p-1 w-[200px] self-start">
+          <section className="grid md:grid-cols-[200px_1fr] gap-6 sm:gap-8 mb-14">
+            <div className="cartridge p-1 w-[160px] sm:w-[200px] self-start">
               <Image
                 src="/about-photo.jpg"
                 alt="Matthew Thomas-Wicher portrait"
                 width={400}
                 height={533}
+                sizes="(max-width: 640px) 160px, 200px"
                 className="block w-full h-auto"
               />
             </div>
@@ -98,17 +99,26 @@ export default function About() {
             >
               <span aria-hidden="true">▌</span>STATS
             </h2>
-            <div className="cartridge grid grid-cols-2 md:grid-cols-4 divide-x divide-ink-ghost">
-              {STATS.map((s) => (
-                <div key={s.label} className="p-4">
-                  <div className="font-mono text-[10px] tracking-widest text-ink-mute uppercase">
-                    {s.label}
+            <div className="cartridge grid grid-cols-2 md:grid-cols-4 border-ink-ghost">
+              {STATS.map((s, i) => {
+                const mobileLeft = i % 2 === 1 ? "border-l" : "";
+                const mobileTop = i >= 2 ? "border-t" : "";
+                const desktopLeft = i >= 1 ? "md:border-l" : "";
+                const desktopTop = "md:border-t-0";
+                return (
+                  <div
+                    key={s.label}
+                    className={`p-4 border-ink-ghost ${mobileLeft} ${mobileTop} ${desktopLeft} ${desktopTop}`}
+                  >
+                    <div className="font-mono text-[10px] tracking-widest text-ink-mute uppercase">
+                      {s.label}
+                    </div>
+                    <div className="font-display text-[22px] sm:text-[28px] leading-tight text-glow-amber mt-1 break-words">
+                      {s.value}
+                    </div>
                   </div>
-                  <div className="font-display text-[28px] leading-none text-glow-amber mt-1">
-                    {s.value}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 

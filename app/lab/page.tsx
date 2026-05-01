@@ -61,31 +61,31 @@ export default function Lab() {
     <div className="flex min-h-screen">
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
-        <div className="mx-auto max-w-5xl px-6 md:px-10 py-12 md:py-16">
+        <div className="mx-auto max-w-5xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
           <div
             className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
             aria-hidden="true"
           >
             ░ B-SIDES ░
           </div>
-          <h1 className="font-display text-[56px] md:text-[80px] leading-none text-glow-amber mb-8">
+          <h1 className="font-display text-[44px] sm:text-[56px] md:text-[80px] leading-none text-glow-amber mb-8">
             The Lab
             <span className="caret" aria-hidden="true" />
           </h1>
 
-          <p className="font-mono text-[15px] text-ink-dim mb-16 max-w-xl leading-relaxed">
+          <p className="font-mono text-[15px] text-ink-dim mb-12 sm:mb-16 max-w-xl leading-relaxed">
             A drawer for design experiments, micro-tools, and weekend builds. Most of these
             don&apos;t deserve a case study, but they earn their keep.
           </p>
 
           <section aria-labelledby="exhibit-money-magnet">
-            <header className="mb-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+            <header className="mb-6 flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 gap-y-2">
               <span className="font-pixel text-[10px] tracking-widest text-ink-mute">
                 EXHIBIT 01
               </span>
               <h2
                 id="exhibit-money-magnet"
-                className="font-display text-[36px] md:text-[44px] leading-none text-glow-magenta"
+                className="font-display text-[32px] sm:text-[36px] md:text-[44px] leading-none text-glow-magenta"
               >
                 Money Magnet
               </h2>
@@ -113,7 +113,7 @@ export default function Lab() {
                 aria-hidden="true"
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <span className="font-display text-[32px] leading-none text-glow-cyan bg-bg-void/70 border border-neon-cyan/60 rounded-full w-20 h-20 flex items-center justify-center pl-2 transition-transform duration-300 group-hover:scale-110">
+                <span className="font-display text-[28px] sm:text-[32px] leading-none text-glow-cyan bg-bg-void/70 border border-neon-cyan/60 rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center pl-1 sm:pl-2 transition-transform duration-300 group-hover:scale-110">
                   ▶
                 </span>
               </div>
@@ -140,7 +140,7 @@ export default function Lab() {
               </dl>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-7">
               {MONEY_MAGNET_SCREENS.map((screen) => (
                 <PhoneMockup key={screen.src} screen={screen} />
               ))}
