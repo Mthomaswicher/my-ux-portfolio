@@ -67,4 +67,27 @@ export const projects: Project[] = [
     mascot: "$",
     screens: [`${OPO}/01-hero.png`, `${OPO}/03-process.png`],
   },
+  {
+    no: "03",
+    title: "Demex Climate Center",
+    org: "The Demex Group",
+    status: "SHIPPED",
+    blurb:
+      "Founding product design + engineering for a climate-risk web app that turned dense weather data into something insurers and businesses could actually use.",
+    role: "Founding Product Designer · Full-Stack Engineer",
+    team: "Design + eng founding team · cross-functional w/ data science",
+    timeframe: "Climate-fintech startup",
+    tools: "Figma · React · UserTesting",
+    href: "/work/demex-climate-center",
+    accent: "lime",
+    hero: "/images/case-studies/demex-climate-center/05.png",
+    tilt: -2.6,
+    tags: ["#climate-risk", "#dataviz"],
+    mascot: "△",
+    screens: [
+      "/images/case-studies/demex-climate-center/05.png",
+      "/images/case-studies/demex-climate-center/08.png",
+      "/images/case-studies/demex-climate-center/01.png",
+    ],
+  },
 ];

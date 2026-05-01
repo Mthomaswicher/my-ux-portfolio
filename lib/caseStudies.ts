@@ -39,6 +39,7 @@ export type CaseStudy = {
 
 const IDP = "/images/case-studies/idp-release-plugin";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
+const DCC = "/images/case-studies/demex-climate-center";
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -687,6 +688,181 @@ export const caseStudies: CaseStudy[] = [
       { stat: "90%", label: "Reduced time for users to set up bill pay" },
       { stat: "37%", label: "Increase in users who set up auto-pay" },
       { stat: "16%", label: "Increase in loans paid on-time" },
+    ],
+  },
+
+  /* ─── Demex Climate Center ───────────────────────────────────────── */
+  {
+    slug: "demex-climate-center",
+    title: "Demex Climate Center",
+    org: "The Demex Group",
+    status: "SHIPPED",
+    tagline:
+      "Founding product design and full-stack engineering for a climate-risk web app — turning dense weather data into something insurers and businesses could actually act on.",
+    hero: `${DCC}/05.png`,
+    heroScreens: [`${DCC}/05.png`, `${DCC}/08.png`],
+    role: "Founding Product Designer · Full-Stack Engineer",
+    team: "Founding design + eng team, cross-functional with data science",
+    timeframe: "First public-facing product launch",
+    tools: "Figma · React · UserTesting · Strategy",
+    accent: "lime",
+    sections: [
+        {
+          id: "overview",
+          no: "01",
+          title: "Overview",
+          body: [
+            {
+              kind: "p",
+              text: "The Demex Group is a design-driven climate-risk startup specializing in products for insurers and businesses exposed to extreme but non-catastrophic weather. As founding product designer, I owned product strategy, user research, interaction, visual design, and prototyping for our first public-facing product — and pulled my full-stack engineering background back out to ship the front-end alongside the founding eng team.",
+            },
+            {
+              kind: "p",
+              text: "We were sitting on a mountain of climate and risk data that nobody outside our analysts could actually parse. The Demex Climate Center is what we built to make that data legible, comparable, and useful to the people whose bottom line was getting pummeled by weather.",
+            },
+          ],
+        },
+        {
+          id: "problem",
+          no: "02",
+          title: "Understanding the problem",
+          body: [
+            {
+              kind: "p",
+              text: "Three things had to be true for the product to matter: our users had to actually be able to use the data, the macro problem had to be real, and the goal had to be specific.",
+            },
+            {
+              kind: "features",
+              items: [
+                {
+                  title: "Our users",
+                  body: "Business owners and insurers needed a way to act on the data we already had — to protect revenue against weather events. Pre-Climate-Center, the data wasn't easy to analyze.",
+                },
+                {
+                  title: "The statistics",
+                  body: "U.S. non-catastrophic weather events have risen over 500% since 1980, with more than $9.3B in economic losses since 2002. Profitable businesses needed a way to defend their bottom line.",
+                },
+                {
+                  title: "Our goal",
+                  body: "Build a user-friendly web app on top of the data we already had so clients could interact with it directly and learn how weather actually affects their business.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: "research",
+          no: "03",
+          title: "User research",
+          body: [
+            {
+              kind: "p",
+              text: "I ran moderated and unmoderated studies with roughly 50 business owners through UserTesting.com to find the gaps in their existing insurance experience and pin down what climate data they actually wished they had. Three findings drove the eventual product surface:",
+            },
+            {
+              kind: "features",
+              items: [
+                {
+                  title: "Business disruption",
+                  body: "78% of surveyed owners reported significant disruptions to operations from unpredictable weather, leading to reduced productivity and higher costs.",
+                },
+                {
+                  title: "Vulnerability",
+                  body: "In agricultural communities, 65% reported yearly losses from unanticipated weather events, with an average loss of 15% of their annual yield.",
+                },
+                {
+                  title: "Insurance gaps",
+                  body: "63% said their existing policies didn't adequately cover weather-related damages, leaving them financially exposed.",
+                },
+              ],
+            },
+            {
+              kind: "callout",
+              tone: "note",
+              text: "Translation: we needed to turn a flood of climate signals into a small set of meaningful numbers a non-analyst could trust at a glance.",
+            },
+          ],
+        },
+        {
+          id: "wireframing",
+          no: "04",
+          title: "Early wireframing",
+          body: [
+            {
+              kind: "p",
+              text: "I sketched out the home and search-results screens early to lock in the information hierarchy: a single climate index up top, the supporting trend / variability / risk scores beside it, then a deep-dive band of historical observations and a comparison view.",
+            },
+            {
+              kind: "imgGrid",
+              items: [
+                {
+                  src: `${DCC}/06.png`,
+                  alt: "Wireframe of the Demex Climate Center home page",
+                  caption: "Home — Climate Index, search, parametrics primer.",
+                },
+                {
+                  src: `${DCC}/07.png`,
+                  alt: "Wireframe of the search results / detail view",
+                  caption: "Search results — DVI score, historical band, comparative geo views.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: "iteration",
+          no: "05",
+          title: "Testing and iteration",
+          body: [
+            {
+              kind: "p",
+              text: "Once the platform was working end-to-end I ran a round of moderated tests with five real users (the Nielsen sweet spot) to gauge whether the navigation and the core read of the index were actually landing.",
+            },
+            {
+              kind: "quote",
+              text: "4 out of 5 users said they wanted a way to look at this data in relation to other areas.",
+              speaker: "round-1 testing readout",
+            },
+            {
+              kind: "p",
+              text: "That single insight reshaped the next sprint. We added a comparative geographic view: a 5×5 climate-trend / variability matrix that plots locations against historical data, so a user looking at Seoul or London or their own zip code could see how their place ranks against the rest of the world.",
+            },
+            {
+              kind: "img",
+              src: `${DCC}/08.png`,
+              alt: "London climate trend and variability scatter chart",
+              caption: "Climate trend × variability matrix — every dot is a location plotted against its historical baseline.",
+            },
+          ],
+        },
+        {
+          id: "takeaways",
+          no: "06",
+          title: "Key learnings",
+          body: [
+            {
+              kind: "h",
+              text: "Balancing business goals with UX",
+            },
+            {
+              kind: "p",
+              text: "In a startup it's not unusual to get pushback on a design that contradicts something a stakeholder wants. Those conversations go best when you have research lined up to advocate for users — even better when the research already shaped the brief everyone signed off on.",
+            },
+            {
+              kind: "h",
+              text: "Five users is enough — to start",
+            },
+            {
+              kind: "p",
+              text: "The five-user round caught the comparative-data gap that 50-user surveys hadn't surfaced. Different study sizes answer different questions; the smaller, deeper round was where the product actually got better.",
+            },
+          ],
+        },
+      ],
+    results: [
+      { stat: "12", label: "New clients onboarded in year one", sub: "First product launch" },
+      { stat: "14%", label: "Increase in daily active users", sub: "Year-over-year" },
+      { stat: "5/5", label: "Testing rounds where comparative views came up", sub: "Drove next sprint" },
     ],
   },
 ];
