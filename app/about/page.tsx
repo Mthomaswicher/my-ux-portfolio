@@ -39,6 +39,71 @@ const FAVES = [
   { tag: "HOMIE", name: "Micah, the pup", note: "Energy-packed pandemic chaos engine." },
 ];
 
+const REVIEWS: Array<{
+  name: string;
+  role: string;
+  org: string;
+  relationship: string;
+  quote: string;
+}> = [
+  {
+    name: "Allison Phillips",
+    role: "Lead Software Engineer",
+    org: "BRG",
+    relationship: "Engineering lead on a product Matt designed",
+    quote: `I watched Matthew grow a lot as a designer in the year+ he was the lead designer on one of the products I led engineering for. When I initially took over the team, there was friction (at least from the engineers toward the designers) that was rooted in process gaps, misunderstandings, and the engineers not having the tools they needed to be successful (or not knowing how to ask for them… or not knowing what to ask for).
+
+In seeking to bridge the gap between our teams, I gave the designers a lot of critical feedback pushing for what we needed to improve our process and create successful products as a broader cohesive team. Matthew truly took that feedback and consistently ran with it. He structured his designs in a logical, ordered way that made them a sustainable, living reference for ongoing development. He configured a style library and connected it to reusable components in his designs; this kept changes to overlapping variants of designs in sync and allowed us to codify which style patterns were reused across different components. He uploaded and organized assets in such a way that we could refer back to them and download other variants as needed. He refactored his work to standardize the aspect ratios for images to make rendering variants consistent across different views. He versioned his designs, so I had receipts to push back on my engineers and say 'the design has not changed since before this ticket was created' when they insisted their work didn't match the design because the designer must have made changes while they were mid-development. At least once a month I would come across some technical refinement he'd done to improve the integration of his designs with our design tools that made my life easier, like connecting reusable things together under a single name (which helps us build better, cleaner components much faster), experimenting with additional features of our design tools, and polishing the overall design management of his product.
+
+The effort Matthew put into growing and expanding his skills better equipped my team to deliver higher-quality front-end implementations in less time, and enabled me to hold them accountable for not following the designs. I really appreciate and respect his commitment to growth and maximizing the utility of integrated design tools, and I hold his work up as an example of the kind of design support that fosters successful partnerships between engineering and design teams.`,
+  },
+  {
+    name: "Kate Peksa",
+    role: "Product Design Manager",
+    org: "BRG",
+    relationship: "Design manager at BRG",
+    quote: `Matt was a valuable member of the BRG Design Team, bringing his skills and enthusiasm as a UI/UX designer. He contributed to multiple products and collaborated effectively with colleagues to drive key initiatives forward. Always professional and supportive, he provided thoughtful feedback and maintained a positive attitude.
+
+Matt had a keen eye for creating intuitive, engaging designs that enhanced the user experience. He clearly communicated design decisions to align the team on UX goals and was highly proficient in tools like Figma and Zeplin. His work on design systems helped maintain consistency across products.
+
+Matt's positivity and willingness to collaborate made him a pleasure to work with. I appreciate his impact on the team and wish him all the best in his future endeavors.`,
+  },
+  {
+    name: "Stephen Bennett",
+    role: "Chief Product Officer",
+    org: "The Demex Group",
+    relationship: "CPO at The Demex Group",
+    quote: `Matt and I worked together at The Demex Group. Matt's optimism and positive attitude are infectious. He approaches each project and each task with a sense of unbounded ability. He also works well under ambiguity and in situations where the requirements for a project are not well defined and he works well in situations where he is not receiving day-to-day direction at the task level.
+
+Matt is simply a joy to work with and a great addition to any team looking to level up on both capabilities and attitude.`,
+  },
+  {
+    name: "Luke Fillipos",
+    role: "Product Manager",
+    org: "The Demex Group",
+    relationship: "PM on the Demex Climate Center",
+    quote: `I worked directly with Matt during my tenure at The Demex Group, on the Demex Climate Center project, which was instrumental in helping Demex secure its Series A round of funding. Matt's excellent work ethic was only matched by his aptitude for fast learning and picking up new skills quickly. I was very fortunate to have him on my team, as we developed a strong working relationship and together were able to navigate the rollercoaster that is product development within a startup.`,
+  },
+  {
+    name: "Emiola Taiwo",
+    role: "Founder",
+    org: "N-vest Partners",
+    relationship: "Hired Matt as a design consultant",
+    quote: `I had the opportunity to hire Matt as a consultant, as I needed a quality designer to complete my design needs for the N-Vest Africa platform. From the first conversation, I could tell that he is bright, eager to learn and willing to take on any challenges thrown at him. He is an asset to any team that he joins.`,
+  },
+  {
+    name: "Kaushik Andra",
+    role: "Founder",
+    org: "Client project, Flatiron School",
+    relationship: "Client on a Flatiron School research project",
+    quote: `Matt is one of the first people I would call if I was trying to launch a new product and I needed a deep understanding of my users and how to design a digital product for them.
+
+Matt was part of a team of UX researchers that helped me conduct user research on a new product I was testing out. He asked great questions to clarify the problem statement, provided out-of-the-box thinking on tough design problems, and communicated his thinking in a very clear way to someone without knowledge of UX/UI terminology.
+
+I'm looking forward to working with Matt on a future project! He would be a great asset to any UX/UI team.`,
+  },
+];
+
 export default function About() {
   return (
     <div className="min-h-screen md:flex">
@@ -165,6 +230,58 @@ export default function About() {
                   </div>
                   <div className="font-mono text-[11px] text-ink-dim leading-relaxed">{f.note}</div>
                 </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-14" aria-labelledby="reviews-heading">
+            <h2
+              id="reviews-heading"
+              className="font-pixel text-[12px] tracking-widest text-glow-amber mb-4"
+            >
+              <span aria-hidden="true">▌</span>FAN MAIL
+            </h2>
+            <div className="font-mono text-[11.5px] text-ink-mute mb-4 leading-relaxed">
+              Verbatim from{" "}
+              <a
+                href="https://www.linkedin.com/in/mthomaswicher"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-glow-cyan underline-offset-2 hover:underline"
+              >
+                LinkedIn recommendations
+              </a>
+              .
+            </div>
+            <div className="columns-1 md:columns-2 gap-4 [column-fill:_balance]">
+              {REVIEWS.map((r) => (
+                <figure
+                  key={r.name}
+                  className="cartridge p-5 mb-4 break-inside-avoid"
+                >
+                  <div
+                    className="font-display text-glow-amber text-[28px] leading-none mb-2"
+                    aria-hidden="true"
+                  >
+                    &ldquo;
+                  </div>
+                  <blockquote className="font-mono text-[13px] leading-relaxed text-ink-dim space-y-3">
+                    {r.quote.split(/\n\n+/).map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </blockquote>
+                  <figcaption className="mt-4 pt-3 border-t border-ink-mute/20">
+                    <div className="font-pixel text-[10px] tracking-widest text-glow-cyan">
+                      {r.name}
+                    </div>
+                    <div className="font-mono text-[11px] uppercase tracking-widest text-ink-mute mt-1">
+                      {r.role} · {r.org}
+                    </div>
+                    <div className="font-mono text-[11px] text-ink-dim mt-1">
+                      {r.relationship}
+                    </div>
+                  </figcaption>
+                </figure>
               ))}
             </div>
           </section>

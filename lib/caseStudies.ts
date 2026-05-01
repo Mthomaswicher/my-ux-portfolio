@@ -41,6 +41,7 @@ export type CaseStudy = {
 const IDP = "/images/case-studies/idp-release-plugin";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
 const DCC = "/images/case-studies/demex-climate-center";
+const WEB3 = "/images/case-studies/web3-remittances";
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -865,6 +866,206 @@ export const caseStudies: CaseStudy[] = [
       { stat: "12", label: "New clients onboarded in year one", sub: "First product launch" },
       { stat: "14%", label: "Increase in daily active users", sub: "Year-over-year" },
       { stat: "5/5", label: "Testing rounds where comparative views came up", sub: "Drove next sprint" },
+    ],
+  },
+
+  /* ─── Web3 Powered Remittances (Oportun hackathon) ───────────────── */
+  {
+    slug: "web3-powered-remittances",
+    title: "Web3 Powered Remittances",
+    org: "Oportun · Hackathon",
+    status: "WON",
+    tagline:
+      "Most Creative Idea winner at the Oportun hackathon. Re-imagined cross-border remittances on the Stellar network so members could send money home faster and cheaper than Western Union or PayPal.",
+    hero: `${WEB3}/01.png`,
+    heroScreens: [`${WEB3}/01.png`, `${WEB3}/08.png`, `${WEB3}/02.png`],
+    role: "Product Designer",
+    team: "Cross-functional design + engineering hackathon team",
+    timeframe: "Oportun hackathon · Most Creative Idea winner",
+    tools: "Figma · Stellar Network · Strategy · User research",
+    accent: "amber",
+    brand: "oportun",
+    sections: [
+      {
+        id: "overview",
+        no: "01",
+        title: "Overview",
+        body: [
+          {
+            kind: "p",
+            text: "Oportun's mission is to deliver affordable, responsible financial services to people the legacy banking system has overlooked. A huge slice of that user base sends money abroad every month, and the existing options either move slow or charge a premium. For our hackathon, my team set out to design a remittance experience built on web3 rails that could close that gap.",
+          },
+          {
+            kind: "p",
+            text: "We won Most Creative Idea for the result: a flow that hands members a remittance product that feels native to the Oportun app, but uses crypto as a behind-the-scenes settlement layer so the money arrives in seconds for a fraction of the cost.",
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/02.png`,
+            alt: "Three-up section showing Our Users, The Statistics, and Our Goal",
+            caption: "Framing the opportunity: who Oportun's remittance users are, the size of the market, and what we set out to do.",
+          },
+        ],
+      },
+      {
+        id: "problem",
+        no: "02",
+        title: "Understanding the problem",
+        body: [
+          {
+            kind: "p",
+            text: "Remittance is a financial lifeline for millions of households, but the rails most members default to are stuck a generation behind the rest of fintech. Western Union still leans on physical cash and storefront pickup. Wire transfers are slow and opaque. PayPal is fast but charges 5–11% per transfer, and the recipient frequently does not have an account.",
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/05.png`,
+            alt: "Two-up callout: P2P Can be Slow and No Better Option",
+            caption: "The two patterns we kept hearing from members: speed and cost forced an either/or trade.",
+          },
+          {
+            kind: "quote",
+            text: "I always get nervous when it takes longer and sometimes I don't get a notification. The time it takes is most stressful.",
+            speaker: "Luis, Oportun member since 2017",
+          },
+          {
+            kind: "p",
+            text: "Luis was not alone. The pattern across our research was that members were already shopping for alternatives because no single product was actually serving them.",
+          },
+        ],
+      },
+      {
+        id: "research",
+        no: "03",
+        title: "User research",
+        body: [
+          {
+            kind: "p",
+            text: "We ran interviews and surveys with 30+ Oportun members who send money internationally. The conversations covered current behavior, frustrations, and what an ideal flow would feel like. Three things became loud signals.",
+          },
+          {
+            kind: "list",
+            items: [
+              "Speed of delivery is the single biggest source of anxiety. Members track every minute between send and confirmation.",
+              "Fees that look small on the surface compound fast for people sending money two or three times a month.",
+              "The trip to a Western Union storefront and the cash-in-hand step are pain points members are ready to leave behind.",
+            ],
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/04.png`,
+            alt: "Quote from Francisco about Western Union friction",
+            caption: "Francisco's quote was a recurring theme: the physical trip and cash handling were as much of a barrier as the fee.",
+          },
+        ],
+      },
+      {
+        id: "stories",
+        no: "04",
+        title: "Key user stories",
+        body: [
+          {
+            kind: "p",
+            text: "From the research we boiled the opportunity down into three user stories that became the north star for everything we built next.",
+          },
+          {
+            kind: "features",
+            items: [
+              {
+                title: "Instant delivery",
+                body: "As a remitter, I want my recipient to receive the funds in seconds so I do not have to worry about whether the transfer went through.",
+              },
+              {
+                title: "Home-based",
+                body: "As a remitter, I want to send from my phone without driving to a storefront or carrying cash so the experience fits into my day.",
+              },
+              {
+                title: "Cost efficient",
+                body: "As a remitter, I want the fee to feel negligible so my money goes to my family instead of an intermediary.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "engineering",
+        no: "05",
+        title: "Engineering considerations",
+        body: [
+          {
+            kind: "p",
+            text: "The creative leap was treating crypto as plumbing rather than a product. Members never see a token, a wallet seed, or a chain explorer. We chose the Stellar network for its speed, low transaction cost, and built-in anchor model: regulated partners on each side that handle the on-ramp and off-ramp in local currency.",
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/08.png`,
+            alt: "Diagram of the anchor pathway: Financial Institution Member to Stellar Network to Remittance Recipient via FinClusive and Biccos anchors",
+            caption: "Anchor pathway: the sender deposits US$ through a U.S. anchor, value moves across Stellar in seconds, and the recipient receives MX$ from a local anchor.",
+          },
+          {
+            kind: "p",
+            text: "Pulling engineering into the conversation early was the move that unlocked the design. Together we mapped which steps had to live on chain, which could stay in the existing Oportun stack, and where compliance and KYC needed to land. By the time we built the prototype, the flow was both feasible and clearly scoped to a hackathon-sized MVP.",
+          },
+        ],
+      },
+      {
+        id: "solution",
+        no: "06",
+        title: "The proposed experience",
+        body: [
+          {
+            kind: "p",
+            text: "We surfaced the new product as a first-class action inside the Oportun home dashboard, alongside savings, bills, and goals. Members tap into a familiar send-money flow, choose the recipient and amount, and confirm. Behind the scenes, the U.S. anchor converts to a Stellar asset, settles, and the destination anchor pays out in local currency.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${WEB3}/01.png`,
+                alt: "Mobile mockup of the Oportun home dashboard with savings and bills cards",
+                caption: "Dashboard surface where the remittance flow lives alongside savings and bills.",
+              },
+              {
+                src: `${WEB3}/07.jpg`,
+                alt: "Oportun mobile splash screen on a device frame",
+                caption: "Native to the existing Oportun app, no separate crypto wallet to manage.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "takeaways",
+        no: "07",
+        title: "Key takeaways",
+        body: [
+          {
+            kind: "h",
+            text: "Bring engineering in on day one",
+          },
+          {
+            kind: "p",
+            text: "The strongest part of this project was that design and engineering scoped the idea together from the first whiteboard. Decisions about Stellar, the anchor model, and what a hackathon-sized MVP actually looked like came out of the same room. The result was a concept the judges believed could actually ship.",
+          },
+          {
+            kind: "h",
+            text: "Use crypto as plumbing, not the product",
+          },
+          {
+            kind: "p",
+            text: "The biggest unlock was hiding the chain. Members get a familiar Oportun experience, the back end gets the speed and cost profile of Stellar, and nobody has to learn what an anchor is to send money home.",
+          },
+          {
+            kind: "callout",
+            tone: "plus",
+            text: "Won Most Creative Idea at the Oportun hackathon for re-framing remittances around what members actually wanted: faster, cheaper, and from their phone.",
+          },
+        ],
+      },
+    ],
+    results: [
+      { stat: "$5", label: "Saved per remittance transaction", sub: "vs. Western Union baseline" },
+      { stat: "8,500", label: "New remittance users projected", sub: "First 3 months" },
+      { stat: "WON", label: "Most Creative Idea", sub: "Oportun hackathon" },
     ],
   },
 ];

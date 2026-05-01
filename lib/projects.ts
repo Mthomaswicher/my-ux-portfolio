@@ -22,6 +22,7 @@ export type Project = {
 
 const IDP = "/images/case-studies/idp-release-plugin";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
+const WEB3 = "/images/case-studies/web3-remittances";
 
 export const projects: Project[] = [
   {
@@ -88,6 +89,29 @@ export const projects: Project[] = [
       "/images/case-studies/demex-climate-center/05.png",
       "/images/case-studies/demex-climate-center/08.png",
       "/images/case-studies/demex-climate-center/01.png",
+    ],
+  },
+  {
+    no: "04",
+    title: "Web3 Powered Remittances",
+    org: "Oportun · Hackathon",
+    status: "WON",
+    blurb:
+      "Won Most Creative Idea at the Oportun hackathon. A Stellar-rail remittance flow that cut fees and delivery time for members sending money home.",
+    role: "Product Designer",
+    team: "Design + engineering hackathon team",
+    timeframe: "Hackathon · Most Creative Idea winner",
+    tools: "Figma · Stellar Network · Strategy",
+    href: "/work/web3-powered-remittances",
+    accent: "amber",
+    hero: `${WEB3}/01.png`,
+    tilt: 1.8,
+    tags: ["#web3", "#fintech"],
+    mascot: "✦",
+    screens: [
+      `${WEB3}/01.png`,
+      `${WEB3}/08.png`,
+      `${WEB3}/02.png`,
     ],
   },
 ];
