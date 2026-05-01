@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { Project } from "@/lib/projects";
 import ProductReel from "./ProductReel";
 import SfxLink from "./SfxLink";
+import TileDecor from "./TileDecor";
 
 const STATUS_STYLES: Record<Project["status"], string> = {
   SHIPPED: "text-glow-lime",
@@ -121,6 +122,7 @@ export function ProjectCardBody({ project }: { project: Project }) {
                   accent={reelAccent}
                 />
               </div>
+              <TileDecor project={project} />
             </div>
           )}
 

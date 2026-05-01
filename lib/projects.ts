@@ -14,6 +14,10 @@ export type Project = {
   hero?: string;
   screens?: string[];
   tilt?: number;
+  /** 1–3 short tag pills floated over the tile (e.g. "#fintech"). */
+  tags?: string[];
+  /** Single emoji/pixel glyph that idles in the tile corner. */
+  mascot?: string;
 };
 
 const IDP = "/images/case-studies/idp-release-plugin";
@@ -35,6 +39,8 @@ export const projects: Project[] = [
     accent: "cyan",
     hero: `${IDP}/03-new-experience.png`,
     tilt: -2.0,
+    tags: ["#release", "#dev-platform"],
+    mascot: "⚙",
     screens: [
       `${IDP}/03-new-experience.png`,
       `${IDP}/22-final.png`,
@@ -57,6 +63,8 @@ export const projects: Project[] = [
     accent: "magenta",
     hero: `${OPO}/01-hero.png`,
     tilt: 2.2,
+    tags: ["#fintech", "#onboarding"],
+    mascot: "$",
     screens: [`${OPO}/01-hero.png`, `${OPO}/03-process.png`],
   },
 ];
