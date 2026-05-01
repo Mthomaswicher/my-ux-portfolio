@@ -159,7 +159,7 @@ export default function Lab() {
                 id="exhibit-rt-library"
                 className="font-display text-[32px] sm:text-[36px] md:text-[44px] leading-none text-glow-cyan"
               >
-                RT Library
+                Roundtable Design Library
               </h2>
               <span className="font-pixel text-[9px] tracking-widest text-glow-cyan">
                 BRG · 2023&ndash;2025
