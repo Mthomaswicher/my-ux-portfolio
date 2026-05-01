@@ -2,7 +2,6 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import RtLibraryShowcase from "@/components/RtLibraryShowcase";
-import ResponsiveChartShowcase from "@/components/ResponsiveChartShowcase";
 
 export const metadata = {
   title: "Lab · MTW.ARCADE",
@@ -187,45 +186,6 @@ export default function Lab() {
             </div>
 
             <RtLibraryShowcase />
-          </section>
-
-          <hr className="border-0 border-t border-ink-ghost my-16 sm:my-20" />
-
-          <section aria-labelledby="exhibit-responsive-chart">
-            <header className="mb-6 flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 gap-y-2">
-              <span className="font-pixel text-[10px] tracking-widest text-ink-mute">
-                EXHIBIT 03
-              </span>
-              <h2
-                id="exhibit-responsive-chart"
-                className="font-display text-[32px] sm:text-[36px] md:text-[44px] leading-none text-glow-lime"
-              >
-                Submissions Chart
-              </h2>
-              <span className="font-pixel text-[9px] tracking-widest text-glow-lime">
-                RESPONSIVE · FIGMA
-              </span>
-            </header>
-
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
-              <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
-                A multi-series line chart designed in Figma with breakpoint
-                variants for tight mobile widths. Drag the cyan handle on the
-                right edge (or use the slider) to stretch and shrink the
-                container; watch the axis density, label rotation, and legend
-                collapse as the chart crosses 720px and 440px.
-              </p>
-              <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
-                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
-                <dd>Design</dd>
-                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Tools</dt>
-                <dd>Figma · SVG</dd>
-                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Series</dt>
-                <dd>3 lines</dd>
-              </dl>
-            </div>
-
-            <ResponsiveChartShowcase />
           </section>
 
           <Footer />
