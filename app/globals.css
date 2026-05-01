@@ -220,6 +220,16 @@ html[data-scroll-locked="true"] body {
     transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 0.48s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* Prevent native drag-and-drop / image selection from preempting our
+   custom pointer-based cartridge drag in HardCabinet. */
+.tilt-card img,
+.tilt-card video {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 .tilt-card:focus-visible,
 .tilt-card:focus-within {
