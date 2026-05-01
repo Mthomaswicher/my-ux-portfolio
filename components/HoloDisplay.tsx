@@ -128,46 +128,6 @@ export default function HoloDisplay({
             </motion.div>
           </AnimatePresence>
 
-          {/* scoped scanline overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none mix-blend-overlay"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(0deg, rgba(0,0,0,0.32) 0px, rgba(0,0,0,0.32) 1px, transparent 1px, transparent 3px)",
-              opacity: 0.45,
-            }}
-          />
-
-          {/* inner edge glow */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              boxShadow: `inset 0 0 48px ${accentHex}40, inset 0 0 0 1px ${accentHex}66`,
-            }}
-          />
-
-          {/* moving sweep highlight */}
-          <motion.div
-            className="absolute -inset-x-[20%] inset-y-0 pointer-events-none"
-            style={{
-              background: `linear-gradient(115deg, transparent 35%, ${accentHex}28 50%, transparent 65%)`,
-            }}
-            animate={reduced ? undefined : { x: ["-30%", "30%"] }}
-            transition={{
-              duration: 4.5,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "linear",
-            }}
-          />
-
-          {/* faint vertical jitter band */}
-          <motion.div
-            className="absolute left-0 right-0 h-[2px] pointer-events-none"
-            style={{ background: `${accentHex}55`, mixBlendMode: "screen" }}
-            animate={reduced ? undefined : { top: ["-2%", "102%"] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-          />
         </div>
       </motion.div>
 
