@@ -5,6 +5,7 @@ import CrtOverlays from "@/components/CrtOverlays";
 import KonamiCode from "@/components/KonamiCode";
 import PixelPet from "@/components/PixelPet";
 import CursorTrail from "@/components/CursorTrail";
+import SoundToggle from "@/components/SoundToggle";
 import { SoundProvider } from "@/components/SoundProvider";
 
 const display = VT323({
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CursorTrail />
           <PixelPet />
           <KonamiCode />
+          <SoundToggle />
           {children}
         </SoundProvider>
       </body>

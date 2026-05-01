@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LiveClock from "./LiveClock";
-import SoundToggle from "./SoundToggle";
 import { useSound } from "./SoundProvider";
 import { log } from "@/lib/log";
 
@@ -239,9 +238,6 @@ export default function Sidebar() {
               aria-live="off"
             >
               All systems operational
-            </div>
-            <div className="pt-1">
-              <SoundToggle />
             </div>
           </div>
 

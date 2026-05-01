@@ -2,7 +2,13 @@
 
 import { useSound } from "./SoundProvider";
 
-export default function SoundToggle({ compact = false }: { compact?: boolean }) {
+/**
+ * Mounted as a fixed pill in the layout so it's always visible — never
+ * hidden inside the off-canvas sidebar on mobile. Sits at the top-right
+ * of the viewport, offset on mobile so it clears the burger-menu button
+ * (which lives at right-3 on mobile only).
+ */
+export default function SoundToggle() {
   const { enabled, toggle } = useSound();
 
   return (
@@ -11,22 +17,18 @@ export default function SoundToggle({ compact = false }: { compact?: boolean }) 
       onClick={toggle}
       aria-pressed={enabled}
       aria-label={enabled ? "Mute arcade sound effects" : "Enable arcade sound effects"}
-      className={`group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest hover:text-glow-cyan focus-visible:text-glow-cyan transition-colors ${
-        compact ? "text-ink-mute" : "text-ink-dim"
+      title={`${enabled ? "Sound on" : "Sound off"} (press M to toggle)`}
+      className={`fixed top-[max(0.75rem,env(safe-area-inset-top))] right-[5.5rem] md:right-3 z-50 inline-flex items-center gap-2 px-3 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest uppercase border bg-bg-deep/95 backdrop-blur-sm transition-all ${
+        enabled
+          ? "border-neon-lime/70 text-glow-lime shadow-neon-lime"
+          : "border-ink-ghost text-ink-mute hover:text-ink hover:border-neon-cyan/60"
       }`}
-      title={`${enabled ? "Sound on" : "Sound off"}. press M to toggle`}
     >
-      <span aria-hidden="true" className="font-pixel text-[10px]">
+      <span aria-hidden="true" className="text-[11px] leading-none">
         {enabled ? "♪" : "·"}
       </span>
-      <span>SOUND</span>
-      <span
-        className={`font-pixel text-[10px] ${enabled ? "text-glow-lime" : "text-ink-mute"}`}
-        aria-hidden="true"
-      >
-        {enabled ? "ON" : "OFF"}
-      </span>
-      <span className="sr-only">{enabled ? "currently on" : "currently off"}, press M to toggle</span>
+      <span>{enabled ? "SOUND ON" : "SOUND OFF"}</span>
+      <span className="sr-only">press M to toggle</span>
     </button>
   );
 }

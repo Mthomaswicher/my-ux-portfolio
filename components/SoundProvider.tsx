@@ -21,15 +21,19 @@ type SoundCtx = {
 const SoundContext = createContext<SoundCtx | null>(null);
 
 export function SoundProvider({ children }: { children: React.ReactNode }) {
-  const [enabled, setEnabledState] = useState(false);
+  // Default ON. Browsers still won't actually play any audio until the
+  // first user gesture; this just means we don't gate playback behind
+  // an explicit opt-in.
+  const [enabled, setEnabledState] = useState(true);
 
-  // Load preference from localStorage on mount
   useEffect(() => {
+    arcade.setEnabled(true);
+    // Honour an explicit opt-out from a previous visit.
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === "1") {
-        setEnabledState(true);
-        arcade.setEnabled(true);
+      if (stored === "0") {
+        setEnabledState(false);
+        arcade.setEnabled(false);
       }
     } catch {
       /* localStorage may be blocked */
