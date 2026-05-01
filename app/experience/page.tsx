@@ -7,7 +7,7 @@ import JourneyArrival from "@/components/JourneyArrival";
 export const metadata = {
   title: "Journey · MTW.ARCADE",
   description:
-    "A side-scrolling timeline of Matthew Thomas-Wicher's career — from litigation paralegal to senior product designer at Capital One.",
+    "A side-scrolling timeline of Matthew Thomas-Wicher's career, from litigation paralegal to senior product designer at Capital One.",
 };
 
 export default function ExperiencePage() {

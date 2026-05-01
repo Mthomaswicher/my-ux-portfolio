@@ -3,7 +3,7 @@
 import { useSound } from "./SoundProvider";
 
 /**
- * Mounted as a fixed pill in the layout so it's always visible — never
+ * Mounted as a fixed pill in the layout so it's always visible and never
  * hidden inside the off-canvas sidebar on mobile. Sits at the top-right
  * of the viewport, offset on mobile so it clears the burger-menu button
  * (which lives at right-3 on mobile only).

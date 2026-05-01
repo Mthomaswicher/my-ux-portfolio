@@ -39,7 +39,7 @@ export default function JourneyArrival() {
       </h2>
 
       <p className="relative font-mono text-[14.5px] leading-relaxed text-ink-dim max-w-xl mx-auto mb-10">
-        The journey isn&apos;t over — there&apos;s a current quest, and a next stage
+        The journey isn&apos;t over. There&apos;s a current quest, and a next stage
         already loading. Pick where you want to go from here.
       </p>
 

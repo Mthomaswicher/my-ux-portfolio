@@ -25,7 +25,7 @@ export const CAREER_STAGES: CareerStage[] = [
     win: { label: "Foundation", value: "Synthesis under fire" },
     bullets: [
       "Managed Monsanto Roundup litigation trial prep autonomously through the preliminary phase.",
-      "Honed pattern recognition and complex-system synthesis — the analytical backbone for design work.",
+      "Honed pattern recognition and complex-system synthesis, which became the analytical backbone for design work.",
     ],
     tools: "Discovery · Synthesis · Trial Prep",
   },
@@ -55,7 +55,7 @@ export const CAREER_STAGES: CareerStage[] = [
     headline: "FINTECH RUN",
     win: { label: "Retention", value: "+20%" },
     bullets: [
-      "Reframed sign-up and onboarding across banking, savings, investing, and budgeting — +20% retention.",
+      "Reframed sign-up and onboarding across banking, savings, investing, and budgeting, hitting +20% retention.",
       "Built the member insights area: +5% retention, +15% weekly active members.",
       "A/B testing and data insights tuned for complex financial lifecycles.",
     ],
@@ -71,7 +71,7 @@ export const CAREER_STAGES: CareerStage[] = [
     headline: "SYSTEMS MODE",
     win: { label: "Delivery", value: "+25% velocity" },
     bullets: [
-      "Designed and shipped a legislative policy tracker — +13% login frequency.",
+      "Designed and shipped a legislative policy tracker that drove +13% login frequency.",
       "Refactored design libraries into a 3-tier token system, accelerating front-end delivery ~25%.",
       "Translated complex business rules into reusable, scalable components.",
     ],
@@ -87,7 +87,7 @@ export const CAREER_STAGES: CareerStage[] = [
     headline: "BOSS LEVEL",
     win: { label: "Adoption", value: "25% → 75%" },
     bullets: [
-      "Spearheaded user research for GitHub Copilot Agent Mode — directly led to GA approval.",
+      "Spearheaded user research for GitHub Copilot Agent Mode, which directly led to GA approval.",
       "Led design strategy for DevNav Hub: 25% → 75% release adoption (+9% CSAT).",
       "Designed Voice of the Engineer 2025 viz for 12,000+ associates and execs.",
       "Release engagement initiative reached 6,000+ users with a 3.6% opt-out rate.",
@@ -124,7 +124,7 @@ export const BONUS_TRACK: BonusItem[] = [
   },
   {
     year: "2024",
-    title: "Hackonomics — Winner",
+    title: "Hackonomics Winner",
     org: "Flatiron Alumni",
     body: "Led product, design, and engineering to victory in 19 days. AI-powered personal finance app.",
   },

@@ -40,7 +40,7 @@ export default function JourneyTimeline() {
     offset: ["start start", "end end"],
   });
 
-  // Background layers — slower than the foreground so they read as parallax.
+  // Background layers move slower than the foreground so they read as parallax.
   const bgGridY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const bgIconsY = useTransform(scrollYProgress, [0, 1], ["0%", "55%"]);
 
@@ -167,7 +167,7 @@ export default function JourneyTimeline() {
 
 /**
  * The road. A vertical line down the middle (desktop) / left edge (mobile)
- * that visually fills as the user scrolls — the literal "road traveled."
+ * that visually fills as the user scrolls, showing the literal "road traveled."
  */
 function Trail({
   scrollYProgress,
@@ -460,7 +460,7 @@ function OneUpEgg({
   onCollect: () => void;
   collected: boolean;
 }) {
-  // Drifts gently between the 2nd and 3rd stages — visible if you're paying
+  // Drifts gently between the 2nd and 3rd stages, visible if you're paying
   // attention but not screaming for the click.
   const reduce = useReducedMotion();
   if (collected) return null;
@@ -507,7 +507,7 @@ function BonusTrack() {
           Off the beaten path.
         </h2>
         <p className="font-mono text-[13px] text-ink-dim mt-3 max-w-xl mx-auto leading-relaxed">
-          Education and the moments outside the day job — the side quests that
+          Education and the moments outside the day job, the side quests that
           shaped the playthrough.
         </p>
       </div>
