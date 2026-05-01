@@ -16,6 +16,21 @@ export type CareerStage = {
 export const CAREER_STAGES: CareerStage[] = [
   {
     no: "01",
+    role: "Full-Stack Engineering",
+    company: "General Assembly",
+    location: "Washington, D.C.",
+    period: "2017",
+    accent: "cyan",
+    headline: "ORIGIN STORY",
+    win: { label: "First class", value: "Engineering" },
+    bullets: [
+      "Immersive full-stack engineering program: HTML, CSS, JavaScript, and a Ruby on Rails backend.",
+      "First exposure to shipping products end-to-end, the foundation that later anchored design plus code work.",
+    ],
+    tools: "HTML · CSS · JavaScript · Rails",
+  },
+  {
+    no: "02",
     role: "Senior Litigation Paralegal",
     company: "Hollingsworth LLP",
     location: "Washington, D.C.",
@@ -30,7 +45,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Discovery · Synthesis · Trial Prep",
   },
   {
-    no: "02",
+    no: "03",
     role: "UX/UI Bootcamp",
     company: "Flatiron School",
     location: "Chicago, IL",
@@ -45,7 +60,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Sketch · InVision · Wireframing",
   },
   {
-    no: "03",
+    no: "04",
     role: "UX Engineer",
     company: "The Demex Group",
     location: "Remote",
@@ -61,7 +76,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "React · Figma · Design Tokens",
   },
   {
-    no: "04",
+    no: "05",
     role: "Product Designer",
     company: "Oportun",
     location: "Remote",
@@ -77,7 +92,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Figma · A/B Testing · Lifecycle",
   },
   {
-    no: "05",
+    no: "06",
     role: "Senior Product Designer",
     company: "Berkeley Research Group",
     location: "Remote",
@@ -93,7 +108,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Tokens · Component Lib · Research",
   },
   {
-    no: "06",
+    no: "07",
     role: "Senior Product Designer",
     company: "Capital One",
     location: "McLean, VA · Hybrid",
