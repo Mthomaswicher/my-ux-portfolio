@@ -192,7 +192,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           href="/home"
           className="inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
         >
-          <span aria-hidden="true">← </span>BACK TO CABINET
+          <span aria-hidden="true">← </span>BACK TO GAME CABINET
         </Link>
       </div>
 

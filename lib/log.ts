@@ -6,7 +6,7 @@ export type LogEntry = {
 export const log: LogEntry[] = [
   {
     date: "2026-04-30",
-    body: "Booted MTW.ARCADE v0.1. Pixel-cabinet portfolio is live in dev. Sign the guestbook on your way out.",
+    body: "Booted MTW.ARCADE v0.1. Pixel game-cabinet portfolio is live in dev. Sign the guestbook on your way out.",
   },
   {
     date: "2026-03-15",

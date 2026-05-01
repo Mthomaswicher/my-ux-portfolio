@@ -30,7 +30,7 @@ export default function ErrorBoundary({
           Crash.
         </h1>
         <p className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-cyan mb-6">
-          SOMETHING JAMMED THE CABINET.
+          SOMETHING JAMMED THE GAME CABINET.
         </p>
 
         <div className="cartridge p-4 mb-8 font-mono text-[12px] text-ink-dim max-w-lg">
@@ -55,7 +55,7 @@ export default function ErrorBoundary({
             href="/home"
             className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"
           >
-            [ BACK TO CABINET ]
+            [ BACK TO GAME CABINET ]
           </Link>
         </div>
       </div>

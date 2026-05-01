@@ -19,7 +19,7 @@ export default function NotFound() {
           404
         </h1>
         <p className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-amber mb-8">
-          THIS CARTRIDGE ISN&apos;T IN THE CABINET.
+          THIS CARTRIDGE ISN&apos;T IN THE GAME CABINET.
         </p>
 
         <p className="font-mono text-[14px] text-ink-dim leading-relaxed mb-8 max-w-lg">
@@ -33,7 +33,7 @@ export default function NotFound() {
             href="/home"
             className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
           >
-            [ CABINET ]
+            [ GAME CABINET ]
           </Link>
           <Link
             href="/"

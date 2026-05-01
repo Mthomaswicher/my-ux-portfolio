@@ -77,7 +77,7 @@ export default function BootSequence() {
           <div className="sr-only">A portfolio by Matthew Thomas-Wicher.</div>
 
           <p className="font-mono text-[14px] text-ink-dim mb-8 max-w-lg leading-relaxed">
-            You found my cabinet. Sign the guestbook on your way in, or skip the intro
+            You found my game cabinet. Sign the guestbook on your way in, or skip the intro
             and head straight to the cartridges.
           </p>
 
