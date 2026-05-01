@@ -213,7 +213,7 @@ export default function Lab() {
                 variants for tight mobile widths. Drag the cyan handle on the
                 right edge (or use the slider) to stretch and shrink the
                 container; watch the axis density, label rotation, and legend
-                collapse as the chart crosses 560px and 380px.
+                collapse as the chart crosses 720px and 380px.
               </p>
               <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
@@ -226,27 +226,6 @@ export default function Lab() {
             </div>
 
             <ResponsiveChartShowcase />
-
-            <figure className="mt-10">
-              <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
-                ░ FIGMA SOURCE ░
-              </div>
-              <div
-                className="overflow-hidden rounded-[6px]"
-                style={{ border: "1px solid #DEE5EB" }}
-              >
-                <Image
-                  src="/lab/responsive-chart/figma-source.png"
-                  alt="The Submissions chart as designed in Figma, large desktop variant"
-                  width={848}
-                  height={532}
-                  className="block w-full h-auto"
-                />
-              </div>
-              <figcaption className="mt-2 font-mono text-[11px] text-ink-mute uppercase tracking-widest">
-                Source frame, 848 × 532
-              </figcaption>
-            </figure>
           </section>
 
           <Footer />

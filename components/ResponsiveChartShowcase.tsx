@@ -174,7 +174,7 @@ export default function ResponsiveChartShowcase() {
       <p className="font-mono text-[12px] text-ink-mute leading-relaxed text-center">
         Drag the cyan handle on the right edge — or use the slider — to shrink
         and grow the chart. Watch the axis density, label rotation, and legend
-        collapse as it crosses 560px and 380px.
+        collapse as it crosses 720px and 380px.
       </p>
     </div>
   );
@@ -186,7 +186,9 @@ type Tier = "xs" | "sm" | "lg";
 
 function breakpointFor(width: number): Tier {
   if (width < 380) return "xs";
-  if (width < 560) return "sm";
+  // The full top-right legend only fits cleanly past ~720px; below that
+  // the chip-stack reads better than crowding into the title row.
+  if (width < 720) return "sm";
   return "lg";
 }
 
