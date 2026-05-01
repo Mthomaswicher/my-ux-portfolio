@@ -3,79 +3,76 @@
 import { useState } from "react";
 
 /**
- * Interactive demo of the actual 3-tier token graph from the RT (Roundtable)
- * design library at Berkeley Research Group. All token names and hex values
- * below were pulled directly from the Figma file's variable definitions
- * (Color/*, Header/*, Body/*, etc.) — none are invented.
+ * Comprehensive view of the 3-tier color token graph from Berkeley Research
+ * Group's Roundtable design library. All names + values were pulled from
+ * the Figma file's variable definitions (Color/*).
  *
- * Architecture:
- *   1. Primitives — raw color and type values (Color/Neutrals/*, Color/Primary/*)
- *   2. Semantic   — purpose-bound aliases (Color/Text/*, Color/Borders/*, Color/Surfaces/*)
- *   3. Component  — slot-specific bindings (Core/card-bg, Cards/Data-primary)
+ *   Tier 1 — Primitives  (raw color values)
+ *   Tier 2 — Semantic    (purpose-bound color aliases)
+ *   Tier 3 — Component   (slot-specific bindings on a component instance)
  *
- * Hover any token and the cascade lights up across all three tiers so the
- * resolution path is visible. Click to pin focus.
+ * Hover any token in any tier and the cascade lights up across all three so
+ * the resolution path is visible. Click to pin focus.
  */
 
-/* ─── Real tokens from Figma (file: KfGd38GHhnEUEQHL9XWn95) ─────────────── */
+/* ─── TIER 1: PRIMITIVES ───────────────────────────────────────────────── */
 
-const PRIMITIVES = [
-  { name: "Color/Neutrals/white",        value: "#FFFFFF" },
-  { name: "Color/Neutrals/gray-1",       value: "#F2F5F8" },
-  { name: "Color/Neutrals/gray-2",       value: "#E8EDF3" },
-  { name: "Color/Neutrals/gray-3",       value: "#DEE5EB" },
-  { name: "Color/Neutrals/gray-4",       value: "#ADBBC8" },
-  { name: "Color/Neutrals/gray-5",       value: "#718291" },
-  { name: "Color/Neutrals/gray-6",       value: "#636366" },
-  { name: "Color/Neutrals/midnight",     value: "#0A162F" },
-  { name: "Color/Primary/deep-indigo",   value: "#25265E" },
-  { name: "Color/Primary/cerulean-blue", value: "#3246D3" },
-  { name: "Color/Primary/light-blue",    value: "#C9D8FF" },
-  { name: "Color/System/green",          value: "#24B668" },
-  { name: "Color/System/green-light",    value: "#DEF8EA" },
+const COLOR_PRIMITIVES = [
+  { name: "Color/Neutrals/white",         value: "#FFFFFF" },
+  { name: "Color/Neutrals/gray-1",        value: "#F2F5F8" },
+  { name: "Color/Neutrals/gray-2",        value: "#E8EDF3" },
+  { name: "Color/Neutrals/gray-3",        value: "#DEE5EB" },
+  { name: "Color/Neutrals/gray-4",        value: "#ADBBC8" },
+  { name: "Color/Neutrals/gray-5",        value: "#718291" },
+  { name: "Color/Neutrals/gray-6",        value: "#636366" },
+  { name: "Color/Neutrals/midnight",      value: "#0A162F" },
+  { name: "Color/Primary/deep-indigo",    value: "#25265E" },
+  { name: "Color/Primary/cerulean-blue",  value: "#3246D3" },
+  { name: "Color/Primary/light-blue",     value: "#C9D8FF" },
+  { name: "Color/System/green",           value: "#24B668" },
+  { name: "Color/System/green-light",     value: "#DEF8EA" },
 ] as const;
 
-type PrimitiveName = (typeof PRIMITIVES)[number]["name"];
+type PrimitiveName = (typeof COLOR_PRIMITIVES)[number]["name"];
 
-/* Semantic tier: every entry resolves to exactly one primitive above. */
-const SEMANTIC: Array<{
+/* Effect primitives. */
+const EFFECT_PRIMITIVES = [
+  {
+    name: "Effect/DropShadow/Elevation-02",
+    value: "0 6px 14px 0 #4C549933",
+  },
+] as const;
+
+/* ─── TIER 2: SEMANTIC ─────────────────────────────────────────────────── */
+
+const SEMANTIC_COLORS: Array<{
   name: string;
   primitive: PrimitiveName;
   use: string;
 }> = [
-  { name: "Color/Text/text-dark",     primitive: "Color/Neutrals/midnight",     use: "Body copy, headings" },
-  { name: "Color/Text/text-white",    primitive: "Color/Neutrals/white",        use: "Type on dark surfaces" },
-  { name: "Color/Text/text-category", primitive: "Color/Primary/cerulean-blue", use: "Category eyebrow" },
-  { name: "Color/Text/subtext-dark",  primitive: "Color/Neutrals/gray-6",       use: "Secondary copy, meta" },
-  { name: "Color/Text/subtext-light", primitive: "Color/Neutrals/gray-4",       use: "Disabled / placeholder" },
-  { name: "Color/Text/link-active",   primitive: "Color/Primary/deep-indigo",   use: "Active link state" },
-  { name: "Color/Borders/border-light", primitive: "Color/Neutrals/gray-3",     use: "Card / divider line" },
-  { name: "Color/Borders/border-dark",  primitive: "Color/Neutrals/midnight",   use: "Strong divider, focus" },
-  { name: "Color/Surfaces/surface-gray", primitive: "Color/Neutrals/gray-1",    use: "Page / panel surface" },
+  { name: "Color/Text/text-dark",        primitive: "Color/Neutrals/midnight",     use: "Headlines, body copy" },
+  { name: "Color/Text/text-white",       primitive: "Color/Neutrals/white",        use: "Type on dark surfaces" },
+  { name: "Color/Text/text-category",    primitive: "Color/Primary/cerulean-blue", use: "Category eyebrow label" },
+  { name: "Color/Text/subtext-dark",     primitive: "Color/Neutrals/gray-6",       use: "Secondary copy, meta" },
+  { name: "Color/Text/subtext-light",    primitive: "Color/Neutrals/gray-4",       use: "Disabled / placeholder" },
+  { name: "Color/Text/link-active",      primitive: "Color/Primary/deep-indigo",   use: "Active link, primary CTA" },
+  { name: "Color/Borders/border-light",  primitive: "Color/Neutrals/gray-3",       use: "Card / divider line" },
+  { name: "Color/Borders/border-dark",   primitive: "Color/Neutrals/midnight",     use: "Strong divider, focus" },
+  { name: "Color/Surfaces/surface-gray", primitive: "Color/Neutrals/gray-1",       use: "Page / panel background" },
+  { name: "Neutrals/Slate Gray",         primitive: "Color/Neutrals/gray-5",       use: "Quiet UI text alias" },
 ];
 
-type SemanticName = (typeof SEMANTIC)[number]["name"];
+type SemanticColorName = (typeof SEMANTIC_COLORS)[number]["name"];
 
-/* Component tier: slots that point at semantic (or, in this library, at a
-   primitive directly when no purpose-bound alias was defined yet). */
+/* ─── TIER 3: COMPONENT ────────────────────────────────────────────────── */
+
 const COMPONENT_TOKENS: Array<{
   name: string;
-  semantic: SemanticName | PrimitiveName;
+  semantic: SemanticColorName | PrimitiveName;
   slot: string;
 }> = [
-  { name: "Core/card-bg",         semantic: "Color/Neutrals/white",         slot: "Card surface fill" },
-  { name: "Cards/Data-primary",   semantic: "Color/Primary/cerulean-blue",  slot: "Card data accent" },
-];
-
-/* Type tokens (real names from Figma; UI uses Roboto, editorial uses EB Garamond) */
-const TYPE_TOKENS = [
-  { name: "Header/Garamond H1",     spec: "EB Garamond Regular · 44 / -1 letter-spacing", role: "Editorial headline" },
-  { name: "Header/Garamond H3",     spec: "EB Garamond SemiBold · 24 / 36 / 10 caps",     role: "Roundup section title" },
-  { name: "Header/Roboto H4 Caps",  spec: "Roboto Bold · 14 / 10 letter-spacing / UPPER", role: "Eyebrow label" },
-  { name: "Body/Body 2",            spec: "Roboto Regular · 16 / 24",                      role: "Default body copy" },
-  { name: "Body/Body 3 Bold",       spec: "Roboto SemiBold · 14 / 24 / 7 letter-spacing",  role: "CTA, button label" },
-  { name: "Chips",                  spec: "Roboto SemiBold · 14 / 24",                     role: "Filter chip text" },
-  { name: "10 MEDIUM - Label 1",    spec: "Roboto Medium · 10",                            role: "Micro label" },
+  { name: "Core/card-bg",        semantic: "Color/Neutrals/white",        slot: "Card surface fill" },
+  { name: "Cards/Data-primary",  semantic: "Color/Primary/cerulean-blue", slot: "Card data accent stripe" },
 ];
 
 /* ───────────────────────────────────────────────────────────────────────── */
@@ -85,22 +82,24 @@ export default function RtLibraryShowcase() {
   const [pinned, setPinned] = useState<string | null>(null);
   const focus = pinned ?? hovered;
 
+  /** Light up tokens along the focused path. */
   function isLit(level: "primitive" | "semantic" | "component", name: string) {
     if (!focus) return false;
     if (focus === name) return true;
+
     if (level === "primitive") {
-      const sem = SEMANTIC.find((s) => s.name === focus);
+      const sem = SEMANTIC_COLORS.find((s) => s.name === focus);
       if (sem) return sem.primitive === name;
       const comp = COMPONENT_TOKENS.find((c) => c.name === focus);
       if (comp) {
         if (comp.semantic === name) return true;
-        const s = SEMANTIC.find((s) => s.name === comp.semantic);
+        const s = SEMANTIC_COLORS.find((s) => s.name === comp.semantic);
         return s?.primitive === name;
       }
     }
     if (level === "semantic") {
-      if (PRIMITIVES.find((p) => p.name === focus)) {
-        const sem = SEMANTIC.find((s) => s.name === name);
+      if (COLOR_PRIMITIVES.find((p) => p.name === focus)) {
+        const sem = SEMANTIC_COLORS.find((s) => s.name === name);
         return sem?.primitive === focus;
       }
       const comp = COMPONENT_TOKENS.find((c) => c.name === focus);
@@ -110,91 +109,118 @@ export default function RtLibraryShowcase() {
       const me = COMPONENT_TOKENS.find((c) => c.name === name);
       if (!me) return false;
       if (me.semantic === focus) return true;
-      const sem = SEMANTIC.find((s) => s.name === me.semantic);
+      const sem = SEMANTIC_COLORS.find((s) => s.name === me.semantic);
       return sem?.primitive === focus;
     }
     return false;
   }
 
-  function valueFor(level: "semantic" | "component", name: string): string {
+  function colorValueFor(level: "semantic" | "component", name: string): string {
     if (level === "semantic") {
-      const sem = SEMANTIC.find((s) => s.name === name);
-      return PRIMITIVES.find((p) => p.name === sem?.primitive)?.value ?? "#000";
+      const sem = SEMANTIC_COLORS.find((s) => s.name === name);
+      return COLOR_PRIMITIVES.find((p) => p.name === sem?.primitive)?.value ?? "#000";
     }
     const comp = COMPONENT_TOKENS.find((c) => c.name === name);
     if (!comp) return "#000";
-    const direct = PRIMITIVES.find((p) => p.name === comp.semantic);
+    const direct = COLOR_PRIMITIVES.find((p) => p.name === comp.semantic);
     if (direct) return direct.value;
-    const sem = SEMANTIC.find((s) => s.name === comp.semantic);
-    return PRIMITIVES.find((p) => p.name === sem?.primitive)?.value ?? "#000";
+    const sem = SEMANTIC_COLORS.find((s) => s.name === comp.semantic);
+    return COLOR_PRIMITIVES.find((p) => p.name === sem?.primitive)?.value ?? "#000";
   }
 
   return (
     <div className="space-y-12">
-      {/* ─── Tier diagram ─── */}
-      <div className="grid gap-4 lg:grid-cols-3">
-        <Tier number="01" label="Primitives" subtitle="Raw brand values" accent="#22d3ee">
-          <ul className="list-none p-0 m-0 space-y-1">
-            {PRIMITIVES.map((p) => (
-              <TokenRow
-                key={p.name}
-                name={p.name}
-                value={p.value}
-                lit={isLit("primitive", p.name)}
-                isFocus={focus === p.name}
-                swatch={p.value}
-                onHover={() => setHovered(p.name)}
-                onLeave={() => setHovered(null)}
-                onPin={() => setPinned(pinned === p.name ? null : p.name)}
-              />
-            ))}
-          </ul>
-        </Tier>
+      {/* ─── Color tier diagram ─── */}
+      <div>
+        <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
+          ░ COLOR TOKENS ░
+        </div>
+        <div className="grid gap-4 lg:grid-cols-3">
+          <Tier number="01" label="Primitives" subtitle="Raw values" accent="#22d3ee">
+            <ul className="list-none p-0 m-0 space-y-1">
+              {COLOR_PRIMITIVES.map((p) => (
+                <TokenRow
+                  key={p.name}
+                  name={p.name}
+                  value={p.value}
+                  lit={isLit("primitive", p.name)}
+                  isFocus={focus === p.name}
+                  swatch={p.value}
+                  onHover={() => setHovered(p.name)}
+                  onLeave={() => setHovered(null)}
+                  onPin={() => setPinned(pinned === p.name ? null : p.name)}
+                />
+              ))}
+            </ul>
+          </Tier>
 
-        <Tier number="02" label="Semantic" subtitle="Purpose-bound aliases" accent="#ff2bd6">
-          <ul className="list-none p-0 m-0 space-y-1">
-            {SEMANTIC.map((s) => (
-              <TokenRow
-                key={s.name}
-                name={s.name}
-                value={`→ ${s.primitive.split("/").pop()}`}
-                lit={isLit("semantic", s.name)}
-                isFocus={focus === s.name}
-                swatch={valueFor("semantic", s.name)}
-                onHover={() => setHovered(s.name)}
-                onLeave={() => setHovered(null)}
-                onPin={() => setPinned(pinned === s.name ? null : s.name)}
-              />
-            ))}
-          </ul>
-        </Tier>
+          <Tier number="02" label="Semantic" subtitle="Purpose-bound aliases" accent="#ff2bd6">
+            <ul className="list-none p-0 m-0 space-y-1">
+              {SEMANTIC_COLORS.map((s) => (
+                <TokenRow
+                  key={s.name}
+                  name={s.name}
+                  value={`→ ${s.primitive.split("/").pop()}`}
+                  lit={isLit("semantic", s.name)}
+                  isFocus={focus === s.name}
+                  swatch={colorValueFor("semantic", s.name)}
+                  onHover={() => setHovered(s.name)}
+                  onLeave={() => setHovered(null)}
+                  onPin={() => setPinned(pinned === s.name ? null : s.name)}
+                />
+              ))}
+            </ul>
+          </Tier>
 
-        <Tier number="03" label="Component" subtitle="Slot-specific bindings" accent="#a3e635">
-          <ul className="list-none p-0 m-0 space-y-1">
-            {COMPONENT_TOKENS.map((c) => (
-              <TokenRow
-                key={c.name}
-                name={c.name}
-                value={`→ ${c.semantic.split("/").pop()}`}
-                lit={isLit("component", c.name)}
-                isFocus={focus === c.name}
-                swatch={valueFor("component", c.name)}
-                onHover={() => setHovered(c.name)}
-                onLeave={() => setHovered(null)}
-                onPin={() => setPinned(pinned === c.name ? null : c.name)}
-              />
-            ))}
-          </ul>
-          <p className="mt-3 text-[11px] text-ink-mute font-mono leading-relaxed">
-            The library leans heavily on semantic tokens; component-level
-            bindings are reserved for slots that don&apos;t fit a generic alias
-            (e.g. the cerulean used to tag data cards).
-          </p>
-        </Tier>
+          <Tier number="03" label="Component" subtitle="Slot-specific bindings" accent="#a3e635">
+            <ul className="list-none p-0 m-0 space-y-1">
+              {COMPONENT_TOKENS.map((c) => (
+                <TokenRow
+                  key={c.name}
+                  name={c.name}
+                  value={`→ ${c.semantic.split("/").pop()}`}
+                  lit={isLit("component", c.name)}
+                  isFocus={focus === c.name}
+                  swatch={colorValueFor("component", c.name)}
+                  onHover={() => setHovered(c.name)}
+                  onLeave={() => setHovered(null)}
+                  onPin={() => setPinned(pinned === c.name ? null : c.name)}
+                />
+              ))}
+            </ul>
+            <p className="mt-3 text-[11px] text-ink-mute font-mono leading-relaxed">
+              The library leans heavily on semantic tokens; component-level
+              bindings are reserved for slots that don&apos;t fit a generic alias
+              (the cerulean used to tag data cards, for example).
+            </p>
+          </Tier>
+        </div>
+      </div>
+
+      {/* ─── Effect tier ─── */}
+      <div>
+        <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
+          ░ EFFECT TOKENS ░
+        </div>
+        <ul className="list-none p-0 m-0 space-y-1 max-w-md">
+          {EFFECT_PRIMITIVES.map((e) => (
+            <TokenRow
+              key={e.name}
+              name={e.name}
+              value={e.value}
+              lit={false}
+              isFocus={false}
+              swatch="#FFFFFF"
+              onHover={() => {}}
+              onLeave={() => {}}
+              onPin={() => {}}
+            />
+          ))}
+        </ul>
       </div>
 
       <p className="font-mono text-[12px] text-ink-mute leading-relaxed text-center">
-        Hover a token to trace the cascade. Click to pin.{" "}
+        Hover a token to trace the cascade across tiers. Click to pin.{" "}
         {pinned && (
           <button
             type="button"
@@ -205,39 +231,6 @@ export default function RtLibraryShowcase() {
           </button>
         )}
       </p>
-
-      {/* ─── Type tokens ─── */}
-      <div>
-        <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
-          ░ TYPE TOKENS ░
-        </div>
-        <div
-          className="p-6 sm:p-8"
-          style={{
-            background: "#FFFFFF",
-            color: "#0A162F",
-            border: "1px solid rgba(34,211,238,0.18)",
-            fontFamily: "var(--font-roboto), system-ui, sans-serif",
-          }}
-        >
-          <ul className="list-none p-0 m-0 divide-y" style={{ borderColor: "#DEE5EB" }}>
-            {TYPE_TOKENS.map((t) => (
-              <li key={t.name} className="py-3 flex flex-col lg:grid lg:grid-cols-[2fr_3fr_1fr] lg:items-baseline gap-x-6 gap-y-1">
-                <code
-                  className="font-mono text-[11px]"
-                  style={{ color: "#25265E" }}
-                >
-                  {t.name}
-                </code>
-                <TypePreview token={t.name}>{t.role}</TypePreview>
-                <span className="text-[11px]" style={{ color: "#636366" }}>
-                  {t.spec}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
 
       {/* ─── Stamped components against the real chain ─── */}
       <div>
@@ -265,86 +258,6 @@ export default function RtLibraryShowcase() {
       </div>
     </div>
   );
-}
-
-/* ─────────────────────────────────────────────────────────────────────── */
-
-function TypePreview({ token, children }: { token: string; children: React.ReactNode }) {
-  switch (token) {
-    case "Header/Garamond H1":
-      return (
-        <span
-          style={{
-            fontFamily: "var(--font-garamond), Georgia, serif",
-            fontWeight: 400,
-            fontSize: 32,
-            lineHeight: 1,
-            letterSpacing: "-0.5px",
-          }}
-        >
-          {children}
-        </span>
-      );
-    case "Header/Garamond H3":
-      return (
-        <span
-          style={{
-            fontFamily: "var(--font-garamond), Georgia, serif",
-            fontWeight: 600,
-            fontSize: 18,
-            letterSpacing: "0.5em",
-            textTransform: "uppercase",
-          }}
-        >
-          {children}
-        </span>
-      );
-    case "Header/Roboto H4 Caps":
-      return (
-        <span
-          style={{
-            fontWeight: 700,
-            fontSize: 14,
-            letterSpacing: "0.5em",
-            textTransform: "uppercase",
-          }}
-        >
-          {children}
-        </span>
-      );
-    case "Body/Body 2":
-      return (
-        <span style={{ fontWeight: 400, fontSize: 16, lineHeight: "24px" }}>
-          {children}
-        </span>
-      );
-    case "Body/Body 3 Bold":
-      return (
-        <span
-          style={{
-            fontWeight: 500,
-            fontSize: 14,
-            lineHeight: "24px",
-            letterSpacing: "0.35em",
-            textTransform: "uppercase",
-          }}
-        >
-          {children}
-        </span>
-      );
-    case "Chips":
-      return (
-        <span style={{ fontWeight: 500, fontSize: 14, lineHeight: "24px" }}>
-          {children}
-        </span>
-      );
-    default:
-      return (
-        <span style={{ fontWeight: 500, fontSize: 10, letterSpacing: "0.05em" }}>
-          {children}
-        </span>
-      );
-  }
 }
 
 /* ─── Tier shell + token row ────────────────────────────────────────── */
@@ -410,8 +323,6 @@ function TokenRow({
   onLeave: () => void;
   onPin: () => void;
 }) {
-  // Show only the leaf segment of the path so rows stay readable;
-  // full path is in the title attribute for hover reveal.
   const leaf = name.split("/").pop() ?? name;
   return (
     <li>
@@ -455,7 +366,7 @@ function RoundupArticleCard() {
       style={{
         background: "#FFFFFF" /* Core/card-bg → Color/Neutrals/white */,
         border: "1px solid #DEE5EB" /* Color/Borders/border-light */,
-        boxShadow: "0 6px 14px 0 #4C549933" /* Drop Shadow / Elevation 02 */,
+        boxShadow: "0 6px 14px 0 #4C549933" /* Effect/DropShadow/Elevation-02 */,
       }}
     >
       <div
@@ -555,7 +466,7 @@ function PolicyCard() {
       <div className="flex items-center gap-2">
         <span
           style={{
-            background: "#DEF8EA" /* System/green-light */,
+            background: "#DEF8EA" /* Color/System/green-light */,
             color: "#0A162F",
             padding: "2px 8px",
             fontSize: 12,
