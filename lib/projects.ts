@@ -28,7 +28,7 @@ export const projects: Project[] = [
     blurb:
       "Streamlining release workflows so engineers can track deployments, approvals, and statuses without context-switching.",
     role: "UI/UX Designer",
-    team: "1 designer · multiple eng + product partners",
+    team: "2 designers · multiple eng + product partners",
     timeframe: "32 weeks · Finance",
     tools: "Figma · Lucid · Confluence · Jira",
     href: "/work/idp-release-plugin",

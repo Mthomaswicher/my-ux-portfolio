@@ -53,7 +53,7 @@ export const caseStudies: CaseStudy[] = [
       `${IDP}/09-flow-vs-mvp.png`,
     ],
     role: "UI/UX Designer",
-    team: "1 designer · multi product + engineering partners",
+    team: "2 designers · multi product + engineering partners",
     timeframe: "32 weeks",
     tools: "Figma · Lucid · Confluence · Jira",
     accent: "cyan",
