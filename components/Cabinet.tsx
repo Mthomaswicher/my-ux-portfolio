@@ -36,9 +36,16 @@ type DragState =
 export default function Cabinet() {
   const [mode, setMode] = useState<Difficulty>("easy");
   const [hydrated, setHydrated] = useState(false);
+  // Coarse pointer (touch) or narrow viewport (mobile) forces Easy mode and
+  // hides the difficulty toggle — drag-into-the-console is too finicky on
+  // touch and there's no room for the console anyway.
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Read preference once on mount; default Easy until then
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    setIsMobile(mq.matches);
+    const sync = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", sync);
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored === "easy" || stored === "hard") setMode(stored);
@@ -46,6 +53,7 @@ export default function Cabinet() {
       /* ignore */
     }
     setHydrated(true);
+    return () => mq.removeEventListener("change", sync);
   }, []);
 
   function handleChange(m: Difficulty) {
@@ -57,17 +65,18 @@ export default function Cabinet() {
     }
   }
 
+  // On mobile/touch, ignore the saved Hard preference and stay in Easy mode.
+  const effectiveMode = isMobile ? "easy" : mode;
+
   return (
     <>
-      <DifficultySelector mode={mode} onChange={handleChange} />
+      {!isMobile && (
+        <DifficultySelector mode={mode} onChange={handleChange} />
+      )}
 
       {/* Render the same DOM until hydration so server + client match.
           After hydration, switch to the hard cabinet if that's the saved pref. */}
-      {hydrated && mode === "hard" ? (
-        <HardCabinet />
-      ) : (
-        <EasyGrid />
-      )}
+      {hydrated && effectiveMode === "hard" ? <HardCabinet /> : <EasyGrid />}
     </>
   );
 }
