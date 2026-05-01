@@ -234,6 +234,61 @@ export default function About() {
             </div>
           </section>
 
+          <section className="mb-14" aria-labelledby="press-heading">
+            <h2
+              id="press-heading"
+              className="font-pixel text-[12px] tracking-widest text-glow-cyan mb-4"
+            >
+              <span aria-hidden="true">▌</span>PRESS
+            </h2>
+            <a
+              href="https://flatironschool.com/blog/matthew-thomas-wicher-law-to-design/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cartridge block p-6 sm:p-7 group hover:shadow-neon-cyan transition-shadow"
+            >
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
+                <span className="font-pixel text-[10px] tracking-widest text-glow-magenta">
+                  Flatiron School Blog
+                </span>
+                <span
+                  className="font-mono text-[10px] uppercase tracking-widest text-ink-mute"
+                  aria-hidden="true"
+                >
+                  ░
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-ink-mute">
+                  March 29, 2023
+                </span>
+                <span
+                  className="font-mono text-[10px] uppercase tracking-widest text-ink-mute"
+                  aria-hidden="true"
+                >
+                  ░
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-glow-amber">
+                  Alumni Feature
+                </span>
+              </div>
+              <h3 className="font-display text-[clamp(1.5rem,4.5vw,2rem)] leading-tight text-glow-cyan mb-3 group-hover:text-glow-magenta transition-colors">
+                Matthew Thomas-Wicher: Law to Design
+              </h3>
+              <p className="font-mono text-[13px] text-ink-dim leading-relaxed mb-5 max-w-2xl">
+                A career switcher shares his journey from five years in corporate
+                law to becoming a UX/UI Product Designer, the path through
+                Flatiron's full-time UX program, and why he never looked back.
+              </p>
+              <blockquote className="font-mono text-[13px] italic text-ink-dim border-l-2 border-cyan/60 pl-4 py-1 mb-5 max-w-2xl">
+                &ldquo;I absolutely love it! It definitely matches up to the
+                dream, and I am so happy I made the switch.&rdquo;
+              </blockquote>
+              <span className="inline-flex items-center gap-2 font-pixel text-[11px] tracking-widest text-glow-cyan">
+                READ THE FEATURE
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+          </section>
+
           <section className="mb-14" aria-labelledby="reviews-heading">
             <h2
               id="reviews-heading"
