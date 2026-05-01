@@ -108,7 +108,7 @@ function HardCabinet() {
   const [isCoarse, setIsCoarse] = useState(false);
   // pointerdown stages a "potential drag" so taps don't immediately enter
   // drag mode. Only after the pointer moves past a small threshold do we
-  // commit to drag — that way a quick tap still fires a normal click.
+  // commit to drag. that way a quick tap still fires a normal click.
   const dragStartRef = useRef<{
     project: Project;
     pointerId: number;
@@ -134,7 +134,7 @@ function HardCabinet() {
 
   function startDrag(p: Project, e: React.PointerEvent<HTMLElement>) {
     if (p.external) return; // external links never drag
-    // Stage a potential drag. Don't preventDefault yet — we want the
+    // Stage a potential drag. Don't preventDefault yet. we want the
     // browser to fire `click` if this turns out to be a stationary tap.
     dragStartRef.current = {
       project: p,
@@ -147,7 +147,7 @@ function HardCabinet() {
   }
 
   function move(e: React.PointerEvent) {
-    // Already dragging — track the pointer.
+    // Already dragging. track the pointer.
     if (drag.phase === "dragging") {
       e.preventDefault();
       setDrag({ ...drag, x: e.clientX, y: e.clientY });
@@ -266,7 +266,7 @@ function HardCabinet() {
             <button
               key={p.no}
               type="button"
-              aria-label={`${p.title} — ${isExternal ? "external link" : "load this cartridge"}`}
+              aria-label={`${p.title}: ${isExternal ? "external link" : "load this cartridge"}`}
               aria-describedby="cabinet-help"
               // touch-none keeps the browser from stealing the gesture
               // for vertical scroll once the user starts dragging. The
@@ -292,8 +292,8 @@ function HardCabinet() {
         id="cabinet-help"
         className="mt-6 font-mono text-[11px] text-ink-mute uppercase tracking-widest"
       >
-        <span className="md:hidden">Tip — Tap to auto-load. Drag a cartridge up to the console for the full kerchunk.</span>
-        <span className="hidden md:inline">Tip — Press Enter or click to auto-load. Drag for the full kerchunk.</span>
+        <span className="md:hidden">Tip: Tap to auto-load. Drag a cartridge up to the console for the full kerchunk.</span>
+        <span className="hidden md:inline">Tip: Press Enter or click to auto-load. Drag for the full kerchunk.</span>
       </p>
 
       {/* Floating drag ghost */}
@@ -345,7 +345,7 @@ function Console({
             ? "shadow-neon-magenta border-neon-magenta"
             : ""
         }`}
-        aria-label="Console — drop a cartridge here to load a case study"
+        aria-label="Console: drop a cartridge here to load a case study"
         role="region"
       >
         {/* power LED + label */}
@@ -459,7 +459,7 @@ function Console({
           </AnimatePresence>
         </div>
 
-        {/* base trim — controls and detail */}
+        {/* base trim. controls and detail */}
         <div className="mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-mute">
           <span>● MTW-1</span>
           <span>v0.1</span>

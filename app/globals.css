@@ -124,7 +124,7 @@ html[data-scroll-locked="true"] body {
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-/* Tone CRT effects down on mobile — they crush small screens visually
+/* Tone CRT effects down on mobile. they crush small screens visually
    and burn battery on lower-end devices. */
 @media (max-width: 767px) {
   .crt-scanlines {
@@ -212,7 +212,7 @@ html[data-scroll-locked="true"] body {
   }
 }
 
-/* Tilted index-card behavior — straightens + lifts on hover or keyboard focus */
+/* Tilted index-card behavior. straightens + lifts on hover or keyboard focus */
 .tilt-card {
   transform: rotate(var(--card-tilt, 0deg));
   transform-origin: 50% 40%;
@@ -259,7 +259,7 @@ html[data-scroll-locked="true"] body {
   border: 0;
 }
 
-/* Skip-to-main-content link — visible only when focused */
+/* Skip-to-main-content link. visible only when focused */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -318,7 +318,7 @@ html[data-scroll-locked="true"] body {
   }
 }
 
-/* Tap highlight — keep arcade aesthetic instead of default blue blob */
+/* Tap highlight. keep arcade aesthetic instead of default blue blob */
 * {
   -webkit-tap-highlight-color: rgba(255, 43, 214, 0.15);
 }

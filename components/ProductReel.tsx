@@ -38,7 +38,7 @@ export default function ProductReel({
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
-  // Pause cycling when the card (closest focusable ancestor) is hovered or focused — WCAG 2.2.2
+  // Pause cycling when the card (closest focusable ancestor) is hovered or focused. WCAG 2.2.2
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;

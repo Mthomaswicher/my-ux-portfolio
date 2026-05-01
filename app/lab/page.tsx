@@ -15,22 +15,22 @@ type Screen = {
 const MONEY_MAGNET_SCREENS: Screen[] = [
   {
     src: "/lab/money-magnet/signup.png",
-    alt: "Money Magnet welcome screen — Your money, your goals",
+    alt: "Money Magnet welcome screen with the tagline Your money, your goals",
     caption: "01 · Welcome",
   },
   {
     src: "/lab/money-magnet/home.png",
-    alt: "Money Magnet home dashboard — empty state",
+    alt: "Money Magnet home dashboard, empty state",
     caption: "02 · Home (empty)",
   },
   {
     src: "/lab/money-magnet/goals.png",
-    alt: "Money Magnet home dashboard — first goal added",
+    alt: "Money Magnet home dashboard, first goal added",
     caption: "03 · First goal",
   },
   {
     src: "/lab/money-magnet/insights.png",
-    alt: "Money Magnet insights screen — spending breakdown and cash flow",
+    alt: "Money Magnet insights screen showing spending breakdown and cash flow",
     caption: "04 · Insights",
   },
 ];
@@ -103,7 +103,7 @@ export default function Lab() {
             >
               <Image
                 src="/lab/money-magnet/demo-thumb.jpg"
-                alt="Money Magnet hackathon demo — winning application"
+                alt="Money Magnet hackathon demo, winning application"
                 fill
                 sizes="(max-width: 1024px) 100vw, 900px"
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
@@ -124,7 +124,7 @@ export default function Lab() {
 
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
               <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
-                A personal-finance app concept built for a 19-day hackathon — and the
+                A personal-finance app concept built for a 19-day hackathon, and the
                 winning entry. The premise: instead of guilt-tripping users about every
                 latte, frame spending around the goals they&apos;re actually saving toward.
                 Four screens trace the empty-state onboarding through to a populated

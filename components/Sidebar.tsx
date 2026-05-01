@@ -105,7 +105,7 @@ export default function Sidebar() {
           <Link
             href="/home"
             className="flex items-center gap-3 group"
-            aria-label="Matthew Thomas-Wicher — go to work"
+            aria-label="Matthew Thomas-Wicher, go to work"
           >
             <div className="relative w-12 h-12 cartridge p-0.5 overflow-hidden">
               <Image

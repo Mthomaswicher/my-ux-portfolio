@@ -1,4 +1,4 @@
--- MTW.ARCADE — Guestbook schema
+-- MTW.ARCADE. Guestbook schema
 -- Paste this into the Supabase SQL editor for your project once.
 
 create table if not exists public.guestbook_entries (

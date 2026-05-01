@@ -73,7 +73,7 @@ export default function HoloDisplay({
   });
 
   function onMove(e: React.PointerEvent) {
-    // Touch devices skip the 3D tilt — it fires only on hover-capable pointers.
+    // Touch devices skip the 3D tilt. it fires only on hover-capable pointers.
     if (!interactive || reduced || coarse || !ref.current) return;
     const r = ref.current.getBoundingClientRect();
     mx.set((e.clientX - r.left) / r.width - 0.5);

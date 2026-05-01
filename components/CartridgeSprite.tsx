@@ -12,7 +12,7 @@ const ACCENT_HEX = {
 } as const;
 
 /**
- * Compact cartridge visual — used for the floating drag ghost and the
+ * Compact cartridge visual. used for the floating drag ghost and the
  * "slotted into console" state. Designed at ~240×88 with the hero on the
  * left and label text on the right, like an actual game cartridge.
  */

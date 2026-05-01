@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSound } from "./SoundProvider";
 
 const LINES = [
-  "MTW BIOS v0.1 — © 2026 mthomaswicher",
+  "MTW BIOS v0.1 · © 2026 mthomaswicher",
   "MEM TEST .... 65,536K OK",
   "DETECTING DESIGN SYSTEMS .... [OK]",
   "MOUNTING /portfolio .... [OK]",
@@ -25,7 +25,7 @@ export default function BootSequence() {
       const t = window.setTimeout(() => setDone(true), 220);
       return () => window.clearTimeout(t);
     }
-    // Each new boot line gets a tiny blip — feels like a real BIOS
+    // Each new boot line gets a tiny blip. feels like a real BIOS
     play("pop");
     const id = window.setTimeout(() => setShown((s) => s + 1), 240);
     return () => window.clearTimeout(id);
@@ -84,7 +84,7 @@ export default function BootSequence() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/sign"
-              aria-label="Enter — sign the guestbook"
+              aria-label="Enter and sign the guestbook"
               onClick={() => play("insertCoin")}
               onMouseEnter={() => play("hover")}
               className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
@@ -93,7 +93,7 @@ export default function BootSequence() {
             </Link>
             <Link
               href="/home"
-              aria-label="Skip intro — go directly to work"
+              aria-label="Skip intro and go directly to work"
               onClick={() => play("select")}
               onMouseEnter={() => play("hover")}
               className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"

@@ -93,7 +93,7 @@ export function ProjectCardBody({ project }: { project: Project }) {
             ].join(", "),
           }}
         >
-          {/* Label header — title bar */}
+          {/* Label header. title bar */}
           <div
             className="flex items-center justify-between px-3 py-2"
             style={{
@@ -124,7 +124,7 @@ export function ProjectCardBody({ project }: { project: Project }) {
             </div>
           )}
 
-          {/* Label footer — title block */}
+          {/* Label footer. title block */}
           <div
             className="px-3 py-3"
             style={{ borderTop: `1px solid ${accentHex}33` }}

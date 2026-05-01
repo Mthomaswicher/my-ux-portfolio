@@ -37,7 +37,7 @@ function statsFromEntries(entries: GuestbookRow[]): Stats {
 }
 
 function formatRelative(iso: string | null): string {
-  if (!iso) return "—";
+  if (!iso) return "";
   const d = new Date(iso).getTime();
   const diff = Math.max(0, Date.now() - d);
   const mins = Math.floor(diff / 60_000);
@@ -189,7 +189,7 @@ export default function GuestbookGallery() {
 
         {usingLocal && (
           <div className="mt-3 font-mono text-[11px] text-ink-mute">
-            ⚠ Supabase not configured — viewing your local entries only.
+            ⚠ Supabase not configured; viewing your local entries only.
             <Link href="/" className="ml-2 text-glow-magenta hover:underline">
               See setup
             </Link>

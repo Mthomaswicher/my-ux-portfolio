@@ -51,7 +51,7 @@ export default function SignFlow() {
     const client = getPublicClient();
 
     if (!client) {
-      // No Supabase configured — write to localStorage and continue
+      // No Supabase configured. write to localStorage and continue
       const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]");
       const entry = {
         id: Date.now(),
@@ -177,7 +177,7 @@ export default function SignFlow() {
                 id={tagHelpId}
                 className="mt-1 font-mono text-[10px] text-ink-mute uppercase tracking-widest"
               >
-                3 letters/numbers — like an arcade high score.
+                3 letters/numbers, like an arcade high score.
               </div>
             </div>
           </section>
@@ -241,7 +241,7 @@ export default function SignFlow() {
             </div>
           </section>
 
-          {/* Error live region — announces to AT */}
+          {/* Error live region. announces to AT */}
           <div
             id={errorId}
             role="alert"
@@ -273,7 +273,7 @@ export default function SignFlow() {
               href="/home"
               className="py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
             >
-              SKIP — TAKE ME TO THE WORK
+              SKIP, TAKE ME TO THE WORK
             </Link>
           </div>
 

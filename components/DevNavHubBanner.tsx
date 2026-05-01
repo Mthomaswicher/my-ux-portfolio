@@ -7,7 +7,7 @@ export default function DevNavHubBanner() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 md:px-6">
         <Link
           href="/"
-          aria-label="DevNav Hub — home"
+          aria-label="DevNav Hub home"
           className="flex items-center"
         >
           <Image

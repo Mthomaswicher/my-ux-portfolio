@@ -1,5 +1,5 @@
 /**
- * Tiny Web Audio synthesizer — chiptune-style SFX with no asset files.
+ * Tiny Web Audio synthesizer. chiptune-style SFX with no asset files.
  * All sounds are generated from oscillators + gain envelopes at call time.
  */
 
@@ -64,7 +64,7 @@ class ArcadeAudio {
         t0 + duration,
       );
     }
-    // Envelope: fast attack, hold, fast release — keeps things snappy + click-free
+    // Envelope: fast attack, hold, fast release. keeps things snappy + click-free
     gain.gain.setValueAtTime(0, t0);
     gain.gain.linearRampToValueAtTime(volume, t0 + 0.005);
     gain.gain.linearRampToValueAtTime(volume * 0.7, t0 + duration * 0.7);
@@ -114,7 +114,7 @@ class ArcadeAudio {
     this.tone({ freq: 880, duration: 0.05, type: "square", volume: 0.32 });
   }
 
-  /** "Select" — short ascending arpeggio. */
+  /** "Select". short ascending arpeggio. */
   select() {
     this.tone({ freq: 523, duration: 0.07, type: "square", volume: 0.32 });
     this.tone({
@@ -163,7 +163,7 @@ class ArcadeAudio {
     });
   }
 
-  /** Save / submit success — softer 3-note. */
+  /** Save / submit success. softer 3-note. */
   save() {
     const notes = [392, 494, 587];
     notes.forEach((n, i) => {
@@ -177,7 +177,7 @@ class ArcadeAudio {
     });
   }
 
-  /** Slot-machine roll — sweep up. */
+  /** Slot-machine roll. sweep up. */
   roll() {
     this.noise({ duration: 0.18, volume: 0.08 });
     this.tone({
@@ -201,7 +201,7 @@ class ArcadeAudio {
     });
   }
 
-  /** Pop — for color picks, small confirmations. */
+  /** Pop. for color picks, small confirmations. */
   pop() {
     this.tone({ freq: 660, duration: 0.04, type: "square", volume: 0.24 });
   }
@@ -218,7 +218,7 @@ class ArcadeAudio {
     });
   }
 
-  /** Cartridge thunk into slot — low noise burst + descending tone. */
+  /** Cartridge thunk into slot. low noise burst + descending tone. */
   cartridge() {
     this.noise({ duration: 0.12, volume: 0.18 });
     this.tone({
@@ -237,7 +237,7 @@ class ArcadeAudio {
     });
   }
 
-  /** Console power-up swell — low to high sweep + bright cap. */
+  /** Console power-up swell. low to high sweep + bright cap. */
   power() {
     this.tone({
       freq: 80,

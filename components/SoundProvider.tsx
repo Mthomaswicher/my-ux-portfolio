@@ -49,7 +49,7 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
   const toggle = useCallback(() => {
     setEnabled(!arcade.isEnabled());
     if (!arcade.isEnabled()) {
-      // we're toggling OFF — no test sound
+      // we're toggling OFF. no test sound
     } else {
       arcade.test();
     }

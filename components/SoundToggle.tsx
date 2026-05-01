@@ -14,7 +14,7 @@ export default function SoundToggle({ compact = false }: { compact?: boolean }) 
       className={`group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest hover:text-glow-cyan focus-visible:text-glow-cyan transition-colors ${
         compact ? "text-ink-mute" : "text-ink-dim"
       }`}
-      title={`${enabled ? "Sound on" : "Sound off"} — press M to toggle`}
+      title={`${enabled ? "Sound on" : "Sound off"}. press M to toggle`}
     >
       <span aria-hidden="true" className="font-pixel text-[10px]">
         {enabled ? "♪" : "·"}
