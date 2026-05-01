@@ -191,13 +191,17 @@ function breakpointFor(width: number): Tier {
 }
 
 function Chart({ width, tier }: { width: number; tier: Tier }) {
+  // Chip-stack legend on xs/sm goes below the title, so the top padding
+  // grows to fit a title row + legend row. lg keeps the legend top-right
+  // on the same row as the title.
+  const useStackedLegend = tier !== "lg";
   const padding = {
-    top: tier === "xs" ? 56 : 72,
+    top: tier === "xs" ? 64 : tier === "sm" ? 72 : 56,
     right: tier === "xs" ? 12 : 24,
     bottom: tier === "xs" ? 28 : 36,
-    left: tier === "xs" ? 32 : 56,
+    left: tier === "xs" ? 36 : tier === "sm" ? 44 : 56,
   };
-  const height = tier === "xs" ? 220 : tier === "sm" ? 280 : 360;
+  const height = tier === "xs" ? 220 : tier === "sm" ? 300 : 360;
   const innerW = Math.max(40, width - padding.left - padding.right);
   const innerH = height - padding.top - padding.bottom;
   const yMin = 0;
@@ -219,7 +223,8 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
     return [0, X_LABELS.length - 1];
   })();
 
-  const visibleYTicks = tier === "xs" ? [50, 100, 150] : Y_TICKS;
+  const visibleYTicks =
+    tier === "xs" ? [50, 100, 150] : tier === "sm" ? [50, 100, 150, 175] : Y_TICKS;
 
   return (
     <svg
@@ -236,22 +241,22 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
       {/* Title */}
       <text
         x={padding.left}
-        y={tier === "xs" ? 24 : 32}
+        y={tier === "xs" ? 22 : tier === "sm" ? 26 : 32}
         fill="#0E1B3F"
-        fontSize={tier === "xs" ? 16 : 22}
+        fontSize={tier === "xs" ? 16 : tier === "sm" ? 18 : 22}
         fontWeight={700}
         letterSpacing="-0.2"
       >
         Submissions
       </text>
 
-      {/* Legend — full on lg/sm, chip stack on xs */}
-      {tier !== "xs" ? (
-        <g transform={`translate(${width - padding.right}, ${tier === "sm" ? 22 : 28})`}>
+      {/* Legend — full on lg (top-right), chip stack below title on xs/sm */}
+      {!useStackedLegend ? (
+        <g transform={`translate(${width - padding.right}, 32)`}>
           {SERIES.slice()
             .reverse()
             .map((s, idx) => {
-              const offset = -idx * (tier === "sm" ? 100 : 120);
+              const offset = -idx * 120;
               return (
                 <g key={s.name} transform={`translate(${offset}, 0)`}>
                   <circle cx={-8} cy={-4} r={4} fill={s.color} />
@@ -260,7 +265,7 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
                     y={0}
                     textAnchor="end"
                     fill="#0E1B3F"
-                    fontSize={tier === "sm" ? 11 : 12}
+                    fontSize={12}
                     fontWeight={500}
                   >
                     {s.name}
@@ -270,21 +275,24 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
             })}
         </g>
       ) : (
-        <g transform={`translate(${padding.left}, 36)`}>
-          {SERIES.map((s, i) => (
-            <g key={s.name} transform={`translate(${i * 70}, 0)`}>
-              <circle cx={4} cy={-4} r={3} fill={s.color} />
-              <text
-                x={12}
-                y={0}
-                fill="#0E1B3F"
-                fontSize={10}
-                fontWeight={500}
-              >
-                {abbreviate(s.name)}
-              </text>
-            </g>
-          ))}
+        <g transform={`translate(${padding.left}, ${tier === "xs" ? 42 : 50})`}>
+          {SERIES.map((s, i) => {
+            const slot = tier === "xs" ? 70 : 92;
+            return (
+              <g key={s.name} transform={`translate(${i * slot}, 0)`}>
+                <circle cx={4} cy={-4} r={3} fill={s.color} />
+                <text
+                  x={12}
+                  y={0}
+                  fill="#0E1B3F"
+                  fontSize={tier === "xs" ? 10 : 11}
+                  fontWeight={500}
+                >
+                  {tier === "xs" ? abbreviate(s.name) : s.name}
+                </text>
+              </g>
+            );
+          })}
         </g>
       )}
 
@@ -306,9 +314,9 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
               y={y + 4}
               textAnchor="end"
               fill="#636366"
-              fontSize={tier === "xs" ? 9 : 11}
+              fontSize={tier === "xs" ? 9 : tier === "sm" ? 10 : 11}
             >
-              {tier === "xs" ? `${t}K` : `$${t},000`}
+              {tier === "lg" ? `$${t},000` : `$${t}K`}
             </text>
           </g>
         );
