@@ -9,7 +9,7 @@ import {
 import "./globals.css";
 import CrtOverlays from "@/components/CrtOverlays";
 import KonamiCode from "@/components/KonamiCode";
-import PixelPet from "@/components/PixelPet";
+import RoamPet from "@/components/RoamPet";
 import CursorTrail from "@/components/CursorTrail";
 import SoundToggle from "@/components/SoundToggle";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -91,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             <CrtOverlays />
             <CursorTrail />
-            <PixelPet />
+            <RoamPet />
             <KonamiCode />
             <ThemeToggle />
             <SoundToggle />
