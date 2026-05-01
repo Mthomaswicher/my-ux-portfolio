@@ -283,69 +283,71 @@ export default function RoamPet() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-40 select-none"
     >
+      {/* Outer pet anchor — only positions; never mirrors. The bubble lives
+          here so it always reads left-to-right regardless of walk direction. */}
       <div
         className="absolute"
         style={{
           left: x,
           top: y,
-          transform: `scaleX(${dir})`,
-          transition: dragging ? "none" : "transform 0.18s ease-out",
+          width: PET_W,
+          height: PET_H,
           touchAction: "none",
         }}
       >
-        <div className="relative">
-          <AnimatePresence>
-            {bubble && (
-              <motion.div
-                key={bubble}
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 6, scale: 0.95 }}
-                transition={{ duration: 0.25 }}
-                className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full text-[11px] font-mono"
+        <AnimatePresence>
+          {bubble && (
+            <motion.div
+              key={bubble}
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="absolute bottom-full mb-2 whitespace-nowrap px-3 py-1.5 rounded-full text-[11px] font-mono"
+              style={{
+                left: "50%",
+                translateX: "-50%",
+                background: "#1a1a22",
+                color: "#FFFFFF",
+                boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
+              }}
+            >
+              {bubble}
+              <span
+                aria-hidden="true"
+                className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0"
                 style={{
-                  background: "#1a1a22",
-                  color: "#FFFFFF",
-                  boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
-                  transform: `scaleX(${dir})`,
+                  borderLeft: "5px solid transparent",
+                  borderRight: "5px solid transparent",
+                  borderTop: "5px solid #1a1a22",
                 }}
-              >
-                {bubble}
-                <span
-                  aria-hidden="true"
-                  className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0"
-                  style={{
-                    borderLeft: "5px solid transparent",
-                    borderRight: "5px solid transparent",
-                    borderTop: "5px solid #1a1a22",
-                  }}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-          <div
-            role="button"
-            tabIndex={-1}
-            onPointerDown={onPickup}
-            onPointerMove={onDragMove}
-            onPointerUp={onDrop}
-            onPointerCancel={onDrop}
-            className="pointer-events-auto select-none"
-            style={{
-              cursor: dragging ? "grabbing" : "grab",
-              transform: `rotate(${bodyRotate}deg)`,
-              transition: dragging ? "none" : "transform 0.18s ease-out",
-              transformOrigin: "50% 80%",
-            }}
-          >
-            <Robot
-              eyeOffset={eyeOffset}
-              stride={stride}
-              walking={walking}
-              dragging={dragging}
-            />
-          </div>
+        {/* Inner body wrapper is the only thing that mirrors. */}
+        <div
+          role="button"
+          tabIndex={-1}
+          onPointerDown={onPickup}
+          onPointerMove={onDragMove}
+          onPointerUp={onDrop}
+          onPointerCancel={onDrop}
+          className="pointer-events-auto select-none absolute inset-0"
+          style={{
+            cursor: dragging ? "grabbing" : "grab",
+            transform: `scaleX(${dir}) rotate(${bodyRotate}deg)`,
+            transition: dragging ? "none" : "transform 0.18s ease-out",
+            transformOrigin: "50% 80%",
+          }}
+        >
+          <Robot
+            eyeOffset={eyeOffset}
+            stride={stride}
+            walking={walking}
+            dragging={dragging}
+          />
         </div>
       </div>
     </div>
