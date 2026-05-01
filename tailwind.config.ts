@@ -19,7 +19,7 @@ const config: Config = {
           DEFAULT: "#e8e8f0",
           dim: "#a8a8c0",
           mute: "#8d8db0",
-          ghost: "#2a2a40",
+          ghost: "#6a6e90",
         },
         neon: {
           magenta: "#ff2bd6",
