@@ -250,20 +250,22 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
         Submissions
       </text>
 
-      {/* Legend — full on lg (top-right), chip stack below title on xs/sm */}
+      {/* Legend — top-right on lg, chip stack below title on xs/sm.
+          Uses fixed slots and start-anchored text so the dot sits before
+          the label, never inside it. Slot widths sized to fit the widest
+          item ("Conforming Subs"). */}
       {!useStackedLegend ? (
-        <g transform={`translate(${width - padding.right}, 32)`}>
-          {SERIES.slice()
-            .reverse()
-            .map((s, idx) => {
-              const offset = -idx * 120;
-              return (
-                <g key={s.name} transform={`translate(${offset}, 0)`}>
-                  <circle cx={-8} cy={-4} r={4} fill={s.color} />
+        (() => {
+          const slot = 138;
+          const startX = width - padding.right - slot * SERIES.length;
+          return (
+            <g transform={`translate(${startX}, 32)`}>
+              {SERIES.map((s, i) => (
+                <g key={s.name} transform={`translate(${i * slot}, 0)`}>
+                  <circle cx={4} cy={-4} r={4} fill={s.color} />
                   <text
-                    x={0}
+                    x={14}
                     y={0}
-                    textAnchor="end"
                     fill="#0E1B3F"
                     fontSize={12}
                     fontWeight={500}
@@ -271,13 +273,14 @@ function Chart({ width, tier }: { width: number; tier: Tier }) {
                     {s.name}
                   </text>
                 </g>
-              );
-            })}
-        </g>
+              ))}
+            </g>
+          );
+        })()
       ) : (
         <g transform={`translate(${padding.left}, ${tier === "xs" ? 42 : 50})`}>
           {SERIES.map((s, i) => {
-            const slot = tier === "xs" ? 70 : 92;
+            const slot = tier === "xs" ? 70 : 100;
             return (
               <g key={s.name} transform={`translate(${i * slot}, 0)`}>
                 <circle cx={4} cy={-4} r={3} fill={s.color} />
