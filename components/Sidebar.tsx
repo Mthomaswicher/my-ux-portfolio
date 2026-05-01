@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LiveClock from "./LiveClock";
 import SoundToggle from "./SoundToggle";
+import ThemeToggle from "./ThemeToggle";
 import { useSound } from "./SoundProvider";
 import { log } from "@/lib/log";
 
@@ -241,8 +242,9 @@ export default function Sidebar() {
             >
               All systems operational
             </div>
-            {/* Mobile reaches the sound toggle here (the floating one is hidden on md down). */}
-            <div className="md:hidden pt-1">
+            {/* Mobile reaches the floating toggles here (those are hidden on md down). */}
+            <div className="md:hidden pt-1 flex flex-wrap gap-2">
+              <ThemeToggle variant="inline" />
               <SoundToggle variant="inline" />
             </div>
           </div>

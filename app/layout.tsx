@@ -12,7 +12,9 @@ import KonamiCode from "@/components/KonamiCode";
 import PixelPet from "@/components/PixelPet";
 import CursorTrail from "@/components/CursorTrail";
 import SoundToggle from "@/components/SoundToggle";
+import ThemeToggle from "@/components/ThemeToggle";
 import { SoundProvider } from "@/components/SoundProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const display = VT323({
   subsets: ["latin"],
@@ -82,17 +84,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${pixel.variable} ${mono.variable} ${roboto.variable} ${garamond.variable}`}
     >
       <body className="bg-bg-void text-ink antialiased">
-        <SoundProvider>
-          <a href="#main" className="skip-link">
-            Skip to main content
-          </a>
-          <CrtOverlays />
-          <CursorTrail />
-          <PixelPet />
-          <KonamiCode />
-          <SoundToggle />
-          {children}
-        </SoundProvider>
+        <ThemeProvider>
+          <SoundProvider>
+            <a href="#main" className="skip-link">
+              Skip to main content
+            </a>
+            <CrtOverlays />
+            <CursorTrail />
+            <PixelPet />
+            <KonamiCode />
+            <ThemeToggle />
+            <SoundToggle />
+            {children}
+          </SoundProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

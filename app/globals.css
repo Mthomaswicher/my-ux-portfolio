@@ -7,13 +7,82 @@
   --font-pixel: "Press Start 2P", ui-monospace, monospace;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --neon-magenta: #ff2bd6;
-  --neon-cyan: #22d3ee;
-  --neon-lime: #a3e635;
-  --neon-amber: #fbbf24;
-  --neon-rose: #fb7185;
+  /* All theme tokens are stored as space-separated RGB tuples so Tailwind
+     can apply opacity modifiers via rgb(var(--token) / <alpha>). */
+  --bg-void: 5 5 10;
+  --bg-deep: 10 10 20;
+  --bg-panel: 14 14 28;
+  --bg-ridge: 22 22 42;
 
-  --accent: var(--neon-cyan);
+  --ink: 232 232 240;
+  --ink-dim: 168 168 192;
+  --ink-mute: 141 141 176;
+  --ink-ghost: 106 110 144;
+
+  --neon-magenta: 255 43 214;
+  --neon-cyan: 34 211 238;
+  --neon-lime: 163 230 53;
+  --neon-amber: 251 191 36;
+  --neon-rose: 251 113 133;
+
+  /* Pastel text colors used by .text-glow-* (lit on dark, dark on light). */
+  --glow-cyan: 197 247 255;
+  --glow-magenta: 255 205 241;
+  --glow-lime: 227 255 176;
+  --glow-amber: 255 231 168;
+
+  /* 1 = render the neon text-shadow halo; 0 = drop it (light mode). */
+  --glow-on: 1;
+
+  --accent: rgb(var(--neon-cyan));
+
+  /* Body backdrop gradients differ per theme. */
+  --body-bg-image:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 43, 214, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(34, 211, 238, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #05050a 0%, #08081a 100%);
+  /* Cartridge surface stops. */
+  --cartridge-stop-1: 10 10 24;
+  --cartridge-stop-2: 7 7 15;
+  /* Subtle highlight overlay sitting on top of the cartridge gradient. */
+  --cartridge-highlight: 255 255 255;
+  --cartridge-highlight-alpha: 0.02;
+}
+
+[data-theme="light"] {
+  --bg-void: 252 250 244;
+  --bg-deep: 241 238 230;
+  --bg-panel: 230 226 217;
+  --bg-ridge: 215 211 200;
+
+  --ink: 26 26 34;
+  --ink-dim: 70 70 80;
+  --ink-mute: 100 100 110;
+  --ink-ghost: 175 175 185;
+
+  --neon-magenta: 168 30 124;
+  --neon-cyan: 12 122 145;
+  --neon-lime: 80 130 28;
+  --neon-amber: 145 95 10;
+  --neon-rose: 178 60 80;
+
+  --glow-cyan: 12 90 110;
+  --glow-magenta: 112 18 80;
+  --glow-lime: 50 88 14;
+  --glow-amber: 110 70 8;
+
+  --glow-on: 0;
+
+  --accent: rgb(var(--neon-cyan));
+
+  --body-bg-image:
+    radial-gradient(ellipse at 20% 0%, rgba(168, 30, 124, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(12, 122, 145, 0.04) 0%, transparent 55%),
+    linear-gradient(180deg, #fcfaf4 0%, #f4f1ea 100%);
+  --cartridge-stop-1: 255 253 247;
+  --cartridge-stop-2: 246 243 235;
+  --cartridge-highlight: 0 0 0;
+  --cartridge-highlight-alpha: 0.03;
 }
 
 * {
@@ -22,8 +91,8 @@
 
 html,
 body {
-  background: #05050a;
-  color: #e8e8f0;
+  background: rgb(var(--bg-void));
+  color: rgb(var(--ink));
   font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -41,10 +110,7 @@ html {
 }
 
 body {
-  background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(255, 43, 214, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(34, 211, 238, 0.06) 0%, transparent 55%),
-    linear-gradient(180deg, #05050a 0%, #08081a 100%);
+  background-image: var(--body-bg-image);
   /* Mobile Safari kills perf with fixed background-attachment.
      Use `local` on small screens where we don't need parallax. */
   background-attachment: fixed;
@@ -142,6 +208,15 @@ html[data-scroll-locked="true"] body {
   }
 }
 
+/* Light mode hides the CRT layers entirely — they're a CRT-on-glass effect
+   that only reads on a dark surface. */
+[data-theme="light"] .crt-noise,
+[data-theme="light"] .crt-vignette,
+[data-theme="light"] .crt-scanlines,
+[data-theme="light"] .crt-sweep {
+  display: none;
+}
+
 /* Reusable terminal caret */
 .caret::after {
   content: "▌";
@@ -150,34 +225,34 @@ html[data-scroll-locked="true"] body {
   animation: blink 1.05s steps(2, start) infinite;
 }
 
-/* Glowing text */
+/* Glowing text — color and shadow strength both swap by theme. */
 .text-glow-cyan {
-  color: #c5f7ff;
+  color: rgb(var(--glow-cyan));
   text-shadow:
-    0 0 1px #22d3ee,
-    0 0 8px rgba(34, 211, 238, 0.6),
-    0 0 24px rgba(34, 211, 238, 0.25);
+    0 0 calc(1px * var(--glow-on)) rgb(var(--neon-cyan)),
+    0 0 calc(8px * var(--glow-on)) rgb(var(--neon-cyan) / 0.6),
+    0 0 calc(24px * var(--glow-on)) rgb(var(--neon-cyan) / 0.25);
 }
 .text-glow-magenta {
-  color: #ffcdf1;
+  color: rgb(var(--glow-magenta));
   text-shadow:
-    0 0 1px #ff2bd6,
-    0 0 8px rgba(255, 43, 214, 0.55),
-    0 0 24px rgba(255, 43, 214, 0.2);
+    0 0 calc(1px * var(--glow-on)) rgb(var(--neon-magenta)),
+    0 0 calc(8px * var(--glow-on)) rgb(var(--neon-magenta) / 0.55),
+    0 0 calc(24px * var(--glow-on)) rgb(var(--neon-magenta) / 0.2);
 }
 .text-glow-lime {
-  color: #e3ffb0;
+  color: rgb(var(--glow-lime));
   text-shadow:
-    0 0 1px #a3e635,
-    0 0 8px rgba(163, 230, 53, 0.55),
-    0 0 24px rgba(163, 230, 53, 0.2);
+    0 0 calc(1px * var(--glow-on)) rgb(var(--neon-lime)),
+    0 0 calc(8px * var(--glow-on)) rgb(var(--neon-lime) / 0.55),
+    0 0 calc(24px * var(--glow-on)) rgb(var(--neon-lime) / 0.2);
 }
 .text-glow-amber {
-  color: #ffe7a8;
+  color: rgb(var(--glow-amber));
   text-shadow:
-    0 0 1px #fbbf24,
-    0 0 8px rgba(251, 191, 36, 0.55),
-    0 0 24px rgba(251, 191, 36, 0.2);
+    0 0 calc(1px * var(--glow-on)) rgb(var(--neon-amber)),
+    0 0 calc(8px * var(--glow-on)) rgb(var(--neon-amber) / 0.55),
+    0 0 calc(24px * var(--glow-on)) rgb(var(--neon-amber) / 0.2);
 }
 
 /* Pixel-perfect crisp edges for sprites */
@@ -188,10 +263,14 @@ html[data-scroll-locked="true"] body {
 
 /* Cartridge card border */
 .cartridge {
-  border: 1px solid rgba(34, 211, 238, 0.18);
+  border: 1px solid rgb(var(--neon-cyan) / 0.18);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
-    linear-gradient(180deg, #0a0a18 0%, #07070f 100%);
+    linear-gradient(
+      180deg,
+      rgb(var(--cartridge-highlight) / var(--cartridge-highlight-alpha)),
+      transparent
+    ),
+    linear-gradient(180deg, rgb(var(--cartridge-stop-1)) 0%, rgb(var(--cartridge-stop-2)) 100%);
   position: relative;
 }
 .cartridge::before {
@@ -199,16 +278,16 @@ html[data-scroll-locked="true"] body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.06), transparent 30%);
+  background: linear-gradient(180deg, rgb(var(--neon-cyan) / 0.06), transparent 30%);
 }
 /* Hover-only platforms get the glow; touch devices keep the static border
    so cards don't appear stuck in a "hovered" state after a tap. */
 @media (hover: hover) and (pointer: fine) {
   .cartridge:hover {
-    border-color: rgba(255, 43, 214, 0.5);
+    border-color: rgb(var(--neon-magenta) / 0.5);
     box-shadow:
-      0 0 0 1px rgba(255, 43, 214, 0.4),
-      0 0 24px rgba(255, 43, 214, 0.18);
+      0 0 0 1px rgb(var(--neon-magenta) / 0.4),
+      0 0 24px rgb(var(--neon-magenta) / 0.18);
   }
 }
 

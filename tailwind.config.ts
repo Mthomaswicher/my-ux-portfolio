@@ -9,24 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // All theme tokens are driven by CSS variables (RGB tuples) defined
+        // in app/globals.css under :root and [data-theme="light"]. The
+        // <alpha-value> placeholder lets Tailwind opacity modifiers
+        // (bg-bg-void/80, etc.) keep working.
         bg: {
-          void: "#05050a",
-          deep: "#0a0a14",
-          panel: "#0e0e1c",
-          ridge: "#16162a",
+          void: "rgb(var(--bg-void) / <alpha-value>)",
+          deep: "rgb(var(--bg-deep) / <alpha-value>)",
+          panel: "rgb(var(--bg-panel) / <alpha-value>)",
+          ridge: "rgb(var(--bg-ridge) / <alpha-value>)",
         },
         ink: {
-          DEFAULT: "#e8e8f0",
-          dim: "#a8a8c0",
-          mute: "#8d8db0",
-          ghost: "#6a6e90",
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          dim: "rgb(var(--ink-dim) / <alpha-value>)",
+          mute: "rgb(var(--ink-mute) / <alpha-value>)",
+          ghost: "rgb(var(--ink-ghost) / <alpha-value>)",
         },
         neon: {
-          magenta: "#ff2bd6",
-          cyan: "#22d3ee",
-          lime: "#a3e635",
-          amber: "#fbbf24",
-          rose: "#fb7185",
+          magenta: "rgb(var(--neon-magenta) / <alpha-value>)",
+          cyan: "rgb(var(--neon-cyan) / <alpha-value>)",
+          lime: "rgb(var(--neon-lime) / <alpha-value>)",
+          amber: "rgb(var(--neon-amber) / <alpha-value>)",
+          rose: "rgb(var(--neon-rose) / <alpha-value>)",
         },
       },
       fontFamily: {
@@ -35,11 +39,15 @@ const config: Config = {
         pixel: ["var(--font-pixel)", "monospace"],
       },
       boxShadow: {
-        "neon-magenta": "0 0 0 1px #ff2bd6, 0 0 12px rgba(255,43,214,0.45)",
-        "neon-cyan": "0 0 0 1px #22d3ee, 0 0 12px rgba(34,211,238,0.45)",
-        "neon-lime": "0 0 0 1px #a3e635, 0 0 12px rgba(163,230,53,0.45)",
-        "neon-amber": "0 0 0 1px #fbbf24, 0 0 12px rgba(251,191,36,0.45)",
-        "inset-glow": "inset 0 0 24px rgba(34,211,238,0.08)",
+        "neon-magenta":
+          "0 0 0 1px rgb(var(--neon-magenta)), 0 0 12px rgb(var(--neon-magenta) / 0.45)",
+        "neon-cyan":
+          "0 0 0 1px rgb(var(--neon-cyan)), 0 0 12px rgb(var(--neon-cyan) / 0.45)",
+        "neon-lime":
+          "0 0 0 1px rgb(var(--neon-lime)), 0 0 12px rgb(var(--neon-lime) / 0.45)",
+        "neon-amber":
+          "0 0 0 1px rgb(var(--neon-amber)), 0 0 12px rgb(var(--neon-amber) / 0.45)",
+        "inset-glow": "inset 0 0 24px rgb(var(--neon-cyan) / 0.08)",
       },
       animation: {
         blink: "blink 1.05s steps(2, start) infinite",
