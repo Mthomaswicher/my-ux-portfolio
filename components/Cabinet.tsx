@@ -148,16 +148,23 @@ function HardCabinet() {
     }
   }
 
-  function endDrag(e: React.PointerEvent) {
-    if (drag.phase !== "dragging") return;
-    const isOver = pointInConsole(e.clientX, e.clientY);
-    setOverConsole(false);
-    if (isOver) {
-      // Trigger insert from current pointer position
-      triggerInsert(drag.project, { x: e.clientX, y: e.clientY });
-    } else {
-      // Snap back
-      setDrag({ phase: "idle" });
+  function endDrag(e: React.PointerEvent, p?: Project) {
+    if (drag.phase === "dragging") {
+      const isOver = pointInConsole(e.clientX, e.clientY);
+      setOverConsole(false);
+      if (isOver) {
+        triggerInsert(drag.project, { x: e.clientX, y: e.clientY });
+      } else {
+        setDrag({ phase: "idle" });
+      }
+      return;
+    }
+    // Touch tap fallback. iOS Safari sometimes drops the synthetic `click`
+    // on a <div role="button"> that also has pointer-event handlers, so we
+    // trigger insert directly from pointerup. clickInsert is idempotent
+    // because it early-returns when drag.phase isn't "idle".
+    if (e.type === "pointerup" && e.pointerType === "touch" && p) {
+      clickInsert(p, e.currentTarget as HTMLElement);
     }
   }
 
@@ -222,14 +229,14 @@ function HardCabinet() {
               tabIndex={0}
               aria-label={`${p.title} — ${isExternal ? "external link" : "load this cartridge"}`}
               aria-describedby="cabinet-help"
-              className={`${cardClasses(p)} touch-pan-y md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
+              className={`${cardClasses(p)} touch-pan-y cursor-pointer md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
                 dimmed ? "opacity-30 pointer-events-none" : "opacity-100"
               }`}
               style={cardStyleFor(p)}
               onPointerDown={(e) => startDrag(p, e)}
               onPointerMove={move}
-              onPointerUp={endDrag}
-              onPointerCancel={endDrag}
+              onPointerUp={(e) => endDrag(e, p)}
+              onPointerCancel={(e) => endDrag(e, p)}
               onClick={(e) => clickInsert(p, e.currentTarget)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
