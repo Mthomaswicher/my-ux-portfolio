@@ -72,6 +72,19 @@ const FOOT_UP = 41;
 const PET_W = 44;
 const PET_H = 62;
 
+const POKE_KEY = "mtw.pet.pokes";
+
+/** A pokes-counter pickup phrase, picked at random so it hits often
+ *  enough to be noticed but not every time. */
+function counterLine(n: number): string {
+  if (n === 1) return "first poke unlocked.";
+  if (n === 10) return "10 pokes! achievement unlocked.";
+  if (n === 25) return "25 pokes! you might need a hobby.";
+  if (n === 50) return "50 pokes. ok, calm down.";
+  if (n === 100) return "100 pokes. legend.";
+  return `poke #${n}.`;
+}
+
 export default function RoamPet() {
   const reduce = useReducedMotion();
   const { play } = useSound();
@@ -91,6 +104,8 @@ export default function RoamPet() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const dragOffsetRef = useRef({ x: 0, y: 0 });
   const bubbleTimerRef = useRef<number | null>(null);
+  // Persisted counter: how many times this visitor has picked the pet up.
+  const pokesRef = useRef(0);
 
   function floorY() {
     if (typeof window === "undefined") return 0;
@@ -109,6 +124,12 @@ export default function RoamPet() {
     const small = window.matchMedia("(max-width: 767px)").matches;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
     if (reduce || small || coarse) return;
+    try {
+      const stored = Number(localStorage.getItem(POKE_KEY) || "0");
+      if (Number.isFinite(stored)) pokesRef.current = stored;
+    } catch {
+      /* ignore */
+    }
     const ready = window.setTimeout(() => {
       setX(-60);
       setY(floorY());
@@ -214,10 +235,25 @@ export default function RoamPet() {
     setDragging(true);
     setWalking(false);
     play("pop");
-    flashBubble(
-      PICKUP_PHRASES[Math.floor(Math.random() * PICKUP_PHRASES.length)],
-      1800,
-    );
+
+    // Bump the persistent poke counter and persist it.
+    pokesRef.current += 1;
+    try {
+      localStorage.setItem(POKE_KEY, String(pokesRef.current));
+    } catch {
+      /* ignore */
+    }
+
+    // First poke and milestones always show the counter; otherwise it shows
+    // ~1 in 3 picks so it doesn't crowd out the gaming one-liners.
+    const n = pokesRef.current;
+    const isMilestone = n === 1 || n === 10 || n === 25 || n === 50 || n === 100;
+    const useCounter = isMilestone || Math.random() < 0.35;
+    const phrase = useCounter
+      ? counterLine(n)
+      : PICKUP_PHRASES[Math.floor(Math.random() * PICKUP_PHRASES.length)];
+    flashBubble(phrase, isMilestone ? 2600 : 1800);
+
     const rect = e.currentTarget.getBoundingClientRect();
     dragOffsetRef.current = {
       x: e.clientX - rect.left,
