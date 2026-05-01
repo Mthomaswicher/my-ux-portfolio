@@ -31,6 +31,21 @@ export const CAREER_STAGES: CareerStage[] = [
   },
   {
     no: "02",
+    role: "UX/UI Bootcamp",
+    company: "Flatiron School",
+    location: "Chicago, IL",
+    period: "2019",
+    accent: "rose",
+    headline: "SKILL TREE",
+    win: { label: "Pivot", value: "Law to Design" },
+    bullets: [
+      "Fully-immersive UX/UI bootcamp: daily critiques, weekly sprint cycles, capstone shipped.",
+      "Made the formal jump from legal analyst into product design.",
+    ],
+    tools: "Sketch · InVision · Wireframing",
+  },
+  {
+    no: "03",
     role: "UX Engineer",
     company: "The Demex Group",
     location: "Remote",
@@ -46,7 +61,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "React · Figma · Design Tokens",
   },
   {
-    no: "03",
+    no: "04",
     role: "Product Designer",
     company: "Oportun",
     location: "Remote",
@@ -62,7 +77,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Figma · A/B Testing · Lifecycle",
   },
   {
-    no: "04",
+    no: "05",
     role: "Senior Product Designer",
     company: "Berkeley Research Group",
     location: "Remote",
@@ -78,7 +93,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Tokens · Component Lib · Research",
   },
   {
-    no: "05",
+    no: "06",
     role: "Senior Product Designer",
     company: "Capital One",
     location: "McLean, VA · Hybrid",
