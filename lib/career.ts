@@ -16,6 +16,21 @@ export type CareerStage = {
 export const CAREER_STAGES: CareerStage[] = [
   {
     no: "01",
+    role: "Litigation Project Assistant",
+    company: "WilmerHale",
+    location: "Washington, D.C.",
+    period: "2014 – 2018",
+    accent: "amber",
+    headline: "PROLOGUE",
+    win: { label: "Practice", value: "International antitrust" },
+    bullets: [
+      "Litigation project assistant on international antitrust matters: cross-border investigations, document review, deposition prep.",
+      "Four years training to read complex systems, hold a line of argument, and synthesize a sprawling record into one clear story, habits that later transferred straight into design research.",
+    ],
+    tools: "Discovery · Document Review · Antitrust",
+  },
+  {
+    no: "02",
     role: "Full-Stack Engineering",
     company: "General Assembly",
     location: "Washington, D.C.",
@@ -30,7 +45,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "HTML · CSS · JavaScript · Rails",
   },
   {
-    no: "02",
+    no: "03",
     role: "Senior Litigation Paralegal",
     company: "Hollingsworth LLP",
     location: "Washington, D.C.",
@@ -45,7 +60,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Discovery · Synthesis · Trial Prep",
   },
   {
-    no: "03",
+    no: "04",
     role: "UX/UI Bootcamp",
     company: "Flatiron School",
     location: "Chicago, IL",
@@ -60,7 +75,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Sketch · InVision · Wireframing",
   },
   {
-    no: "04",
+    no: "05",
     role: "UX Engineer",
     company: "The Demex Group",
     location: "Remote",
@@ -76,7 +91,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "React · Figma · Design Tokens",
   },
   {
-    no: "05",
+    no: "06",
     role: "Product Designer",
     company: "Oportun",
     location: "Remote",
@@ -92,7 +107,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Figma · A/B Testing · Lifecycle",
   },
   {
-    no: "06",
+    no: "07",
     role: "Senior Product Designer",
     company: "Berkeley Research Group",
     location: "Remote",
@@ -108,7 +123,7 @@ export const CAREER_STAGES: CareerStage[] = [
     tools: "Tokens · Component Lib · Research",
   },
   {
-    no: "07",
+    no: "08",
     role: "Senior Product Designer",
     company: "Capital One",
     location: "McLean, VA · Hybrid",
