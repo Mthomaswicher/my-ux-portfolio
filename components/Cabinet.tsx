@@ -1,44 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { projects, type Project } from "@/lib/projects";
 import DifficultySelector, { type Difficulty } from "./DifficultySelector";
-import ProjectCard, {
-  ProjectCardBody,
-  cardClasses,
-  cardStyleFor,
-} from "./ProjectCard";
+import ProjectCard from "./ProjectCard";
 import CartridgeSprite from "./CartridgeSprite";
 import { useSound } from "./SoundProvider";
 
 const STORAGE_KEY = "mtw.difficulty";
 
-type DragState =
-  | { phase: "idle" }
-  | {
-      phase: "dragging";
-      project: Project;
-      pointerId: number;
-      x: number;
-      y: number;
-      offsetX: number;
-      offsetY: number;
-      grabRect: DOMRect;
-    }
-  | {
-      phase: "inserting";
-      project: Project;
-      from: { x: number; y: number };
-    };
+const ACCENT_HEX: Record<Project["accent"], string> = {
+  cyan: "#22d3ee",
+  magenta: "#ff2bd6",
+  lime: "#a3e635",
+  amber: "#fbbf24",
+  rose: "#fb7185",
+};
 
 export default function Cabinet() {
   const [mode, setMode] = useState<Difficulty>("easy");
   const [hydrated, setHydrated] = useState(false);
   // Coarse pointer (touch) or narrow viewport (mobile) forces Easy mode and
-  // hides the difficulty toggle drag-into-the-console is too finicky on
-  // touch and there's no room for the console anyway.
+  // hides the difficulty toggle. Hard mode's carousel needs space and a
+  // precise pointer to feel right.
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -106,389 +93,290 @@ function EasyGrid() {
   );
 }
 
-/* ─── Hard mode ───────────────────────────────────────────────────────── */
+/* ─── Hard mode — game cabinet carousel ──────────────────────────────────
+   The interactive arcade-cabinet view: a CRT marquee at the top showing
+   whichever cartridge is currently centered in the rack below. Spin the
+   rack with the side carts, the ◀/▶ keys, or the chevron buttons. Press
+   the START button (or click the centered cart) to load the case study.
+─────────────────────────────────────────────────────────────────────── */
 
 function HardCabinet() {
   const router = useRouter();
   const { play } = useSound();
-  const consoleRef = useRef<HTMLDivElement>(null);
-  const [drag, setDrag] = useState<DragState>({ phase: "idle" });
-  const [overConsole, setOverConsole] = useState(false);
-  const [isCoarse, setIsCoarse] = useState(false);
-  // pointerdown stages a "potential drag" so taps don't immediately enter
-  // drag mode. Only after the pointer moves past a small threshold do we
-  // commit to drag. that way a quick tap still fires a normal click.
-  const dragStartRef = useRef<{
-    project: Project;
-    pointerId: number;
-    target: HTMLElement;
-    x: number;
-    y: number;
-    rect: DOMRect;
-  } | null>(null);
-  // Track when a drag just ended so the synthesized click that follows
-  // pointerup doesn't double-trigger navigation.
-  const lastDragEndRef = useRef(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [inserting, setInserting] = useState<Project | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setIsCoarse(window.matchMedia("(pointer: coarse)").matches);
-  }, []);
+  const activeProject = projects[activeIndex];
+  const accent = ACCENT_HEX[activeProject.accent] ?? ACCENT_HEX.cyan;
 
-  // Inflate the hit zone around the console so the drop is forgiving the
-  // pointer doesn't have to land precisely on the console rectangle.
-  const HIT_PADDING_X = 96;
-  const HIT_PADDING_Y = 64;
-  function pointInConsole(x: number, y: number) {
-    const c = consoleRef.current;
-    if (!c) return false;
-    const r = c.getBoundingClientRect();
-    return (
-      x >= r.left - HIT_PADDING_X &&
-      x <= r.right + HIT_PADDING_X &&
-      y >= r.top - HIT_PADDING_Y &&
-      y <= r.bottom + HIT_PADDING_Y
-    );
-  }
-
-  function startDrag(p: Project, e: React.PointerEvent<HTMLElement>) {
-    if (p.external) return; // external links never drag
-    // Stage a potential drag. Don't preventDefault yet. we want the
-    // browser to fire `click` if this turns out to be a stationary tap.
-    dragStartRef.current = {
-      project: p,
-      pointerId: e.pointerId,
-      target: e.currentTarget,
-      x: e.clientX,
-      y: e.clientY,
-      rect: e.currentTarget.getBoundingClientRect(),
-    };
-  }
-
-  function move(e: React.PointerEvent) {
-    // Already dragging. track the pointer.
-    if (drag.phase === "dragging") {
-      e.preventDefault();
-      setDrag({ ...drag, x: e.clientX, y: e.clientY });
-      const isOver = pointInConsole(e.clientX, e.clientY);
-      if (isOver !== overConsole) {
-        setOverConsole(isOver);
-        if (isOver) play("hover");
-      }
-      return;
-    }
-
-    // Movement past the threshold promotes the staged press into a drag.
-    const start = dragStartRef.current;
-    if (!start) return;
-    const dx = e.clientX - start.x;
-    const dy = e.clientY - start.y;
-    if (dx * dx + dy * dy > 64) {
-      // 8px threshold
-      e.preventDefault();
-      setDrag({
-        phase: "dragging",
-        project: start.project,
-        pointerId: start.pointerId,
-        x: e.clientX,
-        y: e.clientY,
-        offsetX: start.x - start.rect.left,
-        offsetY: start.y - start.rect.top,
-        grabRect: start.rect,
-      });
-      try {
-        start.target.setPointerCapture(start.pointerId);
-      } catch {
-        /* ignore */
-      }
+  const focus = useCallback(
+    (i: number) => {
+      if (inserting) return;
+      const next = ((i % projects.length) + projects.length) % projects.length;
+      if (next === activeIndex) return;
+      setActiveIndex(next);
       play("pop");
-      dragStartRef.current = null;
-    }
-  }
+    },
+    [activeIndex, inserting, play],
+  );
 
-  function endDrag(e: React.PointerEvent) {
-    dragStartRef.current = null;
-    if (drag.phase !== "dragging") return;
-    lastDragEndRef.current = Date.now();
-    const isOver = pointInConsole(e.clientX, e.clientY);
-    setOverConsole(false);
-    if (isOver) {
-      triggerInsert(drag.project, { x: e.clientX, y: e.clientY });
-    } else {
-      setDrag({ phase: "idle" });
-    }
-  }
+  const launch = useCallback(
+    (p: Project) => {
+      if (inserting) return;
+      if (p.external) {
+        window.open(p.href, "_blank", "noopener,noreferrer");
+        return;
+      }
+      setInserting(p);
+      play("cartridge");
+      window.setTimeout(() => play("power"), 320);
+      window.setTimeout(() => router.push(p.href), 1500);
+    },
+    [inserting, play, router],
+  );
 
-  function triggerInsert(p: Project, from: { x: number; y: number }) {
-    setDrag({ phase: "inserting", project: p, from });
-    play("cartridge");
-    // power-up after the cartridge is seated
-    window.setTimeout(() => play("power"), 320);
-    // navigate after the full sequence
-    window.setTimeout(() => {
-      router.push(p.href);
-    }, 1500);
-  }
-
-  // Click-to-insert. On touch we navigate directly because the Console is
-  // off-screen at the top of the page and a 1.5s animation feels broken.
-  // On mouse/pen we play the full insert animation. Drag-then-drop-outside
-  // also fires a click; we suppress it via lastDragEndRef.
-  function clickInsert(p: Project, target: HTMLElement) {
-    if (Date.now() - lastDragEndRef.current < 250) return;
-    if (drag.phase !== "idle") return;
-    if (p.external) return;
-    if (isCoarse) {
-      router.push(p.href);
-      return;
+  // ←/→ to spin the rack. Only fires when focus is somewhere in this
+  // section so keyboard users on other parts of the page aren't hijacked.
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const root = containerRef.current;
+      if (!root) return;
+      const active = document.activeElement;
+      if (!root.contains(active)) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        focus(activeIndex - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        focus(activeIndex + 1);
+      }
     }
-    const rect = target.getBoundingClientRect();
-    triggerInsert(p, {
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2,
-    });
-  }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeIndex, focus]);
 
   return (
-    <section aria-labelledby="cartridges-heading">
-      <Console
-        innerRef={consoleRef}
-        active={drag.phase === "dragging" || drag.phase === "inserting"}
-        highlight={overConsole}
-        inserting={drag.phase === "inserting"}
-        slottedProject={drag.phase === "inserting" ? drag.project : null}
-        from={drag.phase === "inserting" ? drag.from : null}
-      />
-
-      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-3 mb-6">
+    <section
+      ref={containerRef}
+      aria-labelledby="cartridges-heading"
+      aria-roledescription="carousel"
+    >
+      <div className="flex items-baseline justify-between gap-3 mb-6">
         <h2
           id="cartridges-heading"
           className="font-pixel text-[11px] sm:text-[12px] tracking-widest text-glow-magenta"
         >
-          <span aria-hidden="true">▌</span>AVAILABLE CARTRIDGES
+          <span aria-hidden="true">▌</span>NOW SHOWING
         </h2>
-        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute">
-          {projects.length} CARTRIDGES · DRAG OR TAP
+        <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute tabular-nums">
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(projects.length).padStart(2, "0")}
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {projects.map((p) => {
-          const isBeingDragged =
-            drag.phase === "dragging" && drag.project.no === p.no;
-          const isInserting =
-            drag.phase === "inserting" && drag.project.no === p.no;
-          const dimmed = isBeingDragged || isInserting;
-          const isExternal = !!p.external;
+      <CabinetDisplay
+        project={activeProject}
+        accent={accent}
+        inserting={!!inserting}
+        onLaunch={() => launch(activeProject)}
+      />
 
-          return (
-            <button
-              key={p.no}
-              type="button"
-              aria-label={`${p.title}: ${isExternal ? "external link" : "load this cartridge"}`}
-              aria-describedby="cabinet-help"
-              // touch-none keeps the browser from stealing the gesture
-              // for vertical scroll once the user starts dragging. The
-              // page is still scrollable through the gaps and side
-              // padding around the cartridge grid.
-              className={`${cardClasses(p)} text-left w-full touch-none cursor-pointer md:cursor-grab md:active:cursor-grabbing transition-opacity duration-200 ${
-                dimmed ? "opacity-30 pointer-events-none" : "opacity-100"
-              }`}
-              style={cardStyleFor(p)}
-              onPointerDown={(e) => startDrag(p, e)}
-              onPointerMove={move}
-              onPointerUp={endDrag}
-              onPointerCancel={endDrag}
-              onClick={(e) => clickInsert(p, e.currentTarget)}
-            >
-              <ProjectCardBody project={p} />
-            </button>
-          );
-        })}
-      </div>
+      <CartridgeRack
+        projects={projects}
+        activeIndex={activeIndex}
+        insertingNo={inserting?.no ?? null}
+        onFocus={focus}
+        onLaunch={launch}
+      />
 
-      <p
-        id="cabinet-help"
-        className="mt-6 font-mono text-[11px] text-ink-mute uppercase tracking-widest"
-      >
-        <span className="md:hidden">Tip: Tap to auto-load. Drag a cartridge up to the console for the full kerchunk.</span>
-        <span className="hidden md:inline">Tip: Press Enter or click to auto-load. Drag for the full kerchunk.</span>
-      </p>
-
-      {/* Floating drag ghost */}
-      {drag.phase === "dragging" && (
-        <div
-          className="pointer-events-none fixed z-50"
-          style={{
-            left: drag.x - drag.offsetX,
-            top: drag.y - drag.offsetY,
-            width: 240,
-            transform: `rotate(${overConsole ? 0 : -4}deg)`,
-            transition: "transform 0.2s ease-out",
-          }}
-          aria-hidden="true"
+      <div className="mt-5 flex items-center justify-center gap-3">
+        <SpinButton
+          direction="prev"
+          onClick={() => focus(activeIndex - 1)}
+          disabled={!!inserting}
+        />
+        <p
+          className="font-mono text-[10px] sm:text-[11px] text-ink-mute uppercase tracking-widest"
+          id="cabinet-help"
         >
-          <CartridgeSprite project={drag.project} />
-        </div>
-      )}
+          ◀ / ▶ to spin · Click the centered cart to launch
+        </p>
+        <SpinButton
+          direction="next"
+          onClick={() => focus(activeIndex + 1)}
+          disabled={!!inserting}
+        />
+      </div>
     </section>
   );
 }
 
-/* ─── Console ─────────────────────────────────────────────────────────── */
+/* ─── Cabinet display (CRT marquee) ─────────────────────────────────── */
 
-function Console({
-  innerRef,
-  active,
-  highlight,
+function CabinetDisplay({
+  project,
+  accent,
   inserting,
-  slottedProject,
-  from,
+  onLaunch,
 }: {
-  innerRef: React.RefObject<HTMLDivElement>;
-  active: boolean;
-  highlight: boolean;
+  project: Project;
+  accent: string;
   inserting: boolean;
-  slottedProject: Project | null;
-  from: { x: number; y: number } | null;
+  onLaunch: () => void;
 }) {
-  // Compute the spring start offset so the cartridge animates from the drop point
-  const start = useFromOffset(innerRef, from);
+  const hero = project.hero ?? project.screens?.[0];
+  const isExternal = !!project.external;
 
   return (
-    <div className="relative mb-10 mx-auto max-w-md">
-      {/* Forgiving drop-zone halo fades in while dragging so the user sees
-          that the area around the console counts as "over". Sized to match
-          the inflated hit-test in pointInConsole(). */}
+    <div className="relative mb-8 mx-auto max-w-3xl">
+      {/* Side speakers — purely decorative, hidden on smaller md screens to
+          avoid crowding. They visually anchor the cabinet metaphor. */}
       <div
+        className="hidden lg:block absolute top-0 bottom-0 -left-10 w-8 cartridge"
         aria-hidden="true"
-        className={`pointer-events-none absolute -inset-x-24 -inset-y-16 transition-opacity duration-200 ${
-          active && !inserting ? "opacity-100" : "opacity-0"
-        }`}
       >
-        <div
-          className={`absolute inset-0 transition-colors duration-200 ${
-            highlight
-              ? "border-2 border-dashed border-neon-magenta/70 shadow-[0_0_30px_rgba(255,43,214,0.25)]"
-              : "border-2 border-dashed border-ink-ghost"
-          }`}
-          style={{ borderRadius: 12 }}
-        />
+        <SpeakerGrille />
+      </div>
+      <div
+        className="hidden lg:block absolute top-0 bottom-0 -right-10 w-8 cartridge"
+        aria-hidden="true"
+      >
+        <SpeakerGrille />
       </div>
 
       <div
-        ref={innerRef}
-        className={`relative cartridge p-4 transition-all duration-200 ${
-          highlight
-            ? "shadow-neon-magenta border-neon-magenta"
-            : ""
-        }`}
-        aria-label="Console: drop a cartridge here to load a case study"
-        role="region"
+        className="relative cartridge p-3 sm:p-4"
+        style={{
+          borderRadius: "12px 12px 4px 4px",
+        }}
       >
-        {/* power LED + label */}
-        <div className="flex items-center justify-between mb-3">
+        {/* Marquee strip: power LED + status */}
+        <div
+          className="flex items-center justify-between mb-3 px-2 py-1.5 bg-bg-void border border-ink-ghost"
+          style={{ boxShadow: `inset 0 0 12px ${accent}22` }}
+        >
           <div className="flex items-center gap-2">
             <span
               className={`inline-block w-2 h-2 rounded-full ${
-                inserting ? "bg-neon-lime shadow-neon-lime animate-pulse" : "bg-neon-magenta shadow-neon-magenta"
+                inserting
+                  ? "bg-neon-lime shadow-neon-lime animate-pulse"
+                  : "bg-neon-magenta shadow-neon-magenta"
               }`}
               aria-hidden="true"
             />
             <span className="font-pixel text-[10px] tracking-widest text-glow-magenta">
-              MTW · CONSOLE
+              MTW · CABINET
             </span>
           </div>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            {inserting ? "LOADING…" : highlight ? "READY" : active ? "AWAITING" : "IDLE"}
+          <span className="font-mono text-[10px] tracking-widest text-ink-mute uppercase tabular-nums">
+            {inserting ? "LOADING…" : "STANDBY"}
           </span>
         </div>
 
-        {/* slot */}
+        {/* CRT screen */}
         <div
-          className="relative h-[80px] bg-bg-void border border-ink-ghost overflow-hidden"
+          className="relative aspect-[16/9] overflow-hidden bg-bg-void"
           style={{
-            boxShadow: highlight
-              ? "inset 0 0 24px rgba(255,43,214,0.45), inset 0 0 0 1px rgba(255,43,214,0.7)"
-              : "inset 0 0 18px rgba(0,0,0,0.7)",
-            transition: "box-shadow 0.2s ease-out",
+            border: `1px solid ${accent}55`,
+            boxShadow: `inset 0 0 32px ${accent}33, 0 0 0 1px ${accent}22, 0 0 24px ${accent}11`,
           }}
         >
-          {/* slot lip */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={project.no}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+              className="absolute inset-0"
+            >
+              {hero && (
+                <Image
+                  src={hero}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="object-cover"
+                  priority
+                />
+              )}
+              {/* Inner edge glow tied to the project accent */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  boxShadow: `inset 0 0 60px ${accent}33, inset 0 -80px 80px ${accent}22`,
+                }}
+                aria-hidden="true"
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Scanlines */}
           <div
-            className="absolute top-0 left-0 right-0 h-[6px] bg-bg-deep border-b border-ink-ghost"
+            className="absolute inset-0 pointer-events-none mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(0deg, rgba(0,0,0,0.32) 0px, rgba(0,0,0,0.32) 1px, transparent 1px, transparent 3px)",
+              opacity: 0.5,
+            }}
             aria-hidden="true"
           />
 
-          {/* idle copy */}
-          {!inserting && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span
-                className={`font-pixel text-[11px] tracking-widest transition-colors ${
-                  highlight ? "text-glow-magenta" : "text-ink-mute"
-                }`}
-              >
-                {highlight ? "▼ DROP TO LOAD" : "INSERT CARTRIDGE"}
-              </span>
+          {/* Drifting bright band */}
+          <motion.div
+            className="absolute left-0 right-0 h-[2px] pointer-events-none"
+            style={{
+              background: `${accent}80`,
+              mixBlendMode: "screen",
+            }}
+            animate={{ top: ["-2%", "102%"] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            aria-hidden="true"
+          />
+
+          {/* Title overlay */}
+          <div
+            className="absolute left-4 right-4 bottom-4 pointer-events-none"
+            style={{
+              textShadow: `0 0 12px ${accent}aa, 0 2px 0 rgba(0,0,0,0.6)`,
+            }}
+          >
+            <div
+              className="font-pixel text-[10px] tracking-widest mb-1"
+              style={{ color: accent }}
+            >
+              NO. {project.no} · {project.status}
             </div>
-          )}
+            <div
+              className="font-display text-[28px] sm:text-[36px] md:text-[44px] leading-none"
+              style={{ color: accent }}
+            >
+              {project.title}
+            </div>
+            <div className="font-mono text-[11px] uppercase tracking-widest text-ink mt-1">
+              {project.org}
+            </div>
+          </div>
 
-          {/* slotted cartridge animation */}
-          <AnimatePresence>
-            {inserting && slottedProject && (
-              <motion.div
-                key="slotted"
-                className="absolute z-10"
-                initial={{
-                  x: start.x,
-                  y: start.y,
-                  scale: 1,
-                  rotate: 0,
-                  opacity: 0.95,
-                }}
-                animate={{
-                  x: 0,
-                  y: 12,
-                  scale: 0.85,
-                  rotate: 0,
-                  opacity: 1,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 22,
-                  mass: 0.7,
-                }}
-                style={{
-                  left: "50%",
-                  top: 0,
-                  transformOrigin: "center top",
-                  marginLeft: -120, // half of CartridgeSprite width
-                }}
-                aria-hidden="true"
-              >
-                <CartridgeSprite project={slottedProject} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* power-up flash + scanline jitter when inserting */}
+          {/* Power-up flash on insert */}
           <AnimatePresence>
             {inserting && (
               <>
                 <motion.div
                   className="absolute inset-0 pointer-events-none"
-                  style={{ background: "rgba(255,43,214,0.2)" }}
+                  style={{ background: `${accent}55` }}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.7, 0, 0.5, 0] }}
-                  transition={{ delay: 0.5, duration: 0.9 }}
+                  animate={{ opacity: [0, 0.85, 0, 0.55, 0] }}
+                  transition={{ duration: 1.1, ease: "easeOut" }}
                   aria-hidden="true"
                 />
                 <motion.div
-                  className="absolute left-0 right-0 h-[2px] pointer-events-none"
-                  style={{ background: "rgba(255,43,214,0.9)", mixBlendMode: "screen" }}
+                  className="absolute left-0 right-0 h-[3px] pointer-events-none"
+                  style={{ background: accent, mixBlendMode: "screen" }}
                   initial={{ top: "-2%" }}
                   animate={{ top: "102%" }}
-                  transition={{ delay: 0.5, duration: 0.5, ease: "linear" }}
+                  transition={{ duration: 0.55, ease: "linear" }}
                   aria-hidden="true"
                 />
               </>
@@ -496,38 +384,222 @@ function Console({
           </AnimatePresence>
         </div>
 
-        {/* base trim. controls and detail */}
-        <div className="mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-          <span>● MTW-1</span>
-          <span>v0.1</span>
+        {/* Below screen: blurb + start button */}
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 md:gap-6 items-end px-1">
+          <div className="space-y-2">
+            <p className="font-mono text-[12.5px] sm:text-[13px] text-ink-dim leading-relaxed">
+              {project.blurb}
+            </p>
+            <dl className="flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] text-ink-mute uppercase tracking-widest">
+              <div className="flex items-baseline gap-1.5">
+                <dt>Role</dt>
+                <dd className="text-ink-dim">{project.role}</dd>
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <dt>When</dt>
+                <dd className="text-ink-dim">{project.timeframe}</dd>
+              </div>
+            </dl>
+          </div>
+          <button
+            type="button"
+            onClick={onLaunch}
+            disabled={inserting}
+            className="font-pixel text-[12px] tracking-widest px-5 py-3 border-2 transition-all whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
+            style={{
+              color: inserting ? "#a3e635" : accent,
+              borderColor: inserting ? "#a3e63588" : `${accent}cc`,
+              background: inserting
+                ? "rgba(163, 230, 53, 0.08)"
+                : `linear-gradient(180deg, ${accent}18 0%, transparent 100%)`,
+              boxShadow: inserting
+                ? "0 0 0 1px #a3e63566, 0 0 18px #a3e63555, inset 0 0 12px #a3e63522"
+                : `0 0 0 1px ${accent}66, 0 0 14px ${accent}33, inset 0 0 8px ${accent}22`,
+            }}
+            aria-label={`${
+              isExternal ? "Open" : "Launch"
+            } ${project.title}${isExternal ? " in a new tab" : ""}`}
+          >
+            {inserting ? (
+              "▶ LOADING…"
+            ) : isExternal ? (
+              <>
+                <span aria-hidden="true">[ </span>VISIT ↗<span aria-hidden="true"> ]</span>
+              </>
+            ) : (
+              <>
+                <span aria-hidden="true">[ </span>▶ PRESS START<span aria-hidden="true"> ]</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
-      {/* arrow hint */}
-      {active && !inserting && (
-        <div
-          className="absolute -bottom-6 left-0 right-0 text-center font-pixel text-[10px] tracking-widest text-glow-magenta animate-pulse"
-          aria-hidden="true"
-        >
-          ▼ ▼ ▼
-        </div>
-      )}
+      {/* Bottom shadow / cabinet base */}
+      <div
+        className="mx-auto mt-1 h-2 w-[92%]"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%)",
+          borderRadius: "0 0 8px 8px",
+          filter: "blur(2px)",
+        }}
+        aria-hidden="true"
+      />
     </div>
   );
 }
 
-/**
- * Compute the (x, y) offset from the console centre that the cartridge
- * should animate from, so the spring feels like it's coming from where the
- * pointer dropped.
- */
-function useFromOffset(
-  ref: React.RefObject<HTMLDivElement>,
-  from: { x: number; y: number } | null,
-) {
-  if (!from || !ref.current) return { x: 0, y: -160 };
-  const r = ref.current.getBoundingClientRect();
-  const cx = r.left + r.width / 2;
-  const cy = r.top + 12;
-  return { x: from.x - cx, y: from.y - cy };
+function SpeakerGrille() {
+  return (
+    <div className="absolute inset-1 grid grid-rows-[repeat(20,1fr)] gap-[2px] p-1.5">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <span
+          key={i}
+          className="block w-full bg-ink-ghost"
+          style={{ opacity: 0.6 }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── Cartridge rack (3D carousel) ──────────────────────────────────── */
+
+function CartridgeRack({
+  projects,
+  activeIndex,
+  insertingNo,
+  onFocus,
+  onLaunch,
+}: {
+  projects: Project[];
+  activeIndex: number;
+  insertingNo: string | null;
+  onFocus: (i: number) => void;
+  onLaunch: (p: Project) => void;
+}) {
+  const RACK_HEIGHT = 150;
+
+  return (
+    <div
+      role="group"
+      aria-label="Available cartridges"
+      className="relative w-full mx-auto select-none"
+      style={{
+        height: RACK_HEIGHT,
+        perspective: 1100,
+      }}
+    >
+      {/* Rack shelf: a dark backplate that the carts sit in */}
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full max-w-[820px] h-[110px] border border-ink-ghost"
+        style={{
+          background:
+            "linear-gradient(180deg, #0a0a14 0%, #06060c 70%, #04040a 100%)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -2px 0 rgba(0,0,0,0.6), inset 0 0 24px rgba(0,0,0,0.6)",
+        }}
+      />
+      {/* Slot lip (top edge of rack) */}
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 mt-[-55px] w-full max-w-[820px] h-[3px]"
+        style={{ background: "rgba(255,255,255,0.06)" }}
+      />
+
+      {projects.map((p, i) => {
+        const offset = i - activeIndex;
+        const ax = Math.abs(offset);
+        const isActive = offset === 0;
+        const beingInserted = insertingNo === p.no;
+
+        // 3D-ish staging: side carts shrink, dim, rotate Y, and slide out.
+        const x = offset * 200;
+        const scale = 1 - ax * 0.16;
+        const rotateY = offset * -22;
+        const opacity = ax > 2 ? 0 : 1 - ax * 0.28;
+        const z = -ax * 80; // depth — inactive carts pushed back a touch
+        const zIndex = 100 - ax;
+
+        return (
+          <motion.button
+            key={p.no}
+            type="button"
+            onClick={() => (isActive ? onLaunch(p) : onFocus(i))}
+            animate={{
+              x,
+              y: beingInserted ? -120 : 0,
+              scale: beingInserted ? 0.6 : scale,
+              rotateY,
+              opacity: beingInserted ? 0 : opacity,
+              z,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 240,
+              damping: 28,
+              mass: 0.6,
+            }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan"
+            style={{
+              transformStyle: "preserve-3d",
+              zIndex,
+              filter: !isActive
+                ? "saturate(0.7) brightness(0.7)"
+                : "saturate(1.1)",
+              transition: "filter 0.4s",
+            }}
+            aria-label={`${p.title}${isActive ? " — press to launch" : " — bring to center"}`}
+            aria-current={isActive ? "true" : undefined}
+            tabIndex={ax <= 2 ? 0 : -1}
+          >
+            <div className="relative">
+              <CartridgeSprite project={p} />
+              {/* Soft underglow on the active cart */}
+              {isActive && (
+                <div
+                  className="absolute -bottom-3 left-[8%] right-[8%] h-3 -z-10 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(ellipse at center, ${
+                      ACCENT_HEX[p.accent]
+                    }aa, transparent 70%)`,
+                    filter: "blur(8px)",
+                  }}
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ─── ◀/▶ rack spin buttons ─────────────────────────────────────────── */
+
+function SpinButton({
+  direction,
+  onClick,
+  disabled,
+}: {
+  direction: "prev" | "next";
+  onClick: () => void;
+  disabled: boolean;
+}) {
+  const isPrev = direction === "prev";
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={isPrev ? "Previous cartridge" : "Next cartridge"}
+      className="font-pixel text-[11px] tracking-widest w-9 h-9 inline-flex items-center justify-center border border-ink-ghost text-ink-mute hover:text-glow-cyan hover:border-neon-cyan/60 focus-visible:text-glow-cyan focus-visible:border-neon-cyan/60 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+      style={{ background: "rgba(10,10,20,0.6)" }}
+    >
+      {isPrev ? "◀" : "▶"}
+    </button>
+  );
 }
