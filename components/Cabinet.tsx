@@ -142,8 +142,10 @@ function HardCabinet() {
 
   // Inflate the hit zone around the console so the drop is forgiving the
   // pointer doesn't have to land precisely on the console rectangle.
-  const HIT_PADDING_X = 96;
-  const HIT_PADDING_Y = 64;
+  // Generous padding here — the visible halo matches the hit area, but
+  // we keep an extra cushion beyond it so a near-miss still counts.
+  const HIT_PADDING_X = 220;
+  const HIT_PADDING_Y = 160;
   function pointInConsole(x: number, y: number) {
     const c = consoleRef.current;
     if (!c) return false;
@@ -409,10 +411,12 @@ function Console({
       className="relative mb-10 mx-auto"
       style={{ maxWidth: 480 }}
     >
-      {/* Forgiving drop-zone halo around the whole console */}
+      {/* Forgiving drop-zone halo around the whole console — the visible
+          dashed border tells the user how big the actual drop target is.
+          Sized to roughly match HIT_PADDING_{X,Y} in HardCabinet. */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute -inset-x-24 -inset-y-16 transition-opacity duration-200 ${
+        className={`pointer-events-none absolute -left-[180px] -right-[180px] -top-[140px] -bottom-[140px] transition-opacity duration-200 ${
           active && !inserting ? "opacity-100" : "opacity-0"
         }`}
       >

@@ -142,7 +142,7 @@ export default function SignFlow() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Matt T-W"
+                placeholder="Enter name"
                 maxLength={40}
                 autoComplete="nickname"
                 className="w-full bg-bg-deep border border-ink-ghost px-3 py-3 md:py-2.5 font-mono text-[16px] md:text-[14px] text-ink placeholder:text-ink-mute focus:outline-none focus:border-neon-cyan focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-0"
