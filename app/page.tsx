@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import BootSequence from "@/components/BootSequence";
 
 export const metadata = {
@@ -5,5 +6,11 @@ export const metadata = {
 };
 
 export default function BootPage() {
-  return <BootSequence />;
+  // BootSequence reads useSearchParams; static export needs it inside a
+  // Suspense boundary or prerender bails out.
+  return (
+    <Suspense fallback={null}>
+      <BootSequence />
+    </Suspense>
+  );
 }

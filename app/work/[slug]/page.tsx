@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import CaseStudyNavBack from "@/components/CaseStudyNavBack";
 import Footer from "@/components/Footer";
 import HoloDisplay from "@/components/HoloDisplay";
 import CaseStudyVideo from "@/components/CaseStudyVideo";
@@ -189,12 +189,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   return (
     <main id="main" className="min-h-[100dvh]">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 pt-6 pb-6 md:py-10">
-        <Link
-          href="/home"
-          className="inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
-        >
-          <span aria-hidden="true">← </span>BACK TO GAME CABINET
-        </Link>
+        <CaseStudyNavBack variant="top" />
       </div>
 
       <CaseStudyGate
@@ -439,12 +434,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           )}
 
           <div className="dash-divider mt-12 mb-8" aria-hidden="true" />
-          <Link
-            href="/home"
-            className="font-pixel text-[12px] tracking-widest text-ink hover:text-glow-cyan focus-visible:text-glow-cyan"
-          >
-            <span aria-hidden="true">← </span>MORE CARTRIDGES
-          </Link>
+          <CaseStudyNavBack variant="bottom" />
 
           <Footer />
         </article>

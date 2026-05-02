@@ -440,6 +440,138 @@ html[data-scroll-locked="true"] body {
   outline-offset: 2px;
 }
 
+/* ---------------------------------------------------------------------------
+   Basic mode
+   --------------------------------------------------------------------------
+   A separate visual identity from the arcade. Light cream surface, serif
+   typography, no neon, no scanlines, no cartridge chrome. Same pages, same
+   content, presented as a clean portfolio. Activated via data-mode="basic"
+   on <html>. Independent of data-theme — basic mode forces its own colors.
+   --------------------------------------------------------------------------- */
+
+:root[data-mode="basic"] {
+  /* Neutral, paper-ish palette. */
+  --bg-void: 250 248 242;
+  --bg-deep: 244 240 230;
+  --bg-panel: 236 230 217;
+  --bg-ridge: 222 215 200;
+
+  --ink: 24 24 28;
+  --ink-dim: 64 64 72;
+  --ink-mute: 110 108 116;
+  --ink-ghost: 188 184 178;
+
+  /* The portfolio uses one calm accent — a deep ink. The neon tokens still
+     map to *something* so legacy classes keep working, but they all
+     resolve to ink, not magenta/cyan. */
+  --neon-magenta: 24 24 28;
+  --neon-cyan: 24 24 28;
+  --neon-lime: 24 24 28;
+  --neon-amber: 24 24 28;
+  --neon-rose: 24 24 28;
+
+  --glow-cyan: 24 24 28;
+  --glow-magenta: 24 24 28;
+  --glow-lime: 24 24 28;
+  --glow-amber: 24 24 28;
+  --glow-on: 0;
+
+  --accent: rgb(24 24 28);
+
+  /* Type: serif for display, sans for body — clean and editorial. */
+  --font-pixel: var(--font-garamond), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-garamond), Georgia, "Times New Roman", serif;
+
+  /* No neon backdrop. */
+  --body-bg-image: linear-gradient(180deg, #faf8f2 0%, #f4f0e6 100%);
+
+  /* Cards are flat paper, not gradients. */
+  --cartridge-stop-1: 255 253 247;
+  --cartridge-stop-2: 250 247 238;
+  --cartridge-highlight: 0 0 0;
+  --cartridge-highlight-alpha: 0;
+}
+
+/* Roll back the typographic treatments that were tuned for Press Start 2P. */
+[data-mode="basic"] .font-pixel {
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-weight: 500;
+}
+
+/* Drop ALL caps + extreme tracking on type that came from arcade UI labels.
+   Section labels stay uppercase but loosen their tracking. */
+[data-mode="basic"] .section-label {
+  letter-spacing: 0.14em;
+}
+
+/* Drop the cyan stripe + neon hover on cards. */
+[data-mode="basic"] .cartridge {
+  border-color: rgb(var(--ink-ghost));
+  background: rgb(var(--cartridge-stop-1));
+  box-shadow: 0 1px 0 rgb(var(--ink-ghost) / 0.5);
+}
+[data-mode="basic"] .cartridge::before {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-mode="basic"] .cartridge:hover {
+    border-color: rgb(var(--ink-dim));
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
+  }
+}
+
+/* CRT layers are gated in JS too — defense-in-depth here. */
+[data-mode="basic"] .crt-noise,
+[data-mode="basic"] .crt-vignette,
+[data-mode="basic"] .crt-scanlines,
+[data-mode="basic"] .crt-sweep {
+  display: none !important;
+}
+
+/* Subtle selection + focus, no magenta blast. */
+[data-mode="basic"] ::selection {
+  background: rgb(var(--ink) / 0.12);
+  color: rgb(var(--ink));
+}
+[data-mode="basic"] *:focus-visible {
+  outline-color: rgb(var(--ink));
+}
+[data-mode="basic"] * {
+  -webkit-tap-highlight-color: rgb(var(--ink) / 0.08);
+}
+
+/* Cards used to tilt like index-card art — flat in basic. */
+[data-mode="basic"] .tilt-card {
+  --card-tilt: 0deg !important;
+}
+
+/* Soften the dashed divider — it reads heavier on cream than on void. */
+[data-mode="basic"] .dash-divider {
+  border-top-color: rgb(var(--ink-ghost) / 0.55);
+}
+
+/* Skip-link drops its arcade chrome. */
+[data-mode="basic"] .skip-link {
+  font-family: var(--font-mono);
+  background: rgb(var(--ink));
+  color: rgb(var(--bg-void));
+  border-color: rgb(var(--ink));
+  box-shadow: none;
+}
+
+/* Scrollbar matches the surface. */
+[data-mode="basic"] ::-webkit-scrollbar-track {
+  background: rgb(var(--bg-deep));
+}
+[data-mode="basic"] ::-webkit-scrollbar-thumb {
+  background: rgb(var(--ink-ghost));
+  border-color: rgb(var(--bg-deep));
+}
+[data-mode="basic"] ::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ink-mute));
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   html {

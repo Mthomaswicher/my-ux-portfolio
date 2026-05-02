@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import PathChooser from "./PathChooser";
+import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 
 const LINES = [
@@ -19,6 +21,22 @@ export default function BootSequence() {
   const [shown, setShown] = useState(1);
   const [done, setDone] = useState(false);
   const { play } = useSound();
+  const { hasChosen, reset } = useMode();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const restart = searchParams?.get("restart") === "1";
+
+  // Returning visitors who already picked a path skip the picker entirely —
+  // the boot screen is meant to be a first-time gateway, not a paywall.
+  // Exception: when the URL carries ?restart=1 we drop the saved choice and
+  // let the picker run again.
+  useEffect(() => {
+    if (restart) {
+      reset();
+      return;
+    }
+    if (hasChosen) router.replace("/home");
+  }, [hasChosen, restart, reset, router]);
 
   useEffect(() => {
     if (shown >= LINES.length) {
@@ -58,7 +76,7 @@ export default function BootSequence() {
         </div>
 
         <div
-          className={`transition-opacity duration-700 ${
+          className={`transition-opacity duration-700 mb-10 ${
             done ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden={!done}
@@ -71,46 +89,15 @@ export default function BootSequence() {
             MTW.ARCADE
           </h1>
           <div
-            className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-magenta mb-8"
+            className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-magenta"
             aria-hidden="true"
           >
             ░ A PORTFOLIO BY MATTHEW THOMAS-WICHER ░
           </div>
           <div className="sr-only">A portfolio by Matthew Thomas-Wicher.</div>
-
-          <p className="font-mono text-[14px] text-ink-dim mb-8 max-w-lg leading-relaxed">
-            You found my game cabinet. Sign the guestbook on your way in, or skip the intro
-            and head straight to the cartridges.
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/sign"
-              aria-label="Enter and sign the guestbook"
-              onClick={() => play("insertCoin")}
-              onMouseEnter={() => play("hover")}
-              className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow"
-            >
-              <span aria-hidden="true">[ </span>ENTER<span aria-hidden="true"> ]</span>
-            </Link>
-            <Link
-              href="/home"
-              aria-label="Skip intro and go directly to work"
-              onClick={() => play("select")}
-              onMouseEnter={() => play("hover")}
-              className="cartridge px-5 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-ink hover:text-glow-magenta hover:shadow-neon-magenta transition-shadow"
-            >
-              <span aria-hidden="true">[ </span>SKIP INTRO<span aria-hidden="true"> ]</span>
-            </Link>
-          </div>
-
-          <div
-            className="mt-12 font-mono text-[11px] uppercase tracking-widest text-ink-mute"
-            aria-hidden="true"
-          >
-            <span className="animate-pulse">▶</span> INSERT COIN TO CONTINUE
-          </div>
         </div>
+
+        <PathChooser active={done} destination="/home" />
       </div>
     </main>
   );

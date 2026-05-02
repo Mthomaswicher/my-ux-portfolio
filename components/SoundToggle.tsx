@@ -1,5 +1,6 @@
 "use client";
 
+import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 
 type Props = { variant?: "floating" | "inline" };
@@ -15,6 +16,9 @@ type Props = { variant?: "floating" | "inline" };
  */
 export default function SoundToggle({ variant = "floating" }: Props) {
   const { enabled, toggle } = useSound();
+  const { mode } = useMode();
+  // Sound is an arcade flourish — basic mode has no audio, so hide the chip.
+  if (mode === "basic") return null;
 
   const baseChip =
     "inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-3 py-2 font-pixel text-[10px] tracking-widest uppercase border bg-bg-deep/95 backdrop-blur-sm transition-all";

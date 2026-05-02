@@ -7,14 +7,12 @@ import {
   EB_Garamond,
 } from "next/font/google";
 import "./globals.css";
-import CrtOverlays from "@/components/CrtOverlays";
-import KonamiCode from "@/components/KonamiCode";
-import RoamPet from "@/components/RoamPet";
-import CursorTrail from "@/components/CursorTrail";
+import ArcadeChrome from "@/components/ArcadeChrome";
 import SoundToggle from "@/components/SoundToggle";
 import ThemeToggle from "@/components/ThemeToggle";
 import { SoundProvider } from "@/components/SoundProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ModeProvider } from "@/components/ModeProvider";
 
 const display = VT323({
   subsets: ["latin"],
@@ -77,27 +75,36 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs before React hydrates — sets html[data-mode] from the saved choice
+// so CSS can hide the wrong view on first paint. Kept tiny and string-only
+// so it inlines cleanly in <head>.
+const MODE_BOOTSTRAP = `try{var m=localStorage.getItem('mtw.mode');if(m==='basic'||m==='scenic'){document.documentElement.dataset.mode=m;}}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
+      data-mode="scenic"
+      suppressHydrationWarning
       className={`${display.variable} ${pixel.variable} ${mono.variable} ${roboto.variable} ${garamond.variable}`}
     >
       <body className="bg-bg-void text-ink antialiased">
-        <ThemeProvider>
-          <SoundProvider>
-            <a href="#main" className="skip-link">
-              Skip to main content
-            </a>
-            <CrtOverlays />
-            <CursorTrail />
-            <RoamPet />
-            <KonamiCode />
-            <ThemeToggle />
-            <SoundToggle />
-            {children}
-          </SoundProvider>
-        </ThemeProvider>
+        {/* Runs before React hydrates so html[data-mode] matches the user's
+            saved choice — minimizes the wrong-view flash on hard reload. */}
+        <script dangerouslySetInnerHTML={{ __html: MODE_BOOTSTRAP }} />
+        <ModeProvider>
+          <ThemeProvider>
+            <SoundProvider>
+              <a href="#main" className="skip-link">
+                Skip to main content
+              </a>
+              <ArcadeChrome />
+              <ThemeToggle />
+              <SoundToggle />
+              {children}
+            </SoundProvider>
+          </ThemeProvider>
+        </ModeProvider>
       </body>
     </html>
   );

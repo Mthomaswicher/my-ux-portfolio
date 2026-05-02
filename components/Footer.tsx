@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useMode } from "./ModeProvider";
 
 const PIXEL_MARK = `
    ▄▄▄▄▄▄▄▄▄▄▄
@@ -11,6 +14,12 @@ const PIXEL_MARK = `
 `;
 
 export default function Footer() {
+  const { mode } = useMode();
+  if (mode === "basic") return <BasicFooter />;
+  return <ScenicFooter />;
+}
+
+function ScenicFooter() {
   return (
     <footer className="mt-20 sm:mt-24 border-t border-ink-ghost">
       <div className="mx-auto max-w-5xl px-5 sm:px-6 py-10 sm:py-12 grid gap-8 md:gap-10 md:grid-cols-[auto_1fr_auto]">
@@ -76,6 +85,58 @@ export default function Footer() {
           >
             <span aria-hidden="true">✦&nbsp;</span>HIGH SCORES
           </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function BasicFooter() {
+  return (
+    <footer className="mt-20 sm:mt-24 border-t border-ink-ghost">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6 py-10 sm:py-12 grid gap-8 sm:grid-cols-[1fr_auto] items-end">
+        <div className="space-y-3">
+          <p
+            className="text-[16px] leading-relaxed text-ink-dim max-w-md"
+            style={{ fontFamily: "var(--font-garamond)" }}
+          >
+            Built in Washington, D.C.
+          </p>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[13px] font-mono text-ink">
+            <a
+              href="mailto:mthomaswicher@gmail.com"
+              className="py-1 underline-offset-4 hover:underline hover:text-ink-mute"
+            >
+              Email
+            </a>
+            <a
+              href="https://linkedin.com/in/mthomaswicher"
+              target="_blank"
+              rel="noreferrer"
+              className="py-1 underline-offset-4 hover:underline hover:text-ink-mute"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/Mthomaswicher"
+              target="_blank"
+              rel="noreferrer"
+              className="py-1 underline-offset-4 hover:underline hover:text-ink-mute"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://dribbble.com/mthomaswicher"
+              target="_blank"
+              rel="noreferrer"
+              className="py-1 underline-offset-4 hover:underline hover:text-ink-mute"
+            >
+              Dribbble
+            </a>
+          </div>
+          <p className="text-[12px] text-ink-mute font-mono">
+            © {new Date().getFullYear()} Matthew Thomas-Wicher
+          </p>
         </div>
       </div>
     </footer>

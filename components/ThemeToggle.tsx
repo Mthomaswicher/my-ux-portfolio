@@ -1,5 +1,6 @@
 "use client";
 
+import { useMode } from "./ModeProvider";
 import { useTheme } from "./ThemeProvider";
 
 type Props = { variant?: "floating" | "inline" };
@@ -11,6 +12,10 @@ type Props = { variant?: "floating" | "inline" };
  */
 export default function ThemeToggle({ variant = "floating" }: Props) {
   const { theme, toggle } = useTheme();
+  const { mode } = useMode();
+  // Basic mode is opinionated about its own palette; theme toggle is hidden
+  // there so it doesn't fight the basic palette.
+  if (mode === "basic") return null;
   const isDark = theme === "dark";
 
   const baseChip =
