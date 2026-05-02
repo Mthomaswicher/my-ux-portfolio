@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PathChooser from "./PathChooser";
 import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
@@ -30,13 +30,24 @@ export default function BootSequence() {
   // the boot screen is meant to be a first-time gateway, not a paywall.
   // Exception: when the URL carries ?restart=1 we drop the saved choice and
   // let the picker run again.
+  //
+  // We only act on the *initial* mount value of hasChosen. If we kept this
+  // effect reactive on hasChosen, picking a path inside <PathChooser> would
+  // flip hasChosen → true and immediately fire router.replace("/home"),
+  // which (a) cut the walk animation short and (b) landed on /home's
+  // statically pre-rendered HTML built with the default mode="scenic" —
+  // showing ArcadeHome briefly before hydration could swap in BasicHome.
+  // That's the "starts basic, switches to arcade" flash. PathChooser owns
+  // the post-pick navigation now: walk → close flash → router.push.
+  const initialHasChosen = useRef(hasChosen);
   useEffect(() => {
     if (restart) {
       reset();
       return;
     }
-    if (hasChosen) router.replace("/home");
-  }, [hasChosen, restart, reset, router]);
+    if (initialHasChosen.current) router.replace("/home");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (shown >= LINES.length) {
