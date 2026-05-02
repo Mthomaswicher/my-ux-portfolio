@@ -380,7 +380,7 @@ function HardCabinet() {
   );
 }
 
-/* ─── Console ─────────────────────────────────────────────────────────── */
+/* ─── Console — styled to look like an NES front-loader ─────────────── */
 
 function Console({
   innerRef,
@@ -397,14 +397,19 @@ function Console({
   slottedProject: Project | null;
   from: { x: number; y: number } | null;
 }) {
-  // Compute the spring start offset so the cartridge animates from the drop point
-  const start = useFromOffset(innerRef, from);
+  // The slotted cartridge animation lands inside the cart slot, which is
+  // offset to the right of the console's center in the NES layout. Anchor
+  // useFromOffset to the slot itself so the spring feels like it's coming
+  // from where the user dropped.
+  const slotRef = useRef<HTMLDivElement>(null);
+  const start = useFromOffset(slotRef, from);
 
   return (
-    <div className="relative mb-10 mx-auto max-w-md">
-      {/* Forgiving drop-zone halo fades in while dragging so the user sees
-          that the area around the console counts as "over". Sized to match
-          the inflated hit-test in pointInConsole(). */}
+    <div
+      className="relative mb-10 mx-auto"
+      style={{ maxWidth: 480 }}
+    >
+      {/* Forgiving drop-zone halo around the whole console */}
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute -inset-x-24 -inset-y-16 transition-opacity duration-200 ${
@@ -421,131 +426,247 @@ function Console({
         />
       </div>
 
+      {/* NES BODY — two-tone gray plastic with a black top stripe */}
       <div
         ref={innerRef}
-        className={`relative cartridge p-4 transition-all duration-200 ${
-          highlight
-            ? "shadow-neon-magenta border-neon-magenta"
-            : ""
-        }`}
-        aria-label="Console: drop a cartridge here to load a case study"
         role="region"
+        aria-label="Console: drop a cartridge here to load a case study"
+        className="relative transition-shadow duration-200"
+        style={{
+          background:
+            "linear-gradient(180deg, #d6d6db 0%, #b6b6bd 55%, #9d9da6 100%)",
+          border: "2px solid #1c1c24",
+          borderRadius: "5px 5px 7px 7px",
+          boxShadow: highlight
+            ? [
+                "inset 0 1px 0 rgba(255,255,255,0.55)",
+                "inset 0 -2px 0 rgba(0,0,0,0.3)",
+                "0 6px 0 -2px rgba(0,0,0,0.6)",
+                "0 0 0 2px rgba(255,43,214,0.55)",
+                "0 0 28px rgba(255,43,214,0.4)",
+              ].join(", ")
+            : [
+                "inset 0 1px 0 rgba(255,255,255,0.55)",
+                "inset 0 -2px 0 rgba(0,0,0,0.3)",
+                "0 6px 0 -2px rgba(0,0,0,0.6)",
+              ].join(", "),
+        }}
       >
-        {/* power LED + label */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span
-              className={`inline-block w-2 h-2 rounded-full ${
-                inserting ? "bg-neon-lime shadow-neon-lime animate-pulse" : "bg-neon-magenta shadow-neon-magenta"
-              }`}
-              aria-hidden="true"
-            />
-            <span className="font-pixel text-[10px] tracking-widest text-glow-magenta">
-              MTW · CONSOLE
-            </span>
-          </div>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            {inserting ? "LOADING…" : highlight ? "READY" : active ? "AWAITING" : "IDLE"}
+        {/* Top trim — black bar with the "ENTERTAINMENT SYSTEM" name plate */}
+        <div
+          className="flex items-center justify-between px-3 py-1.5"
+          style={{
+            background: "linear-gradient(180deg, #1a1a22 0%, #0a0a12 100%)",
+            borderBottom: "1px solid #000",
+            boxShadow: "inset 0 -1px 0 rgba(255,255,255,0.05)",
+          }}
+        >
+          <span
+            className="font-pixel text-[8px] tracking-[0.32em]"
+            style={{ color: "#e8e8f0" }}
+          >
+            ★ MTW ★
+          </span>
+          <span
+            className="font-pixel text-[7px] tracking-[0.28em]"
+            style={{ color: "#a8a8b4" }}
+          >
+            ENTERTAINMENT SYSTEM
+          </span>
+          <span
+            className="font-mono text-[8px] uppercase tracking-widest tabular-nums"
+            style={{ color: "#a8a8b4" }}
+          >
+            {inserting
+              ? "LOADING…"
+              : highlight
+                ? "READY"
+                : active
+                  ? "AWAITING"
+                  : "IDLE"}
           </span>
         </div>
 
-        {/* slot */}
-        <div
-          className="relative h-[80px] bg-bg-void border border-ink-ghost overflow-hidden"
-          style={{
-            boxShadow: highlight
-              ? "inset 0 0 24px rgba(255,43,214,0.45), inset 0 0 0 1px rgba(255,43,214,0.7)"
-              : "inset 0 0 18px rgba(0,0,0,0.7)",
-            transition: "box-shadow 0.2s ease-out",
-          }}
-        >
-          {/* slot lip */}
-          <div
-            className="absolute top-0 left-0 right-0 h-[6px] bg-bg-deep border-b border-ink-ghost"
-            aria-hidden="true"
-          />
-
-          {/* idle copy */}
-          {!inserting && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {/* Body row — power LED + buttons on the left, cartridge slot on the right */}
+        <div className="flex items-stretch gap-3 p-3">
+          {/* LEFT control column */}
+          <div className="flex flex-col gap-2 shrink-0">
+            {/* POWER LED + label */}
+            <div className="flex items-center gap-1.5">
               <span
-                className={`font-pixel text-[11px] tracking-widest transition-colors ${
-                  highlight ? "text-glow-magenta" : "text-ink-mute"
-                }`}
-              >
-                {highlight ? "▼ DROP TO LOAD" : "INSERT CARTRIDGE"}
-              </span>
-            </div>
-          )}
-
-          {/* slotted cartridge animation */}
-          <AnimatePresence>
-            {inserting && slottedProject && (
-              <motion.div
-                key="slotted"
-                className="absolute z-10"
-                initial={{
-                  x: start.x,
-                  y: start.y,
-                  scale: 1,
-                  rotate: 0,
-                  opacity: 0.95,
-                }}
-                animate={{
-                  x: 0,
-                  y: 12,
-                  scale: 0.85,
-                  rotate: 0,
-                  opacity: 1,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 22,
-                  mass: 0.7,
-                }}
+                className="block w-2.5 h-2.5 rounded-full"
                 style={{
-                  left: "50%",
-                  top: 0,
-                  transformOrigin: "center top",
-                  marginLeft: -120, // half of CartridgeSprite width
+                  background: active || inserting ? "#ff2b2b" : "#5a1010",
+                  boxShadow:
+                    active || inserting
+                      ? "0 0 8px rgba(255,43,43,0.85), inset 0 0 2px rgba(255,255,255,0.55)"
+                      : "inset 0 0 2px rgba(0,0,0,0.6)",
+                  transition: "all 0.2s",
                 }}
                 aria-hidden="true"
+              />
+              <span
+                className="font-pixel text-[7px] tracking-widest"
+                style={{ color: "#1a1a22" }}
               >
-                <CartridgeSprite project={slottedProject} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+                POWER
+              </span>
+            </div>
 
-          {/* power-up flash + scanline jitter when inserting */}
-          <AnimatePresence>
-            {inserting && (
-              <>
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: "rgba(255,43,214,0.2)" }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.7, 0, 0.5, 0] }}
-                  transition={{ delay: 0.5, duration: 0.9 }}
-                  aria-hidden="true"
-                />
-                <motion.div
-                  className="absolute left-0 right-0 h-[2px] pointer-events-none"
-                  style={{ background: "rgba(255,43,214,0.9)", mixBlendMode: "screen" }}
-                  initial={{ top: "-2%" }}
-                  animate={{ top: "102%" }}
-                  transition={{ delay: 0.5, duration: 0.5, ease: "linear" }}
-                  aria-hidden="true"
-                />
-              </>
+            {/* POWER slider button */}
+            <ConsoleButton label="POWER" variant="slider" />
+            {/* RESET push button */}
+            <ConsoleButton label="RESET" variant="push" />
+          </div>
+
+          {/* RIGHT — cartridge slot. This IS the visual drop target */}
+          <div
+            ref={slotRef}
+            className="flex-1 relative overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(180deg, #050508 0%, #0a0a12 100%)",
+              border: "2px solid #15151c",
+              borderRadius: 2,
+              boxShadow: highlight
+                ? "inset 0 0 26px rgba(255,43,214,0.5), inset 0 0 0 1px rgba(255,43,214,0.75)"
+                : "inset 0 0 22px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.04)",
+              transition: "box-shadow 0.2s ease-out",
+              minHeight: 88,
+            }}
+          >
+            {/* Slot lip — the hinged flap edge at the top */}
+            <div
+              className="absolute top-0 left-0 right-0"
+              style={{
+                height: 8,
+                background:
+                  "linear-gradient(180deg, #2a2a32 0%, #14141c 100%)",
+                borderBottom: "1px solid #050508",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.08), 0 1px 0 rgba(0,0,0,0.6)",
+              }}
+              aria-hidden="true"
+            />
+
+            {/* idle prompt */}
+            {!inserting && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span
+                  className={`font-pixel text-[10px] tracking-widest transition-colors ${
+                    highlight ? "text-glow-magenta" : "text-ink-mute"
+                  }`}
+                >
+                  {highlight ? "▼ DROP TO LOAD" : "INSERT CARTRIDGE"}
+                </span>
+              </div>
             )}
-          </AnimatePresence>
+
+            {/* slotted cartridge animation */}
+            <AnimatePresence>
+              {inserting && slottedProject && (
+                <motion.div
+                  key="slotted"
+                  className="absolute z-10"
+                  initial={{
+                    x: start.x,
+                    y: start.y,
+                    scale: 1,
+                    rotate: 0,
+                    opacity: 0.95,
+                  }}
+                  animate={{
+                    x: 0,
+                    y: 12,
+                    scale: 0.85,
+                    rotate: 0,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 220,
+                    damping: 22,
+                    mass: 0.7,
+                  }}
+                  style={{
+                    left: "50%",
+                    top: 0,
+                    transformOrigin: "center top",
+                    marginLeft: -120, // half of CartridgeSprite width
+                  }}
+                  aria-hidden="true"
+                >
+                  <CartridgeSprite project={slottedProject} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* power-up flash + scanline jitter when inserting */}
+            <AnimatePresence>
+              {inserting && (
+                <>
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: "rgba(255,43,214,0.2)" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 0.7, 0, 0.5, 0] }}
+                    transition={{ delay: 0.5, duration: 0.9 }}
+                    aria-hidden="true"
+                  />
+                  <motion.div
+                    className="absolute left-0 right-0 h-[2px] pointer-events-none"
+                    style={{
+                      background: "rgba(255,43,214,0.9)",
+                      mixBlendMode: "screen",
+                    }}
+                    initial={{ top: "-2%" }}
+                    animate={{ top: "102%" }}
+                    transition={{ delay: 0.5, duration: 0.5, ease: "linear" }}
+                    aria-hidden="true"
+                  />
+                </>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
-        {/* base trim. controls and detail */}
-        <div className="mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-          <span>● MTW-1</span>
-          <span>v0.1</span>
+        {/* Bottom trim — vents + model plate */}
+        <div
+          className="flex items-center justify-between gap-3 px-3 py-1.5"
+          style={{
+            background:
+              "linear-gradient(180deg, #a4a4ac 0%, #82828b 100%)",
+            borderTop: "1px solid #1c1c24",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.25)",
+          }}
+        >
+          <span
+            className="font-pixel text-[7px] tracking-widest"
+            style={{ color: "#1a1a22" }}
+          >
+            MODEL MTW-1
+          </span>
+          <div className="flex gap-[3px]" aria-hidden="true">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                className="block"
+                style={{
+                  width: 6,
+                  height: 4,
+                  background: "#0d0d14",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.15)",
+                }}
+              />
+            ))}
+          </div>
+          <span
+            className="font-pixel text-[7px] tracking-widest"
+            style={{ color: "#1a1a22" }}
+          >
+            v0.1
+          </span>
         </div>
       </div>
 
@@ -558,6 +679,67 @@ function Console({
           ▼ ▼ ▼
         </div>
       )}
+    </div>
+  );
+}
+
+/** Small decorative button used for POWER and RESET on the NES face. */
+function ConsoleButton({
+  label,
+  variant,
+}: {
+  label: string;
+  variant: "slider" | "push";
+}) {
+  return (
+    <div className="flex flex-col gap-0.5" aria-hidden="true">
+      <span
+        className="font-pixel text-[6px] tracking-widest"
+        style={{ color: "#1a1a22" }}
+      >
+        {label}
+      </span>
+      <div
+        className="relative"
+        style={{
+          width: 52,
+          height: 14,
+          background: "linear-gradient(180deg, #4a4a52 0%, #1c1c24 100%)",
+          border: "1px solid #0a0a10",
+          borderRadius: 2,
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.25)",
+        }}
+      >
+        {variant === "slider" ? (
+          <span
+            className="absolute"
+            style={{
+              top: 1,
+              bottom: 1,
+              left: 1,
+              width: 22,
+              background: "linear-gradient(180deg, #9a9aa4 0%, #5a5a62 100%)",
+              border: "1px solid #1a1a22",
+              borderRadius: 1,
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35)",
+            }}
+          />
+        ) : (
+          <span
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block"
+            style={{
+              width: 14,
+              height: 6,
+              background: "#a01818",
+              border: "1px solid #050508",
+              borderRadius: 1,
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.25), 0 1px 0 rgba(0,0,0,0.5)",
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
