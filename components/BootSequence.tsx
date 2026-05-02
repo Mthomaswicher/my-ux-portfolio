@@ -62,6 +62,8 @@ export default function BootSequence() {
             done ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden={!done}
+          // @ts-expect-error inert is valid HTML; TS lib types may lag
+          inert={!done ? "" : undefined}
         >
           <h1
             className="font-pixel text-[20px] sm:text-[28px] leading-tight tracking-widest text-glow-cyan mb-2"

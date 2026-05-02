@@ -118,7 +118,6 @@ export default function CaseStudyGate({
               if (error) setError(false);
             }}
             placeholder="PASSWORD"
-            autoFocus
             autoComplete="off"
             spellCheck={false}
             aria-invalid={error || undefined}

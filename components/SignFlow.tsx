@@ -202,12 +202,11 @@ export default function SignFlow() {
                   }}
                   className={`px-4 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest border transition-shadow ${
                     color === c.key
-                      ? "border-transparent shadow-[0_0_0_1px_var(--col),0_0_12px_var(--col)]"
+                      ? `border-transparent shadow-[0_0_0_1px_var(--col),0_0_12px_var(--col)] text-glow-${c.key}`
                       : "border-ink-ghost text-ink-dim hover:text-ink"
                   }`}
                   style={
                     {
-                      color: color === c.key ? c.hex : undefined,
                       ["--col" as any]: c.hex,
                     } as React.CSSProperties
                   }

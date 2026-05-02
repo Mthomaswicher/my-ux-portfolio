@@ -278,7 +278,7 @@ export default function About() {
                 law to becoming a UX/UI Product Designer, the path through
                 Flatiron's full-time UX program, and why he never looked back.
               </p>
-              <blockquote className="font-mono text-[13px] italic text-ink-dim border-l-2 border-cyan/60 pl-4 py-1 mb-5 max-w-2xl">
+              <blockquote className="font-mono text-[13px] italic text-ink-dim border-l-2 border-neon-cyan/60 pl-4 py-1 mb-5 max-w-2xl">
                 &ldquo;I absolutely love it! It definitely matches up to the
                 dream, and I am so happy I made the switch.&rdquo;
               </blockquote>

@@ -38,6 +38,9 @@ export default function ThemeToggle({ variant = "floating" }: Props) {
         {isDark ? "☼" : "☾"}
       </span>
       <span className="hidden md:inline">{isDark ? "LIGHT" : "DARK"}</span>
+      <span className="sr-only" aria-live="polite">
+        {isDark ? "Dark theme active" : "Light theme active"}.
+      </span>
     </button>
   );
 }

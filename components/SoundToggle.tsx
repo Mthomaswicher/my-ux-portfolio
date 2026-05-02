@@ -40,7 +40,9 @@ export default function SoundToggle({ variant = "floating" }: Props) {
         {enabled ? "♪" : "·"}
       </span>
       <span>{enabled ? "SOUND ON" : "SOUND OFF"}</span>
-      <span className="sr-only">{enabled ? "Sound on" : "Sound off"}, press M to toggle</span>
+      <span className="sr-only" aria-live="polite">
+        {enabled ? "Sound on" : "Sound off"}. Press M to toggle.
+      </span>
     </button>
   );
 }

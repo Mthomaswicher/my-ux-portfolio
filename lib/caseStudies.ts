@@ -700,7 +700,7 @@ export const caseStudies: CaseStudy[] = [
     org: "The Demex Group",
     status: "SHIPPED",
     tagline:
-      "Founding product design and full-stack engineering for a climate-risk web app — turning dense weather data into something insurers and businesses could actually act on.",
+      "Founding product design and full-stack engineering for a climate-risk web app, turning dense weather data into something insurers and businesses could actually act on.",
     hero: `${DCC}/05.png`,
     heroScreens: [`${DCC}/05.png`, `${DCC}/08.png`],
     role: "Founding Product Designer · Full-Stack Engineer",
@@ -717,7 +717,7 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "p",
-              text: "The Demex Group is a design-driven climate-risk startup specializing in products for insurers and businesses exposed to extreme but non-catastrophic weather. As founding product designer, I owned product strategy, user research, interaction, visual design, and prototyping for our first public-facing product — and pulled my full-stack engineering background back out to ship the front-end alongside the founding eng team.",
+              text: "The Demex Group is a design-driven climate-risk startup specializing in products for insurers and businesses exposed to extreme but non-catastrophic weather. As founding product designer, I owned product strategy, user research, interaction, visual design, and prototyping for our first public-facing product, and pulled my full-stack engineering background back out to ship the front-end alongside the founding eng team.",
             },
             {
               kind: "p",
@@ -739,7 +739,7 @@ export const caseStudies: CaseStudy[] = [
               items: [
                 {
                   title: "Our users",
-                  body: "Business owners and insurers needed a way to act on the data we already had — to protect revenue against weather events. Pre-Climate-Center, the data wasn't easy to analyze.",
+                  body: "Business owners and insurers needed a way to act on the data we already had, to protect revenue against weather events. Pre-Climate-Center, the data wasn't easy to analyze.",
                 },
                 {
                   title: "The statistics",
@@ -801,12 +801,12 @@ export const caseStudies: CaseStudy[] = [
                 {
                   src: `${DCC}/06.png`,
                   alt: "Wireframe of the Demex Climate Center home page",
-                  caption: "Home — Climate Index, search, parametrics primer.",
+                  caption: "Home: Climate Index, search, parametrics primer.",
                 },
                 {
                   src: `${DCC}/07.png`,
                   alt: "Wireframe of the search results / detail view",
-                  caption: "Search results — DVI score, historical band, comparative geo views.",
+                  caption: "Search results: DVI score, historical band, comparative geo views.",
                 },
               ],
             },
@@ -834,7 +834,7 @@ export const caseStudies: CaseStudy[] = [
               kind: "img",
               src: `${DCC}/08.png`,
               alt: "London climate trend and variability scatter chart",
-              caption: "Climate trend × variability matrix — every dot is a location plotted against its historical baseline.",
+              caption: "Climate trend × variability matrix: every dot is a location plotted against its historical baseline.",
             },
           ],
         },
@@ -849,11 +849,11 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "p",
-              text: "In a startup it's not unusual to get pushback on a design that contradicts something a stakeholder wants. Those conversations go best when you have research lined up to advocate for users — even better when the research already shaped the brief everyone signed off on.",
+              text: "In a startup it's not unusual to get pushback on a design that contradicts something a stakeholder wants. Those conversations go best when you have research lined up to advocate for users. Even better when the research already shaped the brief everyone signed off on.",
             },
             {
               kind: "h",
-              text: "Five users is enough — to start",
+              text: "Five users is enough to start",
             },
             {
               kind: "p",

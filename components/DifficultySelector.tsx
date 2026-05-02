@@ -43,7 +43,7 @@ export default function DifficultySelector({
               aria-checked={active}
               onClick={() => pick(m)}
               onMouseEnter={() => !active && play("hover")}
-              className={`px-4 py-2 min-h-[40px] font-pixel text-[10px] tracking-widest border transition-shadow focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:outline-none ${
+              className={`px-4 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest border transition-shadow focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:outline-none ${
                 active
                   ? m === "hard"
                     ? "border-transparent text-glow-magenta shadow-neon-magenta"

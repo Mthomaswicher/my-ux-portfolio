@@ -61,7 +61,7 @@ export default function OportunBrandHeader({ study }: { study: CaseStudy }) {
             <span
               className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5"
               style={{
-                background: "#00C859",
+                background: "#00871D",
                 color: "#FFFFFF",
                 borderRadius: 999,
                 letterSpacing: "0.18em",

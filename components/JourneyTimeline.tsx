@@ -294,11 +294,11 @@ function StageCardItem({
               </span>
             </div>
 
-            <h3
+            <h2
               className={`font-display text-[34px] sm:text-[40px] leading-none ${ACCENT_TEXT[stage.accent]} mb-1`}
             >
               {stage.company}
-            </h3>
+            </h2>
             <div className="font-mono text-[12px] uppercase tracking-widest text-ink-dim mb-4">
               {stage.role} · {stage.location}
             </div>

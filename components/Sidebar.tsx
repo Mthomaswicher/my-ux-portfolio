@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LiveClock from "./LiveClock";
 import SoundToggle from "./SoundToggle";
 import ThemeToggle from "./ThemeToggle";
@@ -32,6 +32,7 @@ export default function Sidebar() {
   const [isMobile, setIsMobile] = useState(false);
   const latest = log[0];
   const { play } = useSound();
+  const firstNavLinkRef = useRef<HTMLAnchorElement | null>(null);
 
   // Track viewport so we know whether the sidebar is currently off-canvas
   useEffect(() => {
@@ -66,6 +67,15 @@ export default function Sidebar() {
   // come back open on next mobile resize.
   useEffect(() => {
     if (!isMobile && open) setOpen(false);
+  }, [isMobile, open]);
+
+  // When the mobile drawer opens, move keyboard focus to the first nav
+  // link so screen-reader and keyboard users land inside the drawer.
+  useEffect(() => {
+    if (isMobile && open) {
+      const t = window.setTimeout(() => firstNavLinkRef.current?.focus(), 200);
+      return () => window.clearTimeout(t);
+    }
   }, [isMobile, open]);
 
   // Hidden from AT + tab order whenever it's off-canvas on mobile
@@ -147,14 +157,14 @@ export default function Sidebar() {
           <div className="dash-divider" aria-hidden="true" />
 
           <nav aria-labelledby="explore-heading">
-            <h2
+            <div
               id="explore-heading"
               className="section-label mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute"
             >
               EXPLORE
-            </h2>
+            </div>
             <ul className="space-y-1 list-none p-0">
-              {NAV.map((item) => {
+              {NAV.map((item, idx) => {
                 const active =
                   pathname === item.href ||
                   (item.href === "/home" && pathname?.startsWith("/work"));
@@ -162,8 +172,9 @@ export default function Sidebar() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      ref={idx === 0 ? firstNavLinkRef : undefined}
                       aria-current={active ? "page" : undefined}
-                      className={`group flex items-baseline gap-2 px-2 py-2.5 md:py-1.5 -mx-2 hover:bg-bg-ridge/60 transition-colors ${
+                      className={`group flex items-baseline gap-2 px-2 min-h-[44px] py-2.5 md:py-1.5 md:min-h-0 -mx-2 hover:bg-bg-ridge/60 transition-colors ${
                         active ? "bg-bg-ridge/40" : ""
                       }`}
                       onMouseEnter={() => play("hover")}
@@ -201,12 +212,12 @@ export default function Sidebar() {
           <div className="dash-divider" aria-hidden="true" />
 
           <nav aria-labelledby="contact-heading">
-            <h2
+            <div
               id="contact-heading"
               className="section-label font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute mb-2"
             >
               FIND ME AT
-            </h2>
+            </div>
             <ul className="font-mono text-[12px] text-ink-dim space-y-0.5 list-none p-0">
               {SOCIALS.map((s) => (
                 <li key={s.href}>
@@ -214,7 +225,7 @@ export default function Sidebar() {
                     href={s.href}
                     target={s.href.startsWith("http") ? "_blank" : undefined}
                     rel={s.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="block py-1.5 md:py-0.5 hover:text-glow-cyan transition-colors"
+                    className="flex items-center min-h-[44px] py-2 md:min-h-0 md:py-0.5 hover:text-glow-cyan transition-colors"
                   >
                     <span aria-hidden="true">›</span> {s.label}
                     {s.href.startsWith("http") && (
@@ -252,12 +263,12 @@ export default function Sidebar() {
           <div className="dash-divider" aria-hidden="true" />
 
           <section aria-labelledby="latest-log-heading">
-            <h2
+            <div
               id="latest-log-heading"
               className="section-label font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute mb-2"
             >
               LATEST LOG
-            </h2>
+            </div>
             <time
               className="font-mono text-[11px] text-ink-mute block mb-1"
               dateTime={latest.date}
@@ -274,10 +285,10 @@ export default function Sidebar() {
           <div className="mt-auto pt-6">
             <Link
               href="/"
-              className="font-pixel text-[9px] tracking-widest text-ink-mute hover:text-glow-magenta"
+              className="inline-flex items-center min-h-[44px] py-2 font-pixel text-[9px] tracking-widest text-ink-mute hover:text-glow-magenta"
               onClick={() => setOpen(false)}
             >
-              <span aria-hidden="true">↩ </span>INSERT COIN
+              <span aria-hidden="true">↩&nbsp;</span>INSERT COIN
             </Link>
           </div>
         </div>

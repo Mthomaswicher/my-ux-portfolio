@@ -30,7 +30,7 @@ export default function Footer() {
             systems, and the people who actually read the patch notes.
           </p>
           <div className="flex flex-wrap gap-x-3 gap-y-2 font-mono text-[11px] text-ink-mute">
-            <a href="mailto:mthomaswicher@gmail.com" className="py-1 hover:text-glow-cyan">
+            <a href="mailto:mthomaswicher@gmail.com" className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan">
               EMAIL
             </a>
             <span aria-hidden="true">·</span>
@@ -38,7 +38,7 @@ export default function Footer() {
               href="https://linkedin.com/in/mthomaswicher"
               target="_blank"
               rel="noreferrer"
-              className="py-1 hover:text-glow-cyan"
+              className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan"
             >
               LINKEDIN
             </a>
@@ -47,7 +47,7 @@ export default function Footer() {
               href="https://github.com/Mthomaswicher"
               target="_blank"
               rel="noreferrer"
-              className="py-1 hover:text-glow-cyan"
+              className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan"
             >
               GITHUB
             </a>
@@ -56,7 +56,7 @@ export default function Footer() {
               href="https://dribbble.com/mthomaswicher"
               target="_blank"
               rel="noreferrer"
-              className="py-1 hover:text-glow-cyan"
+              className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan"
             >
               DRIBBBLE
             </a>
@@ -66,15 +66,15 @@ export default function Footer() {
         <div className="self-end flex md:flex-col gap-4 md:gap-2">
           <Link
             href="/"
-            className="py-1 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta block"
+            className="inline-flex items-center min-h-[44px] py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
           >
-            <span aria-hidden="true">↩ </span>INSERT COIN
+            <span aria-hidden="true">↩&nbsp;</span>INSERT COIN
           </Link>
           <Link
             href="/guestbook"
-            className="py-1 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber block"
+            className="inline-flex items-center min-h-[44px] py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber"
           >
-            <span aria-hidden="true">✦ </span>HIGH SCORES
+            <span aria-hidden="true">✦&nbsp;</span>HIGH SCORES
           </Link>
         </div>
       </div>
