@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PathChooser from "./PathChooser";
 import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
@@ -16,36 +16,84 @@ const LINES = [
   "READY.",
 ];
 
+// Module-level flag: flips to false after the first time BootSequence mounts
+// in this JS environment. Survives client-side navigation, resets on full
+// document reload (because the JS bundle reloads with the new document).
+let isFirstBootMount = true;
+
 export default function BootSequence() {
   // Start with one line shown so first paint isn't blank
   const [shown, setShown] = useState(1);
   const [done, setDone] = useState(false);
   const { play } = useSound();
-  const { hasChosen, reset } = useMode();
+  const { reset } = useMode();
   const router = useRouter();
   const searchParams = useSearchParams();
   const restart = searchParams?.get("restart") === "1";
 
-  // Returning visitors who already picked a path skip the picker entirely —
-  // the boot screen is meant to be a first-time gateway, not a paywall.
-  // Exception: when the URL carries ?restart=1 we drop the saved choice and
-  // let the picker run again.
+  // Intro routing rules:
+  // 1. Fresh external arrival at / (typed URL, link from another site, or a
+  //    reload) — always show the intro, even for returning visitors.
+  // 2. Internal client-side nav to / from elsewhere in the app (Footer's
+  //    "INSERT COIN" link from /home, etc.) — skip the intro and go to /home.
+  // 3. Already saw the intro this document session and bouncing back to / —
+  //    skip the intro.
   //
-  // We only act on the *initial* mount value of hasChosen. If we kept this
-  // effect reactive on hasChosen, picking a path inside <PathChooser> would
-  // flip hasChosen → true and immediately fire router.replace("/home"),
-  // which (a) cut the walk animation short and (b) landed on /home's
-  // statically pre-rendered HTML built with the default mode="scenic" —
-  // showing ArcadeHome briefly before hydration could swap in BasicHome.
-  // That's the "starts basic, switches to arcade" flash. PathChooser owns
-  // the post-pick navigation now: walk → close flash → router.push.
-  const initialHasChosen = useRef(hasChosen);
+  // Detection:
+  // - performance.getEntriesByType("navigation")[0].name reflects the URL
+  //   the document was originally loaded at. It does NOT update on
+  //   client-side navigation, so it lets us distinguish "we loaded fresh
+  //   at /" from "we loaded fresh elsewhere and client-navved to /".
+  // - sessionStorage["mtw.intro.completed"], set by PathChooser the moment
+  //   it pushes to the destination, marks "intro is done for this tab".
+  //   We clear it on the *first* BootSequence mount of the JS environment
+  //   if the navigation type is reload/navigate, so reloads restart the
+  //   intro instead of being treated as bounce-backs.
   useEffect(() => {
     if (restart) {
       reset();
       return;
     }
-    if (initialHasChosen.current) router.replace("/home");
+
+    const navEntry = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+    const initialPath = navEntry
+      ? new URL(navEntry.name).pathname
+      : window.location.pathname;
+    const arrivedFreshAtRoot =
+      initialPath === "/" || initialPath === "" || initialPath === "/index.html";
+
+    // Only on the first BootSequence mount of this JS environment do we
+    // treat reload/navigate as "fresh" and clear the intro-completed flag.
+    // Subsequent client-side nav re-mounts MUST keep the flag intact so
+    // the user isn't shown the intro twice in the same tab.
+    if (isFirstBootMount) {
+      isFirstBootMount = false;
+      const navType = navEntry?.type;
+      if (navType === "reload" || navType === "navigate") {
+        try {
+          sessionStorage.removeItem("mtw.intro.completed");
+        } catch {
+          /* ignore */
+        }
+      }
+    }
+
+    if (!arrivedFreshAtRoot) {
+      router.replace("/home");
+      return;
+    }
+
+    let introCompleted = false;
+    try {
+      introCompleted = sessionStorage.getItem("mtw.intro.completed") === "1";
+    } catch {
+      /* ignore */
+    }
+    if (introCompleted) {
+      router.replace("/home");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

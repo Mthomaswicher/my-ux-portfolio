@@ -83,7 +83,17 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
         raf = requestAnimationFrame(step);
       } else {
         setClosing(true);
-        window.setTimeout(() => router.push(destination), reduced ? 0 : 620);
+        window.setTimeout(() => {
+          // Mark the intro as completed for this tab session so coming
+          // back to / via an internal Link doesn't replay the intro.
+          // BootSequence clears this on a fresh document load.
+          try {
+            sessionStorage.setItem("mtw.intro.completed", "1");
+          } catch {
+            /* ignore */
+          }
+          router.push(destination);
+        }, reduced ? 0 : 620);
       }
     };
     raf = requestAnimationFrame(step);
