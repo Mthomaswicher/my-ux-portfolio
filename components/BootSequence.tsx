@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import PathChooser from "./PathChooser";
 import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
+import { projects } from "@/lib/projects";
 
 const LINES = [
   "MTW BIOS v0.1 · © 2026 mthomaswicher",
   "MEM TEST .... 65,536K OK",
   "DETECTING DESIGN SYSTEMS .... [OK]",
   "MOUNTING /portfolio .... [OK]",
-  "LOADING CARTRIDGES .... 2 FOUND",
+  `LOADING CARTRIDGES .... ${projects.length} FOUND`,
   "NETWORK STATUS: ONLINE",
   "READY.",
 ];
