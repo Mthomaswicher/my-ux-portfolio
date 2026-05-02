@@ -64,7 +64,7 @@ export default function DifficultySelector({
           <>
             <span className="md:hidden">Tap a cartridge to auto-load.</span>
             <span className="hidden md:inline">
-              Spin the tray with ◀/▶, drag a cartridge into the screen, or hit START.
+              Drag a cartridge into the console, or click to auto-load.
             </span>
           </>
         )}
