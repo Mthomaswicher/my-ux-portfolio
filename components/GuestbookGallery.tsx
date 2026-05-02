@@ -54,6 +54,7 @@ export default function GuestbookGallery() {
   const [stats, setStats] = useState<Stats>(emptyStats());
   const [loading, setLoading] = useState(true);
   const [usingLocal, setUsingLocal] = useState(false);
+  const [liveError, setLiveError] = useState(false);
   const [justSigned, setJustSigned] = useState(false);
 
   useEffect(() => {
@@ -107,6 +108,7 @@ export default function GuestbookGallery() {
         setEntries(local);
         setStats(statsFromEntries(local));
         setUsingLocal(true);
+        setLiveError(true);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -188,11 +190,26 @@ export default function GuestbookGallery() {
         </div>
 
         {usingLocal && (
-          <div className="mt-3 font-mono text-[11px] text-ink-mute">
-            ⚠ Supabase not configured; viewing your local entries only.
-            <Link href="/" className="ml-2 text-glow-magenta hover:underline">
-              See setup
-            </Link>
+          <div
+            className="mt-3 font-mono text-[11px] text-ink-mute"
+            role="status"
+            aria-live="polite"
+          >
+            {liveError ? (
+              <>
+                <span aria-hidden="true">⚠ </span>
+                Couldn&apos;t reach the live wall. Showing your locally-saved
+                entries instead.
+              </>
+            ) : (
+              <>
+                <span aria-hidden="true">⚠ </span>
+                Supabase not configured, viewing your local entries only.
+                <Link href="/" className="ml-2 text-glow-magenta hover:underline">
+                  See setup
+                </Link>
+              </>
+            )}
           </div>
         )}
       </section>

@@ -469,8 +469,9 @@ function OneUpEgg({
     <button
       type="button"
       onClick={onCollect}
-      aria-label="A hidden 1UP. Click to collect."
-      className="absolute z-20 font-pixel text-[10px] tracking-widest text-glow-lime hover:scale-110 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-neon-lime transition-transform"
+      aria-hidden="true"
+      tabIndex={-1}
+      className="absolute z-20 font-pixel text-[10px] tracking-widest text-glow-lime hover:scale-110 transition-transform"
       style={{
         right: "6%",
         top: "38%",

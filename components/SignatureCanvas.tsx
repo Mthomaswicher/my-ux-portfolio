@@ -6,6 +6,9 @@ export type SignatureCanvasHandle = {
   toDataURL: () => string;
   clear: () => void;
   isEmpty: () => boolean;
+  /** Render a typed signature (italic script) for keyboard-only users
+   *  who can't or don't want to draw. Sets empty to false. */
+  renderTyped: (text: string) => void;
 };
 
 const COLOR_HEX: Record<string, string> = {
@@ -42,8 +45,43 @@ const SignatureCanvas = forwardRef<
         setEmpty(true);
       },
       isEmpty: () => empty,
+      renderTyped: (text: string) => {
+        const c = canvasRef.current;
+        if (!c) return;
+        const ctx = c.getContext("2d");
+        if (!ctx) return;
+        const trimmed = text.trim() || "Player 1";
+        ctx.clearRect(0, 0, c.width, c.height);
+        paintBackground(ctx, c.width, c.height);
+        const tint = COLOR_HEX[color] || "#22d3ee";
+        ctx.fillStyle = tint;
+        ctx.shadowColor = tint;
+        ctx.shadowBlur = 14;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        // Auto-shrink long names so they fit within the canvas
+        let fontSize = 96;
+        ctx.font = `italic ${fontSize}px "EB Garamond", "Times New Roman", serif`;
+        const maxWidth = c.width - 60;
+        while (ctx.measureText(trimmed).width > maxWidth && fontSize > 32) {
+          fontSize -= 4;
+          ctx.font = `italic ${fontSize}px "EB Garamond", "Times New Roman", serif`;
+        }
+        ctx.fillText(trimmed, c.width / 2, c.height / 2);
+        // Underline like a written signature
+        const tw = ctx.measureText(trimmed).width;
+        ctx.shadowBlur = 6;
+        ctx.strokeStyle = tint;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo((c.width - tw) / 2 - 8, c.height / 2 + fontSize * 0.45);
+        ctx.lineTo((c.width + tw) / 2 + 8, c.height / 2 + fontSize * 0.45);
+        ctx.stroke();
+        setEmpty(false);
+        onDirty?.();
+      },
     }),
-    [empty]
+    [empty, color, onDirty]
   );
 
   function paintBackground(ctx: CanvasRenderingContext2D, w: number, h: number) {
@@ -134,7 +172,7 @@ const SignatureCanvas = forwardRef<
         role="img"
         aria-label={
           empty
-            ? "Empty signature canvas. Click and drag with your pointer to draw your mark."
+            ? "Empty signature canvas. Click and drag with your pointer to draw your mark, or type your name above and submit to auto-render a typed signature."
             : "Signature canvas with your drawing. Use the Clear button to start over."
         }
         onPointerDown={down}
@@ -148,8 +186,11 @@ const SignatureCanvas = forwardRef<
           className="absolute inset-0 pointer-events-none flex items-center justify-center"
           aria-hidden="true"
         >
-          <div className="font-pixel text-[9px] sm:text-[10px] tracking-widest text-ink-mute">
-            ░ DRAW YOUR MARK ░
+          <div className="font-pixel text-[9px] sm:text-[10px] tracking-widest text-ink-mute text-center px-4 leading-relaxed">
+            ░ DRAW YOUR MARK ░<br />
+            <span className="text-[8px] sm:text-[9px] opacity-70">
+              OR TYPE YOUR NAME ABOVE
+            </span>
           </div>
         </div>
       )}

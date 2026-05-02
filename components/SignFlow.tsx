@@ -32,10 +32,17 @@ export default function SignFlow() {
   const errorId = useId();
 
   async function submit() {
-    if (!ref.current || ref.current.isEmpty()) {
-      setError("Please draw your signature on the cartridge before submitting.");
+    if (!ref.current) {
+      setError("Signature canvas not ready, please retry.");
       play("error");
       return;
+    }
+    // Keyboard-only fallback: if no drawing, auto-render the typed name (or
+    // tag) as a script signature so visitors who can't use a pointer still
+    // have a path through this form.
+    if (ref.current.isEmpty()) {
+      const fallbackText = name.trim() || tag.trim() || "Player 1";
+      ref.current.renderTyped(fallbackText);
     }
     setSubmitting(true);
     setError(null);
@@ -222,21 +229,40 @@ export default function SignFlow() {
               Sign the cartridge
             </div>
             <SignatureCanvas ref={ref} color={color} />
-            <div className="mt-3 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  ref.current?.clear();
-                  play("back");
-                }}
-                className="-ml-2 px-2 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber focus-visible:text-glow-amber"
-                aria-label="Clear signature canvas"
-              >
-                <span aria-hidden="true">⌫ </span>CLEAR
-              </button>
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    ref.current?.clear();
+                    play("back");
+                  }}
+                  className="-ml-2 px-2 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-amber focus-visible:text-glow-amber"
+                  aria-label="Clear signature canvas"
+                >
+                  <span aria-hidden="true">⌫ </span>CLEAR
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const fallback = name.trim() || tag.trim() || "Player 1";
+                    ref.current?.renderTyped(fallback);
+                    play("pop");
+                  }}
+                  className="px-2 py-2 min-h-[44px] font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
+                  aria-label="Use a typed signature instead of drawing"
+                  title="No pointer? Type your name above and press this to auto-sign."
+                >
+                  <span aria-hidden="true">⌨ </span>USE TYPED
+                </button>
+              </div>
               <span className="font-mono text-[10.5px] text-ink-mute uppercase tracking-widest">
                 CARD: {color}
               </span>
+            </div>
+            <div className="mt-2 font-mono text-[10.5px] text-ink-mute leading-relaxed">
+              Drawing optional, if you submit without a mark we&apos;ll render
+              your typed name as a script signature.
             </div>
           </section>
 
