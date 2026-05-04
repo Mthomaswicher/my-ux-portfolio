@@ -216,6 +216,9 @@ export default function ProjectCard({ project }: { project: Project }) {
       clickSfx="select"
       className={cardClasses(project)}
       style={cardStyleFor(project)}
+      // LongPressNotes finds the cartridge under a held press by walking
+      // up to this attribute.
+      data-cart-no={project.no}
     >
       <ProjectCardBody project={project} />
     </SfxLink>

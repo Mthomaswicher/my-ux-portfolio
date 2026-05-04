@@ -1,12 +1,13 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import PathChooser from "./PathChooser";
 import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 import { projects } from "@/lib/projects";
 import { bumpVisitCount, eggBootLines } from "@/lib/bootEggs";
+import { cycleAccent } from "@/lib/accentEgg";
 
 const STATIC_LINES = [
   "MTW BIOS v0.1 · © 2026 mthomaswicher",
@@ -44,6 +45,23 @@ export default function BootSequence() {
     return [...eggs.prepend, ...STATIC_LINES, ...eggs.append];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Easter egg: triple-tap the MTW.ARCADE title within ~700ms to cycle
+  // the accent color. Works on touch and mouse both. Doesn't change the
+  // h1's semantics — heading is still a heading.
+  const titleTapsRef = useRef<number[]>([]);
+  function onTitleTap() {
+    const now = Date.now();
+    titleTapsRef.current = [
+      ...titleTapsRef.current.filter((t) => now - t < 700),
+      now,
+    ];
+    if (titleTapsRef.current.length >= 3) {
+      titleTapsRef.current = [];
+      cycleAccent();
+      play("oneUp");
+    }
+  }
 
   // Intro routing rules:
   // 1. Fresh external arrival at / (typed URL, link from another site, or a
@@ -157,7 +175,8 @@ export default function BootSequence() {
           inert={!done ? "" : undefined}
         >
           <h1
-            className="font-pixel text-[20px] sm:text-[28px] leading-tight tracking-widest text-glow-cyan mb-2"
+            className="font-pixel text-[20px] sm:text-[28px] leading-tight tracking-widest text-glow-cyan mb-2 select-none touch-manipulation"
+            onClick={onTitleTap}
           >
             MTW.ARCADE
           </h1>
