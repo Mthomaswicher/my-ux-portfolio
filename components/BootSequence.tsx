@@ -1,13 +1,14 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PathChooser from "./PathChooser";
 import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 import { projects } from "@/lib/projects";
+import { bumpVisitCount, eggBootLines } from "@/lib/bootEggs";
 
-const LINES = [
+const STATIC_LINES = [
   "MTW BIOS v0.1 · © 2026 mthomaswicher",
   "MEM TEST .... 65,536K OK",
   "DETECTING DESIGN SYSTEMS .... [OK]",
@@ -31,6 +32,18 @@ export default function BootSequence() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const restart = searchParams?.get("restart") === "1";
+
+  // Compose the BIOS log once per mount: fixed lines + any time-of-day
+  // or visit-counter Easter eggs. We bump the visit counter only on the
+  // first mount of the JS environment so client-side nav back to /
+  // doesn't double-count.
+  const LINES = useMemo(() => {
+    if (typeof window === "undefined") return STATIC_LINES;
+    const visit = isFirstBootMount ? bumpVisitCount() : 0;
+    const eggs = eggBootLines(visit);
+    return [...eggs.prepend, ...STATIC_LINES, ...eggs.append];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Intro routing rules:
   // 1. Fresh external arrival at / (typed URL, link from another site, or a

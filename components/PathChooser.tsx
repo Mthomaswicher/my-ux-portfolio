@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Robot from "./Robot";
 import { useMode, type Mode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
+import { haptic } from "@/lib/haptic";
 
 type Props = {
   active: boolean;
@@ -111,6 +112,7 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
     setMode(mode);
     setChosen(mode);
     play(mode === "scenic" ? "insertCoin" : "select");
+    haptic("select");
   }
 
   // Position of robot in stage space — at fork until chosen, then animates.

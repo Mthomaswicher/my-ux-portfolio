@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useId, useRef, useState } from "react";
 import SignatureCanvas, { SignatureCanvasHandle } from "./SignatureCanvas";
 import { useSound } from "./SoundProvider";
+import { haptic } from "@/lib/haptic";
 import { normalizeTag, randomTag } from "@/lib/visitorTags";
 import { getPublicClient } from "@/lib/supabase";
 
@@ -35,6 +36,7 @@ export default function SignFlow() {
     if (!ref.current) {
       setError("Signature canvas not ready, please retry.");
       play("error");
+      haptic("error");
       return;
     }
     // Keyboard-only fallback: if no drawing, auto-render the typed name (or
@@ -71,6 +73,7 @@ export default function SignFlow() {
       };
       localStorage.setItem("mtw.guestbook", JSON.stringify([entry, ...local]));
       play("save");
+      haptic("save");
       router.push("/guestbook?welcome=1&local=1");
       setSubmitting(false);
       return;
@@ -87,10 +90,12 @@ export default function SignFlow() {
         });
       if (insertErr) throw insertErr;
       play("save");
+      haptic("save");
       router.push("/guestbook?welcome=1");
     } catch (e: any) {
       setError(e?.message || "Network error.");
       play("error");
+      haptic("error");
     } finally {
       setSubmitting(false);
     }

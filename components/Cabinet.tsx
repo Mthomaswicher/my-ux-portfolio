@@ -12,6 +12,8 @@ import ProjectCard, {
 } from "./ProjectCard";
 import CartridgeSprite from "./CartridgeSprite";
 import { useSound } from "./SoundProvider";
+import { cycleAccent } from "@/lib/accentEgg";
+import { haptic } from "@/lib/haptic";
 
 const STORAGE_KEY = "mtw.difficulty";
 
@@ -229,6 +231,7 @@ function HardCabinet() {
   function triggerInsert(p: Project, from: { x: number; y: number }) {
     setDrag({ phase: "inserting", project: p, from });
     play("cartridge");
+    haptic("kerchunk");
     // power-up after the cartridge is seated
     window.setTimeout(() => play("power"), 320);
     // navigate after the full sequence
@@ -405,6 +408,27 @@ function Console({
   // from where the user dropped.
   const slotRef = useRef<HTMLDivElement>(null);
   const start = useFromOffset(slotRef, from);
+  const { play } = useSound();
+
+  // Easter egg: tap the red POWER LED four times in roughly two seconds
+  // and the accent color cycles (same payoff as the keyboard Konami
+  // code). Times are stored in a ref so re-renders don't reset progress.
+  const tapsRef = useRef<number[]>([]);
+  const [ledFlash, setLedFlash] = useState(0);
+  function onLedTap() {
+    const now = Date.now();
+    tapsRef.current = [
+      ...tapsRef.current.filter((t) => now - t < 2000),
+      now,
+    ];
+    setLedFlash((n) => n + 1);
+    play("pop");
+    if (tapsRef.current.length >= 4) {
+      tapsRef.current = [];
+      cycleAccent();
+      play("oneUp");
+    }
+  }
 
   return (
     <div
@@ -495,10 +519,24 @@ function Console({
         <div className="flex items-stretch gap-3 p-3">
           {/* LEFT control column */}
           <div className="flex flex-col gap-2 shrink-0">
-            {/* POWER LED + label */}
-            <div className="flex items-center gap-1.5">
+            {/* POWER LED + label. The LED is a button so the rhythm-tap
+                Easter egg can land — four taps inside ~2s cycles the
+                accent color. Otherwise it just looks like the NES LED. */}
+            <button
+              type="button"
+              onClick={onLedTap}
+              aria-label="Power indicator"
+              title="Power"
+              className="flex items-center gap-1.5 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-neon-cyan rounded-sm"
+              style={{
+                // Tiny tactile press feedback without re-defining the
+                // whole button look — we only want the LED to feel live.
+                transform: ledFlash ? undefined : undefined,
+              }}
+            >
               <span
-                className="block w-2.5 h-2.5 rounded-full"
+                key={ledFlash}
+                className="block w-2.5 h-2.5 rounded-full motion-safe:animate-[ping_0.45s_ease-out]"
                 style={{
                   background: active || inserting ? "#ff2b2b" : "#5a1010",
                   boxShadow:
@@ -506,6 +544,10 @@ function Console({
                       ? "0 0 8px rgba(255,43,43,0.85), inset 0 0 2px rgba(255,255,255,0.55)"
                       : "inset 0 0 2px rgba(0,0,0,0.6)",
                   transition: "all 0.2s",
+                  // The animate-ping above is only triggered while the
+                  // span is freshly keyed — once mounted it sits idle.
+                  // The `key` change on each tap restarts the animation.
+                  animationIterationCount: 1,
                 }}
                 aria-hidden="true"
               />
@@ -515,7 +557,7 @@ function Console({
               >
                 POWER
               </span>
-            </div>
+            </button>
 
             {/* POWER slider button */}
             <ConsoleButton label="POWER" variant="slider" />

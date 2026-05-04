@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { LinkProps } from "next/link";
 import { useSound } from "./SoundProvider";
+import { haptic } from "@/lib/haptic";
 import type { SfxName } from "@/lib/arcadeAudio";
 
 type Props = Omit<LinkProps, "href"> & {
@@ -34,7 +35,10 @@ export default function SfxLink({
   const handlers = {
     onMouseEnter: () => hoverSfx && play(hoverSfx),
     onFocus: () => hoverSfx && play(hoverSfx),
-    onClick: () => clickSfx && play(clickSfx),
+    onClick: () => {
+      if (clickSfx) play(clickSfx);
+      haptic("tap");
+    },
   };
 
   if (external) {

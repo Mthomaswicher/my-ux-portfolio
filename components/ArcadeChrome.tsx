@@ -1,5 +1,6 @@
 "use client";
 
+import AccentToast from "./AccentToast";
 import CrtOverlays from "./CrtOverlays";
 import CursorTrail from "./CursorTrail";
 import KonamiCode from "./KonamiCode";
@@ -20,6 +21,7 @@ export default function ArcadeChrome() {
       <CursorTrail />
       <RoamPet />
       <KonamiCode />
+      <AccentToast />
     </>
   );
 }
