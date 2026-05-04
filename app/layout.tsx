@@ -10,6 +10,7 @@ import "./globals.css";
 import ArcadeChrome from "@/components/ArcadeChrome";
 import SoundToggle from "@/components/SoundToggle";
 import ThemeToggle from "@/components/ThemeToggle";
+import VisitorCounter from "@/components/VisitorCounter";
 import { SoundProvider } from "@/components/SoundProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ModeProvider } from "@/components/ModeProvider";
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ArcadeChrome />
               <ThemeToggle />
               <SoundToggle />
+              <VisitorCounter />
               {children}
             </SoundProvider>
           </ThemeProvider>
