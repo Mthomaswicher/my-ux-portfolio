@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import GuestbookCard from "./GuestbookCard";
+import { useMode } from "./ModeProvider";
 import { getPublicClient, type GuestbookRow } from "@/lib/supabase";
 
 type Stats = {
@@ -56,6 +57,38 @@ export default function GuestbookGallery() {
   const [usingLocal, setUsingLocal] = useState(false);
   const [liveError, setLiveError] = useState(false);
   const [justSigned, setJustSigned] = useState(false);
+  const { mode } = useMode();
+  const isBasic = mode === "basic";
+
+  // Copy swaps so basic ("Reading Room") mode reads as a plain
+  // guestbook instead of an arcade leaderboard.
+  const copy = isBasic
+    ? {
+        savedTag: "Saved",
+        savedBlurb: "Your entry is in the guestbook. Thanks for signing.",
+        totalLabel: "Total entries",
+        latestLabel: "Latest entry",
+        colorsLabel: "Pen colors",
+        entriesHeading: "Entries",
+        addYours: "Add yours →",
+        emptyHeader: null as string | null,
+        emptyBlurb: "No entries yet. Be the first.",
+        signCta: "Sign guestbook →",
+        loading: "Loading…",
+      }
+    : {
+        savedTag: "SAVED",
+        savedBlurb: "Your card is on the wall. Thanks for signing.",
+        totalLabel: "TOTAL SIGNS",
+        latestLabel: "LAST SIGN-IN",
+        colorsLabel: "COLOR PICKS",
+        entriesHeading: "ENTRIES",
+        addYours: "+ ADD YOURS",
+        emptyHeader: "░ NO HIGH SCORES YET ░",
+        emptyBlurb: "No one has signed the wall yet. Be the first.",
+        signCta: "[ SIGN IN ]",
+        loading: "LOADING…",
+      };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -130,10 +163,16 @@ export default function GuestbookGallery() {
           <span className="text-glow-lime mr-2" aria-hidden="true">
             ✓
           </span>
-          <span className="text-glow-lime font-pixel text-[11px] tracking-widest mr-3">
-            SAVED
+          <span
+            className={
+              isBasic
+                ? "text-ink font-mono text-[12px] uppercase tracking-widest mr-3"
+                : "text-glow-lime font-pixel text-[11px] tracking-widest mr-3"
+            }
+          >
+            {copy.savedTag}
           </span>
-          Your card is on the wall. Thanks for signing.
+          {copy.savedBlurb}
         </div>
       )}
 
@@ -141,23 +180,47 @@ export default function GuestbookGallery() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 cartridge p-1">
           <div className="p-3 sm:p-4">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-              TOTAL SIGNS
+              {copy.totalLabel}
             </div>
-            <div className="font-display text-[32px] sm:text-[40px] leading-none text-glow-amber mt-1">
-              {stats.total.toString().padStart(4, "0")}
+            <div
+              className={
+                isBasic
+                  ? "text-[28px] sm:text-[34px] leading-none text-ink mt-1 tabular-nums"
+                  : "font-display text-[32px] sm:text-[40px] leading-none text-glow-amber mt-1"
+              }
+              style={
+                isBasic
+                  ? { fontFamily: "var(--font-garamond)", fontWeight: 500 }
+                  : undefined
+              }
+            >
+              {isBasic
+                ? stats.total.toLocaleString()
+                : stats.total.toString().padStart(4, "0")}
             </div>
           </div>
           <div className="p-3 sm:p-4 border-l border-ink-ghost">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-              LAST SIGN-IN
+              {copy.latestLabel}
             </div>
-            <div className="font-display text-[24px] sm:text-[28px] leading-none text-glow-cyan mt-1 break-words">
+            <div
+              className={
+                isBasic
+                  ? "text-[18px] sm:text-[22px] leading-tight text-ink mt-1 break-words"
+                  : "font-display text-[24px] sm:text-[28px] leading-none text-glow-cyan mt-1 break-words"
+              }
+              style={
+                isBasic
+                  ? { fontFamily: "var(--font-garamond)", fontWeight: 500 }
+                  : undefined
+              }
+            >
               {formatRelative(stats.latestAt)}
             </div>
           </div>
           <div className="p-3 sm:p-4 border-t md:border-t-0 md:border-l border-ink-ghost col-span-2">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-2">
-              COLOR PICKS
+              {copy.colorsLabel}
             </div>
             <ul className="space-y-1.5">
               {COLORS.map((c) => {
@@ -215,14 +278,25 @@ export default function GuestbookGallery() {
       </section>
 
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-pixel text-[12px] tracking-widest text-glow-magenta">
-          <span aria-hidden="true">▌</span>ENTRIES
+        <h2
+          className={
+            isBasic
+              ? "font-mono text-[14px] sm:text-[15px] uppercase tracking-[0.18em] text-ink"
+              : "font-pixel text-[12px] tracking-widest text-glow-magenta"
+          }
+        >
+          {!isBasic && <span aria-hidden="true">▌</span>}
+          {copy.entriesHeading}
         </h2>
         <Link
           href="/sign"
-          className="font-pixel text-[10px] tracking-widest text-glow-cyan hover:underline focus-visible:underline"
+          className={
+            isBasic
+              ? "font-mono text-[12px] text-ink hover:underline underline-offset-4 focus-visible:underline"
+              : "font-pixel text-[10px] tracking-widest text-glow-cyan hover:underline focus-visible:underline"
+          }
         >
-          <span aria-hidden="true">+ </span>ADD YOURS
+          {copy.addYours}
         </Link>
       </div>
 
@@ -234,24 +308,41 @@ export default function GuestbookGallery() {
 
       {loading ? (
         <div className="font-mono text-[12px] text-ink-mute" aria-hidden="true">
-          LOADING…
+          {copy.loading}
         </div>
       ) : entries.length === 0 ? (
         <div className="cartridge p-8 text-center">
+          {copy.emptyHeader && (
+            <div
+              className="font-pixel text-[12px] tracking-widest text-glow-amber mb-3"
+              aria-hidden="true"
+            >
+              {copy.emptyHeader}
+            </div>
+          )}
           <div
-            className="font-pixel text-[12px] tracking-widest text-glow-amber mb-3"
-            aria-hidden="true"
+            className={
+              isBasic
+                ? "text-[15px] text-ink-dim mb-5"
+                : "font-mono text-[14px] text-ink-dim mb-5"
+            }
+            style={
+              isBasic
+                ? { fontFamily: "var(--font-garamond)" }
+                : undefined
+            }
           >
-            ░ NO HIGH SCORES YET ░
-          </div>
-          <div className="font-mono text-[14px] text-ink-dim mb-5">
-            No one has signed the wall yet. Be the first.
+            {copy.emptyBlurb}
           </div>
           <Link
             href="/sign"
-            className="cartridge px-4 py-2 font-pixel text-[10px] tracking-widest text-glow-cyan inline-block hover:shadow-neon-cyan transition-shadow"
+            className={
+              isBasic
+                ? "inline-block px-4 py-2 border border-ink-ghost text-[13px] text-ink hover:border-ink-mute"
+                : "cartridge px-4 py-2 font-pixel text-[10px] tracking-widest text-glow-cyan inline-block hover:shadow-neon-cyan transition-shadow"
+            }
           >
-            <span aria-hidden="true">[ </span>SIGN IN<span aria-hidden="true"> ]</span>
+            {copy.signCta}
           </Link>
         </div>
       ) : (

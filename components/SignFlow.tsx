@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState } from "react";
 import SignatureCanvas, { SignatureCanvasHandle } from "./SignatureCanvas";
+import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 import { haptic } from "@/lib/haptic";
 import { normalizeTag, randomTag } from "@/lib/visitorTags";
@@ -25,6 +26,8 @@ export default function SignFlow() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { play } = useSound();
+  const { mode } = useMode();
+  const isBasic = mode === "basic";
 
   const nameId = useId();
   const tagId = useId();
@@ -106,25 +109,52 @@ export default function SignFlow() {
       <div className="mx-auto max-w-3xl">
         <Link
           href="/"
-          className="inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan"
+          className={
+            isBasic
+              ? "inline-block py-2 text-[13px] text-ink-dim hover:text-ink underline-offset-4 hover:underline"
+              : "inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan"
+          }
         >
-          <span aria-hidden="true">← </span>BACK TO BOOT
+          <span aria-hidden="true">← </span>
+          {isBasic ? "Back" : "BACK TO BOOT"}
         </Link>
 
         <header className="mt-6 sm:mt-8 mb-8 sm:mb-10">
-          <div
-            className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-3"
-            aria-hidden="true"
-          >
-            ░ NEW PLAYER REGISTRATION ░
-          </div>
-          <h1 className="font-display text-[clamp(2.5rem,11vw,3.5rem)] sm:text-[64px] md:text-[88px] leading-[1.05] sm:leading-none text-glow-cyan">
-            Sign in.<span className="caret" aria-hidden="true" />
-          </h1>
-          <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">
-            Welcome, visitor. Pick a tag, pick a color, scribble your mark on the
-            cartridge. You&apos;ll show up on the high-score wall.
-          </p>
+          {!isBasic && (
+            <div
+              className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-3"
+              aria-hidden="true"
+            >
+              ░ NEW PLAYER REGISTRATION ░
+            </div>
+          )}
+          {isBasic ? (
+            <>
+              <h1
+                className="text-[clamp(1.625rem,6vw,3rem)] leading-[1.05] text-ink mb-4 break-words"
+                style={{ fontFamily: "var(--font-garamond)", fontWeight: 500 }}
+              >
+                Sign the guestbook
+              </h1>
+              <p
+                className="text-[15px] sm:text-[16px] text-ink-dim mt-2 max-w-xl leading-relaxed"
+                style={{ fontFamily: "var(--font-garamond)" }}
+              >
+                Pick a name, pick a pen, draw your mark. You&apos;ll appear in
+                the guestbook entries below.
+              </p>
+            </>
+          ) : (
+            <>
+              <h1 className="font-display text-[clamp(2.5rem,11vw,3.5rem)] sm:text-[64px] md:text-[88px] leading-[1.05] sm:leading-none text-glow-cyan">
+                Sign in.<span className="caret" aria-hidden="true" />
+              </h1>
+              <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">
+                Welcome, visitor. Pick a tag, pick a color, scribble your mark on the
+                cartridge. You&apos;ll show up on the high-score wall.
+              </p>
+            </>
+          )}
         </header>
 
         <form
@@ -189,7 +219,9 @@ export default function SignFlow() {
                 id={tagHelpId}
                 className="mt-1 font-mono text-[10px] text-ink-mute uppercase tracking-widest"
               >
-                3 letters/numbers, like an arcade high score.
+                {isBasic
+                  ? "Three letters or numbers, your initials."
+                  : "3 letters/numbers, like an arcade high score."}
               </div>
             </div>
           </section>
@@ -199,7 +231,7 @@ export default function SignFlow() {
               id={colorGroupId}
               className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-3"
             >
-              Card color
+              {isBasic ? "Pen color" : "Card color"}
             </legend>
             <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Card color">
               {COLORS.map((c) => (
@@ -231,7 +263,7 @@ export default function SignFlow() {
 
           <section className="mb-6">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-3">
-              Sign the cartridge
+              {isBasic ? "Sign here" : "Sign the cartridge"}
             </div>
             <SignatureCanvas ref={ref} color={color} />
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
@@ -262,7 +294,7 @@ export default function SignFlow() {
                 </button>
               </div>
               <span className="font-mono text-[10.5px] text-ink-mute uppercase tracking-widest">
-                CARD: {color}
+                {isBasic ? "Pen" : "Card"}: {color}
               </span>
             </div>
             <div className="mt-2 font-mono text-[10.5px] text-ink-mute leading-relaxed">
@@ -291,9 +323,17 @@ export default function SignFlow() {
               type="submit"
               disabled={submitting}
               aria-describedby={error ? errorId : undefined}
-              className="cartridge px-6 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+              className={
+                isBasic
+                  ? "px-5 py-3 min-h-[48px] border border-ink-ghost text-[14px] text-ink hover:border-ink-mute disabled:opacity-50 disabled:cursor-not-allowed"
+                  : "cartridge px-6 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+              }
             >
-              {submitting ? "SAVING…" : (
+              {isBasic ? (
+                submitting ? "Saving…" : "Sign"
+              ) : submitting ? (
+                "SAVING…"
+              ) : (
                 <>
                   <span aria-hidden="true">[ </span>ENTER<span aria-hidden="true"> → ]</span>
                 </>
@@ -301,15 +341,20 @@ export default function SignFlow() {
             </button>
             <Link
               href="/home"
-              className="py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
+              className={
+                isBasic
+                  ? "py-2 text-[13px] text-ink-dim hover:text-ink underline-offset-4 hover:underline"
+                  : "py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
+              }
             >
-              SKIP, TAKE ME TO THE WORK
+              {isBasic ? "Skip — see the work" : "SKIP, TAKE ME TO THE WORK"}
             </Link>
           </div>
 
           <div className="mt-12 font-mono text-[11px] text-ink-mute leading-relaxed">
-            Your card appears on the high-score wall once it&apos;s saved. No emails. No
-            tracking. Just a mark.
+            {isBasic
+              ? "Your entry appears in the guestbook once saved. No emails, no tracking, just a signature."
+              : "Your card appears on the high-score wall once it's saved. No emails. No tracking. Just a mark."}
           </div>
         </form>
       </div>
