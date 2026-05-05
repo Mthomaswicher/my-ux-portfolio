@@ -81,18 +81,28 @@ export const metadata: Metadata = {
 // so it inlines cleanly in <head>.
 const MODE_BOOTSTRAP = `try{var m=localStorage.getItem('mtw.mode');if(m==='basic'||m==='scenic'){document.documentElement.dataset.mode=m;}}catch(e){}`;
 
+// Force the boot screen ("/") to always render in dark, regardless of the
+// visitor's saved light/dark preference. On any other route we honor the
+// stored choice. Runs sync in <head> before React hydrates so there's no
+// FOUC between the SSR `data-theme="dark"` value and the user's pref.
+const THEME_BOOTSTRAP = `try{var p=(location.pathname||'/').replace(/\\/index\\.html$/,'/');if(p==='/'||p===''){document.documentElement.dataset.theme='dark';}else{var t=localStorage.getItem('mtw.theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'dark';}}catch(e){document.documentElement.dataset.theme='dark';}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
       data-mode="scenic"
+      data-theme="dark"
       suppressHydrationWarning
       className={`${display.variable} ${pixel.variable} ${mono.variable} ${roboto.variable} ${garamond.variable}`}
     >
       <body className="bg-bg-void text-ink antialiased">
-        {/* Runs before React hydrates so html[data-mode] matches the user's
-            saved choice — minimizes the wrong-view flash on hard reload. */}
+        {/* Both scripts run before React hydrates: MODE_BOOTSTRAP picks the
+            scenic/basic experience from localStorage, THEME_BOOTSTRAP locks
+            the boot screen ("/") to dark and respects the saved preference
+            elsewhere. Order matters only in that they don't race. */}
         <script dangerouslySetInnerHTML={{ __html: MODE_BOOTSTRAP }} />
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
         <ModeProvider>
           <ThemeProvider>
             <SoundProvider>

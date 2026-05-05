@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useMode } from "./ModeProvider";
 import { useTheme } from "./ThemeProvider";
 
@@ -9,13 +10,19 @@ type Props = { variant?: "floating" | "inline" };
  * Day/night toggle. Mirrors the SoundToggle layout: hidden on mobile in
  * the floating variant (so visitors see it inside the sidebar instead),
  * fixed top-right on desktop. Sits to the LEFT of the SoundToggle.
+ *
+ * Hidden in basic mode (basic owns its own palette) and on the boot
+ * screen "/" — that route is locked to dark and the toggle would
+ * misrepresent the visible theme.
  */
 export default function ThemeToggle({ variant = "floating" }: Props) {
   const { theme, toggle } = useTheme();
   const { mode } = useMode();
-  // Basic mode is opinionated about its own palette; theme toggle is hidden
-  // there so it doesn't fight the basic palette.
+  const pathname = usePathname();
+
   if (mode === "basic") return null;
+  if (pathname === "/" || pathname === "/index.html") return null;
+
   const isDark = theme === "dark";
 
   const baseChip =
