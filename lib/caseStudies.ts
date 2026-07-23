@@ -40,6 +40,7 @@ export type CaseStudy = {
 
 const IDP = "/images/case-studies/idp-release-plugin";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
+const OCS = "/images/case-studies/oportun-credit-servicing";
 const DCC = "/images/case-studies/demex-climate-center";
 const WEB3 = "/images/case-studies/web3-remittances";
 
@@ -690,6 +691,316 @@ export const caseStudies: CaseStudy[] = [
       { stat: "90%", label: "Reduced time for users to set up bill pay" },
       { stat: "37%", label: "Increase in users who set up auto-pay" },
       { stat: "16%", label: "Increase in loans paid on-time" },
+    ],
+  },
+
+  /* ─── Oportun Credit Card Servicing ─────────────────────────────── */
+  {
+    slug: "oportun-credit-servicing",
+    title: "Credit Card Servicing",
+    org: "Oportun (post-Digit acquisition)",
+    status: "SHIPPED",
+    tagline:
+      "Designing regulated credit card servicing into a live lending app for 2M+ members: unifying two incompatible product ecosystems under one design system before a hard March 2023 deadline.",
+    hero: `${OCS}/01-hero.png`,
+    heroScreens: [
+      `${OCS}/01-hero.png`,
+      `${OCS}/02-account-overview.png`,
+      `${OCS}/09-flow-architecture.png`,
+    ],
+    role: "UI/UX Designer",
+    team: "Design · Loans, Savings & Credit PODs · iOS & Android Eng",
+    timeframe: "Jul 2022 sprint → Mar 2023 launch",
+    tools: "Figma · iOS & Android · Benchmarking · Usability Testing",
+    accent: "lime",
+    brand: "oportun",
+    sections: [
+      {
+        id: "situation",
+        no: "01",
+        title: "The situation",
+        body: [
+          {
+            kind: "p",
+            text: "Oportun had recently acquired Digit, a savings app with close to a decade of user trust, and the two products were mid-convergence: Digit's savings-first user base and Oportun's loans user base were being unified under a single Oportun app. Between them, well over 2 million members were now in the same app, holding two very different sets of expectations about what it was for.",
+          },
+          {
+            kind: "p",
+            text: "The credit card was the newest piece of the lineup, and servicing it meant building on top of infrastructure designed from the ground up around personal loans. None of it (payment cadences, status states, regulatory disclosures) mapped cleanly from loans to a credit card, and none of it matched how members already thought about their money.",
+          },
+          {
+            kind: "callout",
+            tone: "minus",
+            text: "Missing the deadline would have been bad. Handing 2M+ members two incompatible mental models inside one app would have been worse, and much harder to walk back.",
+          },
+        ],
+      },
+      {
+        id: "task",
+        no: "02",
+        title: "The task",
+        body: [
+          {
+            kind: "p",
+            text: "As UI/UX Designer, I owned the full credit card servicing experience end to end: account overview, payment flows, auto-pay enrollment, transaction history, and the various payment status states, across iOS and Android. It had to feel like it belonged in the existing Oportun app, hold up under regulatory scrutiny, and be ready for a unified launch in March 2023.",
+          },
+          {
+            kind: "p",
+            text: "The hard part wasn't the amount of surface area to design. It was a question nobody had answered yet: how much of the loan servicing infrastructure could actually carry over to a credit card, how much needed to stretch, and how much would just break under the attempt.",
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "Two weeks for discovery. Every architectural question had to be settled before a single high-fidelity pixel got drawn.",
+          },
+        ],
+      },
+      {
+        id: "discovery",
+        no: "03",
+        title: "Getting smart, fast",
+        body: [
+          {
+            kind: "p",
+            text: "With only two weeks, there wasn't room for research that didn't directly shape a decision. Every method I used had to answer something specific about what to build, or what to leave alone.",
+          },
+          {
+            kind: "h",
+            text: "Competitive benchmarking",
+          },
+          {
+            kind: "p",
+            text: "To get a baseline for what a member already expects to find, I looked at how the leading consumer credit card apps handled the basics: payment status, scheduling flows, funding source setup. Less inspiration board, more reality check.",
+          },
+          {
+            kind: "h",
+            text: "User research across both legacy user bases",
+          },
+          {
+            kind: "p",
+            text: "Interviews and usability tests drew from members on both sides of the convergence, legacy Digit savers and legacy Oportun borrowers now sharing one app, and turned up three friction patterns that kept surfacing, session after session: anxiety over unclear payment status, drop-off in scheduling caused by confusing date constraints, and uncertainty about when a newly added funding source would actually be usable.",
+          },
+          {
+            kind: "h",
+            text: "Agent manual review",
+          },
+          {
+            kind: "p",
+            text: "Cross-referencing customer support documentation against our usability findings surfaced problems members never said out loud but were clearly driving call volume. This was the most useful step by far. Status labels that were technically correct were still confusing people, because the language had been written for legal precision, not for someone trying to figure out if they owed money.",
+          },
+          {
+            kind: "img",
+            src: `${OCS}/09-flow-architecture.png`,
+            alt: "End-to-end credit card servicing flow architecture",
+            caption: "Flow architecture, mapped before any screens were drawn: from app home through the credit card tab, payment flows, transaction history, and auto-pay enrollment. This is where the loan and credit infrastructure actually diverged.",
+          },
+          {
+            kind: "h",
+            text: "Flow architecture",
+          },
+          {
+            kind: "p",
+            text: "Before opening Figma at high fidelity, I mapped the entire servicing flow end to end: account setup, payments, status handling, auto-pay, transaction history. That map is what drew the line between what could stay shared loan infrastructure and what had to become credit-specific. Get that wrong early, and everything downstream inherits the mistake.",
+          },
+        ],
+      },
+      {
+        id: "decision",
+        no: "04",
+        title: "The system decision",
+        body: [
+          {
+            kind: "p",
+            text: "The moment that mattered most on this project wasn't really a design choice. It was architectural, it had to happen before any visual design started, and it meant pushing back on a direction that already had momentum with stakeholders.",
+          },
+          {
+            kind: "h",
+            text: "The pull toward a parallel system",
+          },
+          {
+            kind: "p",
+            text: "The obvious answer to \"how do we add credit card servicing?\" was to spin up a credit-specific design system next to the existing one, its own components, its own patterns, separate from everything else. It looked fast. It looked contained. A few stakeholders were already leaning that way.",
+          },
+          {
+            kind: "h",
+            text: "Making the case against it",
+          },
+          {
+            kind: "p",
+            text: "A parallel system would have quietly piled up technical debt and inconsistencies members would feel for years. Two component systems built for the same purpose tend to drift apart no matter how carefully you manage them. I brought the friction data from members who were already confused by the rebrand and made the case, directly to product and engineering leads, that the last thing this product needed was one more seam for people to trip over.",
+          },
+          {
+            kind: "callout",
+            tone: "plus",
+            text: "We extended the existing design system instead of forking it. Credit-specific components were built on top of what already existed, not next to it. Less ambiguity for whoever touched this next, and no new fault line for the platform to drift along.",
+          },
+          {
+            kind: "p",
+            text: "Getting product and engineering aligned took conversations well outside the sprint team. What tipped it, in the end, was showing that extension cost barely more up front and saved enormously on every feature that came after.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${OCS}/10-sketches-payment.png`,
+                alt: "Early hand-drawn wireframes for payment flow layout variations",
+                caption: "Payment flow explorations: lo-fi sketches mapping status hierarchy and action placement before any system decisions were locked.",
+              },
+              {
+                src: `${OCS}/11-sketches-overview.png`,
+                alt: "Early wireframes for credit card account overview and navigation",
+                caption: "Account overview explorations: working out how the credit card tab extended existing app navigation without fragmenting it.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "status",
+        no: "05",
+        title: "Designing for trust in a regulated surface",
+        body: [
+          {
+            kind: "p",
+            text: "Credit card servicing sits among the highest-trust surfaces in a financial app. Members show up because they need to pay something, and the one question on their mind is where do I stand. Answering that plainly, without cutting corners on regulatory accuracy, was the whole design problem.",
+          },
+          {
+            kind: "h",
+            text: "Making the status card the anchor",
+          },
+          {
+            kind: "p",
+            text: "I kept the status card pinned at the top of the credit card view instead of tucking it away as something that only appears when there's a problem. Members needed their payment position visible on every visit, not only when the system judged it worth surfacing. On a regulated payment surface, that constant visibility is basically the deal you're making with the user.",
+          },
+          {
+            kind: "p",
+            text: "That card had to hold three distinct states (upcoming, due, auto-pay active), each carrying its own urgency and its own required legal language. Making each one readable at a glance without leaning on color to do the work was the actual challenge; color alone doesn't meet accessibility requirements.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${OCS}/03-status-upcoming.png`,
+                alt: "Status card: Upcoming payment state",
+                caption: "Upcoming payment: calm, informational, no urgency.",
+              },
+              {
+                src: `${OCS}/04-status-due.png`,
+                alt: "Status card: Payment due state",
+                caption: "Payment due: urgency through label and badge, not color alone.",
+              },
+              {
+                src: `${OCS}/05-status-autopay.png`,
+                alt: "Status card: Auto pay enabled state",
+                caption: "Auto pay enabled. Member can relax. Trust confirmed.",
+              },
+            ],
+          },
+          {
+            kind: "p",
+            text: "What I landed on used type weight, spacing, and a restrained touch of badge-level color to build the hierarchy. Each badge still carried the legally required label, but the surrounding layout made the human meaning obvious, so the same screen could pass a compliance review and still make sense to someone glancing at their phone for two seconds.",
+          },
+          {
+            kind: "img",
+            src: `${OCS}/02-account-overview.png`,
+            alt: "Full credit card account overview screen with status card, auto-pay nudge, pay CTA, and recent activity",
+            caption: "The full account overview: status card anchors the page with a persistent auto-pay enrollment nudge, a primary Pay CTA, and recent activity below.",
+          },
+        ],
+      },
+      {
+        id: "autopay",
+        no: "06",
+        title: "The auto-pay enrollment flow",
+        body: [
+          {
+            kind: "p",
+            text: "Auto-pay is about the most valuable thing a credit card member can do. It kills late fees, protects credit scores, and takes a recurring worry off their plate. Getting people enrolled mattered. But the research showed real drop-off in the existing flow, and tracing it back led to a simple cause: setup steps were showing up at the wrong moment, without the context members needed.",
+          },
+          {
+            kind: "h",
+            text: "Folding in the funding source",
+          },
+          {
+            kind: "p",
+            text: "The old pattern sent members off to a separate settings section to add a funding source before they could even start enrolling in auto-pay. That detour killed momentum right when intent was highest. I rebuilt the flow so connecting a funding source happens inside auto-pay enrollment itself, so someone who's never linked a bank account can go start to finish without leaving the flow.",
+          },
+          {
+            kind: "h",
+            text: "Keeping dates inside the billing cycle",
+          },
+          {
+            kind: "p",
+            text: "Members were scheduling auto-pay for dates outside their billing cycle without realizing it, which meant payments got rejected or landed on the wrong statement. The fix was a calendar constrained to valid billing-cycle dates, with the disclosure written out inline instead of hidden behind a tooltip nobody was going to tap.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${OCS}/06-autopay-amount.png`,
+                alt: "Auto-pay: select amount screen",
+                caption: "Step 1: select amount. Three clear options with billing disclosures surfaced in context, not behind a link.",
+              },
+              {
+                src: `${OCS}/07-autopay-date.png`,
+                alt: "Auto-pay: select date with billing-cycle-constrained calendar",
+                caption: "Step 2: select date. Calendar constrained to valid billing-cycle dates with due date highlighted.",
+              },
+            ],
+          },
+          {
+            kind: "img",
+            src: `${OCS}/08-autopay-confirm.png`,
+            alt: "Auto-pay: review and confirm with full regulatory disclosure",
+            caption: "Step 3: review and confirm. Full ACH authorization language surfaced before the final action, satisfying regulatory requirements without hiding them.",
+          },
+        ],
+      },
+      {
+        id: "parity",
+        no: "07",
+        title: "Building both platforms at once",
+        body: [
+          {
+            kind: "p",
+            text: "The usual approach to multi-platform design is to build for one platform, ship it, then adapt the second. It sounds efficient: design it once. What actually happens is drift: the second platform inherits decisions shaped by the first platform's quirks, not by what's actually right for it.",
+          },
+          {
+            kind: "p",
+            text: "For a regulated payment product, that drift is a compliance problem, not just a design one. Payment status has to behave the same way on iOS and Android. The law doesn't care which OS someone's on. I designed both platforms in parallel so every status state, every disclosure, every confirmation pattern matched by design, not by coincidence.",
+          },
+          {
+            kind: "callout",
+            tone: "plus",
+            text: "Designing iOS and Android side by side ruled out regulatory drift before it could start. Every payment state, disclosure, and confirmation flow was specified once, together, not patched to match after the fact.",
+          },
+          {
+            kind: "h",
+            text: "Phased delivery",
+          },
+          {
+            kind: "p",
+            text: "Delivery order followed member impact and regulatory risk. Account overview, payment flows, and status hierarchy went out in Phase 1: the highest-traffic, most compliance-sensitive ground. Auto-pay enrollment, secure payment, and transaction detail followed in Phase 2, built on the foundation Phase 1 had already laid.",
+          },
+        ],
+      },
+    ],
+    results: [
+      {
+        stat: "4.7★",
+        label: "App Store rating",
+        sub: "289K+ reviews post-launch",
+      },
+      {
+        stat: "1M+",
+        label: "Google Play downloads",
+        sub: "Across both platforms at scale",
+      },
+      {
+        stat: "Mar '23",
+        label: "Unified launch shipped on time",
+        sub: "Zero fragmentation regressions",
+      },
     ],
   },
 

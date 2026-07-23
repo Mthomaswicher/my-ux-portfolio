@@ -22,6 +22,7 @@ export type Project = {
 
 const IDP = "/images/case-studies/idp-release-plugin";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
+const OCS = "/images/case-studies/oportun-credit-servicing";
 const WEB3 = "/images/case-studies/web3-remittances";
 
 export const projects: Project[] = [
@@ -70,6 +71,29 @@ export const projects: Project[] = [
   },
   {
     no: "03",
+    title: "Credit Card Servicing",
+    org: "Oportun (formerly Digit)",
+    status: "SHIPPED",
+    blurb:
+      "Integrated regulated credit card servicing into a live lending app for 2M+ members — one design system, two platforms, one hard March 2023 deadline.",
+    role: "UI/UX Designer",
+    team: "Design · Loans, Savings & Credit PODs",
+    timeframe: "Jul 2022 sprint → Mar 2023 launch",
+    tools: "Figma · iOS & Android · Usability Testing",
+    href: "/work/oportun-credit-servicing",
+    accent: "lime",
+    hero: `${OCS}/01-hero.png`,
+    tilt: -1.5,
+    tags: ["#fintech", "#credit", "#mobile"],
+    mascot: "💳",
+    screens: [
+      `${OCS}/01-hero.png`,
+      `${OCS}/02-account-overview.png`,
+      `${OCS}/05-status-autopay.png`,
+    ],
+  },
+  {
+    no: "04",
     title: "Demex Climate Center",
     org: "The Demex Group",
     status: "SHIPPED",
@@ -92,7 +116,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    no: "04",
+    no: "05",
     title: "Web3 Powered Remittances",
     org: "Oportun · Hackathon",
     status: "WON",
