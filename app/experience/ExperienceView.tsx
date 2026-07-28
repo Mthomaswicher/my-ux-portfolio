@@ -9,7 +9,7 @@ import BasicExperience from "@/components/BasicExperience";
 /**
  * The page shell (sidebar + main landmark) lives here so both experience
  * variants can ship in the HTML without duplicating `id="main"`. CSS picks
- * one at first paint — see the "Mode-gated content" note in globals.css.
+ * one at first paint, see the "Mode-gated content" note in globals.css.
  *
  * `relative` on <main> is needed by the basic variant's scroll progress
  * bar and is inert for the scenic one.

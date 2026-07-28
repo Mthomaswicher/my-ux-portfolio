@@ -80,7 +80,7 @@ export default function SignFlow() {
         localStorage.setItem("mtw.guestbook", JSON.stringify([entry, ...local]));
         return true;
       } catch {
-        // Private browsing / quota — nothing more we can do here.
+        // Private browsing / quota, nothing more we can do here.
         return false;
       }
     }
@@ -88,7 +88,7 @@ export default function SignFlow() {
     const client = getPublicClient();
 
     if (!client) {
-      // No Supabase configured — local-only is the expected path.
+      // No Supabase configured, local-only is the expected path.
       saveLocally();
       play("save");
       haptic("save");
@@ -114,14 +114,14 @@ export default function SignFlow() {
     } catch {
       // The live wall is unreachable (project down, RLS rejection, offline).
       // Don't lose the drawing and don't show a raw "TypeError: Failed to
-      // fetch" — save it here and let the guestbook explain the situation.
+      // fetch", save it here and let the guestbook explain the situation.
       if (saveLocally()) {
         play("save");
         haptic("save");
         router.push("/guestbook?welcome=1&local=1");
       } else {
         setError(
-          "Couldn't save your signature — the guestbook is unreachable right now. Please try again later.",
+          "Couldn't save your signature. The guestbook is unreachable right now, so please try again later.",
         );
         play("error");
         haptic("error");
@@ -167,8 +167,8 @@ export default function SignFlow() {
                   Sign in.<span className="caret" aria-hidden="true" />
                 </h1>
                 <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">
-                  Welcome, visitor. Pick a tag, pick a color, scribble your mark on the
-                  cartridge. You&apos;ll show up on the high-score wall.
+                  Pick a tag, pick a color, scribble something. You&apos;ll show up on the
+                  wall with everyone else.
                 </p>
               </>
             }
@@ -184,8 +184,8 @@ export default function SignFlow() {
                   className="text-[15px] sm:text-[16px] text-ink-dim mt-2 max-w-xl leading-relaxed"
                   style={{ fontFamily: "var(--font-garamond)" }}
                 >
-                  Pick a name, pick a pen, draw your mark. You&apos;ll appear in
-                  the guestbook entries below.
+                  Pick a name, pick a pen, draw something. You&apos;ll show up in the
+                  entries below.
                 </p>
               </>
             }
@@ -381,15 +381,15 @@ export default function SignFlow() {
             >
               <ModeText
                 scenic="SKIP, TAKE ME TO THE WORK"
-                basic="Skip — see the work"
+                basic="Skip this, see the work"
               />
             </Link>
           </div>
 
           <div className="mt-12 font-mono text-[11px] text-ink-mute leading-relaxed">
             <ModeText
-              scenic="Your card appears on the high-score wall once it's saved. No emails. No tracking. Just a mark."
-              basic="Your entry appears in the guestbook once saved. No emails, no tracking, just a signature."
+              scenic="Your card goes up once it saves. No emails, no tracking, nothing else."
+              basic="Your entry goes up once it saves. No emails, no tracking, nothing else."
             />
           </div>
         </form>

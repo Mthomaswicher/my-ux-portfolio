@@ -18,7 +18,7 @@ const AUTO_DISMISS_MS = 4500;
  * navigate as expected.
  *
  * How it stays out of the way:
- *   - Touch + pen pointers only — never fires on a desktop mouse.
+ *   - Touch + pen pointers only, never fires on a desktop mouse.
  *   - Cancels on any pointer movement past 8px (so a scroll that
  *     starts on a cartridge isn't treated as a long press).
  *   - Suppresses the synthesized click that follows a successful long

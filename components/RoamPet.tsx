@@ -111,7 +111,7 @@ function getVisitorId(): string {
 
 /** Insert this visitor (no-op if already present), then return the total
  *  unique-visitor count. Returns null if Supabase isn't configured or the
- *  network call fails — caller should fall back to a non-rank phrase. */
+ *  network call fails, caller should fall back to a non-rank phrase. */
 async function recordPickupGetRank(): Promise<number | null> {
   const client = getPublicClient();
   if (!client) return null;
@@ -125,7 +125,7 @@ async function recordPickupGetRank(): Promise<number | null> {
     /* ignore */
   }
   try {
-    // INSERT … ON CONFLICT DO NOTHING — no UPDATE policy needed because
+    // INSERT … ON CONFLICT DO NOTHING, no UPDATE policy needed because
     // existing rows are skipped at the conflict, not updated. We then count
     // unconditionally so we still get a rank even when the visitor was
     // already in the table from a prior session.
@@ -275,7 +275,7 @@ export default function RoamPet() {
     return () => window.clearTimeout(id);
   }, [enabled, walking, dragging, falling]);
 
-  // Eye tracking — runs always; while dragging, pet looks at the cursor too.
+  // Eye tracking, runs always; while dragging, pet looks at the cursor too.
   useEffect(() => {
     if (!enabled) return;
     const id = window.setInterval(() => {
@@ -310,7 +310,7 @@ export default function RoamPet() {
     if (!rankShownRef.current) {
       rankShownRef.current = true;
       if (rankRef.current && rankRef.current > 0) {
-        // We already know the rank from a previous visit — show it instantly.
+        // We already know the rank from a previous visit, show it instantly.
         flashBubble(rankLine(rankRef.current), 3200);
       } else {
         // Don't flash a placeholder; kick off the network call and either
@@ -332,7 +332,7 @@ export default function RoamPet() {
           }
         });
         // Watchdog: if the rank request takes longer than 1.2s, stop
-        // waiting and play a normal line — we'll still cache the rank
+        // waiting and play a normal line, we'll still cache the rank
         // for the next pickup once it eventually resolves.
         window.setTimeout(() => {
           if (!resolved) {
@@ -417,7 +417,7 @@ export default function RoamPet() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-40 select-none"
     >
-      {/* Outer pet anchor — only positions; never mirrors. The bubble lives
+      {/* Outer pet anchor, only positions; never mirrors. The bubble lives
           here so it always reads left-to-right regardless of walk direction. */}
       <div
         className="absolute"

@@ -8,7 +8,7 @@
 type Pattern = "tap" | "select" | "kerchunk" | "save" | "error";
 
 const PATTERNS: Record<Pattern, number | number[]> = {
-  // Quick blip — used for hover/tap-style confirmations.
+  // Quick blip, used for hover/tap-style confirmations.
   tap: 8,
   // Two-stage chirp for path picks and cartridge launches.
   select: [12, 28, 18],
@@ -23,7 +23,7 @@ const PATTERNS: Record<Pattern, number | number[]> = {
 export function haptic(pattern: Pattern) {
   if (typeof window === "undefined") return;
   if (typeof navigator === "undefined") return;
-  // Respect the OS-level "reduce motion" preference — subtle vibration
+  // Respect the OS-level "reduce motion" preference, subtle vibration
   // is still motion to a vestibular-disorder user.
   try {
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches)

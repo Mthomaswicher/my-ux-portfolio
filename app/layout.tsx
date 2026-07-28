@@ -63,7 +63,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Matthew Thomas-Wicher · Sr. Product Designer",
   description:
-    "Sr. Product Designer in Washington, D.C. Building thoughtful, data-informed software in highly regulated environments.",
+    "Sr. Product Designer in Washington, D.C. I build software for banks, insurers, and other places where the rules are strict.",
   metadataBase: new URL("http://localhost:3000"),
   formatDetection: {
     telephone: false,
@@ -71,12 +71,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Matthew Thomas-Wicher · Sr. Product Designer",
     description:
-      "Sr. Product Designer in Washington, D.C. Currently designing at Capital One.",
+      "Sr. Product Designer in Washington, D.C. Currently at Capital One.",
     type: "website",
   },
 };
 
-// Runs before React hydrates — sets html[data-mode] from the saved choice
+// Runs before React hydrates, sets html[data-mode] from the saved choice
 // so CSS can hide the wrong view on first paint. Kept tiny and string-only
 // so it inlines cleanly in <head>.
 const MODE_BOOTSTRAP = `try{var m=localStorage.getItem('mtw.mode');if(m==='basic'||m==='scenic'){document.documentElement.dataset.mode=m;}}catch(e){}`;

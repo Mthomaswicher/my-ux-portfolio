@@ -16,14 +16,14 @@ import { BONUS_TRACK, CAREER_STAGES, type CareerStage } from "@/lib/career";
 /**
  * Basic-mode experience: editorial timeline with scroll-driven interactivity.
  * Same data as the scenic Journey, but with quiet, paper-portfolio energy
- * instead of arcade flourish. Interactions are subtle and reading-focused —
+ * instead of arcade flourish. Interactions are subtle and reading-focused,
  * a top progress bar, count-up stats, a rail that draws as you scroll, and
  * a sticky period indicator.
  */
 export default function BasicExperience() {
   const reduce = useReducedMotion();
 
-  // Most-recent-first reading order — readers usually want the current role
+  // Most-recent-first reading order, readers usually want the current role
   // up top in a CV.
   const stages = CAREER_STAGES.slice().reverse();
 
@@ -37,7 +37,7 @@ export default function BasicExperience() {
 
   return (
       <>
-        {/* Top progress bar — anchored to the viewport, scales with scroll. */}
+        {/* Top progress bar, anchored to the viewport, scales with scroll. */}
         <motion.div
           aria-hidden="true"
           className="fixed left-0 right-0 top-0 h-px bg-ink origin-left z-30"
@@ -91,7 +91,7 @@ function Hero({ stages }: { stages: CareerStage[] }) {
         className="text-[11px] uppercase tracking-[0.18em] text-ink-mute mb-4 font-mono"
         aria-hidden="true"
       >
-        2014 — Today
+        2014 to today
       </motion.div>
 
       <motion.h1
@@ -102,8 +102,8 @@ function Hero({ stages }: { stages: CareerStage[] }) {
         style={{ fontFamily: "var(--font-garamond)", fontWeight: 500 }}
       >
         Nine years,{" "}
-        <em className="not-italic text-ink-dim">three cities</em>, one
-        thread.
+        <em className="not-italic text-ink-dim">three cities</em>, and a
+        strange route in.
       </motion.h1>
 
       <motion.p
@@ -113,9 +113,9 @@ function Hero({ stages }: { stages: CareerStage[] }) {
         className="text-[clamp(1rem,2vw,1.2rem)] leading-[1.55] text-ink-dim max-w-2xl mb-10"
         style={{ fontFamily: "var(--font-garamond)" }}
       >
-        Litigation taught me to read complex systems. Engineering taught me
-        to build them. Product design is where those two habits finally met.
-        Below is the long way I got here.
+        I spent five years in litigation reading documents nobody wanted to
+        read. Then I learned to code. Design is where both of those turned
+        out to be useful. Here is the long version.
       </motion.p>
 
       <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-md border-t border-ink-ghost pt-6">

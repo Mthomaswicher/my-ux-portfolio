@@ -11,7 +11,7 @@ type Props = { variant?: "floating" | "inline" };
  * fixed top-right on desktop. Sits to the LEFT of the SoundToggle.
  *
  * Hidden in basic mode (basic owns its own palette) and on the boot
- * screen "/" — that route is locked to dark and the toggle would
+ * screen "/", that route is locked to dark and the toggle would
  * misrepresent the visible theme.
  */
 export default function ThemeToggle({ variant = "floating" }: Props) {
@@ -19,7 +19,7 @@ export default function ThemeToggle({ variant = "floating" }: Props) {
   const pathname = usePathname();
 
   // Basic mode hides this via CSS (`.scenic-chrome`), not by returning
-  // null — see SoundToggle for why. The boot-screen check is safe to do
+  // null, see SoundToggle for why. The boot-screen check is safe to do
   // in JS because the path is known at render time on both sides.
   if (pathname === "/" || pathname === "/index.html") return null;
 

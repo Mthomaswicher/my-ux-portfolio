@@ -17,7 +17,7 @@ const DESTINATION_DEFAULT = "/home";
 
 /**
  * Stage coordinates inside the SVG-style logical space (800 x 500). The
- * scene auto-fits to the container via CSS — we lay everything out in this
+ * scene auto-fits to the container via CSS, we lay everything out in this
  * fixed coordinate space so animation math is simple.
  */
 const STAGE_W = 800;
@@ -30,7 +30,7 @@ function endFor(mode: Mode) {
   return mode === "basic" ? BASIC_END : SCENIC_END;
 }
 
-/** Walk waypoints — a curve looks more "walking down a path"
+/** Walk waypoints, a curve looks more "walking down a path"
  * than a straight line. */
 function pathFor(mode: Mode) {
   const end = endFor(mode);
@@ -115,7 +115,7 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
     haptic("select");
   }
 
-  // Position of robot in stage space — at fork until chosen, then animates.
+  // Position of robot in stage space, at fork until chosen, then animates.
   const robotPos = (() => {
     if (!chosen) return FORK;
     const [a, b, c] = pathFor(chosen);

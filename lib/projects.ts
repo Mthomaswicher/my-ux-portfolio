@@ -32,7 +32,7 @@ export const projects: Project[] = [
     org: "Capital One · Internal Developer Platform",
     status: "SHIPPED",
     blurb:
-      "Streamlining release workflows so engineers can track deployments, approvals, and statuses without context-switching.",
+      "Shipping code at Capital One meant bouncing between five tools to answer one question. I put releases in one place.",
     role: "UI/UX Designer",
     team: "2 designers · multiple eng + product partners",
     timeframe: "32 weeks · Finance",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
     blurb:
-      "Reframed the home screen from feature ads to actionable financial insights, with a 37% lift in auto-pay setup.",
+      "The home screen was advertising features instead of doing anything. We made it useful. Auto-pay setup went up 37%.",
     role: "UI/UX Designer",
     team: "Design · Loans, Savings, Credit PODs",
     timeframe: "32 weeks · Finance",
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
     blurb:
-      "Integrated regulated credit card servicing into a live lending app for 2M+ members — one design system, two platforms, one hard March 2023 deadline.",
+      "Credit card servicing bolted onto a lending app for 2M+ members. Two platforms, one design system, a March 2023 deadline that would not move.",
     role: "UI/UX Designer",
     team: "Design · Loans, Savings & Credit PODs",
     timeframe: "Jul 2022 sprint → Mar 2023 launch",
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     org: "The Demex Group",
     status: "SHIPPED",
     blurb:
-      "Founding product design + engineering for a climate-risk web app that turned dense weather data into something insurers and businesses could actually use.",
+      "First designer at a climate startup, and I wrote the front end too. The job was making dense weather data usable by people buying insurance.",
     role: "Founding Product Designer · Full-Stack Engineer",
     team: "Design + eng founding team · cross-functional w/ data science",
     timeframe: "Climate-fintech startup",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     org: "Oportun · Hackathon",
     status: "WON",
     blurb:
-      "Won Most Creative Idea at the Oportun hackathon. A Stellar-rail remittance flow that cut fees and delivery time for members sending money home.",
+      "A remittance flow built on Stellar rails, cheaper and faster for members sending money home. Won Most Creative Idea at the Oportun hackathon.",
     role: "Product Designer",
     team: "Design + engineering hackathon team",
     timeframe: "Hackathon · Most Creative Idea winner",

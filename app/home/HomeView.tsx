@@ -6,7 +6,7 @@ import BasicHome from "@/components/BasicHome";
 /**
  * The page shell (sidebar + main landmark) lives here so both home
  * variants can ship in the HTML without duplicating `id="main"` or the
- * navigation landmark. CSS picks one at first paint — see the
+ * navigation landmark. CSS picks one at first paint, see the
  * "Mode-gated content" note in globals.css for why this isn't a JS branch.
  */
 export default function HomeView() {

@@ -3,7 +3,7 @@
  *
  * Why not `useMode()` and branch in JS: this is a static export, so the
  * server HTML is always the scenic variant. A JS branch only corrects
- * itself once React hydrates, which on a throttled phone is seconds —
+ * itself once React hydrates, which on a throttled phone is seconds,
  * so a Reading Room visitor would watch arcade copy sit on screen and
  * then swap. It also guarantees a hydration mismatch on every page.
  *

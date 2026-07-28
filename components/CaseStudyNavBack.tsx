@@ -5,7 +5,7 @@ type Props = { variant: "top" | "bottom" };
 
 /**
  * Back-to-work link on case study pages. Both copies ship and CSS picks
- * one at first paint — see the "Mode-gated content" note in globals.css.
+ * one at first paint, see the "Mode-gated content" note in globals.css.
  */
 export default function CaseStudyNavBack({ variant }: Props) {
   const isTop = variant === "top";

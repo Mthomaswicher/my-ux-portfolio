@@ -1,7 +1,7 @@
 /**
  * Hidden boot-screen lines that surface based on the current time, the
  * date, or how many times the visitor has booted MTW.ARCADE in this
- * browser. All optional — none of these gate functionality, they just
+ * browser. All optional, none of these gate functionality, they just
  * sneak extra personality into the BIOS log.
  */
 
@@ -76,7 +76,7 @@ function timeLine(now: Date): string | null {
 
 /**
  * Compose extra BIOS lines for this boot. Returns 0–2 lines that the
- * caller splices into the static line list. Order matters — we prepend
+ * caller splices into the static line list. Order matters, we prepend
  * the visit milestone (first ever / round number) and append the
  * time-based line so it lands closer to "READY.".
  */

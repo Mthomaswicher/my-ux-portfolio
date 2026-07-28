@@ -7,7 +7,7 @@ import { ACCENT_CYCLE_EVENT, type Accent } from "@/lib/accentEgg";
  * Renders the "+1UP · ACCENT: …" toast whenever any Easter-egg trigger
  * (Konami code, NES power-LED rhythm tap, etc.) calls cycleAccent().
  * Mounted once inside ArcadeChrome so every trigger shares the same
- * single floating toast slot — no chance of stacking duplicates.
+ * single floating toast slot, no chance of stacking duplicates.
  */
 export default function AccentToast() {
   const [toast, setToast] = useState<string | null>(null);

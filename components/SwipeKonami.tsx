@@ -7,7 +7,7 @@ import { useSound } from "./SoundProvider";
 /**
  * Mobile equivalent of the keyboard Konami code. Swipe up · up · down ·
  * down · left · right · left · right anywhere on the page, then tap
- * twice — the accent color cycles and the +1UP toast pops. Listens
+ * twice, the accent color cycles and the +1UP toast pops. Listens
  * passively to pointer events; never preventDefault, so normal scroll
  * and taps keep working.
  *

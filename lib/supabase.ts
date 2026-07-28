@@ -28,7 +28,7 @@ export function getAdminClient(): SupabaseClient | null {
  *
  * supabase-js retries failed requests with exponential backoff (~0.4s, 1.4s,
  * 3.4s, …). Left alone, a dead project leaves the guestbook spinning on
- * "LOADING…" for ~10s — long enough that visitors read it as broken.
+ * "LOADING…" for ~10s, long enough that visitors read it as broken.
  *
  * Reads and writes get different budgets on purpose:
  *

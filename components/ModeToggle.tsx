@@ -14,7 +14,7 @@ export default function ModeToggle() {
   const { play } = useSound();
   const isScenic = mode === "scenic";
 
-  // The visible label swaps via CSS, but ARIA state can't — and emitting
+  // The visible label swaps via CSS, but ARIA state can't, and emitting
   // the real value on the server would disagree with a basic-mode client
   // and fail hydration, which drops the whole root to client rendering.
   // So describe the control generically until after mount.

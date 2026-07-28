@@ -53,7 +53,7 @@ export default function BootSequence() {
 
   // Easter egg: triple-tap the MTW.ARCADE title within ~700ms to cycle
   // the accent color. Works on touch and mouse both. Doesn't change the
-  // h1's semantics — heading is still a heading.
+  // h1's semantics, heading is still a heading.
   const titleTapsRef = useRef<number[]>([]);
   function onTitleTap() {
     const now = Date.now();
@@ -70,10 +70,10 @@ export default function BootSequence() {
 
   // Intro routing rules:
   // 1. Fresh external arrival at / (typed URL, link from another site, or a
-  //    reload) — always show the intro, even for returning visitors.
+  //    reload), always show the intro, even for returning visitors.
   // 2. Internal client-side nav to / from elsewhere in the app (Footer's
-  //    "INSERT COIN" link from /home, etc.) — skip the intro and go to /home.
-  // 3. Already saw the intro this document session and bouncing back to / —
+  //    "INSERT COIN" link from /home, etc.), skip the intro and go to /home.
+  // 3. Already saw the intro this document session and bouncing back to /,
   //    skip the intro.
   //
   // Detection:
@@ -94,7 +94,7 @@ export default function BootSequence() {
     }
 
     // Someone who already picked the Reading Room never gets the arcade
-    // intro again — they go straight to the work. Scenic visitors still
+    // intro again, they go straight to the work. Scenic visitors still
     // see it on every fresh arrival, which is the intended showpiece.
     if (hasChosen && mode === "basic") {
       router.replace("/home");

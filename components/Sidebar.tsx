@@ -173,11 +173,12 @@ export default function Sidebar() {
                     SR. PRODUCT DESIGNER
                   </div>
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
-                    I design data-informed software for highly regulated, large-scale environments.
-                    Currently shipping at <span className="text-glow-cyan">Capital One</span>.
+                    I design software for banks, insurers, and other places where
+                    the rules are strict and the stakes are real. Currently at{" "}
+                    <span className="text-glow-cyan">Capital One</span>.
                   </p>
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
-                    Previously at Berkeley Research Group, Oportun, and Demex.
+                    Before that: Berkeley Research Group, Oportun, and Demex.
                   </p>
                 </>
               }
@@ -186,9 +187,9 @@ export default function Sidebar() {
                   className="text-[14px] leading-relaxed text-ink-dim"
                   style={{ fontFamily: "var(--font-garamond)" }}
                 >
-                  I design data-informed software for highly regulated, large-scale
-                  environments. Currently shipping at Capital One; previously at
-                  Berkeley Research Group, Oportun, and Demex.
+                  I design software for banks, insurers, and other places where the
+                  rules are strict and the stakes are real. Currently at Capital One.
+                  Before that: Berkeley Research Group, Oportun, and Demex.
                 </p>
               }
             />

@@ -78,7 +78,7 @@ export default function Lab() {
                 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute mb-3"
                 aria-hidden="true"
               >
-                Experiments
+                Side projects
               </div>
             }
           />
@@ -91,8 +91,8 @@ export default function Lab() {
           </h1>
 
           <p className="font-mono text-[15px] text-ink-dim mb-12 sm:mb-16 max-w-xl leading-relaxed">
-            A drawer for design experiments, micro-tools, and weekend builds. Most of these
-            don&apos;t deserve a case study, but they earn their keep.
+            Experiments, small tools, and weekend builds. None of it warrants a
+            full case study. I like it anyway.
           </p>
 
           <section aria-labelledby="exhibit-money-magnet">
@@ -141,11 +141,10 @@ export default function Lab() {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
               <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
-                A personal-finance app concept built for a 19-day hackathon, and the
-                winning entry. The premise: instead of guilt-tripping users about every
-                latte, frame spending around the goals they&apos;re actually saving toward.
-                Four screens trace the empty-state onboarding through to a populated
-                dashboard with insights.
+                A personal finance app built in 19 days for a hackathon. It won.
+                The idea was to stop guilt-tripping people about coffee and
+                organize spending around what they are actually saving for. Four
+                screens, from empty state to a dashboard with something in it.
               </p>
               <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
@@ -185,9 +184,9 @@ export default function Lab() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
               <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
                 A 3-tier token system for Berkeley Research Group&apos;s Roundtable
-                research platform. Refactoring the design library into Primitives,
-                Semantic, and Component layers untangled engineering pain-points
-                and accelerated front-end delivery by ~25%.
+                platform. Splitting the library into Primitives, Semantic, and
+                Component layers cleared out a pile of engineering complaints and
+                made front-end delivery about 25% faster.
               </p>
               <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>

@@ -144,7 +144,7 @@ function HardCabinet() {
 
   // Inflate the hit zone around the console so the drop is forgiving the
   // pointer doesn't have to land precisely on the console rectangle.
-  // Generous padding here — the visible halo matches the hit area, but
+  // Generous padding here, the visible halo matches the hit area, but
   // we keep an extra cushion beyond it so a near-miss still counts.
   const HIT_PADDING_X = 220;
   const HIT_PADDING_Y = 160;
@@ -284,7 +284,7 @@ function HardCabinet() {
 
       {/* Horizontal carousel. Cartridges sit in a row; users can scroll the
           rail with the trackpad or the ◀/▶ buttons. Each card stays fully
-          draggable up to the console — touch-none + setPointerCapture
+          draggable up to the console, touch-none + setPointerCapture
           inside the drag handlers prevent the rail's horizontal scroll
           from intercepting an in-progress drag. */}
       <div className="relative">
@@ -385,7 +385,7 @@ function HardCabinet() {
   );
 }
 
-/* ─── Console — styled to look like an NES front-loader ─────────────── */
+/* ─── Console, styled to look like an NES front-loader ─────────────── */
 
 function Console({
   innerRef,
@@ -435,7 +435,7 @@ function Console({
       className="relative mb-10 mx-auto"
       style={{ maxWidth: 480 }}
     >
-      {/* Forgiving drop-zone halo around the whole console — the visible
+      {/* Forgiving drop-zone halo around the whole console, the visible
           dashed border tells the user how big the actual drop target is.
           Sized to roughly match HIT_PADDING_{X,Y} in HardCabinet. */}
       <div
@@ -454,7 +454,7 @@ function Console({
         />
       </div>
 
-      {/* NES BODY — two-tone gray plastic with a black top stripe */}
+      {/* NES BODY, two-tone gray plastic with a black top stripe */}
       <div
         ref={innerRef}
         role="region"
@@ -480,7 +480,7 @@ function Console({
               ].join(", "),
         }}
       >
-        {/* Top trim — black bar with the "ENTERTAINMENT SYSTEM" name plate */}
+        {/* Top trim, black bar with the "ENTERTAINMENT SYSTEM" name plate */}
         <div
           className="flex items-center justify-between px-3 py-1.5"
           style={{
@@ -515,12 +515,12 @@ function Console({
           </span>
         </div>
 
-        {/* Body row — power LED + buttons on the left, cartridge slot on the right */}
+        {/* Body row, power LED + buttons on the left, cartridge slot on the right */}
         <div className="flex items-stretch gap-3 p-3">
           {/* LEFT control column */}
           <div className="flex flex-col gap-2 shrink-0">
             {/* POWER LED + label. The LED is a button so the rhythm-tap
-                Easter egg can land — four taps inside ~2s cycles the
+                Easter egg can land, four taps inside ~2s cycles the
                 accent color. Otherwise it just looks like the NES LED. */}
             <button
               type="button"
@@ -530,7 +530,7 @@ function Console({
               className="flex items-center gap-1.5 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-neon-cyan rounded-sm"
               style={{
                 // Tiny tactile press feedback without re-defining the
-                // whole button look — we only want the LED to feel live.
+                // whole button look, we only want the LED to feel live.
                 transform: ledFlash ? undefined : undefined,
               }}
             >
@@ -545,7 +545,7 @@ function Console({
                       : "inset 0 0 2px rgba(0,0,0,0.6)",
                   transition: "all 0.2s",
                   // The animate-ping above is only triggered while the
-                  // span is freshly keyed — once mounted it sits idle.
+                  // span is freshly keyed, once mounted it sits idle.
                   // The `key` change on each tap restarts the animation.
                   animationIterationCount: 1,
                 }}
@@ -565,7 +565,7 @@ function Console({
             <ConsoleButton label="RESET" variant="push" />
           </div>
 
-          {/* RIGHT — cartridge slot. This IS the visual drop target */}
+          {/* RIGHT, cartridge slot. This IS the visual drop target */}
           <div
             ref={slotRef}
             className="flex-1 relative overflow-hidden"
@@ -581,7 +581,7 @@ function Console({
               minHeight: 88,
             }}
           >
-            {/* Slot lip — the hinged flap edge at the top */}
+            {/* Slot lip, the hinged flap edge at the top */}
             <div
               className="absolute top-0 left-0 right-0"
               style={{
@@ -676,7 +676,7 @@ function Console({
           </div>
         </div>
 
-        {/* Bottom trim — vents + model plate */}
+        {/* Bottom trim, vents + model plate */}
         <div
           className="flex items-center justify-between gap-3 px-3 py-1.5"
           style={{

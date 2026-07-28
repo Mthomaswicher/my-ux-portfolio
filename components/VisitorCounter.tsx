@@ -7,10 +7,10 @@ import { tickVisitorCounter } from "@/lib/visitorCounter";
 /**
  * Tiny fixed chip in the bottom-left corner that surfaces the
  * site-wide session count. One row per browser session, so the same
- * visitor in a new tab is counted again — that matches "different
+ * visitor in a new tab is counted again, that matches "different
  * session" in the spec.
  *
- * Scenic mode only — a session counter is arcade furniture, so basic
+ * Scenic mode only, a session counter is arcade furniture, so basic
  * (Reading Room) mode never mounts it.
  *
  * Renders nothing until Supabase responds, and renders nothing if

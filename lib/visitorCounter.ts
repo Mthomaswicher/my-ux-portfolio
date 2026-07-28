@@ -56,7 +56,7 @@ export async function tickVisitorCounter(): Promise<number | null> {
         }
       }
     } catch {
-      /* ignore — table missing or RLS blocks */
+      /* ignore, table missing or RLS blocks */
     }
   }
 

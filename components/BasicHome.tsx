@@ -7,7 +7,7 @@ import { projects } from "@/lib/projects";
  * cartridges, no neon. Same content (projects), neutral framing.
  *
  * The sidebar and <main> landmark are owned by HomeView so both mode
- * variants can coexist in the HTML — this renders content only.
+ * variants can coexist in the HTML, this renders content only.
  */
 export default function BasicHome() {
   return (
@@ -29,9 +29,10 @@ export default function BasicHome() {
               className="text-[clamp(1rem,2vw,1.25rem)] leading-[1.55] text-ink-dim max-w-2xl"
               style={{ fontFamily: "var(--font-garamond)" }}
             >
-              I design data-informed software for highly regulated, large-scale
-              environments. Currently shipping at Capital One; previously at
-              Berkeley Research Group, Oportun, and Demex.
+              I design software for banks, insurers, and other places where the
+              rules are strict and the stakes are real. Nine years of it, most
+              recently at Capital One. Before that: Berkeley Research Group,
+              Oportun, and Demex.
             </p>
           </header>
 

@@ -15,7 +15,7 @@ type Props = Omit<LinkProps, "href"> & {
   clickSfx?: SfxName | null;
   external?: boolean;
   // Allow consumers to thread data-* attributes through to the rendered
-  // anchor/Link — used by LongPressNotes to find the cartridge under
+  // anchor/Link, used by LongPressNotes to find the cartridge under
   // the press target via [data-cart-no]. Loose index signature so SWC
   // doesn't have to parse a template-literal key type.
   [key: string]: unknown;

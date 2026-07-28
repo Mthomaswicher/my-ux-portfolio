@@ -19,17 +19,17 @@ const COMMUNITIES = [
   {
     name: "Capital One Social Impact",
     role: "Pro Bono Team Lead",
-    body: "Led a cross-functional pro bono team optimizing onboarding for Carver Federal Savings Bank, with measurable community impact.",
+    body: "Ran a pro bono team rebuilding onboarding for Carver Federal Savings Bank, one of the oldest Black-owned banks in the country.",
   },
   {
     name: "Salute Military BRG",
     role: "Active Member",
-    body: "Military spouse advocate. Supporting veteran and military family associates across 15 local chapters.",
+    body: "Military spouse. I help out with veteran and military family associates across 15 local chapters.",
   },
   {
     name: "Flatiron Alumni · Hackonomics",
     role: "Team Lead, 2024 Winner",
-    body: "Led product, design, and engineering to a hackathon win, shipping an AI-powered personal finance app in 19 days.",
+    body: "Led design and engineering on an AI personal finance app. Built it in 19 days and won.",
   },
 ];
 
@@ -38,25 +38,25 @@ const FAVES = [
     tag: "GAME",
     basicTag: "Downtime",
     name: "NBA 2K '26",
-    note: "MyCareer marathons. Late-night ranked.",
+    note: "Too much MyCareer. Ranked games I should not be playing at 1am.",
   },
   {
     tag: "BOARD",
     basicTag: "Kitchen",
     name: "My offset smoker",
-    note: "Sundays. Brisket. The whole thing.",
+    note: "Sundays, mostly brisket. Up at 5am for it more often than I admit.",
   },
   {
     tag: "GEAR",
     basicTag: "Gear",
     name: "Sony A7Rii",
-    note: "San Diego skies. Long walks with Micah.",
+    note: "Comes along on most walks. Mostly skies and the dog.",
   },
   {
     tag: "HOMIE",
-    basicTag: "Copilot",
-    name: "Micah, the pup",
-    note: "Energy-packed pandemic chaos engine.",
+    basicTag: "Sidekick",
+    name: "Micah, the dog",
+    note: "Pandemic puppy. Still has not calmed down.",
   },
 ];
 
@@ -206,23 +206,26 @@ export default function About() {
             </div>
             <div className="space-y-4 font-mono text-[14px] leading-relaxed text-ink-dim">
               <p>
-                I&apos;m a Sr. Product Designer with{" "}
-                <span className="text-glow-cyan">9 years</span> building complex SaaS and
-                fintech products in highly regulated, large-scale environments. Currently
-                designing at <span className="text-glow-cyan">Capital One</span>, with a
-                full-stack engineering background that anchors strong systems thinking and
-                cross-functional collaboration.
+                I&apos;ve been designing software for{" "}
+                <span className="text-glow-cyan">nine years</span>, mostly in
+                fintech, mostly in places where a wrong screen has legal
+                consequences. Right now that&apos;s{" "}
+                <span className="text-glow-cyan">Capital One</span>. I learned to
+                code before I learned to design, which mostly means I know what
+                I&apos;m asking engineers for.
               </p>
               <p>
-                I get pulled to the scalable, data-informed end of design, balancing user
-                and business needs without rounding off either one. Before Capital One I was
-                at Berkeley Research Group, Oportun, and Demex.
+                The work I&apos;m best at is the unglamorous kind: figuring out
+                what a system is actually doing before deciding what it should
+                do. Before Capital One I was at Berkeley Research Group, Oportun,
+                and Demex.
               </p>
               <p>
                 I live in D.C. with my wife{" "}
-                <span className="text-glow-magenta">Rebecca</span> and our pup{" "}
-                <span className="text-glow-magenta">Micah</span>. When I&apos;m not designing,
-                I&apos;m on the smoker, in the kitchen, or out shooting on a Sony A7Rii.
+                <span className="text-glow-magenta">Rebecca</span> and our dog{" "}
+                <span className="text-glow-magenta">Micah</span>. Outside work
+                I&apos;m usually running the smoker, cooking, or out with a
+                camera.
               </p>
             </div>
           </section>
@@ -348,9 +351,9 @@ export default function About() {
                 Matthew Thomas-Wicher: Law to Design
               </h3>
               <p className="font-mono text-[13px] text-ink-dim leading-relaxed mb-5 max-w-2xl">
-                A career switcher shares his journey from five years in corporate
-                law to becoming a UX/UI Product Designer, the path through
-                Flatiron's full-time UX program, and why he never looked back.
+                Flatiron interviewed me about leaving five years of corporate law
+                for design: what the program was actually like, and why I
+                haven&apos;t looked back.
               </p>
               <blockquote className="font-mono text-[13px] italic text-ink-dim border-l-2 border-neon-cyan/60 pl-4 py-1 mb-5 max-w-2xl">
                 &ldquo;I absolutely love it! It definitely matches up to the

@@ -208,7 +208,7 @@ html[data-scroll-locked="true"] body {
   }
 }
 
-/* Light mode hides the CRT layers entirely — they're a CRT-on-glass effect
+/* Light mode hides the CRT layers entirely, they're a CRT-on-glass effect
    that only reads on a dark surface. */
 [data-theme="light"] .crt-noise,
 [data-theme="light"] .crt-vignette,
@@ -225,7 +225,7 @@ html[data-scroll-locked="true"] body {
   animation: blink 1.05s steps(2, start) infinite;
 }
 
-/* Glowing text — color and shadow strength both swap by theme. */
+/* Glowing text, color and shadow strength both swap by theme. */
 .text-glow-cyan {
   color: rgb(var(--glow-cyan));
   text-shadow:
@@ -446,7 +446,7 @@ html[data-scroll-locked="true"] body {
    A separate visual identity from the arcade. Light cream surface, serif
    typography, no neon, no scanlines, no cartridge chrome. Same pages, same
    content, presented as a clean portfolio. Activated via data-mode="basic"
-   on <html>. Independent of data-theme — basic mode forces its own colors.
+   on <html>. Independent of data-theme, basic mode forces its own colors.
    --------------------------------------------------------------------------- */
 
 :root[data-mode="basic"] {
@@ -461,7 +461,7 @@ html[data-scroll-locked="true"] body {
   --ink-mute: 110 108 116;
   --ink-ghost: 188 184 178;
 
-  /* The portfolio uses one calm accent — a deep ink. The neon tokens still
+  /* The portfolio uses one calm accent, a deep ink. The neon tokens still
      map to *something* so legacy classes keep working, but they all
      resolve to ink, not magenta/cyan. */
   --neon-magenta: 24 24 28;
@@ -478,7 +478,7 @@ html[data-scroll-locked="true"] body {
 
   --accent: rgb(24 24 28);
 
-  /* Type: serif for display, sans for body — clean and editorial. */
+  /* Type: serif for display, sans for body, clean and editorial. */
   --font-pixel: var(--font-garamond), Georgia, "Times New Roman", serif;
   --font-display: var(--font-garamond), Georgia, "Times New Roman", serif;
 
@@ -521,7 +521,7 @@ html[data-scroll-locked="true"] body {
   }
 }
 
-/* CRT layers are gated in JS too — defense-in-depth here. */
+/* CRT layers are gated in JS too, defense-in-depth here. */
 [data-mode="basic"] .crt-noise,
 [data-mode="basic"] .crt-vignette,
 [data-mode="basic"] .crt-scanlines,
@@ -541,12 +541,12 @@ html[data-scroll-locked="true"] body {
   -webkit-tap-highlight-color: rgb(var(--ink) / 0.08);
 }
 
-/* Cards used to tilt like index-card art — flat in basic. */
+/* Cards used to tilt like index-card art, flat in basic. */
 [data-mode="basic"] .tilt-card {
   --card-tilt: 0deg !important;
 }
 
-/* Soften the dashed divider — it reads heavier on cream than on void. */
+/* Soften the dashed divider, it reads heavier on cream than on void. */
 [data-mode="basic"] .dash-divider {
   border-top-color: rgb(var(--ink-ghost) / 0.55);
 }
@@ -577,7 +577,7 @@ html[data-scroll-locked="true"] body {
    --------------------------------------------------------------------------
    This is a static export, so the server HTML is identical for both modes.
    Anything that branches on mode in JS alone stays wrong until React
-   hydrates — seconds on a slow phone — which means a Reading Room visitor
+   hydrates, seconds on a slow phone, which means a Reading Room visitor
    watches arcade copy paint and then swap out.
 
    Instead, both variants ship in the HTML and CSS hides one. The inline
@@ -599,7 +599,7 @@ html[data-scroll-locked="true"] body {
 }
 
 /* Scenic-only furniture (CRT layers, sound + theme floats, session chip).
-   JS unmounts these in basic mode too — this is what keeps them from
+   JS unmounts these in basic mode too, this is what keeps them from
    painting in the window before hydration gets there. */
 :root[data-mode="basic"] .scenic-chrome {
   display: none !important;

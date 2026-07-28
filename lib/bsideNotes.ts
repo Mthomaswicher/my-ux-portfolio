@@ -1,7 +1,7 @@
 /**
  * B-side notes for cartridges. Long-pressing a cartridge in Easy mode
  * pops a tooltip with the matching string here. Designed as a
- * "developer's commentary" track — the offhand line that didn't make
+ * "developer's commentary" track, the offhand line that didn't make
  * the case study itself. Keep them under ~140 characters so the
  * tooltip doesn't blow past the viewport.
  *
@@ -16,5 +16,5 @@ export const BSIDE_NOTES: Record<string, string> = {
   "03":
     "Themed in Demex's actual brand palette. The token spreadsheet still lives on a desktop somewhere.",
   "04":
-    "Hardest part wasn't the wallet flow — it was explaining stablecoins to first-time remittance senders.",
+    "Hardest part wasn't the wallet flow. It was explaining stablecoins to people sending money home for the first time.",
 };

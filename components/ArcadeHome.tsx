@@ -3,11 +3,11 @@ import Footer from "./Footer";
 import Cabinet from "./Cabinet";
 
 /**
- * Scenic-mode home: the original arcade experience — boot-screen vibes,
+ * Scenic-mode home: the original arcade experience, boot-screen vibes,
  * pixel headers, drag-the-cartridge cabinet, "Hello, player." copy.
  *
  * The sidebar and <main> landmark are owned by HomeView so both mode
- * variants can coexist in the HTML — this renders content only.
+ * variants can coexist in the HTML, this renders content only.
  */
 export default function ArcadeHome() {
   return (

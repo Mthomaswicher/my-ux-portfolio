@@ -23,7 +23,7 @@ export default function TileDecor({ project }: { project: Project }) {
   const tags = project.tags ?? [];
   const mascot = project.mascot;
 
-  // Static-but-pleasant scatter — no random so SSR matches client.
+  // Static-but-pleasant scatter, no random so SSR matches client.
   const sparkles = [
     { left: "12%", top: "18%", glyph: "✦", size: 11 },
     { left: "82%", top: "62%", glyph: "✶", size: 10 },

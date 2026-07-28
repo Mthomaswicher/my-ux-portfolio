@@ -15,7 +15,7 @@ type Props = { variant?: "floating" | "inline" };
  */
 export default function SoundToggle({ variant = "floating" }: Props) {
   const { enabled, toggle } = useSound();
-  // Sound is an arcade flourish — basic mode has no audio, so the chip is
+  // Sound is an arcade flourish, basic mode has no audio, so the chip is
   // hidden there. That's done in CSS (`.scenic-chrome`) rather than by
   // returning null: the server can't know the mode in a static export, so
   // a JS branch would break hydration and paint the chip first anyway.

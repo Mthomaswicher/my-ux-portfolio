@@ -5,7 +5,7 @@ import ModeText from "./ModeText";
  * arcade copy from a neutral "Visitors" header so basic-mode (Reading
  * Room) visitors see editorial copy instead of game refs.
  *
- * Both variants ship in the HTML and CSS picks one at first paint —
+ * Both variants ship in the HTML and CSS picks one at first paint,
  * see the "Mode-gated content" note in globals.css for why this can't
  * be a JS branch.
  */
@@ -25,8 +25,8 @@ export default function GuestbookHero() {
             <span className="caret" aria-hidden="true" />
           </h1>
           <p className="font-mono text-[15px] text-ink-dim mb-10 max-w-xl leading-relaxed">
-            Visitors who left a mark. Each card is hand-drawn by a real human on the way
-            in. No filter, no edit, no delete.
+            People who signed on their way through. Every card is drawn by hand. I don&apos;t
+            filter them, edit them, or delete them.
           </p>
         </header>
       }
@@ -48,8 +48,8 @@ export default function GuestbookHero() {
             className="text-[clamp(1rem,2vw,1.25rem)] leading-[1.55] text-ink-dim max-w-2xl"
             style={{ fontFamily: "var(--font-garamond)" }}
           >
-            People who left a mark on their way through. Each card is hand-drawn
-            by a real human. No filter, no edit, no delete.
+            People who signed on their way through. Every card is drawn by hand. I
+            don&apos;t filter them, edit them, or delete them.
           </p>
         </header>
       }

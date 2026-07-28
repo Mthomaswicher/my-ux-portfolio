@@ -51,7 +51,7 @@ export const caseStudies: CaseStudy[] = [
     org: "Capital One · Internal Developer Platform",
     status: "SHIPPED",
     tagline:
-      "Streamlining release workflows, ensuring developers can quickly track deployments, approvals, and release statuses with ease.",
+      "Shipping code meant checking five tools to answer one question. This put tracking, approvals, and status in one place.",
     hero: `${IDP}/03-new-experience.png`,
     heroScreens: [
       `${IDP}/03-new-experience.png`,
@@ -74,7 +74,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "For engineers across our enterprise, managing releases is often unpredictable, fragmented, and inefficient. The current release management experience lacks the integration, visibility, and automation needed to support a seamless development workflow. At best, teams navigate a mix of disconnected tools and ad-hoc processes; at worst, they face delays, uncertainty, and unnecessary friction that slow down innovation.",
+            text: "Releasing code here was unpredictable. There was no single place to see what was happening, so teams stitched together a handful of tools and a lot of tribal knowledge. On a good day that was annoying. On a bad day a release stalled and nobody could say why.",
           },
         ],
       },
@@ -85,12 +85,12 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Our challenge was to transform release management into a cohesive, intuitive experience that not only streamlines the process but also lays the foundation for a fully integrated development environment. By embedding robust release management practices into our IDE/IDP initiative, we are creating a platform that empowers developers with stability, efficiency, and confidence in every release.",
+            text: "Make releasing something a developer can do in one place, and build it so the rest of the platform can grow around it later.",
           },
-          { kind: "h", text: "Approve releases with ease" },
+          { kind: "h", text: "Approving a release" },
           {
             kind: "p",
-            text: "Answer required audit/cyber requirements and approve your release without friction.",
+            text: "Answer the audit and cyber questions and approve, without leaving the page.",
           },
           {
             kind: "video",
@@ -98,10 +98,10 @@ export const caseStudies: CaseStudy[] = [
             alt: "Demo: a developer answers audit questions and approves a release inline.",
             caption: "Single-pass approval flow demo.",
           },
-          { kind: "h", text: "Action releases with confidence" },
+          { kind: "h", text: "Knowing what you are approving" },
           {
             kind: "p",
-            text: "Use the PAR activity trail to track Artemis activity and make a decision with confidence.",
+            text: "The PAR activity trail shows what Artemis did, so approvers are not guessing.",
           },
           {
             kind: "video",
@@ -109,10 +109,10 @@ export const caseStudies: CaseStudy[] = [
             alt: "Demo: PAR activity trail and Artemis status update in the release page.",
             caption: "PAR activity trail demo.",
           },
-          { kind: "h", text: "Communicate with asset owners" },
+          { kind: "h", text: "Asking the owner a question" },
           {
             kind: "p",
-            text: "Communicate directly with release owners to gain context on the release.",
+            text: "Ask whoever submitted the release what it actually is, without leaving the page.",
           },
           {
             kind: "video",
@@ -129,11 +129,11 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Over the years, we have witnessed sustained growth in tools and processes that support the Software Development Lifecycle (SDLC). While that growth may be great, it has created an ecosystem of disconnected, yet required tooling and platforms that force developers to constantly context shift throughout their work day.",
+            text: "Every year the SDLC picks up more tools. Each one makes sense on its own. Together they mean a developer spends the day switching windows instead of working.",
           },
           {
             kind: "p",
-            text: "At the end of the day, we believe our developers want to maintain flow state and limit the cognitive load in orchestrating processes over disconnected tools.",
+            text: "Developers want to stay in flow. Nobody enjoys being the glue between six systems.",
           },
           {
             kind: "h",
@@ -141,11 +141,11 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "At the start of 2024, one of the core initiatives our CEO had set was to improve the developer experience as a whole and start treating internal developers the same way we treat external customers. In March of the same year, the Developer Experience team (DevX) began socializing the IDP, or Internal Developer Platform, which would give developers a one-stop shop for their development needs.",
+            text: "In early 2024 our CEO made developer experience a company priority: treat internal developers the way we treat customers. That March the DevX team started pitching the IDP, an internal developer platform meant to be the one place developers go.",
           },
           {
             kind: "p",
-            text: "The key goal: \"Automate everything but the creative problem solving in developing software.\" In the target state, developers spend the majority of their time in two primary screens, the IDE and the IDP.",
+            text: "The key goal: \"Automate everything but the creative problem solving in developing software.\" The target state was two screens, the IDE and the IDP, and not much else.",
           },
           {
             kind: "imgGrid",
@@ -167,22 +167,22 @@ export const caseStudies: CaseStudy[] = [
             src: `${IDP}/04-sdlc.png`,
             alt: "SDLC tooling diagram",
             caption:
-              "The IDP serves to connect and consolidate tooling interfaces into a seamless experience across the SDLC.",
+              "The IDP pulls the scattered tooling interfaces into one place across the SDLC.",
           },
           {
             kind: "p",
-            text: "About 7 months of planning and execution later, the IDP platform was stood up with mostly out-of-the-box features. After much deliberation, planning, and a build-vs-buy analysis, leadership decided to prioritize the Release Plugin. The ability for developers to ship code is paramount to the developer workflow, which makes it critical for an end-to-end IDP experience. Working with our product partners, we landed on an MVP definition for the capabilities and features the plugin should have at release.",
+            text: "Seven months later the platform existed, mostly out of the box. After a build-vs-buy analysis, leadership picked the Release Plugin as the first real thing to build. Shipping code is the part of the job you cannot skip, so it was the obvious place to start. We worked with product to pin down what the MVP had to cover.",
           },
         ],
       },
       {
         id: "current-state",
         no: "04",
-        title: "Understanding the current state",
+        title: "Working out what already existed",
         body: [
           {
             kind: "p",
-            text: "To kick off this work stream we wanted to do some sense-making between the IDP Ideal, MVP, and current One Pipeline experiences for our three user types: ICs, Approvers, and Escalators.",
+            text: "First we had to reconcile three things that did not match: the ideal IDP experience, the MVP, and what One Pipeline actually did. Three user types too: ICs, approvers, and escalators.",
           },
           {
             kind: "h",
@@ -190,7 +190,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "We needed to understand how all of the systems worked, so we had our product and engineering partners walk us through the experiences for each primary persona.",
+            text: "Nobody on design knew how these systems really worked, so we had product and engineering walk us through each persona's path.",
           },
           {
             kind: "img",
@@ -200,14 +200,14 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Over 2–3 days, we were able to better understand the OPL UI current state with regards to the release process.",
+            text: "Two or three days of that and we finally understood what the One Pipeline UI was doing.",
           },
           {
             kind: "img",
             src: `${IDP}/06-screenshots.png`,
             alt: "Refined deliverable from screenshots",
             caption:
-              "We then refined the screenshots into a more digestible deliverable to help socialize with our partners.",
+              "Then we cleaned the screenshots into something we could actually walk partners through.",
           },
           {
             kind: "img",
@@ -223,7 +223,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "To help ensure we were aware of any edge cases and designing for the ideal experience, I created a detailed wireflow depicting what goes on at each step.",
+            text: "I drew a detailed wireflow of every step, mostly to force the edge cases into the open.",
           },
           {
             kind: "img",
@@ -240,7 +240,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "We conducted eight 30-minute Jobs-to-be-Done interviews with developers to validate if we were on the right path with the flows we and our engineering and product partners had worked on.",
+            text: "We ran eight 30-minute jobs-to-be-done interviews with developers to check whether the flows we had drawn matched what they actually needed.",
           },
           {
             kind: "h",
@@ -265,7 +265,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "While some of these directions were out of scope for the beta release, our product and engineering partners were receptive to the designs and could see them being prioritized in the next PI.",
+            text: "Some of this was out of scope for beta, but product and engineering liked it enough to put it on the list for the next PI.",
           },
           {
             kind: "imgGrid",
@@ -301,9 +301,9 @@ export const caseStudies: CaseStudy[] = [
           {
             kind: "list",
             items: [
-              "Explored audit questions behind a modal, with CTAs sitting high on the page so users can't miss them",
-              "Release metadata is present, in front of the user",
-              "Release Workflow component is visible, but further down the page",
+              "Audit questions behind a modal, CTAs high on the page so nobody misses them",
+              "Release metadata visible, not buried",
+              "Release workflow component visible, but further down",
             ],
           },
           {
@@ -317,7 +317,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Our product team informed us the audit questions had to live on the page at all times. So I explored how that might look on the UI, placing a release tracker component within the leftmost column of the layout, plus secondary metadata in that same column.",
+            text: "Product came back and said the audit questions had to sit on the page at all times, no modal. So I moved the release tracker and secondary metadata into the left column and worked out how that reads.",
           },
           {
             kind: "h",
@@ -325,7 +325,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "After refinement with our product partners, we landed on the following concept. We used a 9:3 layout, with primary actions and content in the middle and secondary metadata in an adjacent smaller column.",
+            text: "This is where we landed. A 9:3 layout: primary actions and content in the middle, secondary metadata in the narrow column beside it.",
           },
           {
             kind: "video",
@@ -338,28 +338,28 @@ export const caseStudies: CaseStudy[] = [
             src: `${IDP}/16-concept-3a.webp`,
             alt: "Concept 3 release activity at top",
             caption:
-              "Release activity at the top of the page so users are aware of where they are in the releases process.",
+              "Release activity at the top so you know where you are.",
           },
           {
             kind: "img",
             src: `${IDP}/17-concept-3b.webp`,
             alt: "Concept 3 clearer modals",
             caption:
-              "Clearer, individual modals for each CTA with contextual information so users are well-equipped when approving or canceling a release.",
+              "A separate modal per CTA, each carrying the context you need before approving or canceling.",
           },
           {
             kind: "img",
             src: `${IDP}/18-concept-3c.webp`,
             alt: "Concept 3 resiliency questions",
             caption:
-              "Resiliency material change questions added per audit requirements. The questions needed to be in front of the user, behind no interactions.",
+              "Resiliency material change questions, required by audit. They had to be visible without clicking anything.",
           },
           {
             kind: "img",
             src: `${IDP}/19-concept-3d.webp`,
             alt: "Concept 3 PAR activity",
             caption:
-              "Release activity and PAR activity further down the page, giving approvers more context on what the release is all about.",
+              "Release and PAR activity further down, so approvers can see what is actually in the release.",
           },
         ],
       },
@@ -370,7 +370,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Usability testing was successful, but users identified opportunities to improve clarity and context across touchpoints.",
+            text: "Testing went well. People finished the tasks. They also told us plenty about where the screens left them guessing.",
           },
           {
             kind: "img",
@@ -404,14 +404,14 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "h",
-            text: "Better contextual information",
+            text: "More context, in the right place",
           },
           {
             kind: "list",
             items: [
-              "Users expressed the need for systems that adapt to their workflows and provide contextually relevant information",
-              "Alerts at the top of the page contextual to the user's role (PAR Approver, ESC Approver, Dev), putting CTAs front and center",
-              "PAR activity and release information now higher up, with detailed justification providing transparency and accountability",
+              "People wanted the system to adapt to their workflow instead of the reverse",
+              "Alerts at the top change with your role, whether you are a PAR approver, ESC approver, or dev. Your action is the first thing you see",
+              "PAR activity and release info moved up, with the justification attached so there is a record",
             ],
           },
           {
@@ -421,11 +421,11 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "h",
-            text: "Consistent communication channels",
+            text: "Stop making people leave to ask a question",
           },
           {
             kind: "p",
-            text: "Users were relying on external tools like Slack and email to supplement the IDP's lack of communication features. Developers spend a lot of time in Slack for communicating and troubleshooting, so I added buttons that allow approvers to immediately start up conversations with the release submitter.",
+            text: "People were leaving the tool to ask questions in Slack and email. Developers already live in Slack, so I added buttons that open a thread with whoever submitted the release.",
           },
           {
             kind: "h",
@@ -433,7 +433,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Users frequently operate on \"autopilot\" due to the repetitive nature of release approvals. I designed a feature where PAR approvers can quickly approve multiple releases without friction.",
+            text: "Approving releases is repetitive enough that people do it on autopilot. So I let PAR approvers clear several at once.",
           },
           {
             kind: "video",
@@ -450,7 +450,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "While this was out of scope for the beta release, our product and engineering partners were receptive to the designs and could see them being prioritized and implemented during the next PI.",
+            text: "Out of scope for beta, but well received. Product and engineering want it in the next PI.",
           },
           {
             kind: "video",
@@ -473,21 +473,21 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "To determine if our work was impactful, we needed a way to track how well our design changes were affecting users, while also confirming we were helping the business succeed.",
+            text: "We needed to know whether any of this worked, for users and for the business.",
           },
           {
             kind: "p",
-            text: "The primary OKR our business partners are trying to meet with this initiative: reduce time spent in deployment by 7%.",
+            text: "The business OKR: cut time spent in deployment by 7%.",
           },
           {
             kind: "p",
-            text: "For user metrics, we used our established Google HEART framework (HAT in our case) as the foundation. Our internal user-tracking software wasn't integrated into the IDP for the closed beta, so we were limited on what we could collect, and we relied on UMUX-lite, NPS, and surveys.",
+            text: "For user metrics we used the HEART framework, HAT in our case. Our internal tracking was not wired into the IDP during closed beta, so we were stuck with UMUX-Lite, NPS, and surveys.",
           },
           {
             kind: "list",
             items: [
-              "NPS gathers overall user satisfaction and qualitative feedback",
-              "UMUX-lite gathers data on overall usability and task effectiveness, or how well the product is meeting user expectations",
+              "NPS for overall satisfaction and open-ended feedback",
+              "UMUX-Lite for usability and whether people actually finished the task",
             ],
           },
           {
@@ -504,11 +504,11 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "h",
-            text: "Prioritize high-leverage items",
+            text: "Build the thing the enterprise needs",
           },
           {
             kind: "p",
-            text: "There was a lot of work to be done, but it was important to prioritize what the enterprise needed rather than lower-impact features.",
+            text: "There was more work than time. We built what the enterprise needed and let the rest wait.",
           },
           {
             kind: "h",
@@ -516,7 +516,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "There were numerous pivots, including what I like to call \"fire-drill designs,\" that shortened or lengthened timelines based on shifting needs and constraints.",
+            text: "Plenty of pivots, including a few genuine fire drills. Timelines moved in both directions.",
           },
           {
             kind: "h",
@@ -524,15 +524,15 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Many people believe you only talk to your users at the start, but constant developer feedback let us tackle real problems we wouldn't have otherwise found.",
+            text: "A lot of people treat research as a kickoff activity. Talking to developers the whole way through is how we found the problems that mattered.",
           },
           {
             kind: "h",
-            text: "Scalability is ideal",
+            text: "Leave things better than you found them",
           },
           {
             kind: "p",
-            text: "We were able to contribute a few components back to the IDP design system, enabling other development teams to build with less overhead.",
+            text: "We pushed a few components back into the IDP design system, so the next team gets them for free.",
           },
         ],
       },
@@ -550,7 +550,7 @@ export const caseStudies: CaseStudy[] = [
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
     tagline:
-      "Presenting users with timely and pertinent information about their financial accounts, so they can swiftly take action when managing their finances.",
+      "The home screen was advertising features. It should have been telling members what to do about their money.",
     hero: `${OPO}/01-hero.png`,
     heroScreens: [`${OPO}/01-hero.png`, `${OPO}/03-process.png`],
     role: "UI/UX Designer",
@@ -567,11 +567,11 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Earlier in the year, the Oportun app went through an enormous redesign. Oportun acquired Digit and the name of the app changed. Alongside the rebrand was also a redesign of the app and our product offerings.",
+            text: "Oportun had bought Digit, renamed the app, and redesigned it along with the product lineup. All in the same year.",
           },
           {
             kind: "p",
-            text: "Our business goals were to bring back our retention rate and member-lifetime rate to what those numbers were historically, and to improve new 30–90 day retention.",
+            text: "The business wanted retention and member lifetime back where they used to be, plus better 30 to 90 day retention on new members.",
           },
         ],
       },
@@ -583,10 +583,10 @@ export const caseStudies: CaseStudy[] = [
           {
             kind: "list",
             items: [
-              "Move away from \"feature ads\" toward contextual prompts that help users learn and adopt new features",
-              "Increase baseline metrics for SAVE, Loan, and Credit Card products",
-              "Create real space for financial insights",
-              "Establish a baseline future iterations could build on",
+              "Stop running feature ads. Show people something useful at the moment it matters",
+              "Move the baseline numbers on SAVE, Loans, and Credit Card",
+              "Make actual room for financial insights",
+              "Leave something the next team can build on",
             ],
           },
         ],
@@ -598,15 +598,15 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "For the first 10 years that Digit was a service before the 2021 Oportun acquisition, they were a company that helped users save by linking their bank accounts and saving for future goals. That was the mental model our users had grown accustomed to. Post-acquisition, the app was rebranded as a savings account that came with a $5 subscription fee.",
+            text: "For ten years before the 2021 acquisition, Digit was a savings app. You linked your bank account and it saved for you. That is the app people thought they had. After the acquisition it became a savings account with a $5 monthly fee.",
           },
           {
             kind: "p",
-            text: "The data showed a high level of churn that our users had been experiencing for some time. We started to see a large disparity in our referral numbers as well as our app store ratings.",
+            text: "Churn had been high for a while. Referrals and app store ratings were both sliding.",
           },
           {
             kind: "p",
-            text: "A heuristic evaluation of the app showed where we needed to fill the gaps. We had a lack of showing users system status, and we had some of our most important actions buried within sub-pages.",
+            text: "A heuristic eval turned up the obvious stuff. We rarely told people what the system was doing, and our most important actions were buried two pages deep.",
           },
         ],
       },
@@ -621,7 +621,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "After being named the leading savings app of 2023 by Bankrate and several other platforms, executive leadership believed there was no need for alteration. We had to show them, not tell them, what the data was saying.",
+            text: "Bankrate and a few others named us the leading savings app of 2023, so leadership did not see a problem. Telling them was not going to work. We had to show them the data.",
           },
           {
             kind: "h",
@@ -629,7 +629,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The product area was wholly owned by the stakeholders, not the designers, and they ultimately had final say on whether or not a feature would be shipped. Buy-in had to be earned across multiple PODs, not won once at the top.",
+            text: "Stakeholders owned the product area, not design, and they had final say on what shipped. So buy-in meant winning over several PODs one at a time instead of getting a single yes at the top.",
           },
         ],
       },
@@ -641,9 +641,9 @@ export const caseStudies: CaseStudy[] = [
           {
             kind: "list",
             items: [
-              "Introducing product actions to the app would increase savings, loan-payoff rate, and other core product actions, while rebuilding trust with long-term members",
-              "Increasing and improving our just-in-time system statuses would help us retain new members because they would now be able to see success sooner",
-              "By moving core actions to the homepage, we could begin to build it into a financial insights hub we could then use to activate users into new product offerings",
+              "Putting real actions on the home screen would lift savings and loan payoff, and start rebuilding trust with long-time members",
+              "Better just-in-time status would keep new members around, because they would see progress sooner",
+              "Moving core actions to the home screen would turn it into an insights hub we could grow other products from",
             ],
           },
           {
@@ -660,7 +660,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "To begin, we started off with a pretty straightforward A/B test. After meeting with the Loans team stakeholders, my team and I were able to convince them to funnel a percentage of their web traffic directly to a page where users could pay their loans, set up auto-pay, and see relevant loan information.",
+            text: "We started with a plain A/B test. The Loans team agreed to send a slice of web traffic straight to a page where you could pay your loan, turn on auto-pay, and see your loan details.",
           },
           {
             kind: "h",
@@ -668,7 +668,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "We saw that users were 2–3× more likely to set up auto-pay or pay their bill on time when given the action directly versus only the information.",
+            text: "People were two to three times more likely to set up auto-pay or pay on time when we gave them the action instead of just the information.",
           },
           {
             kind: "h",
@@ -676,7 +676,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "A large portion of the project was selling and re-selling this work across the company to a wide range of stakeholders. By collaborating with designers, devs, and PMs, we were quickly able to grow a coalition of product members advocating for the launch.",
+            text: "Most of this project was selling the work, over and over, to different rooms. Designers, devs, and PMs came along one at a time until there were enough of us pushing for launch.",
           },
           {
             kind: "img",
@@ -701,7 +701,7 @@ export const caseStudies: CaseStudy[] = [
     org: "Oportun (post-Digit acquisition)",
     status: "SHIPPED",
     tagline:
-      "Designing regulated credit card servicing into a live lending app for 2M+ members: unifying two incompatible product ecosystems under one design system before a hard March 2023 deadline.",
+      "Credit card servicing added to a live lending app used by 2M+ members. Two products that agreed on nothing, one design system, and a March 2023 deadline nobody could move.",
     hero: `${OCS}/01-hero.png`,
     heroScreens: [
       `${OCS}/01-hero.png`,
@@ -722,16 +722,16 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Oportun had recently acquired Digit, a savings app with close to a decade of user trust, and the two products were mid-convergence: Digit's savings-first user base and Oportun's loans user base were being unified under a single Oportun app. Between them, well over 2 million members were now in the same app, holding two very different sets of expectations about what it was for.",
+            text: "Oportun had bought Digit, a savings app with about ten years of goodwill behind it, and the two products were being merged into one app. That put over 2 million members in the same place with completely different ideas about what it was for.",
           },
           {
             kind: "p",
-            text: "The credit card was the newest piece of the lineup, and servicing it meant building on top of infrastructure designed from the ground up around personal loans. None of it (payment cadences, status states, regulatory disclosures) mapped cleanly from loans to a credit card, and none of it matched how members already thought about their money.",
+            text: "The credit card was the newest product, and servicing it meant building on infrastructure designed for personal loans. Payment cadences, status states, disclosures: none of it carried over cleanly, and none of it matched how members thought about their money.",
           },
           {
             kind: "callout",
             tone: "minus",
-            text: "Missing the deadline would have been bad. Handing 2M+ members two incompatible mental models inside one app would have been worse, and much harder to walk back.",
+            text: "Missing the deadline would have been bad. Shipping two conflicting mental models to 2M+ members would have been worse, and much harder to undo.",
           },
         ],
       },
@@ -742,16 +742,16 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "As UI/UX Designer, I owned the full credit card servicing experience end to end: account overview, payment flows, auto-pay enrollment, transaction history, and the various payment status states, across iOS and Android. It had to feel like it belonged in the existing Oportun app, hold up under regulatory scrutiny, and be ready for a unified launch in March 2023.",
+            text: "I owned the whole credit card servicing experience: account overview, payment flows, auto-pay enrollment, transaction history, and every payment status state, on iOS and Android. It had to look like it belonged in the app, survive a compliance review, and be ready for the March 2023 launch.",
           },
           {
             kind: "p",
-            text: "The hard part wasn't the amount of surface area to design. It was a question nobody had answered yet: how much of the loan servicing infrastructure could actually carry over to a credit card, how much needed to stretch, and how much would just break under the attempt.",
+            text: "The hard part was not the number of screens. It was a question nobody had answered: how much of the loan servicing infrastructure would carry over, how much would stretch, and how much would snap.",
           },
           {
             kind: "callout",
             tone: "note",
-            text: "Two weeks for discovery. Every architectural question had to be settled before a single high-fidelity pixel got drawn.",
+            text: "Two weeks for discovery. Every architecture question had to be settled before I drew a single real screen.",
           },
         ],
       },
@@ -762,7 +762,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "With only two weeks, there wasn't room for research that didn't directly shape a decision. Every method I used had to answer something specific about what to build, or what to leave alone.",
+            text: "Two weeks meant no research for its own sake. Every method had to answer a specific question about what to build or what to leave alone.",
           },
           {
             kind: "h",
@@ -770,7 +770,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "To get a baseline for what a member already expects to find, I looked at how the leading consumer credit card apps handled the basics: payment status, scheduling flows, funding source setup. Less inspiration board, more reality check.",
+            text: "I went through the major consumer credit card apps to see how they handled payment status, scheduling, and funding source setup. Not for inspiration. To find out what members already expect.",
           },
           {
             kind: "h",
@@ -778,7 +778,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Interviews and usability tests drew from members on both sides of the convergence, legacy Digit savers and legacy Oportun borrowers now sharing one app, and turned up three friction patterns that kept surfacing, session after session: anxiety over unclear payment status, drop-off in scheduling caused by confusing date constraints, and uncertainty about when a newly added funding source would actually be usable.",
+            text: "I ran interviews and usability tests with members from both sides, legacy Digit savers and legacy Oportun borrowers now sharing one app. The same three problems came up session after session. People could not tell where they stood on a payment. The date rules in scheduling confused them into dropping out. And nobody knew when a newly added bank account would actually work.",
           },
           {
             kind: "h",
@@ -786,13 +786,13 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Cross-referencing customer support documentation against our usability findings surfaced problems members never said out loud but were clearly driving call volume. This was the most useful step by far. Status labels that were technically correct were still confusing people, because the language had been written for legal precision, not for someone trying to figure out if they owed money.",
+            text: "Reading the support docs against our usability findings turned up problems members never said out loud but were clearly calling about. This was the most useful thing I did. The status labels were technically correct and still confusing, because they had been written for legal precision, not for someone trying to work out whether they owed money.",
           },
           {
             kind: "img",
             src: `${OCS}/09-flow-architecture.png`,
             alt: "End-to-end credit card servicing flow architecture",
-            caption: "Flow architecture, mapped before any screens were drawn: from app home through the credit card tab, payment flows, transaction history, and auto-pay enrollment. This is where the loan and credit infrastructure actually diverged.",
+            caption: "Flow architecture, mapped before any screens: app home through the credit card tab, payments, transaction history, auto-pay. This is where loan and credit infrastructure actually split.",
           },
           {
             kind: "h",
@@ -800,7 +800,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Before opening Figma at high fidelity, I mapped the entire servicing flow end to end: account setup, payments, status handling, auto-pay, transaction history. That map is what drew the line between what could stay shared loan infrastructure and what had to become credit-specific. Get that wrong early, and everything downstream inherits the mistake.",
+            text: "Before drawing anything real I mapped the whole servicing flow: account setup, payments, status, auto-pay, transaction history. That map is what drew the line between shared loan infrastructure and credit-specific work. Get it wrong and everything after it inherits the mistake.",
           },
         ],
       },
@@ -811,7 +811,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The moment that mattered most on this project wasn't really a design choice. It was architectural, it had to happen before any visual design started, and it meant pushing back on a direction that already had momentum with stakeholders.",
+            text: "The decision that mattered most was not a design decision. It was architectural, it had to happen before any visual work, and it meant arguing against a direction that already had momentum.",
           },
           {
             kind: "h",
@@ -819,7 +819,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The obvious answer to \"how do we add credit card servicing?\" was to spin up a credit-specific design system next to the existing one, its own components, its own patterns, separate from everything else. It looked fast. It looked contained. A few stakeholders were already leaning that way.",
+            text: "The easy answer was a separate credit design system: its own components, its own patterns, sitting next to the existing one. It looked fast. It looked contained. Some stakeholders were already leaning that way.",
           },
           {
             kind: "h",
@@ -827,16 +827,16 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "A parallel system would have quietly piled up technical debt and inconsistencies members would feel for years. Two component systems built for the same purpose tend to drift apart no matter how carefully you manage them. I brought the friction data from members who were already confused by the rebrand and made the case, directly to product and engineering leads, that the last thing this product needed was one more seam for people to trip over.",
+            text: "A second system would have piled up debt and inconsistencies members feel for years. Two component libraries built for the same job drift apart no matter how carefully you manage them. I took the friction data from members already confused by the rebrand to product and engineering leads, and argued that the last thing this app needed was another seam.",
           },
           {
             kind: "callout",
             tone: "plus",
-            text: "We extended the existing design system instead of forking it. Credit-specific components were built on top of what already existed, not next to it. Less ambiguity for whoever touched this next, and no new fault line for the platform to drift along.",
+            text: "We extended the existing design system instead of forking it. Credit components were built on top of what was there, not beside it. Less ambiguity for the next person, and no new fault line.",
           },
           {
             kind: "p",
-            text: "Getting product and engineering aligned took conversations well outside the sprint team. What tipped it, in the end, was showing that extension cost barely more up front and saved enormously on every feature that came after.",
+            text: "Getting alignment took a lot of conversations outside the sprint team. What finally landed was the math: extending cost slightly more up front and saved on every feature after it.",
           },
           {
             kind: "imgGrid",
@@ -844,12 +844,12 @@ export const caseStudies: CaseStudy[] = [
               {
                 src: `${OCS}/10-sketches-payment.png`,
                 alt: "Early hand-drawn wireframes for payment flow layout variations",
-                caption: "Payment flow explorations: lo-fi sketches mapping status hierarchy and action placement before any system decisions were locked.",
+                caption: "Payment flow sketches, working out status hierarchy and action placement before any system decisions were locked.",
               },
               {
                 src: `${OCS}/11-sketches-overview.png`,
                 alt: "Early wireframes for credit card account overview and navigation",
-                caption: "Account overview explorations: working out how the credit card tab extended existing app navigation without fragmenting it.",
+                caption: "Account overview sketches, figuring out how the credit card tab could extend the existing navigation without splintering it.",
               },
             ],
           },
@@ -858,11 +858,11 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "status",
         no: "05",
-        title: "Designing for trust in a regulated surface",
+        title: "Designing for trust",
         body: [
           {
             kind: "p",
-            text: "Credit card servicing sits among the highest-trust surfaces in a financial app. Members show up because they need to pay something, and the one question on their mind is where do I stand. Answering that plainly, without cutting corners on regulatory accuracy, was the whole design problem.",
+            text: "Credit card servicing is one of the highest-trust screens in a financial app. People open it because they need to pay something, and they want one question answered: where do I stand. Answering that plainly without bending the regulatory language was the whole problem.",
           },
           {
             kind: "h",
@@ -870,11 +870,11 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "I kept the status card pinned at the top of the credit card view instead of tucking it away as something that only appears when there's a problem. Members needed their payment position visible on every visit, not only when the system judged it worth surfacing. On a regulated payment surface, that constant visibility is basically the deal you're making with the user.",
+            text: "I pinned the status card to the top of the credit card view instead of showing it only when something was wrong. People should see where they stand every time they open the app, not just when the system decides it is worth mentioning.",
           },
           {
             kind: "p",
-            text: "That card had to hold three distinct states (upcoming, due, auto-pay active), each carrying its own urgency and its own required legal language. Making each one readable at a glance without leaning on color to do the work was the actual challenge; color alone doesn't meet accessibility requirements.",
+            text: "The card had to hold three states: upcoming, due, and auto-pay active. Each has its own urgency and its own required legal wording. The hard part was making them readable at a glance without using color to carry the meaning, since color alone does not meet accessibility requirements.",
           },
           {
             kind: "imgGrid",
@@ -882,29 +882,29 @@ export const caseStudies: CaseStudy[] = [
               {
                 src: `${OCS}/03-status-upcoming.png`,
                 alt: "Status card: Upcoming payment state",
-                caption: "Upcoming payment: calm, informational, no urgency.",
+                caption: "Upcoming payment. Informational, no alarm.",
               },
               {
                 src: `${OCS}/04-status-due.png`,
                 alt: "Status card: Payment due state",
-                caption: "Payment due: urgency through label and badge, not color alone.",
+                caption: "Payment due. Urgency comes from the label and badge, not color alone.",
               },
               {
                 src: `${OCS}/05-status-autopay.png`,
                 alt: "Status card: Auto pay enabled state",
-                caption: "Auto pay enabled. Member can relax. Trust confirmed.",
+                caption: "Auto pay on. Nothing to do.",
               },
             ],
           },
           {
             kind: "p",
-            text: "What I landed on used type weight, spacing, and a restrained touch of badge-level color to build the hierarchy. Each badge still carried the legally required label, but the surrounding layout made the human meaning obvious, so the same screen could pass a compliance review and still make sense to someone glancing at their phone for two seconds.",
+            text: "I built the hierarchy out of type weight, spacing, and a small amount of badge color. The badges still carry the required legal label, but the layout around them makes the meaning obvious. The same screen passes compliance and still reads in the two seconds someone actually gives it.",
           },
           {
             kind: "img",
             src: `${OCS}/02-account-overview.png`,
             alt: "Full credit card account overview screen with status card, auto-pay nudge, pay CTA, and recent activity",
-            caption: "The full account overview: status card anchors the page with a persistent auto-pay enrollment nudge, a primary Pay CTA, and recent activity below.",
+            caption: "The full account overview. Status card at the top, a standing auto-pay nudge, the Pay button, and recent activity below.",
           },
         ],
       },
@@ -915,7 +915,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Auto-pay is about the most valuable thing a credit card member can do. It kills late fees, protects credit scores, and takes a recurring worry off their plate. Getting people enrolled mattered. But the research showed real drop-off in the existing flow, and tracing it back led to a simple cause: setup steps were showing up at the wrong moment, without the context members needed.",
+            text: "Auto-pay is the most useful thing a credit card member can turn on. No late fees, no credit score damage, one less thing to remember. So enrollment mattered. Research showed people dropping out of the existing flow, and the reason was simple: the setup steps arrived at the wrong moment without enough context.",
           },
           {
             kind: "h",
@@ -923,7 +923,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The old pattern sent members off to a separate settings section to add a funding source before they could even start enrolling in auto-pay. That detour killed momentum right when intent was highest. I rebuilt the flow so connecting a funding source happens inside auto-pay enrollment itself, so someone who's never linked a bank account can go start to finish without leaving the flow.",
+            text: "The old flow sent you to a settings page to add a bank account before you could start enrolling. That detour killed the intent right when it was highest. I moved funding source setup inside enrollment, so someone who has never linked an account can finish in one pass.",
           },
           {
             kind: "h",
@@ -931,7 +931,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Members were scheduling auto-pay for dates outside their billing cycle without realizing it, which meant payments got rejected or landed on the wrong statement. The fix was a calendar constrained to valid billing-cycle dates, with the disclosure written out inline instead of hidden behind a tooltip nobody was going to tap.",
+            text: "People were picking auto-pay dates outside their billing cycle without knowing it, so payments bounced or hit the wrong statement. The fix was a calendar that only offers valid dates, with the disclosure written on the page instead of behind a tooltip nobody taps.",
           },
           {
             kind: "imgGrid",
@@ -939,12 +939,12 @@ export const caseStudies: CaseStudy[] = [
               {
                 src: `${OCS}/06-autopay-amount.png`,
                 alt: "Auto-pay: select amount screen",
-                caption: "Step 1: select amount. Three clear options with billing disclosures surfaced in context, not behind a link.",
+                caption: "Step 1, pick an amount. Three options, with the billing disclosures right there instead of behind a link.",
               },
               {
                 src: `${OCS}/07-autopay-date.png`,
                 alt: "Auto-pay: select date with billing-cycle-constrained calendar",
-                caption: "Step 2: select date. Calendar constrained to valid billing-cycle dates with due date highlighted.",
+                caption: "Step 2, pick a date. The calendar only offers valid billing-cycle dates, due date highlighted.",
               },
             ],
           },
@@ -952,7 +952,7 @@ export const caseStudies: CaseStudy[] = [
             kind: "img",
             src: `${OCS}/08-autopay-confirm.png`,
             alt: "Auto-pay: review and confirm with full regulatory disclosure",
-            caption: "Step 3: review and confirm. Full ACH authorization language surfaced before the final action, satisfying regulatory requirements without hiding them.",
+            caption: "Step 3, review and confirm. The full ACH authorization language sits above the final button, not tucked away.",
           },
         ],
       },
@@ -963,16 +963,16 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The usual approach to multi-platform design is to build for one platform, ship it, then adapt the second. It sounds efficient: design it once. What actually happens is drift: the second platform inherits decisions shaped by the first platform's quirks, not by what's actually right for it.",
+            text: "The usual approach is to design one platform, ship it, then adapt the second. It sounds efficient. What happens instead is drift, because the second platform inherits decisions made around the first one's quirks.",
           },
           {
             kind: "p",
-            text: "For a regulated payment product, that drift is a compliance problem, not just a design one. Payment status has to behave the same way on iOS and Android. The law doesn't care which OS someone's on. I designed both platforms in parallel so every status state, every disclosure, every confirmation pattern matched by design, not by coincidence.",
+            text: "On a regulated payment product that drift is a compliance problem, not just a design one. Payment status has to behave identically on iOS and Android, because the law does not care which phone you bought. So I designed both at once.",
           },
           {
             kind: "callout",
             tone: "plus",
-            text: "Designing iOS and Android side by side ruled out regulatory drift before it could start. Every payment state, disclosure, and confirmation flow was specified once, together, not patched to match after the fact.",
+            text: "Designing both platforms side by side killed regulatory drift before it started. Every payment state, disclosure, and confirmation was specified once, together, instead of patched to match later.",
           },
           {
             kind: "h",
@@ -980,7 +980,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Delivery order followed member impact and regulatory risk. Account overview, payment flows, and status hierarchy went out in Phase 1: the highest-traffic, most compliance-sensitive ground. Auto-pay enrollment, secure payment, and transaction detail followed in Phase 2, built on the foundation Phase 1 had already laid.",
+            text: "We shipped in order of member impact and regulatory risk. Phase 1 was account overview, payment flows, and status hierarchy: the highest traffic and the most compliance exposure. Phase 2 added auto-pay enrollment, secure payment, and transaction detail on top.",
           },
         ],
       },
@@ -1011,7 +1011,7 @@ export const caseStudies: CaseStudy[] = [
     org: "The Demex Group",
     status: "SHIPPED",
     tagline:
-      "Founding product design and full-stack engineering for a climate-risk web app, turning dense weather data into something insurers and businesses could actually act on.",
+      "First designer at a climate-risk startup, writing front-end code too. We had piles of weather data and nobody outside the analyst team could read it.",
     hero: `${DCC}/05.png`,
     heroScreens: [`${DCC}/05.png`, `${DCC}/08.png`],
     role: "Founding Product Designer · Full-Stack Engineer",
@@ -1028,11 +1028,11 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "p",
-              text: "The Demex Group is a design-driven climate-risk startup specializing in products for insurers and businesses exposed to extreme but non-catastrophic weather. As founding product designer, I owned product strategy, user research, interaction, visual design, and prototyping for our first public-facing product, and pulled my full-stack engineering background back out to ship the front-end alongside the founding eng team.",
+              text: "Demex is a climate-risk startup building for insurers and businesses hit by severe but non-catastrophic weather. I was the founding product designer: strategy, research, interaction, visual design, and prototyping for our first public product. I wrote front-end code alongside the founding engineers too.",
             },
             {
               kind: "p",
-              text: "We were sitting on a mountain of climate and risk data that nobody outside our analysts could actually parse. The Demex Climate Center is what we built to make that data legible, comparable, and useful to the people whose bottom line was getting pummeled by weather.",
+              text: "We had a mountain of climate and risk data that nobody outside our own analysts could read. The Climate Center was our attempt to make it legible and comparable for the people actually losing money to weather.",
             },
           ],
         },
@@ -1043,22 +1043,22 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "p",
-              text: "Three things had to be true for the product to matter: our users had to actually be able to use the data, the macro problem had to be real, and the goal had to be specific.",
+              text: "Three things had to be true for this to be worth building: people could use the data, the problem was real, and the goal was specific.",
             },
             {
               kind: "features",
               items: [
                 {
                   title: "Our users",
-                  body: "Business owners and insurers needed a way to act on the data we already had, to protect revenue against weather events. Pre-Climate-Center, the data wasn't easy to analyze.",
+                  body: "Business owners and insurers needed to act on data we already had. Before the Climate Center it was close to unreadable.",
                 },
                 {
                   title: "The statistics",
-                  body: "U.S. non-catastrophic weather events have risen over 500% since 1980, with more than $9.3B in economic losses since 2002. Profitable businesses needed a way to defend their bottom line.",
+                  body: "Non-catastrophic weather events in the U.S. are up over 500% since 1980 and have cost more than $9.3B since 2002. Profitable businesses were getting hit with no way to defend against it.",
                 },
                 {
                   title: "Our goal",
-                  body: "Build a user-friendly web app on top of the data we already had so clients could interact with it directly and learn how weather actually affects their business.",
+                  body: "Put a usable web app on top of the data so clients could poke at it themselves and see how weather hits their business.",
                 },
               ],
             },
@@ -1071,29 +1071,29 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "p",
-              text: "I ran moderated and unmoderated studies with roughly 50 business owners through UserTesting.com to find the gaps in their existing insurance experience and pin down what climate data they actually wished they had. Three findings drove the eventual product surface:",
+              text: "I ran moderated and unmoderated studies with about 50 business owners on UserTesting.com, looking for gaps in their insurance experience and what climate data they actually wanted. Three findings shaped the product:",
             },
             {
               kind: "features",
               items: [
                 {
                   title: "Business disruption",
-                  body: "78% of surveyed owners reported significant disruptions to operations from unpredictable weather, leading to reduced productivity and higher costs.",
+                  body: "78% reported real operational disruption from unpredictable weather: lost productivity, higher costs.",
                 },
                 {
                   title: "Vulnerability",
-                  body: "In agricultural communities, 65% reported yearly losses from unanticipated weather events, with an average loss of 15% of their annual yield.",
+                  body: "In farming communities, 65% lose crop every year to weather they did not see coming. Average loss: 15% of annual yield.",
                 },
                 {
                   title: "Insurance gaps",
-                  body: "63% said their existing policies didn't adequately cover weather-related damages, leaving them financially exposed.",
+                  body: "63% said their policy did not actually cover the weather damage they got, which left them exposed.",
                 },
               ],
             },
             {
               kind: "callout",
               tone: "note",
-              text: "Translation: we needed to turn a flood of climate signals into a small set of meaningful numbers a non-analyst could trust at a glance.",
+              text: "So the job was turning a flood of climate signals into a few numbers a non-analyst could trust at a glance.",
             },
           ],
         },
@@ -1104,7 +1104,7 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "p",
-              text: "I sketched out the home and search-results screens early to lock in the information hierarchy: a single climate index up top, the supporting trend / variability / risk scores beside it, then a deep-dive band of historical observations and a comparison view.",
+              text: "I sketched the home and search-results screens early to lock the hierarchy: one climate index up top, trend, variability, and risk scores beside it, then historical observations and a comparison view below.",
             },
             {
               kind: "imgGrid",
@@ -1112,12 +1112,12 @@ export const caseStudies: CaseStudy[] = [
                 {
                   src: `${DCC}/06.png`,
                   alt: "Wireframe of the Demex Climate Center home page",
-                  caption: "Home: Climate Index, search, parametrics primer.",
+                  caption: "Home. Climate Index, search, and a short primer on parametrics.",
                 },
                 {
                   src: `${DCC}/07.png`,
                   alt: "Wireframe of the search results / detail view",
-                  caption: "Search results: DVI score, historical band, comparative geo views.",
+                  caption: "Search results. DVI score, historical band, comparative geo views.",
                 },
               ],
             },
@@ -1130,7 +1130,7 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "p",
-              text: "Once the platform was working end-to-end I ran a round of moderated tests with five real users (the Nielsen sweet spot) to gauge whether the navigation and the core read of the index were actually landing.",
+              text: "Once the thing worked end to end I ran moderated tests with five users to see whether the navigation and the index itself were landing.",
             },
             {
               kind: "quote",
@@ -1139,13 +1139,13 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "p",
-              text: "That single insight reshaped the next sprint. We added a comparative geographic view: a 5×5 climate-trend / variability matrix that plots locations against historical data, so a user looking at Seoul or London or their own zip code could see how their place ranks against the rest of the world.",
+              text: "That one line reshaped the next sprint. We built a comparative geographic view: a 5×5 trend and variability matrix plotting locations against historical data, so someone looking at Seoul or London or their own zip code can see how it ranks.",
             },
             {
               kind: "img",
               src: `${DCC}/08.png`,
               alt: "London climate trend and variability scatter chart",
-              caption: "Climate trend × variability matrix: every dot is a location plotted against its historical baseline.",
+              caption: "Climate trend against variability. Every dot is a location plotted on its own historical baseline.",
             },
           ],
         },
@@ -1156,11 +1156,11 @@ export const caseStudies: CaseStudy[] = [
           body: [
             {
               kind: "h",
-              text: "Balancing business goals with UX",
+              text: "Business goals versus what users need",
             },
             {
               kind: "p",
-              text: "In a startup it's not unusual to get pushback on a design that contradicts something a stakeholder wants. Those conversations go best when you have research lined up to advocate for users. Even better when the research already shaped the brief everyone signed off on.",
+              text: "At a startup you will get pushback any time a design contradicts what a stakeholder wants. Those conversations go better with research behind you, and better still when the research shaped the brief everyone already agreed to.",
             },
             {
               kind: "h",
@@ -1168,7 +1168,7 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "p",
-              text: "The five-user round caught the comparative-data gap that 50-user surveys hadn't surfaced. Different study sizes answer different questions; the smaller, deeper round was where the product actually got better.",
+              text: "The five-user round caught the comparative-data gap that 50 survey responses missed. Different study sizes answer different questions. The small deep one is where the product actually improved.",
             },
           ],
         },
@@ -1187,7 +1187,7 @@ export const caseStudies: CaseStudy[] = [
     org: "Oportun · Hackathon",
     status: "WON",
     tagline:
-      "Most Creative Idea winner at the Oportun hackathon. Re-imagined cross-border remittances on the Stellar network so members could send money home faster and cheaper than Western Union or PayPal.",
+      "A remittance flow on the Stellar network, so members could send money home faster and cheaper than Western Union or PayPal. Won Most Creative Idea at the Oportun hackathon.",
     hero: `${WEB3}/01.png`,
     heroScreens: [`${WEB3}/01.png`, `${WEB3}/08.png`, `${WEB3}/02.png`],
     role: "Product Designer",
@@ -1204,17 +1204,17 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Oportun's mission is to deliver affordable, responsible financial services to people the legacy banking system has overlooked. A huge slice of that user base sends money abroad every month, and the existing options either move slow or charge a premium. For our hackathon, my team set out to design a remittance experience built on web3 rails that could close that gap.",
+            text: "Oportun exists to serve people traditional banks skip. A big share of those members send money abroad every month, and their options are either slow or expensive. For the hackathon we tried to build a remittance flow on web3 rails that was neither.",
           },
           {
             kind: "p",
-            text: "We won Most Creative Idea for the result: a flow that hands members a remittance product that feels native to the Oportun app, but uses crypto as a behind-the-scenes settlement layer so the money arrives in seconds for a fraction of the cost.",
+            text: "It won Most Creative Idea. The flow looks like the rest of the Oportun app, but crypto does the settlement underneath, so the money lands in seconds for a fraction of the fee.",
           },
           {
             kind: "img",
             src: `${WEB3}/02.png`,
             alt: "Three-up section showing Our Users, The Statistics, and Our Goal",
-            caption: "Framing the opportunity: who Oportun's remittance users are, the size of the market, and what we set out to do.",
+            caption: "Who sends money, how big the market is, and what we were trying to do about it.",
           },
         ],
       },
@@ -1225,13 +1225,13 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Remittance is a financial lifeline for millions of households, but the rails most members default to are stuck a generation behind the rest of fintech. Western Union still leans on physical cash and storefront pickup. Wire transfers are slow and opaque. PayPal is fast but charges 5–11% per transfer, and the recipient frequently does not have an account.",
+            text: "Remittance is a lifeline for millions of households, and the rails are a generation behind the rest of fintech. Western Union still runs on cash and storefronts. Wires are slow and opaque. PayPal is fast but takes 5 to 11% per transfer, and often the person receiving the money does not have an account.",
           },
           {
             kind: "img",
             src: `${WEB3}/05.png`,
             alt: "Two-up callout: P2P Can be Slow and No Better Option",
-            caption: "The two patterns we kept hearing from members: speed and cost forced an either/or trade.",
+            caption: "The same two complaints, over and over. You could have it fast or cheap, not both.",
           },
           {
             kind: "quote",
@@ -1240,7 +1240,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Luis was not alone. The pattern across our research was that members were already shopping for alternatives because no single product was actually serving them.",
+            text: "Luis was not unusual. Across the research, members were already shopping around because nothing served them well.",
           },
         ],
       },
@@ -1251,21 +1251,21 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "We ran interviews and surveys with 30+ Oportun members who send money internationally. The conversations covered current behavior, frustrations, and what an ideal flow would feel like. Three things became loud signals.",
+            text: "We interviewed and surveyed 30+ Oportun members who send money internationally: what they do now, what annoys them, what they wish existed. Three things came through loud.",
           },
           {
             kind: "list",
             items: [
-              "Speed of delivery is the single biggest source of anxiety. Members track every minute between send and confirmation.",
-              "Fees that look small on the surface compound fast for people sending money two or three times a month.",
-              "The trip to a Western Union storefront and the cash-in-hand step are pain points members are ready to leave behind.",
+              "Speed is the biggest source of anxiety. People watch the clock between sending and confirmation.",
+              "Fees that look small add up fast when you send two or three times a month.",
+              "Nobody wants the drive to a Western Union counter or the cash in hand.",
             ],
           },
           {
             kind: "img",
             src: `${WEB3}/04.png`,
             alt: "Quote from Francisco about Western Union friction",
-            caption: "Francisco's quote was a recurring theme: the physical trip and cash handling were as much of a barrier as the fee.",
+            caption: "Francisco said what a lot of people said. The trip and the cash were as much of a barrier as the fee.",
           },
         ],
       },
@@ -1276,22 +1276,22 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "From the research we boiled the opportunity down into three user stories that became the north star for everything we built next.",
+            text: "We boiled the research down to three user stories and built against them.",
           },
           {
             kind: "features",
             items: [
               {
                 title: "Instant delivery",
-                body: "As a remitter, I want my recipient to receive the funds in seconds so I do not have to worry about whether the transfer went through.",
+                body: "I want the money to land in seconds so I am not sitting there wondering whether it went through.",
               },
               {
                 title: "Home-based",
-                body: "As a remitter, I want to send from my phone without driving to a storefront or carrying cash so the experience fits into my day.",
+                body: "I want to send from my phone instead of driving somewhere with cash in my pocket.",
               },
               {
                 title: "Cost efficient",
-                body: "As a remitter, I want the fee to feel negligible so my money goes to my family instead of an intermediary.",
+                body: "I want the fee small enough to ignore, so the money goes to my family and not a middleman.",
               },
             ],
           },
@@ -1304,28 +1304,28 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The creative leap was treating crypto as plumbing rather than a product. Members never see a token, a wallet seed, or a chain explorer. We chose the Stellar network for its speed, low transaction cost, and built-in anchor model: regulated partners on each side that handle the on-ramp and off-ramp in local currency.",
+            text: "The idea was to treat crypto as plumbing instead of a product. Members never see a token, a wallet seed, or a block explorer. We picked Stellar for speed, low fees, and its anchor model: regulated partners on each end handling the on-ramp and off-ramp in local currency.",
           },
           {
             kind: "img",
             src: `${WEB3}/08.png`,
             alt: "Diagram of the anchor pathway: Financial Institution Member to Stellar Network to Remittance Recipient via FinClusive and Biccos anchors",
-            caption: "Anchor pathway: the sender deposits US$ through a U.S. anchor, value moves across Stellar in seconds, and the recipient receives MX$ from a local anchor.",
+            caption: "The anchor pathway. Sender deposits US$ through a U.S. anchor, the value crosses Stellar in seconds, and a local anchor pays out MX$.",
           },
           {
             kind: "p",
-            text: "Pulling engineering into the conversation early was the move that unlocked the design. Together we mapped which steps had to live on chain, which could stay in the existing Oportun stack, and where compliance and KYC needed to land. By the time we built the prototype, the flow was both feasible and clearly scoped to a hackathon-sized MVP.",
+            text: "Bringing engineering in early is what made the design work. We mapped which steps had to be on chain, which could stay in the existing Oportun stack, and where compliance and KYC landed. By prototype time the flow was feasible and scoped to something we could actually build in a hackathon.",
           },
         ],
       },
       {
         id: "solution",
         no: "06",
-        title: "The proposed experience",
+        title: "What we proposed",
         body: [
           {
             kind: "p",
-            text: "We surfaced the new product as a first-class action inside the Oportun home dashboard, alongside savings, bills, and goals. Members tap into a familiar send-money flow, choose the recipient and amount, and confirm. Behind the scenes, the U.S. anchor converts to a Stellar asset, settles, and the destination anchor pays out in local currency.",
+            text: "The product sits on the Oportun home dashboard next to savings, bills, and goals. You tap in, pick a recipient and an amount, and confirm. Underneath, the U.S. anchor converts to a Stellar asset, settles, and the destination anchor pays out in local currency.",
           },
           {
             kind: "imgGrid",
@@ -1333,12 +1333,12 @@ export const caseStudies: CaseStudy[] = [
               {
                 src: `${WEB3}/01.png`,
                 alt: "Mobile mockup of the Oportun home dashboard with savings and bills cards",
-                caption: "Dashboard surface where the remittance flow lives alongside savings and bills.",
+                caption: "Where the remittance flow sits, next to savings and bills.",
               },
               {
                 src: `${WEB3}/07.jpg`,
                 alt: "Oportun mobile splash screen on a device frame",
-                caption: "Native to the existing Oportun app, no separate crypto wallet to manage.",
+                caption: "Inside the Oportun app people already have. No separate crypto wallet.",
               },
             ],
           },
@@ -1355,7 +1355,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The strongest part of this project was that design and engineering scoped the idea together from the first whiteboard. Decisions about Stellar, the anchor model, and what a hackathon-sized MVP actually looked like came out of the same room. The result was a concept the judges believed could actually ship.",
+            text: "The best part of this project was that design and engineering scoped it together from the first whiteboard. Stellar, the anchor model, and where the MVP stopped all got decided in the same room. That is why the judges believed it could ship.",
           },
           {
             kind: "h",
@@ -1363,12 +1363,12 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The biggest unlock was hiding the chain. Members get a familiar Oportun experience, the back end gets the speed and cost profile of Stellar, and nobody has to learn what an anchor is to send money home.",
+            text: "Hiding the chain was the whole trick. Members get the Oportun app they already know, the back end gets Stellar's speed and cost, and nobody has to learn what an anchor is to send money home.",
           },
           {
             kind: "callout",
             tone: "plus",
-            text: "Won Most Creative Idea at the Oportun hackathon for re-framing remittances around what members actually wanted: faster, cheaper, and from their phone.",
+            text: "Won Most Creative Idea for reframing remittances around what members actually asked for: faster, cheaper, from their phone.",
           },
         ],
       },

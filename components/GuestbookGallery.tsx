@@ -60,7 +60,7 @@ export default function GuestbookGallery() {
 
   // Copy swaps so basic ("Reading Room") mode reads as a plain
   // guestbook instead of an arcade leaderboard. Rendered through <C>
-  // (both variants ship, CSS picks) rather than branched in JS — see the
+  // (both variants ship, CSS picks) rather than branched in JS, see the
   // "Mode-gated content" note in globals.css for why.
   const copy = {
     savedTag: ["SAVED", "Saved"],

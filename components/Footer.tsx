@@ -12,7 +12,7 @@ const PIXEL_MARK = `
 
 /**
  * Both footers ship in the HTML; CSS shows one. See the "Mode-gated
- * content" block in globals.css for why this isn't a JS branch — in a
+ * content" block in globals.css for why this isn't a JS branch, in a
  * static export a JS branch means arcade copy paints first and swaps
  * out once React hydrates.
  */
@@ -45,8 +45,8 @@ function ScenicFooter() {
             THANKS FOR PLAYING.
           </div>
           <p className="font-mono text-[13px] text-ink-dim max-w-md leading-relaxed">
-            Built in Washington, D.C. A small love letter to late-night arcades, design
-            systems, and the people who actually read the patch notes.
+            Built in Washington, D.C., for late-night arcades, design systems, and
+            anyone who reads the patch notes.
           </p>
           <div className="flex flex-wrap gap-x-3 gap-y-2 font-mono text-[11px] text-ink-mute">
             <a href="mailto:mthomaswicher@gmail.com" className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan">
