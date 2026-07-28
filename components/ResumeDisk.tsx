@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import ModeText from "./ModeText";
 import { useSound } from "./SoundProvider";
 import { withBase } from "@/lib/path";
 
@@ -24,11 +25,8 @@ export default function ResumeDisk() {
     timerRef.current = window.setTimeout(() => setTransferring(false), 1400);
   }
 
-  return (
-    <section
-      className="my-14"
-      aria-labelledby="resume-heading"
-    >
+  const scenicDisk = (
+    <section className="my-14" aria-labelledby="resume-heading">
       <h2
         id="resume-heading"
         className="font-pixel text-[12px] tracking-widest text-glow-amber mb-4"
@@ -201,6 +199,35 @@ export default function ResumeDisk() {
             }
           }
         `}</style>
+      </a>
+    </section>
+  );
+
+  return <ModeText scenic={scenicDisk} basic={<BasicResume />} />;
+}
+
+/**
+ * Reading Room resume: a plain, labeled download. Same file, no floppy.
+ */
+function BasicResume() {
+  return (
+    <section className="my-12" aria-labelledby="resume-heading">
+      <div className="flex items-baseline justify-between mb-6 border-b border-ink-ghost pb-3">
+        <h2
+          id="resume-heading"
+          className="text-[15px] sm:text-[16px] uppercase tracking-[0.18em] text-ink font-mono"
+        >
+          Resume
+        </h2>
+        <span className="text-[12px] text-ink-mute font-mono">PDF · 91K</span>
+      </div>
+      <a
+        href={HREF}
+        download={FILENAME}
+        className="inline-flex items-center gap-2 py-2 text-[15px] font-mono text-ink underline-offset-4 hover:underline hover:text-ink-mute transition-colors"
+      >
+        Download resume (PDF)
+        <span aria-hidden="true">↓</span>
       </a>
     </section>
   );

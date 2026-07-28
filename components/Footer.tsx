@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useMode } from "./ModeProvider";
 
 const PIXEL_MARK = `
    ▄▄▄▄▄▄▄▄▄▄▄
@@ -13,10 +10,23 @@ const PIXEL_MARK = `
    ▀▀▀▀▀▀▀▀▀▀▀
 `;
 
+/**
+ * Both footers ship in the HTML; CSS shows one. See the "Mode-gated
+ * content" block in globals.css for why this isn't a JS branch — in a
+ * static export a JS branch means arcade copy paints first and swaps
+ * out once React hydrates.
+ */
 export default function Footer() {
-  const { mode } = useMode();
-  if (mode === "basic") return <BasicFooter />;
-  return <ScenicFooter />;
+  return (
+    <>
+      <div className="mode-only mode-scenic-only">
+        <ScenicFooter />
+      </div>
+      <div className="mode-only mode-basic-only">
+        <BasicFooter />
+      </div>
+    </>
+  );
 }
 
 function ScenicFooter() {

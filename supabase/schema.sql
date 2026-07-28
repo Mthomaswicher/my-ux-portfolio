@@ -61,3 +61,32 @@ create policy "anon insert pokes"
   on public.pet_pokes
   for insert
   with check (length(visitor_id) between 8 and 64);
+
+-- ─── Site session counter ───────────────────────────────────────────────
+-- One row per browser session, surfaced as the "SESSIONS · N" chip in
+-- scenic mode. Previously this table was only described in a comment in
+-- lib/visitorCounter.ts, which meant a fresh project came up without it
+-- and the chip silently never appeared. It lives here now so one paste
+-- provisions everything the site needs.
+
+create table if not exists public.site_sessions (
+  id bigserial primary key,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists site_sessions_created_at_idx
+  on public.site_sessions (created_at desc);
+
+alter table public.site_sessions enable row level security;
+
+drop policy if exists "anon read sessions" on public.site_sessions;
+create policy "anon read sessions"
+  on public.site_sessions
+  for select
+  using (true);
+
+drop policy if exists "anon insert sessions" on public.site_sessions;
+create policy "anon insert sessions"
+  on public.site_sessions
+  for insert
+  with check (true);

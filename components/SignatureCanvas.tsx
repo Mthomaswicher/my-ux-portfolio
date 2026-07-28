@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import ModeText from "./ModeText";
 
 export type SignatureCanvasHandle = {
   toDataURL: () => string;
@@ -187,9 +188,13 @@ const SignatureCanvas = forwardRef<
           aria-hidden="true"
         >
           <div className="font-pixel text-[9px] sm:text-[10px] tracking-widest text-ink-mute text-center px-4 leading-relaxed">
-            ░ DRAW YOUR MARK ░<br />
+            <ModeText scenic="░ DRAW YOUR MARK ░" basic="Draw your signature" />
+            <br />
             <span className="text-[8px] sm:text-[9px] opacity-70">
-              OR TYPE YOUR NAME ABOVE
+              <ModeText
+                scenic="OR TYPE YOUR NAME ABOVE"
+                basic="or type your name above"
+              />
             </span>
           </div>
         </div>

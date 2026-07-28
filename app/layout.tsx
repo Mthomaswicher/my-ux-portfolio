@@ -61,7 +61,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Matthew Thomas-Wicher · MTW.ARCADE",
+  title: "Matthew Thomas-Wicher · Sr. Product Designer",
   description:
     "Sr. Product Designer in Washington, D.C. Building thoughtful, data-informed software in highly regulated environments.",
   metadataBase: new URL("http://localhost:3000"),
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Matthew Thomas-Wicher · MTW.ARCADE",
+    title: "Matthew Thomas-Wicher · Sr. Product Designer",
     description:
       "Sr. Product Designer in Washington, D.C. Currently designing at Capital One.",
     type: "website",

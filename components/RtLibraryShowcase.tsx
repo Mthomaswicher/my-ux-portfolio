@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ModeText from "./ModeText";
 
 /**
  * Comprehensive view of the 3-tier color token graph from Berkeley Research
@@ -125,7 +126,7 @@ export default function RtLibraryShowcase() {
       {/* ─── Color tier diagram ─── */}
       <div>
         <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
-          ░ COLOR TOKENS ░
+          <ModeText scenic="░ COLOR TOKENS ░" basic="Color tokens" />
         </div>
         <div className="grid gap-4 lg:grid-cols-3">
           <Tier number="01" label="Primitives" subtitle="Raw values" accent="#22d3ee">
@@ -205,7 +206,7 @@ export default function RtLibraryShowcase() {
       {/* ─── Stamped components against the real chain ─── */}
       <div>
         <div className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3">
-          ░ STAMPED COMPONENTS ░
+          <ModeText scenic="░ STAMPED COMPONENTS ░" basic="Stamped components" />
         </div>
         <div
           className="p-6 sm:p-8"

@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import Sidebar from "./Sidebar";
 import { projects } from "@/lib/projects";
 
 /**
  * Basic-mode home: a plain editorial portfolio. No arcade copy, no
  * cartridges, no neon. Same content (projects), neutral framing.
+ *
+ * The sidebar and <main> landmark are owned by HomeView so both mode
+ * variants can coexist in the HTML — this renders content only.
  */
 export default function BasicHome() {
   return (
-    <div className="min-h-screen md:flex">
-      <Sidebar />
-      <main id="main" className="flex-1 min-w-0">
         <div className="mx-auto max-w-3xl px-5 sm:px-6 md:px-10 pt-20 md:pt-24 pb-16 md:pb-24">
           <header className="mb-14 md:mb-20">
             <div
@@ -122,8 +121,6 @@ export default function BasicHome() {
             Washington, D.C.
           </p>
         </div>
-      </main>
-    </div>
   );
 }
 

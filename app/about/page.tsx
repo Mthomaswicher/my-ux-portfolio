@@ -2,16 +2,17 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import ResumeDisk from "@/components/ResumeDisk";
+import ModeText from "@/components/ModeText";
 
 export const metadata = {
-  title: "Player Profile · MTW.ARCADE",
+  title: "About · Matthew Thomas-Wicher",
 };
 
 const STATS = [
-  { label: "YEARS XP", value: "9" },
-  { label: "CITY", value: "WASHINGTON, D.C." },
-  { label: "CURRENT QUEST", value: "CAPITAL ONE" },
-  { label: "CLASS", value: "SR. PRODUCT DESIGNER" },
+  { label: "YEARS XP", basicLabel: "Experience", value: "9" },
+  { label: "CITY", basicLabel: "Based in", value: "WASHINGTON, D.C." },
+  { label: "CURRENT QUEST", basicLabel: "Currently", value: "CAPITAL ONE" },
+  { label: "CLASS", basicLabel: "Title", value: "SR. PRODUCT DESIGNER" },
 ];
 
 const COMMUNITIES = [
@@ -33,10 +34,30 @@ const COMMUNITIES = [
 ];
 
 const FAVES = [
-  { tag: "GAME", name: "NBA 2K '26", note: "MyCareer marathons. Late-night ranked." },
-  { tag: "BOARD", name: "My offset smoker", note: "Sundays. Brisket. The whole thing." },
-  { tag: "GEAR", name: "Sony A7Rii", note: "San Diego skies. Long walks with Micah." },
-  { tag: "HOMIE", name: "Micah, the pup", note: "Energy-packed pandemic chaos engine." },
+  {
+    tag: "GAME",
+    basicTag: "Downtime",
+    name: "NBA 2K '26",
+    note: "MyCareer marathons. Late-night ranked.",
+  },
+  {
+    tag: "BOARD",
+    basicTag: "Kitchen",
+    name: "My offset smoker",
+    note: "Sundays. Brisket. The whole thing.",
+  },
+  {
+    tag: "GEAR",
+    basicTag: "Gear",
+    name: "Sony A7Rii",
+    note: "San Diego skies. Long walks with Micah.",
+  },
+  {
+    tag: "HOMIE",
+    basicTag: "Copilot",
+    name: "Micah, the pup",
+    note: "Energy-packed pandemic chaos engine.",
+  },
 ];
 
 const REVIEWS: Array<{
@@ -104,21 +125,72 @@ I'm looking forward to working with Matt on a future project! He would be a grea
   },
 ];
 
+/**
+ * Section heading that carries its own copy for each mode. Scenic keeps the
+ * arcade block-marker label; basic gets a plain editorial rule, matching the
+ * section headers on the Reading Room home page.
+ */
+function SectionHeading({
+  id,
+  tone,
+  scenic,
+  basic,
+}: {
+  id: string;
+  tone: string;
+  scenic: string;
+  basic: string;
+}) {
+  return (
+    <ModeText
+      scenic={
+        <h2 id={id} className={`font-pixel text-[12px] tracking-widest ${tone} mb-4`}>
+          <span aria-hidden="true">▌</span>
+          {scenic}
+        </h2>
+      }
+      basic={
+        <h2
+          id={id}
+          className="text-[15px] sm:text-[16px] uppercase tracking-[0.18em] text-ink font-mono mb-6 border-b border-ink-ghost pb-3"
+        >
+          {basic}
+        </h2>
+      }
+    />
+  );
+}
+
 export default function About() {
   return (
     <div className="min-h-screen md:flex">
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
         <div className="mx-auto max-w-4xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
-          <div
-            className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
-            aria-hidden="true"
-          >
-            ░ PLAYER PROFILE ░
-          </div>
+          <ModeText
+            scenic={
+              <div
+                className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
+                aria-hidden="true"
+              >
+                ░ PLAYER PROFILE ░
+              </div>
+            }
+            basic={
+              <div
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute mb-3"
+                aria-hidden="true"
+              >
+                About
+              </div>
+            }
+          />
           <h1 className="font-display text-[clamp(1.75rem,8vw,2.5rem)] sm:text-[56px] md:text-[80px] leading-[1.05] sm:leading-none text-glow-magenta mb-8">
-            Player 1: Matt
-            <span className="caret" aria-hidden="true" />
+            <ModeText scenic="Player 1: Matt" basic="About Matt" />
+            <ModeText
+              scenic={<span className="caret" aria-hidden="true" />}
+              basic={null}
+            />
           </h1>
 
           <section className="grid lg:grid-cols-[200px_1fr] gap-6 sm:gap-8 mb-14">
@@ -158,12 +230,12 @@ export default function About() {
           <ResumeDisk />
 
           <section className="mb-14" aria-labelledby="stats-heading">
-            <h2
+            <SectionHeading
               id="stats-heading"
-              className="font-pixel text-[12px] tracking-widest text-glow-cyan mb-4"
-            >
-              <span aria-hidden="true">▌</span>STATS
-            </h2>
+              tone="text-glow-cyan"
+              scenic="STATS"
+              basic="At a glance"
+            />
             <div className="cartridge grid grid-cols-2 lg:grid-cols-4 border-ink-ghost">
               {STATS.map((s, i) => {
                 const mobileLeft = i % 2 === 1 ? "border-l" : "";
@@ -176,9 +248,11 @@ export default function About() {
                     className={`p-4 border-ink-ghost ${mobileLeft} ${mobileTop} ${desktopLeft} ${desktopTop}`}
                   >
                     <div className="font-mono text-[10px] tracking-widest text-ink-mute uppercase">
-                      {s.label}
+                      <ModeText scenic={s.label} basic={s.basicLabel} />
                     </div>
-                    <div className="font-display text-[22px] sm:text-[28px] leading-tight text-glow-amber mt-1 break-words">
+                    {/* No break-words here: it split "WASHINGTON, D.C."
+                        mid-word in the narrow stat column. */}
+                    <div className="font-display text-[22px] sm:text-[26px] leading-tight text-glow-amber mt-1">
                       {s.value}
                     </div>
                   </div>
@@ -188,12 +262,12 @@ export default function About() {
           </section>
 
           <section className="mb-14" aria-labelledby="guilds-heading">
-            <h2
+            <SectionHeading
               id="guilds-heading"
-              className="font-pixel text-[12px] tracking-widest text-glow-lime mb-4"
-            >
-              <span aria-hidden="true">▌</span>GUILDS
-            </h2>
+              tone="text-glow-lime"
+              scenic="GUILDS"
+              basic="Communities"
+            />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {COMMUNITIES.map((c) => (
                 <div key={c.name} className="cartridge p-4 space-y-2">
@@ -210,12 +284,12 @@ export default function About() {
           </section>
 
           <section className="mb-14" aria-labelledby="faves-heading">
-            <h2
+            <SectionHeading
               id="faves-heading"
-              className="font-pixel text-[12px] tracking-widest text-glow-magenta mb-4"
-            >
-              <span aria-hidden="true">▌</span>FAVES
-            </h2>
+              tone="text-glow-magenta"
+              scenic="FAVES"
+              basic="Off the clock"
+            />
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {FAVES.map((f) => (
                 <div
@@ -223,7 +297,7 @@ export default function About() {
                   className="cartridge p-3 hover:shadow-neon-magenta transition-shadow"
                 >
                   <div className="font-pixel text-[8px] tracking-widest text-ink-mute mb-2">
-                    [{f.tag}]
+                    <ModeText scenic={`[${f.tag}]`} basic={f.basicTag} />
                   </div>
                   <div className="font-display text-[20px] leading-none text-glow-cyan mb-1">
                     {f.name}
@@ -235,12 +309,12 @@ export default function About() {
           </section>
 
           <section className="mb-14" aria-labelledby="press-heading">
-            <h2
+            <SectionHeading
               id="press-heading"
-              className="font-pixel text-[12px] tracking-widest text-glow-cyan mb-4"
-            >
-              <span aria-hidden="true">▌</span>PRESS
-            </h2>
+              tone="text-glow-cyan"
+              scenic="PRESS"
+              basic="Press"
+            />
             <a
               href="https://flatironschool.com/blog/matthew-thomas-wicher-law-to-design/"
               target="_blank"
@@ -255,7 +329,7 @@ export default function About() {
                   className="font-mono text-[10px] uppercase tracking-widest text-ink-mute"
                   aria-hidden="true"
                 >
-                  ░
+                  <ModeText scenic="░" basic="·" />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-widest text-ink-mute">
                   March 29, 2023
@@ -264,7 +338,7 @@ export default function About() {
                   className="font-mono text-[10px] uppercase tracking-widest text-ink-mute"
                   aria-hidden="true"
                 >
-                  ░
+                  <ModeText scenic="░" basic="·" />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-widest text-glow-amber">
                   Alumni Feature
@@ -290,12 +364,12 @@ export default function About() {
           </section>
 
           <section className="mb-14" aria-labelledby="reviews-heading">
-            <h2
+            <SectionHeading
               id="reviews-heading"
-              className="font-pixel text-[12px] tracking-widest text-glow-amber mb-4"
-            >
-              <span aria-hidden="true">▌</span>FAN MAIL
-            </h2>
+              tone="text-glow-amber"
+              scenic="FAN MAIL"
+              basic="Recommendations"
+            />
             <div className="font-mono text-[11.5px] text-ink-mute mb-4 leading-relaxed">
               Verbatim from{" "}
               <a

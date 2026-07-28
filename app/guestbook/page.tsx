@@ -4,7 +4,7 @@ import GuestbookGallery from "@/components/GuestbookGallery";
 import GuestbookHero from "@/components/GuestbookHero";
 
 export const metadata = {
-  title: "High Scores · MTW.ARCADE",
+  title: "Guestbook · Matthew Thomas-Wicher",
 };
 
 export default function GuestbookPage() {

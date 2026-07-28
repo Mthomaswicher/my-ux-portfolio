@@ -10,7 +10,6 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import { BONUS_TRACK, CAREER_STAGES, type CareerStage } from "@/lib/career";
 
@@ -37,9 +36,7 @@ export default function BasicExperience() {
   });
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main id="main" className="flex-1 min-w-0 relative">
+      <>
         {/* Top progress bar — anchored to the viewport, scales with scroll. */}
         <motion.div
           aria-hidden="true"
@@ -75,8 +72,7 @@ export default function BasicExperience() {
 
           <Footer />
         </div>
-      </main>
-    </div>
+      </>
   );
 }
 

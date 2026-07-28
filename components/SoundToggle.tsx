@@ -1,6 +1,5 @@
 "use client";
 
-import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 
 type Props = { variant?: "floating" | "inline" };
@@ -16,9 +15,10 @@ type Props = { variant?: "floating" | "inline" };
  */
 export default function SoundToggle({ variant = "floating" }: Props) {
   const { enabled, toggle } = useSound();
-  const { mode } = useMode();
-  // Sound is an arcade flourish — basic mode has no audio, so hide the chip.
-  if (mode === "basic") return null;
+  // Sound is an arcade flourish — basic mode has no audio, so the chip is
+  // hidden there. That's done in CSS (`.scenic-chrome`) rather than by
+  // returning null: the server can't know the mode in a static export, so
+  // a JS branch would break hydration and paint the chip first anyway.
 
   const baseChip =
     "inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-3 py-2 font-pixel text-[10px] tracking-widest uppercase border bg-bg-deep/95 backdrop-blur-sm transition-all";
@@ -38,7 +38,7 @@ export default function SoundToggle({ variant = "floating" }: Props) {
       aria-pressed={enabled}
       aria-label={enabled ? "Mute arcade sound effects" : "Enable arcade sound effects"}
       title={`${enabled ? "Sound on" : "Sound off"} (press M to toggle)`}
-      className={`${positional} ${baseChip} ${stateChip}`}
+      className={`scenic-chrome ${positional} ${baseChip} ${stateChip}`}
     >
       <span aria-hidden="true" className="text-[14px] md:text-[11px] leading-none">
         {enabled ? "♪" : "·"}

@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useMode } from "./ModeProvider";
 import { useTheme } from "./ThemeProvider";
 
 type Props = { variant?: "floating" | "inline" };
@@ -17,10 +16,11 @@ type Props = { variant?: "floating" | "inline" };
  */
 export default function ThemeToggle({ variant = "floating" }: Props) {
   const { theme, toggle } = useTheme();
-  const { mode } = useMode();
   const pathname = usePathname();
 
-  if (mode === "basic") return null;
+  // Basic mode hides this via CSS (`.scenic-chrome`), not by returning
+  // null — see SoundToggle for why. The boot-screen check is safe to do
+  // in JS because the path is known at render time on both sides.
   if (pathname === "/" || pathname === "/index.html") return null;
 
   const isDark = theme === "dark";
@@ -44,7 +44,7 @@ export default function ThemeToggle({ variant = "floating" }: Props) {
       aria-pressed={!isDark}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       title={isDark ? "Light theme" : "Dark theme"}
-      className={`${positional} ${baseChip} ${stateChip}`}
+      className={`scenic-chrome ${positional} ${baseChip} ${stateChip}`}
     >
       <span aria-hidden="true" className="text-[14px] md:text-[12px] leading-none">
         {isDark ? "☼" : "☾"}

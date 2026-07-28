@@ -4,11 +4,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState } from "react";
 import SignatureCanvas, { SignatureCanvasHandle } from "./SignatureCanvas";
-import { useMode } from "./ModeProvider";
+import ModeText from "./ModeText";
 import { useSound } from "./SoundProvider";
 import { haptic } from "@/lib/haptic";
 import { normalizeTag, randomTag } from "@/lib/visitorTags";
-import { getPublicClient } from "@/lib/supabase";
+import {
+  getPublicClient,
+  timeoutSignal,
+  SUPABASE_WRITE_TIMEOUT_MS,
+} from "@/lib/supabase";
 
 const COLORS: Array<{ key: "magenta" | "cyan" | "lime" | "amber"; hex: string; label: string }> = [
   { key: "magenta", hex: "#ff2bd6", label: "MAGENTA" },
@@ -26,8 +30,6 @@ export default function SignFlow() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { play } = useSound();
-  const { mode } = useMode();
-  const isBasic = mode === "basic";
 
   const nameId = useId();
   const tagId = useId();
@@ -60,21 +62,34 @@ export default function SignFlow() {
       signature_png,
     };
 
+    // Keep the signature on this device no matter what the backend does.
+    // The guestbook page reads these and says so ("Couldn't reach the live
+    // wall…"), which beats throwing away a drawing someone just made.
+    function saveLocally() {
+      try {
+        const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]");
+        const entry = {
+          id: Date.now(),
+          tag: payload.tag,
+          name: payload.name || null,
+          color: payload.color,
+          signature_png: payload.signature_png,
+          card_number: local.length + 1,
+          created_at: new Date().toISOString(),
+        };
+        localStorage.setItem("mtw.guestbook", JSON.stringify([entry, ...local]));
+        return true;
+      } catch {
+        // Private browsing / quota — nothing more we can do here.
+        return false;
+      }
+    }
+
     const client = getPublicClient();
 
     if (!client) {
-      // No Supabase configured. write to localStorage and continue
-      const local = JSON.parse(localStorage.getItem("mtw.guestbook") || "[]");
-      const entry = {
-        id: Date.now(),
-        tag: payload.tag,
-        name: payload.name || null,
-        color: payload.color,
-        signature_png: payload.signature_png,
-        card_number: local.length + 1,
-        created_at: new Date().toISOString(),
-      };
-      localStorage.setItem("mtw.guestbook", JSON.stringify([entry, ...local]));
+      // No Supabase configured — local-only is the expected path.
+      saveLocally();
       play("save");
       haptic("save");
       router.push("/guestbook?welcome=1&local=1");
@@ -90,15 +105,27 @@ export default function SignFlow() {
           name: payload.name || null,
           color: payload.color,
           signature_png: payload.signature_png,
-        });
+        })
+        .abortSignal(timeoutSignal(SUPABASE_WRITE_TIMEOUT_MS));
       if (insertErr) throw insertErr;
       play("save");
       haptic("save");
       router.push("/guestbook?welcome=1");
-    } catch (e: any) {
-      setError(e?.message || "Network error.");
-      play("error");
-      haptic("error");
+    } catch {
+      // The live wall is unreachable (project down, RLS rejection, offline).
+      // Don't lose the drawing and don't show a raw "TypeError: Failed to
+      // fetch" — save it here and let the guestbook explain the situation.
+      if (saveLocally()) {
+        play("save");
+        haptic("save");
+        router.push("/guestbook?welcome=1&local=1");
+      } else {
+        setError(
+          "Couldn't save your signature — the guestbook is unreachable right now. Please try again later.",
+        );
+        play("error");
+        haptic("error");
+      }
     } finally {
       setSubmitting(false);
     }
@@ -107,54 +134,62 @@ export default function SignFlow() {
   return (
     <main id="main" className="min-h-[100dvh] px-5 sm:px-6 pt-6 pb-10">
       <div className="mx-auto max-w-3xl">
-        <Link
-          href="/"
-          className={
-            isBasic
-              ? "inline-block py-2 text-[13px] text-ink-dim hover:text-ink underline-offset-4 hover:underline"
-              : "inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan"
+        <ModeText
+          scenic={
+            <Link
+              href="/"
+              className="inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan"
+            >
+              <span aria-hidden="true">← </span>BACK TO BOOT
+            </Link>
           }
-        >
-          <span aria-hidden="true">← </span>
-          {isBasic ? "Back" : "BACK TO BOOT"}
-        </Link>
+          basic={
+            <Link
+              href="/"
+              className="inline-block py-2 text-[13px] text-ink-dim hover:text-ink underline-offset-4 hover:underline"
+            >
+              <span aria-hidden="true">← </span>Back
+            </Link>
+          }
+        />
 
         <header className="mt-6 sm:mt-8 mb-8 sm:mb-10">
-          {!isBasic && (
-            <div
-              className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-3"
-              aria-hidden="true"
-            >
-              ░ NEW PLAYER REGISTRATION ░
-            </div>
-          )}
-          {isBasic ? (
-            <>
-              <h1
-                className="text-[clamp(1.625rem,6vw,3rem)] leading-[1.05] text-ink mb-4 break-words"
-                style={{ fontFamily: "var(--font-garamond)", fontWeight: 500 }}
-              >
-                Sign the guestbook
-              </h1>
-              <p
-                className="text-[15px] sm:text-[16px] text-ink-dim mt-2 max-w-xl leading-relaxed"
-                style={{ fontFamily: "var(--font-garamond)" }}
-              >
-                Pick a name, pick a pen, draw your mark. You&apos;ll appear in
-                the guestbook entries below.
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 className="font-display text-[clamp(2.5rem,11vw,3.5rem)] sm:text-[64px] md:text-[88px] leading-[1.05] sm:leading-none text-glow-cyan">
-                Sign in.<span className="caret" aria-hidden="true" />
-              </h1>
-              <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">
-                Welcome, visitor. Pick a tag, pick a color, scribble your mark on the
-                cartridge. You&apos;ll show up on the high-score wall.
-              </p>
-            </>
-          )}
+          <ModeText
+            scenic={
+              <>
+                <div
+                  className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-3"
+                  aria-hidden="true"
+                >
+                  ░ NEW PLAYER REGISTRATION ░
+                </div>
+                <h1 className="font-display text-[clamp(2.5rem,11vw,3.5rem)] sm:text-[64px] md:text-[88px] leading-[1.05] sm:leading-none text-glow-cyan">
+                  Sign in.<span className="caret" aria-hidden="true" />
+                </h1>
+                <p className="font-mono text-[14.5px] text-ink-dim mt-4 max-w-xl leading-relaxed">
+                  Welcome, visitor. Pick a tag, pick a color, scribble your mark on the
+                  cartridge. You&apos;ll show up on the high-score wall.
+                </p>
+              </>
+            }
+            basic={
+              <>
+                <h1
+                  className="text-[clamp(1.625rem,6vw,3rem)] leading-[1.05] text-ink mb-4 break-words"
+                  style={{ fontFamily: "var(--font-garamond)", fontWeight: 500 }}
+                >
+                  Sign the guestbook
+                </h1>
+                <p
+                  className="text-[15px] sm:text-[16px] text-ink-dim mt-2 max-w-xl leading-relaxed"
+                  style={{ fontFamily: "var(--font-garamond)" }}
+                >
+                  Pick a name, pick a pen, draw your mark. You&apos;ll appear in
+                  the guestbook entries below.
+                </p>
+              </>
+            }
+          />
         </header>
 
         <form
@@ -219,9 +254,10 @@ export default function SignFlow() {
                 id={tagHelpId}
                 className="mt-1 font-mono text-[10px] text-ink-mute uppercase tracking-widest"
               >
-                {isBasic
-                  ? "Three letters or numbers, your initials."
-                  : "3 letters/numbers, like an arcade high score."}
+                <ModeText
+                  scenic="3 letters/numbers, like an arcade high score."
+                  basic="Three letters or numbers, your initials."
+                />
               </div>
             </div>
           </section>
@@ -231,7 +267,7 @@ export default function SignFlow() {
               id={colorGroupId}
               className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-3"
             >
-              {isBasic ? "Pen color" : "Card color"}
+              <ModeText scenic="Card color" basic="Pen color" />
             </legend>
             <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Card color">
               {COLORS.map((c) => (
@@ -263,7 +299,7 @@ export default function SignFlow() {
 
           <section className="mb-6">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute mb-3">
-              {isBasic ? "Sign here" : "Sign the cartridge"}
+              <ModeText scenic="Sign the cartridge" basic="Sign here" />
             </div>
             <SignatureCanvas ref={ref} color={color} />
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
@@ -294,7 +330,7 @@ export default function SignFlow() {
                 </button>
               </div>
               <span className="font-mono text-[10.5px] text-ink-mute uppercase tracking-widest">
-                {isBasic ? "Pen" : "Card"}: {color}
+                <ModeText scenic="Card" basic="Pen" />: {color}
               </span>
             </div>
             <div className="mt-2 font-mono text-[10.5px] text-ink-mute leading-relaxed">
@@ -323,38 +359,38 @@ export default function SignFlow() {
               type="submit"
               disabled={submitting}
               aria-describedby={error ? errorId : undefined}
-              className={
-                isBasic
-                  ? "px-5 py-3 min-h-[48px] border border-ink-ghost text-[14px] text-ink hover:border-ink-mute disabled:opacity-50 disabled:cursor-not-allowed"
-                  : "cartridge px-6 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-              }
+              className="sign-submit cartridge px-6 py-3 min-h-[48px] font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isBasic ? (
-                submitting ? "Saving…" : "Sign"
-              ) : submitting ? (
-                "SAVING…"
-              ) : (
-                <>
-                  <span aria-hidden="true">[ </span>ENTER<span aria-hidden="true"> → ]</span>
-                </>
-              )}
+              <ModeText
+                scenic={
+                  submitting ? (
+                    "SAVING…"
+                  ) : (
+                    <>
+                      <span aria-hidden="true">[ </span>ENTER
+                      <span aria-hidden="true"> → ]</span>
+                    </>
+                  )
+                }
+                basic={submitting ? "Saving…" : "Sign"}
+              />
             </button>
             <Link
               href="/home"
-              className={
-                isBasic
-                  ? "py-2 text-[13px] text-ink-dim hover:text-ink underline-offset-4 hover:underline"
-                  : "py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
-              }
+              className="sign-skip py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
             >
-              {isBasic ? "Skip — see the work" : "SKIP, TAKE ME TO THE WORK"}
+              <ModeText
+                scenic="SKIP, TAKE ME TO THE WORK"
+                basic="Skip — see the work"
+              />
             </Link>
           </div>
 
           <div className="mt-12 font-mono text-[11px] text-ink-mute leading-relaxed">
-            {isBasic
-              ? "Your entry appears in the guestbook once saved. No emails, no tracking, just a signature."
-              : "Your card appears on the high-score wall once it's saved. No emails. No tracking. Just a mark."}
+            <ModeText
+              scenic="Your card appears on the high-score wall once it's saved. No emails. No tracking. Just a mark."
+              basic="Your entry appears in the guestbook once saved. No emails, no tracking, just a signature."
+            />
           </div>
         </form>
       </div>

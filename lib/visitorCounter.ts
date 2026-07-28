@@ -21,7 +21,7 @@
  * site keeps working.
  */
 
-import { getPublicClient } from "./supabase";
+import { getPublicClient, timeoutSignal } from "./supabase";
 
 const SESSION_FLAG_KEY = "mtw.session.counted";
 
@@ -44,7 +44,10 @@ export async function tickVisitorCounter(): Promise<number | null> {
 
   if (!alreadyCounted) {
     try {
-      const { error } = await client.from("site_sessions").insert({});
+      const { error } = await client
+        .from("site_sessions")
+        .insert({})
+        .abortSignal(timeoutSignal());
       if (!error) {
         try {
           sessionStorage.setItem(SESSION_FLAG_KEY, "1");
@@ -60,7 +63,8 @@ export async function tickVisitorCounter(): Promise<number | null> {
   try {
     const { count, error } = await client
       .from("site_sessions")
-      .select("*", { count: "exact", head: true });
+      .select("*", { count: "exact", head: true })
+      .abortSignal(timeoutSignal());
     if (error) return null;
     return typeof count === "number" ? count : null;
   } catch {

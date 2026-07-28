@@ -572,6 +572,109 @@ html[data-scroll-locked="true"] body {
   background: rgb(var(--ink-mute));
 }
 
+/* --------------------------------------------------------------------------
+   Mode-gated content
+   --------------------------------------------------------------------------
+   This is a static export, so the server HTML is identical for both modes.
+   Anything that branches on mode in JS alone stays wrong until React
+   hydrates — seconds on a slow phone — which means a Reading Room visitor
+   watches arcade copy paint and then swap out.
+
+   Instead, both variants ship in the HTML and CSS hides one. The inline
+   script in <head> sets html[data-mode] before first paint, so the wrong
+   variant is never painted at all, and server/client markup stays identical
+   (no hydration mismatch).
+
+   `display: contents` keeps the wrapper out of layout so block children
+   (headings, grids) behave as though it weren't there.
+   --------------------------------------------------------------------------- */
+
+.mode-only {
+  display: contents;
+}
+
+:root[data-mode="basic"] .mode-scenic-only,
+:root[data-mode="scenic"] .mode-basic-only {
+  display: none !important;
+}
+
+/* Scenic-only furniture (CRT layers, sound + theme floats, session chip).
+   JS unmounts these in basic mode too — this is what keeps them from
+   painting in the window before hydration gets there. */
+:root[data-mode="basic"] .scenic-chrome {
+  display: none !important;
+}
+
+/* Sidebar pieces whose *styling* (not copy) differs by mode. Same reason as
+   above: doing this in JS means the arcade treatment paints first. */
+:root[data-mode="basic"] .sidebar-menu-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: normal;
+  color: rgb(var(--ink));
+  border-color: rgb(var(--ink-ghost));
+  box-shadow: none;
+}
+:root[data-mode="basic"] .sidebar-avatar,
+:root[data-mode="basic"] .sidebar-avatar img {
+  border-radius: 9999px;
+}
+:root[data-mode="basic"] .sidebar-log-body {
+  font-family: var(--font-garamond), Georgia, serif;
+  font-size: 14px;
+}
+:root[data-mode="basic"] .gb-saved-tag,
+:root[data-mode="basic"] .gb-entries-heading,
+:root[data-mode="basic"] .gb-add-yours {
+  font-family: var(--font-mono);
+  color: rgb(var(--ink));
+  letter-spacing: 0.18em;
+}
+:root[data-mode="basic"] .gb-add-yours {
+  font-size: 12px;
+  letter-spacing: normal;
+}
+:root[data-mode="basic"] .gb-stat-num,
+:root[data-mode="basic"] .gb-stat-latest {
+  font-family: var(--font-garamond), Georgia, serif;
+  font-weight: 500;
+  color: rgb(var(--ink));
+}
+:root[data-mode="basic"] .gb-empty-blurb {
+  font-family: var(--font-garamond), Georgia, serif;
+  font-size: 15px;
+}
+:root[data-mode="basic"] .gb-sign-cta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: normal;
+  box-shadow: none;
+}
+
+:root[data-mode="basic"] .sign-submit {
+  border-color: rgb(var(--ink-ghost));
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: normal;
+  box-shadow: none;
+}
+:root[data-mode="basic"] .sign-skip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: normal;
+}
+:root[data-mode="basic"] .mode-toggle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+:root[data-mode="basic"] .sidebar-restart {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: normal;
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   html {

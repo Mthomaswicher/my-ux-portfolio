@@ -2,9 +2,10 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import RtLibraryShowcase from "@/components/RtLibraryShowcase";
+import ModeText from "@/components/ModeText";
 
 export const metadata = {
-  title: "Lab · MTW.ARCADE",
+  title: "Lab · Matthew Thomas-Wicher",
 };
 
 type Screen = {
@@ -63,15 +64,30 @@ export default function Lab() {
       <Sidebar />
       <main id="main" className="flex-1 min-w-0">
         <div className="mx-auto max-w-5xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
-          <div
-            className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
-            aria-hidden="true"
-          >
-            ░ B-SIDES ░
-          </div>
+          <ModeText
+            scenic={
+              <div
+                className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
+                aria-hidden="true"
+              >
+                ░ B-SIDES ░
+              </div>
+            }
+            basic={
+              <div
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute mb-3"
+                aria-hidden="true"
+              >
+                Experiments
+              </div>
+            }
+          />
           <h1 className="font-display text-[clamp(2.25rem,10vw,3rem)] sm:text-[56px] md:text-[80px] leading-[1.05] sm:leading-none text-glow-amber mb-8">
             The Lab
-            <span className="caret" aria-hidden="true" />
+            <ModeText
+              scenic={<span className="caret" aria-hidden="true" />}
+              basic={null}
+            />
           </h1>
 
           <p className="font-mono text-[15px] text-ink-dim mb-12 sm:mb-16 max-w-xl leading-relaxed">

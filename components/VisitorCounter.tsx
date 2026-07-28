@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useMode } from "./ModeProvider";
 import { tickVisitorCounter } from "@/lib/visitorCounter";
 
 /**
@@ -8,6 +9,9 @@ import { tickVisitorCounter } from "@/lib/visitorCounter";
  * site-wide session count. One row per browser session, so the same
  * visitor in a new tab is counted again — that matches "different
  * session" in the spec.
+ *
+ * Scenic mode only — a session counter is arcade furniture, so basic
+ * (Reading Room) mode never mounts it.
  *
  * Renders nothing until Supabase responds, and renders nothing if
  * Supabase isn't configured or the site_sessions table doesn't exist.
@@ -17,8 +21,11 @@ import { tickVisitorCounter } from "@/lib/visitorCounter";
  */
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
+  const { mode } = useMode();
+  const isBasic = mode === "basic";
 
   useEffect(() => {
+    if (isBasic) return;
     let cancelled = false;
     tickVisitorCounter().then((c) => {
       if (cancelled) return;
@@ -27,13 +34,13 @@ export default function VisitorCounter() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [isBasic]);
 
-  if (count === null) return null;
+  if (isBasic || count === null) return null;
 
   return (
     <div
-      className="fixed bottom-[max(0.5rem,env(safe-area-inset-bottom))] left-3 z-40 px-2 py-1 select-none pointer-events-none border border-ink-ghost/70 bg-bg-deep/85 backdrop-blur-sm font-pixel text-[8px] tracking-[0.18em] uppercase text-ink-mute"
+      className="scenic-chrome fixed bottom-[max(0.5rem,env(safe-area-inset-bottom))] left-3 z-40 px-2 py-1 select-none pointer-events-none border border-ink-ghost/70 bg-bg-deep/85 backdrop-blur-sm font-pixel text-[8px] tracking-[0.18em] uppercase text-ink-mute"
       role="status"
       aria-label={`Total sessions: ${count.toLocaleString()}`}
     >

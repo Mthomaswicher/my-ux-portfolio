@@ -4,7 +4,7 @@ import CaseStudyNavBack from "@/components/CaseStudyNavBack";
 import Footer from "@/components/Footer";
 import HoloDisplay from "@/components/HoloDisplay";
 import CaseStudyVideo from "@/components/CaseStudyVideo";
-import CaseStudyGate from "@/components/CaseStudyGate";
+import ModeText from "@/components/ModeText";
 import OportunBrandHeader from "@/components/OportunBrandHeader";
 import CapitalOneBrandHeader from "@/components/CapitalOneBrandHeader";
 import DemexBrandHeader from "@/components/DemexBrandHeader";
@@ -19,7 +19,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   const c = getCaseStudy(params.slug);
   if (!c) return {};
   return {
-    title: `${c.title} · MTW.ARCADE`,
+    title: `${c.title} · Matthew Thomas-Wicher`,
     description: c.tagline,
   };
 }
@@ -192,12 +192,6 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <CaseStudyNavBack variant="top" />
       </div>
 
-      <CaseStudyGate
-        enabled={study.slug === "idp-release-plugin"}
-        slug={study.slug}
-        password="tokens"
-        hint="If you don't have it, ask Matt."
-      >
       <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 grid md:grid-cols-[220px_1fr] gap-6 md:gap-10">
         <aside className="md:sticky md:top-6 self-start" aria-labelledby="toc-heading">
           {/* Mobile: collapsible. Desktop: always-visible TOC. */}
@@ -381,12 +375,24 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               className="mb-14 scroll-mt-10"
               aria-labelledby={`${s.id}-heading`}
             >
-              <div
-                className="font-pixel text-[10px] tracking-widest text-ink-mute mb-2"
-                aria-hidden="true"
-              >
-                {s.no} ░ {s.title.toUpperCase()}
-              </div>
+              <ModeText
+                scenic={
+                  <div
+                    className="font-pixel text-[10px] tracking-widest text-ink-mute mb-2"
+                    aria-hidden="true"
+                  >
+                    {s.no} ░ {s.title.toUpperCase()}
+                  </div>
+                }
+                basic={
+                  <div
+                    className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute mb-2"
+                    aria-hidden="true"
+                  >
+                    {s.no} · {s.title}
+                  </div>
+                }
+              />
               <h2
                 id={`${s.id}-heading`}
                 className={`font-display text-[clamp(1.75rem,7vw,2rem)] sm:text-[36px] md:text-[44px] leading-tight mb-5 break-words ${ACCENT_TEXT[study.accent]}`}
@@ -401,17 +407,22 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
           {study.results && (
             <section id="results" className="mb-14 scroll-mt-10" aria-labelledby="results-heading">
-              <div
-                className="font-pixel text-[10px] tracking-widest text-ink-mute mb-2"
-                aria-hidden="true"
-              >
-                ★ RESULTS
-              </div>
+              <ModeText
+                scenic={
+                  <div
+                    className="font-pixel text-[10px] tracking-widest text-ink-mute mb-2"
+                    aria-hidden="true"
+                  >
+                    ★ RESULTS
+                  </div>
+                }
+                basic={null}
+              />
               <h2
                 id="results-heading"
                 className="font-display text-[30px] sm:text-[36px] md:text-[44px] leading-tight mb-6 text-glow-amber"
               >
-                High score.
+                <ModeText scenic="High score." basic="Results." />
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {study.results.map((r) => (
@@ -439,7 +450,6 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <Footer />
         </article>
       </div>
-      </CaseStudyGate>
     </main>
   );
 }

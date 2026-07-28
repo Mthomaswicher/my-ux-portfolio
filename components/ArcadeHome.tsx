@@ -1,17 +1,16 @@
 import Link from "next/link";
-import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import Cabinet from "./Cabinet";
 
 /**
  * Scenic-mode home: the original arcade experience — boot-screen vibes,
  * pixel headers, drag-the-cartridge cabinet, "Hello, player." copy.
+ *
+ * The sidebar and <main> landmark are owned by HomeView so both mode
+ * variants can coexist in the HTML — this renders content only.
  */
 export default function ArcadeHome() {
   return (
-    <div className="min-h-screen md:flex">
-      <Sidebar />
-      <main id="main" className="flex-1 min-w-0">
         <div className="mx-auto max-w-5xl px-5 sm:px-6 md:px-10 pt-20 md:pt-16 pb-12 md:pb-16">
           <header className="mb-8 md:mb-12">
             <div
@@ -45,7 +44,5 @@ export default function ArcadeHome() {
 
           <Footer />
         </div>
-      </main>
-    </div>
   );
 }

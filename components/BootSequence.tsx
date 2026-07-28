@@ -28,8 +28,13 @@ export default function BootSequence() {
   // Start with one line shown so first paint isn't blank
   const [shown, setShown] = useState(1);
   const [done, setDone] = useState(false);
+  // "deciding" until the routing effect below has worked out whether this
+  // visitor should see the intro at all. Server and first client render
+  // both produce the empty shell, so there's no hydration mismatch and no
+  // frame of BIOS text for someone we're about to redirect away.
+  const [status, setStatus] = useState<"deciding" | "stay">("deciding");
   const { play } = useSound();
-  const { reset } = useMode();
+  const { mode, hasChosen, reset } = useMode();
   const router = useRouter();
   const searchParams = useSearchParams();
   const restart = searchParams?.get("restart") === "1";
@@ -84,6 +89,15 @@ export default function BootSequence() {
   useEffect(() => {
     if (restart) {
       reset();
+      setStatus("stay");
+      return;
+    }
+
+    // Someone who already picked the Reading Room never gets the arcade
+    // intro again — they go straight to the work. Scenic visitors still
+    // see it on every fresh arrival, which is the intended showpiece.
+    if (hasChosen && mode === "basic") {
+      router.replace("/home");
       return;
     }
 
@@ -125,11 +139,14 @@ export default function BootSequence() {
     }
     if (introCompleted) {
       router.replace("/home");
+      return;
     }
+    setStatus("stay");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    if (status !== "stay") return;
     if (shown >= LINES.length) {
       const t = window.setTimeout(() => setDone(true), 220);
       return () => window.clearTimeout(t);
@@ -139,7 +156,18 @@ export default function BootSequence() {
     const id = window.setTimeout(() => setShown((s) => s + 1), 240);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shown]);
+  }, [shown, status]);
+
+  // Still deciding, or redirecting: render the empty shell so the layout
+  // doesn't jump and no arcade copy is ever painted.
+  if (status !== "stay") {
+    return (
+      <main
+        id="main"
+        className="min-h-[100dvh] flex items-center justify-center px-5 sm:px-6 py-10 sm:py-12"
+      />
+    );
+  }
 
   return (
     <main id="main" className="min-h-[100dvh] flex items-center justify-center px-5 sm:px-6 py-10 sm:py-12">
