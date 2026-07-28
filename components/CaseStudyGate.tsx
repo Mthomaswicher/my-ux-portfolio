@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import ModeText from "./ModeText";
 import { useSound } from "./SoundProvider";
 
 type Props = {
@@ -52,7 +53,7 @@ export default function CaseStudyGate({
     return (
       <div className="mx-auto max-w-md px-5 sm:px-6 py-20 text-center">
         <div className="font-pixel text-[10px] tracking-widest text-ink-mute">
-          LOADING…
+          <ModeText scenic="LOADING…" basic="Loading…" />
         </div>
       </div>
     );
@@ -87,18 +88,30 @@ export default function CaseStudyGate({
           shake ? "motion-safe:animate-shake" : ""
         }`}
       >
-        <div
-          className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-4"
-          aria-hidden="true"
-        >
-          ░ ACCESS LOCKED ░
-        </div>
+        <ModeText
+          scenic={
+            <div
+              className="font-pixel text-[10px] tracking-widest text-glow-magenta mb-4"
+              aria-hidden="true"
+            >
+              ░ ACCESS LOCKED ░
+            </div>
+          }
+          basic={
+            <div
+              className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute mb-4"
+              aria-hidden="true"
+            >
+              Locked
+            </div>
+          }
+        />
         <h2 className="font-display text-[clamp(2rem,8vw,2.5rem)] sm:text-[44px] leading-[1.05] sm:leading-none text-glow-cyan mb-3">
-          Members only.
+          Password required.
         </h2>
         <p className="font-mono text-[13.5px] sm:text-[14px] text-ink-dim leading-relaxed max-w-sm mx-auto mb-7">
-          This case study covers internal Capital One work. Drop the password
-          to keep going.
+          This one covers internal Capital One work, so it is not public. If
+          you have the password, go ahead.
         </p>
 
         <form
@@ -129,7 +142,15 @@ export default function CaseStudyGate({
             onMouseEnter={() => play("hover")}
             className="cartridge px-5 py-3 font-pixel text-[12px] tracking-widest text-glow-cyan hover:shadow-neon-cyan focus-visible:shadow-neon-cyan transition-shadow"
           >
-            <span aria-hidden="true">[ </span>UNLOCK<span aria-hidden="true"> ]</span>
+            <ModeText
+              scenic={
+                <>
+                  <span aria-hidden="true">[ </span>UNLOCK
+                  <span aria-hidden="true"> ]</span>
+                </>
+              }
+              basic="Unlock"
+            />
           </button>
           <div
             id="cs-password-error"
@@ -143,7 +164,7 @@ export default function CaseStudyGate({
           >
             {error ? (
               <>
-                <span aria-hidden="true">⚠ </span>Wrong password. Try again.
+                <span aria-hidden="true">⚠ </span>That is not it. Try again.
               </>
             ) : null}
           </div>

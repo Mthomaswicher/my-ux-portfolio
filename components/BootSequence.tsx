@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import PathChooser from "./PathChooser";
+import ModeText from "./ModeText";
 import { useMode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 import { projects } from "@/lib/projects";
@@ -34,7 +35,16 @@ export default function BootSequence() {
   // frame of BIOS text for someone we're about to redirect away.
   const [status, setStatus] = useState<"deciding" | "stay">("deciding");
   const { play } = useSound();
-  const { mode, hasChosen, reset } = useMode();
+  const { hasChosen, reset } = useMode();
+
+  // Returning visitors have already watched the BIOS crawl; replaying it is
+  // a two-second toll on every visit. They still get the fork, because
+  // that's the point of the front door, they just get it immediately.
+  //
+  // Safe to read localStorage-derived state during render here: the guard
+  // below renders an empty shell until the routing effect resolves, so the
+  // server and the first client render always agree.
+  const skipBoot = hasChosen;
   const router = useRouter();
   const searchParams = useSearchParams();
   const restart = searchParams?.get("restart") === "1";
@@ -70,7 +80,10 @@ export default function BootSequence() {
 
   // Intro routing rules:
   // 1. Fresh external arrival at / (typed URL, link from another site, or a
-  //    reload), always show the intro, even for returning visitors.
+  //    reload), always show the intro, even for returning visitors, and
+  //    regardless of which path they picked last time. The chooser is the
+  //    front door: skipping it for anyone means they can't change their
+  //    mind without hunting for the toggle in the sidebar.
   // 2. Internal client-side nav to / from elsewhere in the app (Footer's
   //    "INSERT COIN" link from /home, etc.), skip the intro and go to /home.
   // 3. Already saw the intro this document session and bouncing back to /,
@@ -90,14 +103,6 @@ export default function BootSequence() {
     if (restart) {
       reset();
       setStatus("stay");
-      return;
-    }
-
-    // Someone who already picked the Reading Room never gets the arcade
-    // intro again, they go straight to the work. Scenic visitors still
-    // see it on every fresh arrival, which is the intended showpiece.
-    if (hasChosen && mode === "basic") {
-      router.replace("/home");
       return;
     }
 
@@ -147,6 +152,10 @@ export default function BootSequence() {
 
   useEffect(() => {
     if (status !== "stay") return;
+    if (skipBoot) {
+      setDone(true);
+      return;
+    }
     if (shown >= LINES.length) {
       const t = window.setTimeout(() => setDone(true), 220);
       return () => window.clearTimeout(t);
@@ -156,7 +165,7 @@ export default function BootSequence() {
     const id = window.setTimeout(() => setShown((s) => s + 1), 240);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shown, status]);
+  }, [shown, status, skipBoot]);
 
   // Still deciding, or redirecting: render the empty shell so the layout
   // doesn't jump and no arcade copy is ever painted.
@@ -172,27 +181,29 @@ export default function BootSequence() {
   return (
     <main id="main" className="min-h-[100dvh] flex items-center justify-center px-5 sm:px-6 py-10 sm:py-12">
       <div className="w-full max-w-2xl">
-        <div
-          className="font-mono text-[13px] leading-relaxed text-ink-dim space-y-1 mb-10"
-          role="log"
-          aria-live="polite"
-          aria-atomic="false"
-        >
-          {LINES.slice(0, shown).map((line, i) => (
-            <div key={i} className="opacity-90">
-              <span className="text-ink-mute" aria-hidden="true">
-                {">"}{" "}
-              </span>
-              {line}
-            </div>
-          ))}
-          {shown < LINES.length && (
-            <div className="opacity-90" aria-hidden="true">
-              <span className="text-ink-mute">{">"} </span>
-              <span className="caret" />
-            </div>
-          )}
-        </div>
+        {!skipBoot && (
+          <div
+            className="font-mono text-[13px] leading-relaxed text-ink-dim space-y-1 mb-10"
+            role="log"
+            aria-live="polite"
+            aria-atomic="false"
+          >
+            {LINES.slice(0, shown).map((line, i) => (
+              <div key={i} className="opacity-90">
+                <span className="text-ink-mute" aria-hidden="true">
+                  {">"}{" "}
+                </span>
+                {line}
+              </div>
+            ))}
+            {shown < LINES.length && (
+              <div className="opacity-90" aria-hidden="true">
+                <span className="text-ink-mute">{">"} </span>
+                <span className="caret" />
+              </div>
+            )}
+          </div>
+        )}
 
         <div
           className={`transition-opacity duration-700 mb-10 ${
@@ -206,14 +217,26 @@ export default function BootSequence() {
             className="font-pixel text-[20px] sm:text-[28px] leading-tight tracking-widest text-glow-cyan mb-2 select-none touch-manipulation"
             onClick={onTitleTap}
           >
-            MTW.ARCADE
+            <ModeText scenic="MTW.ARCADE" basic="Matthew Thomas-Wicher" />
           </h1>
-          <div
-            className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-magenta"
-            aria-hidden="true"
-          >
-            ░ A PORTFOLIO BY MATTHEW THOMAS-WICHER ░
-          </div>
+          <ModeText
+            scenic={
+              <div
+                className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-magenta"
+                aria-hidden="true"
+              >
+                ░ A PORTFOLIO BY MATTHEW THOMAS-WICHER ░
+              </div>
+            }
+            basic={
+              <div
+                className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.18em] text-ink-mute"
+                aria-hidden="true"
+              >
+                Sr. Product Designer · Washington, D.C.
+              </div>
+            }
+          />
           <div className="sr-only">A portfolio by Matthew Thomas-Wicher.</div>
         </div>
 

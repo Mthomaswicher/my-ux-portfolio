@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Robot from "./Robot";
+import ModeText from "./ModeText";
 import { useMode, type Mode } from "./ModeProvider";
 import { useSound } from "./SoundProvider";
 import { haptic } from "@/lib/haptic";
@@ -136,17 +137,32 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
       inert={!active ? "" : undefined}
     >
       <div className="mb-5">
-        <div
-          className="font-pixel text-[10px] sm:text-[11px] tracking-[0.3em] text-glow-magenta mb-2"
-          aria-hidden="true"
-        >
-          ░ FORK IN THE ROAD ░
-        </div>
+        <ModeText
+          scenic={
+            <div
+              className="font-pixel text-[10px] sm:text-[11px] tracking-[0.3em] text-glow-magenta mb-2"
+              aria-hidden="true"
+            >
+              ░ FORK IN THE ROAD ░
+            </div>
+          }
+          basic={
+            <div
+              className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-ink-mute mb-2"
+              aria-hidden="true"
+            >
+              Pick one
+            </div>
+          }
+        />
         <h2 className="font-pixel text-[16px] sm:text-[20px] leading-tight tracking-widest text-glow-cyan mb-1">
-          CHOOSE YOUR PATH
+          <ModeText scenic="CHOOSE YOUR PATH" basic="Choose how you read this" />
         </h2>
         <p className="font-mono text-[12px] sm:text-[13px] text-ink-dim max-w-lg leading-relaxed">
-          Two ways in, same work. Pick a path; the pet walks down.
+          <ModeText
+            scenic="Two ways in, same work. Pick a path; the pet walks down."
+            basic="Two ways in, same work. You can switch any time from the sidebar."
+          />
         </p>
       </div>
 
