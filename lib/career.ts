@@ -129,12 +129,14 @@ export const CAREER_STAGES: CareerStage[] = [
     headline: "BOSS LEVEL",
     win: { label: "Adoption", value: "25% → 75%" },
     bullets: [
+      "Led a cross-functional AI enablement team that got agentic coding tools working for people outside engineering, which is where most of the adoption came from.",
       "Ran the user research on GitHub Copilot Agent Mode. It went to GA on the back of it.",
       "Led design for DevNav Hub. Release adoption went from 25% to 75%, CSAT up 9%.",
       "Built the Voice of the Engineer 2025 data viz, read by 12,000 associates and execs.",
       "Release engagement work reached 6,000 users. 3.6% opted out.",
+      "Reworked the internal developer platform. Support tickets fell 39% and UMUX-Lite for the release experience went from 66 to 82.7 year over year.",
     ],
-    tools: "Strategy · Research · DataViz",
+    tools: "Strategy · Research · AI tooling · DataViz",
   },
 ];
 
@@ -168,7 +170,7 @@ export const BONUS_TRACK: BonusItem[] = [
     year: "2024",
     title: "Hackonomics Winner",
     org: "Flatiron Alumni",
-    body: "An AI personal finance app, built in 19 days. I led design and engineering. We won.",
+    body: "An AI personal finance app with OpenAI wired into the stack, built in 19 days. I led design and engineering. We won.",
   },
   {
     year: "2025",

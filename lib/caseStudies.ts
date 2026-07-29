@@ -281,7 +281,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Our internal analytics were not wired into the IDP during the closed beta, so I could not lean on behavioral data. I built the measurement plan around UMUX-Lite, NPS and surveys instead, which is what the numbers below come from.",
+            text: "Our internal analytics were not wired into the IDP during the closed beta, so I could not lean on behavioral data. I built the measurement plan around UMUX-Lite, NPS and surveys instead. The beta read came back at 71 on UMUX-Lite across 2,750 respondents, with time from release to deployment down 2%. A year later that score had climbed to 82.7 and support tickets had dropped by more than a third.",
           },
           {
             kind: "img",
@@ -312,9 +312,9 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     results: [
+      { stat: "39%", label: "Fewer support tickets" },
+      { stat: "66 to 82.7", label: "UMUX-Lite, year over year" },
       { stat: "55", label: "3-month NPS", sub: "3,600 respondents" },
-      { stat: "71", label: "UMUX-Lite score", sub: "2,750 respondents" },
-      { stat: "2%", label: "Faster from release to deployment" },
     ],
   },
 
@@ -917,7 +917,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "We interviewed and surveyed 30+ Oportun members who send money internationally: what they do now, what annoys them, what they wish existed. Three things came through loud.",
+            text: "We interviewed and surveyed 30+ Oportun members who send money internationally. What they do now, what annoys them, what they wish existed. Three things came through loud.",
           },
           {
             kind: "list",
@@ -970,7 +970,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The idea was to treat crypto as plumbing instead of a product. Members never see a token, a wallet seed, or a block explorer. We picked Stellar for speed, low fees, and its anchor model: regulated partners on each end handling the on-ramp and off-ramp in local currency.",
+            text: "The idea was to keep crypto entirely in the back end rather than making it the product. Members never see a token, a wallet seed, or a block explorer. We picked Stellar for speed, low fees, and its anchor model, where regulated partners on each end handle the on-ramp and off-ramp in local currency.",
           },
           {
             kind: "img",
@@ -1025,16 +1025,16 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "h",
-            text: "Use crypto as plumbing, not the product",
+            text: "Keep the crypto in the back end",
           },
           {
             kind: "p",
-            text: "Hiding the chain was the whole trick. Members get the Oportun app they already know, the back end gets Stellar's speed and cost, and nobody has to learn what an anchor is to send money home.",
+            text: "Keeping the chain out of sight is what made it work. Members get the Oportun app they already know, the back end gets Stellar's speed and cost, and nobody has to learn what an anchor is to send money home.",
           },
           {
             kind: "callout",
             tone: "plus",
-            text: "Won Most Creative Idea for reframing remittances around what members actually asked for: faster, cheaper, from their phone.",
+            text: "Won Most Creative Idea for reframing remittances around what members actually asked for. Faster, cheaper, from their phone.",
           },
         ],
       },

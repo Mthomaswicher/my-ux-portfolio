@@ -210,9 +210,13 @@ export default function About() {
                 <span className="text-glow-cyan">nine years</span>, mostly in
                 fintech, mostly in places where a wrong screen has legal
                 consequences. Right now that&apos;s{" "}
-                <span className="text-glow-cyan">Capital One</span>. I learned to
-                code before I learned to design, which mostly means I know what
-                I&apos;m asking engineers for.
+                <span className="text-glow-cyan">Capital One</span>, where a lot
+                of my work is getting AI tooling into the hands of people who
+                do not write code. I learned to code before I learned to
+                design, which mostly means I know what I&apos;m asking
+                engineers for, and sometimes I just build it myself. The Figma
+                plugin I shipped is used by{" "}
+                <span className="text-glow-cyan">1,700+ designers</span>.
               </p>
               <p>
                 The work I&apos;m best at is the unglamorous kind: figuring out

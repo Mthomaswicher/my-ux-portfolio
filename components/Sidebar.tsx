@@ -175,10 +175,11 @@ export default function Sidebar() {
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
                     I design software for banks, insurers, and other places where
                     the rules are strict and the stakes are real. Currently at{" "}
-                    <span className="text-glow-cyan">Capital One</span>.
+                    <span className="text-glow-cyan">Capital One</span>, working
+                    on AI tooling for people who do not write code.
                   </p>
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
-                    Before that: Berkeley Research Group, Oportun, and Demex.
+                    Before that, Berkeley Research Group, Oportun, and Demex.
                   </p>
                 </>
               }
@@ -188,8 +189,9 @@ export default function Sidebar() {
                   style={{ fontFamily: "var(--font-garamond)" }}
                 >
                   I design software for banks, insurers, and other places where the
-                  rules are strict and the stakes are real. Currently at Capital One.
-                  Before that: Berkeley Research Group, Oportun, and Demex.
+                  rules are strict and the stakes are real. Currently at Capital One,
+                  working on AI tooling for people who do not write code. Before
+                  that, Berkeley Research Group, Oportun, and Demex.
                 </p>
               }
             />

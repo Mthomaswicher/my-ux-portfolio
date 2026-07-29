@@ -2,7 +2,6 @@
 
 import AccentToast from "./AccentToast";
 import CrtOverlays from "./CrtOverlays";
-import CursorTrail from "./CursorTrail";
 import KonamiCode from "./KonamiCode";
 import LongPressNotes from "./LongPressNotes";
 import RoamPet from "./RoamPet";
@@ -20,7 +19,6 @@ export default function ArcadeChrome() {
   return (
     <>
       <CrtOverlays />
-      <CursorTrail />
       <RoamPet />
       <KonamiCode />
       <SwipeKonami />

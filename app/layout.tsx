@@ -63,7 +63,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Matthew Thomas-Wicher · Sr. Product Designer",
   description:
-    "Sr. Product Designer in Washington, D.C. I build software for banks, insurers, and other places where the rules are strict.",
+    "Sr. Product Designer and design engineer in Washington, D.C. I build software for banks and insurers, and AI tooling for the people who do not write code.",
   metadataBase: new URL("http://localhost:3000"),
   formatDetection: {
     telephone: false,

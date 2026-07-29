@@ -156,7 +156,7 @@ export default function ResumeDisk() {
             {transferring ? "↓↓↓" : "GET"}
           </div>
           <div className="font-pixel text-[7px] tracking-widest text-ink-mute" aria-hidden="true">
-            91K · PDF
+            95K · PDF
           </div>
         </div>
 
@@ -219,7 +219,7 @@ function BasicResume() {
         >
           Resume
         </h2>
-        <span className="text-[12px] text-ink-mute font-mono">PDF · 91K</span>
+        <span className="text-[12px] text-ink-mute font-mono">PDF · 95K</span>
       </div>
       <a
         href={HREF}

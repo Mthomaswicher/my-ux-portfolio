@@ -31,8 +31,9 @@ export default function BasicHome() {
             >
               I design software for banks, insurers, and other places where the
               rules are strict and the stakes are real. Nine years of it, most
-              recently at Capital One. Before that: Berkeley Research Group,
-              Oportun, and Demex.
+              recently at Capital One, where I work on AI tooling for people who
+              do not write code. Before that, Berkeley Research Group, Oportun,
+              and Demex.
             </p>
           </header>
 
