@@ -48,499 +48,273 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "idp-release-plugin",
     title: "IDP Release Plugin",
-    org: "Capital One · Internal Developer Platform",
+    org: "Capital One \u00b7 Internal Developer Platform",
     status: "SHIPPED",
     tagline:
-      "Shipping code meant checking five tools to answer one question. This put tracking, approvals, and status in one place.",
-    hero: `${IDP}/03-new-experience.png`,
+      "Shipping code meant checking five tools to answer one question. I designed the release plugin that put it in one place, and it went out to 3,600 engineers.",
+    hero: `${IDP}/22-final.png`,
     heroScreens: [
-      `${IDP}/03-new-experience.png`,
       `${IDP}/22-final.png`,
+      `${IDP}/03-new-experience.png`,
       `${IDP}/16-concept-3a.webp`,
       `${IDP}/17-concept-3b.webp`,
-      `${IDP}/09-flow-vs-mvp.png`,
     ],
-    role: "UI/UX Designer",
-    team: "2 designers · multi product + engineering partners",
+    role: "Sr. Product Designer, owned release experience end to end",
+    team: "2 designers \u00b7 product, engineering, audit and cyber partners",
     timeframe: "32 weeks",
-    tools: "Figma · Lucid · Confluence · Jira",
+    tools: "Figma \u00b7 Lucid \u00b7 Confluence \u00b7 Jira",
     accent: "cyan",
     brand: "capital-one",
     sections: [
       {
-        id: "problem",
+        id: "shipped",
         no: "01",
-        title: "Problem",
+        title: "What shipped",
         body: [
           {
             kind: "p",
-            text: "Releasing code here was unpredictable. There was no single place to see what was happening, so teams stitched together a handful of tools and a lot of tribal knowledge. On a good day that was annoying. On a bad day a release stalled and nobody could say why.",
+            text: "Capital One runs its own internal developer platform. I designed the release plugin, the part engineers use to actually ship code. Everything below is the real thing running, not a prototype.",
           },
-        ],
-      },
-      {
-        id: "goal",
-        no: "02",
-        title: "Goal",
-        body: [
           {
             kind: "p",
-            text: "Make releasing something a developer can do in one place, and build it so the rest of the platform can grow around it later.",
+            text: "There were two designers on the plugin. I owned the release experience end to end, which meant the page itself, the approval flow, every status state, and the audit surface that legal and cyber had to sign off on.",
           },
-          { kind: "h", text: "Approving a release" },
+          {
+            kind: "h",
+            text: "Approving a release",
+          },
           {
             kind: "p",
-            text: "Answer the audit and cyber questions and approve, without leaving the page.",
+            text: "The audit and cyber questions sit on the page. You answer them and approve without opening anything else.",
           },
           {
             kind: "video",
             src: `${IDP}/v01-approve.mp4`,
-            alt: "Demo: a developer answers audit questions and approves a release inline.",
-            caption: "Single-pass approval flow demo.",
+            alt: "A developer answers the audit questions and approves a release inline.",
+            caption: "Approving without leaving the page.",
           },
-          { kind: "h", text: "Knowing what you are approving" },
+          {
+            kind: "h",
+            text: "Knowing what you are approving",
+          },
           {
             kind: "p",
-            text: "The PAR activity trail shows what Artemis did, so approvers are not guessing.",
+            text: "Approvers were signing off on releases they could not see inside. The activity trail shows what Artemis actually did, so the decision stops being a guess.",
           },
           {
             kind: "video",
             src: `${IDP}/v02-action.mp4`,
-            alt: "Demo: PAR activity trail and Artemis status update in the release page.",
-            caption: "PAR activity trail demo.",
+            alt: "The PAR activity trail with an Artemis status update inside the release page.",
+            caption: "The PAR activity trail.",
           },
-          { kind: "h", text: "Asking the owner a question" },
+          {
+            kind: "h",
+            text: "Asking the owner a question",
+          },
           {
             kind: "p",
-            text: "Ask whoever submitted the release what it actually is, without leaving the page.",
+            text: "People kept leaving for Slack to ask what a release contained. Now the thread opens from the page, addressed to whoever submitted it.",
           },
           {
             kind: "video",
             src: `${IDP}/v03-comms.mp4`,
-            alt: "Demo: open a Slack thread to the release submitter from inside the plugin.",
-            caption: "Starting a Slack thread to the release submitter.",
+            alt: "Opening a Slack thread to the release submitter from inside the plugin.",
+            caption: "Starting a thread with the submitter.",
           },
         ],
       },
       {
-        id: "background",
-        no: "03",
-        title: "Background & hypothesis",
+        id: "why",
+        no: "02",
+        title: "Why it needed to exist",
         body: [
           {
             kind: "p",
-            text: "Every year the SDLC picks up more tools. Each one makes sense on its own. Together they mean a developer spends the day switching windows instead of working.",
-          },
-          {
-            kind: "p",
-            text: "Developers want to stay in flow. Nobody enjoys being the glue between six systems.",
-          },
-          {
-            kind: "h",
-            text: "Why did this effort start?",
-          },
-          {
-            kind: "p",
-            text: "In early 2024 our CEO made developer experience a company priority: treat internal developers the way we treat customers. That March the DevX team started pitching the IDP, an internal developer platform meant to be the one place developers go.",
-          },
-          {
-            kind: "p",
-            text: "The key goal: \"Automate everything but the creative problem solving in developing software.\" The target state was two screens, the IDE and the IDP, and not much else.",
+            text: "Releasing code meant stitching together a handful of tools and a lot of tribal knowledge. On a good day that was annoying. On a bad day a release stalled and nobody could say why.",
           },
           {
             kind: "imgGrid",
             items: [
               {
                 src: `${IDP}/02-previous.png`,
-                alt: "Previous release experience screenshot",
-                caption: "Previous Release Experience",
+                alt: "The previous release experience",
+                caption: "Before.",
               },
               {
                 src: `${IDP}/03-new-experience.png`,
-                alt: "New release experience screenshot",
-                caption: "New Release Experience",
+                alt: "The new release experience",
+                caption: "After.",
               },
             ],
           },
           {
-            kind: "img",
-            src: `${IDP}/04-sdlc.png`,
-            alt: "SDLC tooling diagram",
-            caption:
-              "The IDP pulls the scattered tooling interfaces into one place across the SDLC.",
-          },
-          {
-            kind: "p",
-            text: "Seven months later the platform existed, mostly out of the box. After a build-vs-buy analysis, leadership picked the Release Plugin as the first real thing to build. Shipping code is the part of the job you cannot skip, so it was the obvious place to start. We worked with product to pin down what the MVP had to cover.",
-          },
-        ],
-      },
-      {
-        id: "current-state",
-        no: "04",
-        title: "Working out what already existed",
-        body: [
-          {
-            kind: "p",
-            text: "First we had to reconcile three things that did not match: the ideal IDP experience, the MVP, and what One Pipeline actually did. Three user types too: ICs, approvers, and escalators.",
-          },
-          {
             kind: "h",
-            text: "Where do we start?",
+            text: "Where the MVP line got drawn",
           },
           {
             kind: "p",
-            text: "Nobody on design knew how these systems really worked, so we had product and engineering walk us through each persona's path.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/05-zoom.png`,
-            alt: "Zoom call with Product and Engineering partners",
-            caption: "Zoom call with product and engineering partners.",
+            text: "Nobody on design knew how the existing system really worked, so I spent the first two weeks having product and engineering walk me through it for each of the three people who touch a release. ICs, approvers, escalators.",
           },
           {
             kind: "p",
-            text: "Two or three days of that and we finally understood what the One Pipeline UI was doing.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/06-screenshots.png`,
-            alt: "Refined deliverable from screenshots",
-            caption:
-              "Then we cleaned the screenshots into something we could actually walk partners through.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/08-flow-opl.png`,
-            alt: "Current State Release Flow: One Pipeline Users",
-            caption: "Current state release flow for One Pipeline users.",
+            text: "Mapping the current state against the ideal is what settled the argument about scope. It showed exactly how much of One Pipeline could carry over and how much had to be rebuilt, and that line became the MVP definition we took to leadership.",
           },
           {
             kind: "img",
             src: `${IDP}/09-flow-vs-mvp.png`,
-            alt: "Current state vs MVP release flow",
-            caption: "Current state release flow vs. MVP for OPL users.",
+            alt: "Current state release flow compared against the MVP scope",
+            caption: "Current state against MVP. The gap between the two is the build.",
           },
           {
+            kind: "callout",
+            tone: "note",
+            text: "This is the part I would fight for again. Two weeks of mapping bought us a scope nobody relitigated for the next seven months.",
+          },
+        ],
+      },
+      {
+        id: "constraint",
+        no: "03",
+        title: "The constraint that reshaped the page",
+        body: [
+          {
             kind: "p",
-            text: "I drew a detailed wireflow of every step, mostly to force the edge cases into the open.",
+            text: "My first layout put the audit questions behind a modal and kept the actions high on the page. Clean, and dead on arrival. Audit came back and said those questions have to be visible at all times, behind no interaction at all.",
           },
           {
             kind: "img",
-            src: `${IDP}/11-lofi-wireflow.png`,
-            alt: "Lo-fi wireflow",
-            caption: "Lo-fi wireflow.",
+            src: `${IDP}/15-concept-1.png`,
+            alt: "First concept with audit questions behind a modal",
+            caption: "First concept. The modal was the whole idea, and it was the one thing I could not keep.",
           },
-        ],
-      },
-      {
-        id: "jtbd",
-        no: "05",
-        title: "Jobs-to-be-done validation",
-        body: [
           {
             kind: "p",
-            text: "We ran eight 30-minute jobs-to-be-done interviews with developers to check whether the flows we had drawn matched what they actually needed.",
+            text: "That single rule reshaped the layout. Everything mandatory had to fit on one screen without pushing the primary action below the fold. I moved to a nine-three split with the work in the middle and the metadata beside it, and that is the structure that shipped.",
           },
           {
-            kind: "h",
-            text: "JTBDs validated",
-          },
-          {
-            kind: "list",
-            items: [
-              "Initiate Release: PROD release after a developer merges, pre-prod environment deployments, scheduling or deferring for later, and deploying specific versions",
-              "Approve Release: PAR Approver approves with one click, notifications go out to approvers and the team, and escalation is available when needed",
-              "Track Release: viewing deployment status across QA, Staging, Prod, and E/W regions, status notifications, and self-service deployment errors with clear next actions",
-              "Roll Back / Roll Forward: selecting a previous stable build, auto-rollback on failure, verification via testing, and feature flags on main that enable roll-forward",
-              "Audit / Review Release: release activity logged in an accessible table, with data captured to meet audit requirements",
-            ],
-          },
-        ],
-      },
-      {
-        id: "ideation",
-        no: "06",
-        title: "Ideation",
-        body: [
-          {
-            kind: "p",
-            text: "Some of this was out of scope for beta, but product and engineering liked it enough to put it on the list for the next PI.",
+            kind: "video",
+            src: `${IDP}/v04-concept3.mp4`,
+            alt: "A walkthrough of the layout that shipped, with release activity at top, audit questions in the body, and a sidebar of secondary metadata.",
+            caption: "Walking the layout that survived.",
           },
           {
             kind: "imgGrid",
             items: [
               {
-                src: `${IDP}/12-ideation-a.png`,
-                alt: "Ideation concept A",
-                caption: "Ideation A",
+                src: `${IDP}/18-concept-3c.webp`,
+                alt: "Resiliency material change questions surfaced on the page",
+                caption: "The audit questions, on the page, behind nothing.",
               },
               {
-                src: `${IDP}/13-ideation-b.png`,
-                alt: "Ideation concept B",
-                caption: "Ideation B",
-              },
-              {
-                src: `${IDP}/14-ideation-c.png`,
-                alt: "Ideation concept C",
-                caption: "Ideation C",
+                src: `${IDP}/17-concept-3b.webp`,
+                alt: "Individual modals per CTA with contextual information",
+                caption: "One modal per action, each carrying the context you need before you commit.",
               },
             ],
           },
         ],
       },
       {
-        id: "concepts",
-        no: "07",
-        title: "Designing for the ideal state",
-        body: [
-          {
-            kind: "h",
-            text: "Concept 1",
-          },
-          {
-            kind: "list",
-            items: [
-              "Audit questions behind a modal, CTAs high on the page so nobody misses them",
-              "Release metadata visible, not buried",
-              "Release workflow component visible, but further down",
-            ],
-          },
-          {
-            kind: "img",
-            src: `${IDP}/15-concept-1.png`,
-            alt: "Concept 1 layout",
-          },
-          {
-            kind: "h",
-            text: "Concept 2",
-          },
-          {
-            kind: "p",
-            text: "Product came back and said the audit questions had to sit on the page at all times, no modal. So I moved the release tracker and secondary metadata into the left column and worked out how that reads.",
-          },
-          {
-            kind: "h",
-            text: "Concept 3: usability and concept testing",
-          },
-          {
-            kind: "p",
-            text: "This is where we landed. A 9:3 layout: primary actions and content in the middle, secondary metadata in the narrow column beside it.",
-          },
-          {
-            kind: "video",
-            src: `${IDP}/v04-concept3.mp4`,
-            alt: "Demo: walking through Concept 3 with release activity at top, audit questions in the body, and a sidebar with secondary metadata.",
-            caption: "Walkthrough of Concept 3 usability and concept testing.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/16-concept-3a.webp`,
-            alt: "Concept 3 release activity at top",
-            caption:
-              "Release activity at the top so you know where you are.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/17-concept-3b.webp`,
-            alt: "Concept 3 clearer modals",
-            caption:
-              "A separate modal per CTA, each carrying the context you need before approving or canceling.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/18-concept-3c.webp`,
-            alt: "Concept 3 resiliency questions",
-            caption:
-              "Resiliency material change questions, required by audit. They had to be visible without clicking anything.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/19-concept-3d.webp`,
-            alt: "Concept 3 PAR activity",
-            caption:
-              "Release and PAR activity further down, so approvers can see what is actually in the release.",
-          },
-        ],
-      },
-      {
-        id: "feedback",
-        no: "08",
-        title: "Usability feedback",
+        id: "testing",
+        no: "04",
+        title: "What testing changed",
         body: [
           {
             kind: "p",
-            text: "Testing went well. People finished the tasks. They also told us plenty about where the screens left them guessing.",
-          },
-          {
-            kind: "img",
-            src: `${IDP}/20-quotes.webp`,
-            alt: "User quote pull-out",
+            text: "People finished the tasks, so on paper the round was a pass. The useful part was what they said while doing it.",
           },
           {
             kind: "quote",
-            text: "There were times where I was not sure if I completed a step…and there's no easy way to track that in the system.",
+            text: "There were times where I was not sure if I completed a step\u2026and there's no easy way to track that in the system.",
           },
           {
             kind: "quote",
             text: "A Slack link is definitely going to help because I am going to check in with my team. 'Hey what's this all about?' rather than go through extra steps.",
           },
           {
-            kind: "quote",
-            text: "I wish the fields would just auto-fill based on what I've done before. I shouldn't have to manually enter things over and over.",
+            kind: "p",
+            text: "Three changes came out of that round and all three shipped.",
           },
           {
-            kind: "img",
-            src: `${IDP}/21-callouts.webp`,
-            alt: "Clear callouts annotated on the design",
-            caption: "Clear callouts for improvement.",
-          },
-        ],
-      },
-      {
-        id: "improvements",
-        no: "09",
-        title: "Improvements based on feedback",
-        body: [
-          {
-            kind: "h",
-            text: "More context, in the right place",
-          },
-          {
-            kind: "list",
+            kind: "features",
             items: [
-              "People wanted the system to adapt to their workflow instead of the reverse",
-              "Alerts at the top change with your role, whether you are a PAR approver, ESC approver, or dev. Your action is the first thing you see",
-              "PAR activity and release info moved up, with the justification attached so there is a record",
+              {
+                title: "Alerts that know your role",
+                body: "The banner changes depending on whether you are a PAR approver, an ESC approver, or a dev, so your action is the first thing on the page instead of the fourth.",
+              },
+              {
+                title: "Slack from the page",
+                body: "Approvers were already leaving to ask questions. Rather than fight it, I put the door where they were walking.",
+              },
+              {
+                title: "Bulk approve",
+                body: "Approving releases is repetitive enough that people were doing it on autopilot. Letting PAR approvers clear a batch matched how they were already working.",
+              },
             ],
-          },
-          {
-            kind: "img",
-            src: `${IDP}/22-final.png`,
-            alt: "Final design with contextual alerts and PAR activity",
-          },
-          {
-            kind: "h",
-            text: "Stop making people leave to ask a question",
-          },
-          {
-            kind: "p",
-            text: "People were leaving the tool to ask questions in Slack and email. Developers already live in Slack, so I added buttons that open a thread with whoever submitted the release.",
-          },
-          {
-            kind: "h",
-            text: "Bulk-approve multiple releases",
-          },
-          {
-            kind: "p",
-            text: "Approving releases is repetitive enough that people do it on autopilot. So I let PAR approvers clear several at once.",
           },
           {
             kind: "video",
             src: `${IDP}/v05-bulk.mp4`,
-            alt: "Demo: selecting multiple pending releases and approving them in a single action.",
-            caption: "Bulk approve demo.",
-          },
-        ],
-      },
-      {
-        id: "mobile",
-        no: "10",
-        title: "Expanding to mobile",
-        body: [
-          {
-            kind: "p",
-            text: "Out of scope for beta, but well received. Product and engineering want it in the next PI.",
-          },
-          {
-            kind: "video",
-            src: `${IDP}/v06-mobile.mp4`,
-            alt: "Demo: approving a release from a mobile device, from push notification to one-tap action.",
-            caption: "On-the-go approvals demo.",
+            alt: "Selecting several pending releases and approving them in one action.",
+            caption: "Bulk approve.",
           },
           {
             kind: "img",
-            src: `${IDP}/23-mobile.webp`,
-            alt: "Mobile concept",
-            caption: "Mobile concept stills.",
+            src: `${IDP}/22-final.png`,
+            alt: "Final release page with role-aware alerts and PAR activity raised up the page",
+            caption: "Where it landed. Role-aware alert up top, PAR activity and justification raised so approvers stop hunting.",
           },
         ],
       },
       {
-        id: "measuring",
-        no: "11",
-        title: "Measuring success",
+        id: "after",
+        no: "05",
+        title: "What outlasted the project",
         body: [
           {
             kind: "p",
-            text: "We needed to know whether any of this worked, for users and for the business.",
+            text: "A few of the components I built for this went back into the IDP design system, so the teams building the next plugin got them without asking. That is the part of this project with the longest tail.",
+          },
+          {
+            kind: "h",
+            text: "Proving it worked",
           },
           {
             kind: "p",
-            text: "The business OKR: cut time spent in deployment by 7%.",
-          },
-          {
-            kind: "p",
-            text: "For user metrics we used the HEART framework, HAT in our case. Our internal tracking was not wired into the IDP during closed beta, so we were stuck with UMUX-Lite, NPS, and surveys.",
-          },
-          {
-            kind: "list",
-            items: [
-              "NPS for overall satisfaction and open-ended feedback",
-              "UMUX-Lite for usability and whether people actually finished the task",
-            ],
+            text: "Our internal analytics were not wired into the IDP during the closed beta, so I could not lean on behavioral data. I built the measurement plan around UMUX-Lite, NPS and surveys instead, which is what the numbers below come from.",
           },
           {
             kind: "img",
             src: `${IDP}/24-metrics.png`,
-            alt: "Measurement framework",
-          },
-        ],
-      },
-      {
-        id: "reflection",
-        no: "12",
-        title: "Reflection: not everything makes the MVP",
-        body: [
-          {
-            kind: "h",
-            text: "Build the thing the enterprise needs",
-          },
-          {
-            kind: "p",
-            text: "There was more work than time. We built what the enterprise needed and let the rest wait.",
+            alt: "Measurement framework built on the HEART model",
+            caption: "The measurement plan, built around what we could actually collect.",
           },
           {
             kind: "h",
-            text: "It's okay to be flexible",
+            text: "What did not make it",
           },
           {
             kind: "p",
-            text: "Plenty of pivots, including a few genuine fire drills. Timelines moved in both directions.",
+            text: "Mobile approvals never made the beta. I designed the concept anyway because approvers kept telling me they were getting pinged away from their desk, and product wants it in a later increment.",
           },
           {
-            kind: "h",
-            text: "Talk to users throughout the process",
+            kind: "callout",
+            tone: "note",
+            text: "The clip below is concept work. It has not shipped.",
           },
           {
-            kind: "p",
-            text: "A lot of people treat research as a kickoff activity. Talking to developers the whole way through is how we found the problems that mattered.",
-          },
-          {
-            kind: "h",
-            text: "Leave things better than you found them",
-          },
-          {
-            kind: "p",
-            text: "We pushed a few components back into the IDP design system, so the next team gets them for free.",
+            kind: "video",
+            src: `${IDP}/v06-mobile.mp4`,
+            alt: "Concept work showing a release approved on mobile, from push notification to a single tap.",
+            caption: "Concept only. Approving from a push notification.",
           },
         ],
       },
     ],
     results: [
-      { stat: "55", label: "3-Month NPS Score", sub: "3,600 respondents" },
-      { stat: "71", label: "UMUX-Lite Score", sub: "2,750 respondents" },
-      { stat: "2%", label: "Decrease in time from release to deployment" },
+      { stat: "55", label: "3-month NPS", sub: "3,600 respondents" },
+      { stat: "71", label: "UMUX-Lite score", sub: "2,750 respondents" },
+      { stat: "2%", label: "Faster from release to deployment" },
     ],
   },
 
