@@ -168,7 +168,7 @@ export const caseStudies: CaseStudy[] = [
           {
             kind: "callout",
             tone: "note",
-            text: "This is the part I would fight for again. Two weeks of mapping bought us a scope nobody relitigated for the next seven months.",
+            text: "Two weeks of mapping up front bought a scope nobody reopened for the next seven months.",
           },
         ],
       },
@@ -179,7 +179,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "My first layout put the audit questions behind a modal and kept the actions high on the page. Clean, and dead on arrival. Audit came back and said those questions have to be visible at all times, behind no interaction at all.",
+            text: "My first layout put the audit questions behind a modal and kept the actions high on the page. Audit came back and said those questions have to be visible at all times, behind no interaction at all.",
           },
           {
             kind: "img",
@@ -244,7 +244,7 @@ export const caseStudies: CaseStudy[] = [
               },
               {
                 title: "Slack from the page",
-                body: "Approvers were already leaving to ask questions. Rather than fight it, I put the door where they were walking.",
+                body: "Approvers were already leaving for Slack to ask questions. Instead of trying to keep them on the page, I put the link on it.",
               },
               {
                 title: "Bulk approve",
@@ -324,306 +324,229 @@ export const caseStudies: CaseStudy[] = [
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
     tagline:
-      "The home screen was advertising features. It should have been telling members what to do about their money.",
+      "The home screen was advertising features while people churned. I replaced the ads with balances you could act on, and auto-pay setup went up 37%.",
     hero: `${OPO}/01-hero.png`,
     heroScreens: [`${OPO}/01-hero.png`, `${OPO}/03-process.png`],
-    role: "UI/UX Designer",
-    team: "Design · Loans, Savings, Credit PODs",
+    role: "Sr. Product Designer, owned the widget system across three product teams",
+    team: "Design \u00b7 Loans, Savings and Credit PODs",
     timeframe: "32 weeks",
-    tools: "Figma · A/B testing · Heuristic eval",
+    tools: "Figma \u00b7 A/B testing \u00b7 Heuristic eval",
     accent: "lime",
     brand: "oportun",
     sections: [
       {
-        id: "problem",
+        id: "shipped",
         no: "01",
-        title: "Problem",
+        title: "What shipped",
         body: [
           {
             kind: "p",
-            text: "Oportun had bought Digit, renamed the app, and redesigned it along with the product lineup. All in the same year.",
+            text: "The Oportun home screen used to tell you about features. Now it shows what you have and lets you do something about it without digging. Savings goals, loan balance, the payment that is due, all on the first screen with the action attached.",
           },
           {
             kind: "p",
-            text: "The business wanted retention and member lifetime back where they used to be, plus better 30 to 90 day retention on new members.",
+            text: "I owned the widget system. Three product teams shipped on top of it, and I designed the components all three of them used.",
+          },
+          {
+            kind: "img",
+            src: `${OPO}/01-hero.png`,
+            alt: "Three Oportun app screens showing savings goals, goal selection, and the home screen with the savings widget",
+            caption: "The home screen on the right is the one that changed. Balances up top, with the actions attached to them.",
           },
         ],
       },
       {
-        id: "goals",
+        id: "argument",
         no: "02",
-        title: "Goals",
-        body: [
-          {
-            kind: "list",
-            items: [
-              "Stop running feature ads. Show people something useful at the moment it matters",
-              "Move the baseline numbers on SAVE, Loans, and Credit Card",
-              "Make actual room for financial insights",
-              "Leave something the next team can build on",
-            ],
-          },
-        ],
-      },
-      {
-        id: "what-we-knew",
-        no: "03",
-        title: "What we knew",
+        title: "Leadership did not think anything was wrong",
         body: [
           {
             kind: "p",
-            text: "For ten years before the 2021 acquisition, Digit was a savings app. You linked your bank account and it saved for you. That is the app people thought they had. After the acquisition it became a savings account with a $5 monthly fee.",
+            text: "Bankrate had just named us the leading savings app of 2023. From where leadership sat, the product was working.",
           },
           {
             kind: "p",
-            text: "Churn had been high for a while. Referrals and app store ratings were both sliding.",
-          },
-          {
-            kind: "p",
-            text: "A heuristic eval turned up the obvious stuff. We rarely told people what the system was doing, and our most important actions were buried two pages deep.",
-          },
-        ],
-      },
-      {
-        id: "challenges",
-        no: "04",
-        title: "Challenges & opportunities",
-        body: [
-          {
-            kind: "h",
-            text: "Resistance from executive leadership",
-          },
-          {
-            kind: "p",
-            text: "Bankrate and a few others named us the leading savings app of 2023, so leadership did not see a problem. Telling them was not going to work. We had to show them the data.",
-          },
-          {
-            kind: "h",
-            text: "Uniformity across product teams",
-          },
-          {
-            kind: "p",
-            text: "Stakeholders owned the product area, not design, and they had final say on what shipped. So buy-in meant winning over several PODs one at a time instead of getting a single yes at the top.",
-          },
-        ],
-      },
-      {
-        id: "hypotheses",
-        no: "05",
-        title: "Hypotheses",
-        body: [
-          {
-            kind: "list",
-            items: [
-              "Putting real actions on the home screen would lift savings and loan payoff, and start rebuilding trust with long-time members",
-              "Better just-in-time status would keep new members around, because they would see progress sooner",
-              "Moving core actions to the home screen would turn it into an insights hub we could grow other products from",
-            ],
+            text: "The numbers underneath said otherwise. Churn had been high for a while, referrals were sliding, and app store ratings were going with them. Digit had spent ten years as a savings app that quietly moved money for you. After the acquisition it became a savings account with a five dollar monthly fee, and the home screen was still mostly advertising features.",
           },
           {
             kind: "img",
             src: `${OPO}/02-hypothesis.png`,
-            alt: "Hypothesis visualization",
+            alt: "Oportun home screen with savings and loan balances at the top and a promotional card below encouraging the user to try investing",
+            caption: "Real balances at the top, and directly underneath, a card asking you to go try investing. That gap is the whole problem.",
+          },
+          {
+            kind: "p",
+            text: "A heuristic pass turned up the unglamorous version of the same thing. We almost never told people what the system was doing, and the actions they came to perform were buried two screens deep.",
           },
         ],
       },
       {
-        id: "process",
-        no: "06",
-        title: "My process",
+        id: "test",
+        no: "03",
+        title: "The cheapest test I could get approved",
         body: [
           {
             kind: "p",
-            text: "We started with a plain A/B test. The Loans team agreed to send a slice of web traffic straight to a page where you could pay your loan, turn on auto-pay, and see your loan details.",
-          },
-          {
-            kind: "h",
-            text: "The test was a quick win",
+            text: "A deck was not going to move anyone who had just won an award. I needed a number, and I needed it from their own traffic rather than a study.",
           },
           {
             kind: "p",
-            text: "People were two to three times more likely to set up auto-pay or pay on time when we gave them the action instead of just the information.",
+            text: "So I talked the Loans team into a small A/B test. Route a slice of web traffic to a page where you could pay the loan, turn on auto-pay and see the balance, instead of a page that only told you about them.",
           },
           {
-            kind: "h",
-            text: "Getting project buy-in",
+            kind: "callout",
+            tone: "plus",
+            text: "People were two to three times more likely to set up auto-pay or pay on time when the action was in front of them instead of a description of the action.",
           },
           {
             kind: "p",
-            text: "Most of this project was selling the work, over and over, to different rooms. Designers, devs, and PMs came along one at a time until there were enough of us pushing for launch.",
+            text: "That result is the entire reason the rest of this project happened. Once there was a number attached to one team's own traffic, the conversation stopped being about whether the home screen needed to change.",
+          },
+        ],
+      },
+      {
+        id: "buyin",
+        no: "04",
+        title: "Getting it through three teams",
+        body: [
+          {
+            kind: "p",
+            text: "Design did not own this surface. Stakeholders did, and they had final say on what shipped. Savings, Loans and Credit each ran their own roadmap, so there was no single yes to go get.",
+          },
+          {
+            kind: "p",
+            text: "Most of my time on this went into selling it, one team at a time. What worked was bringing the A/B result and then showing each POD their own metric inside it, because a lift in auto-pay reads very differently to the Loans team than it does to Savings.",
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "The design took a few weeks. The coalition took months.",
+          },
+        ],
+      },
+      {
+        id: "system",
+        no: "05",
+        title: "Built so three teams could use it",
+        body: [
+          {
+            kind: "p",
+            text: "Three teams needed the same widget to say different things. The obvious move was three one-off widgets, which would have drifted apart inside a quarter.",
+          },
+          {
+            kind: "p",
+            text: "I built one component instead, with the variants and states documented so a designer on any of the three teams could express their own case without coming back to me. Filled or outlined pills, primary, secondary and semantic color, pressed states, and warning styling for things like a bank connection that dropped.",
           },
           {
             kind: "img",
             src: `${OPO}/03-process.png`,
-            alt: "Final widget designs in context",
-            caption: "Final widget designs in context.",
+            alt: "Component specification showing five savings widget variants above annotated Figma property panels for the pill carousel and pill components",
+            caption: "The widget across its states, and the component behind it. The annotations are there so another designer can pick it up without asking me how it works.",
+          },
+          {
+            kind: "p",
+            text: "The screens shipped. The component is what the next three features got built on.",
           },
         ],
       },
     ],
     results: [
-      { stat: "90%", label: "Reduced time for users to set up bill pay" },
-      { stat: "37%", label: "Increase in users who set up auto-pay" },
-      { stat: "16%", label: "Increase in loans paid on-time" },
+      { stat: "90%", label: "Less time to set up bill pay" },
+      { stat: "37%", label: "More people setting up auto-pay" },
+      { stat: "16%", label: "More loans paid on time" },
     ],
   },
 
-  /* ─── Oportun Credit Card Servicing ─────────────────────────────── */
+  /* ─── Oportun Credit Card Servicing ─────────────── */
   {
     slug: "oportun-credit-servicing",
     title: "Credit Card Servicing",
     org: "Oportun (post-Digit acquisition)",
     status: "SHIPPED",
     tagline:
-      "Credit card servicing added to a live lending app used by 2M+ members. Two products that agreed on nothing, one design system, and a March 2023 deadline nobody could move.",
+      "Two million members, two products that agreed on nothing, and a March 2023 date nobody could move. I designed credit card servicing into the app without forking the design system to do it.",
     hero: `${OCS}/01-hero.png`,
     heroScreens: [
       `${OCS}/01-hero.png`,
       `${OCS}/02-account-overview.png`,
       `${OCS}/09-flow-architecture.png`,
     ],
-    role: "UI/UX Designer",
-    team: "Design · Loans, Savings & Credit PODs · iOS & Android Eng",
-    timeframe: "Jul 2022 sprint → Mar 2023 launch",
-    tools: "Figma · iOS & Android · Benchmarking · Usability Testing",
+    role: "Sr. Product Designer, owned credit servicing end to end on iOS and Android",
+    team: "Design \u00b7 Loans, Savings and Credit PODs \u00b7 iOS and Android engineering",
+    timeframe: "Jul 2022 sprint to Mar 2023 launch",
+    tools: "Figma \u00b7 iOS and Android \u00b7 Benchmarking \u00b7 Usability testing",
     accent: "lime",
     brand: "oportun",
     sections: [
       {
-        id: "situation",
+        id: "shipped",
         no: "01",
-        title: "The situation",
+        title: "What shipped",
         body: [
           {
             kind: "p",
-            text: "Oportun had bought Digit, a savings app with about ten years of goodwill behind it, and the two products were being merged into one app. That put over 2 million members in the same place with completely different ideas about what it was for.",
+            text: "Credit card servicing, inside the app 2 million people were already using, on both iOS and Android, on the date it had to land.",
           },
           {
             kind: "p",
-            text: "The credit card was the newest product, and servicing it meant building on infrastructure designed for personal loans. Payment cadences, status states, disclosures: none of it carried over cleanly, and none of it matched how members thought about their money.",
-          },
-          {
-            kind: "callout",
-            tone: "minus",
-            text: "Missing the deadline would have been bad. Shipping two conflicting mental models to 2M+ members would have been worse, and much harder to undo.",
-          },
-        ],
-      },
-      {
-        id: "task",
-        no: "02",
-        title: "The task",
-        body: [
-          {
-            kind: "p",
-            text: "I owned the whole credit card servicing experience: account overview, payment flows, auto-pay enrollment, transaction history, and every payment status state, on iOS and Android. It had to look like it belonged in the app, survive a compliance review, and be ready for the March 2023 launch.",
-          },
-          {
-            kind: "p",
-            text: "The hard part was not the number of screens. It was a question nobody had answered: how much of the loan servicing infrastructure would carry over, how much would stretch, and how much would snap.",
-          },
-          {
-            kind: "callout",
-            tone: "note",
-            text: "Two weeks for discovery. Every architecture question had to be settled before I drew a single real screen.",
-          },
-        ],
-      },
-      {
-        id: "discovery",
-        no: "03",
-        title: "Getting smart, fast",
-        body: [
-          {
-            kind: "p",
-            text: "Two weeks meant no research for its own sake. Every method had to answer a specific question about what to build or what to leave alone.",
-          },
-          {
-            kind: "h",
-            text: "Competitive benchmarking",
-          },
-          {
-            kind: "p",
-            text: "I went through the major consumer credit card apps to see how they handled payment status, scheduling, and funding source setup. Not for inspiration. To find out what members already expect.",
-          },
-          {
-            kind: "h",
-            text: "User research across both legacy user bases",
-          },
-          {
-            kind: "p",
-            text: "I ran interviews and usability tests with members from both sides, legacy Digit savers and legacy Oportun borrowers now sharing one app. The same three problems came up session after session. People could not tell where they stood on a payment. The date rules in scheduling confused them into dropping out. And nobody knew when a newly added bank account would actually work.",
-          },
-          {
-            kind: "h",
-            text: "Agent manual review",
-          },
-          {
-            kind: "p",
-            text: "Reading the support docs against our usability findings turned up problems members never said out loud but were clearly calling about. This was the most useful thing I did. The status labels were technically correct and still confusing, because they had been written for legal precision, not for someone trying to work out whether they owed money.",
+            text: "I owned all of it. Account overview, payment flows, auto-pay enrollment, transaction history, and every payment status state, on both platforms.",
           },
           {
             kind: "img",
-            src: `${OCS}/09-flow-architecture.png`,
-            alt: "End-to-end credit card servicing flow architecture",
-            caption: "Flow architecture, mapped before any screens: app home through the credit card tab, payments, transaction history, auto-pay. This is where loan and credit infrastructure actually split.",
-          },
-          {
-            kind: "h",
-            text: "Flow architecture",
+            src: `${OCS}/02-account-overview.png`,
+            alt: "Credit card account overview with status card, auto-pay enrollment prompt, primary pay button and recent activity",
+            caption: "The account overview. Status at the top, one obvious action, activity underneath.",
           },
           {
             kind: "p",
-            text: "Before drawing anything real I mapped the whole servicing flow: account setup, payments, status, auto-pay, transaction history. That map is what drew the line between shared loan infrastructure and credit-specific work. Get it wrong and everything after it inherits the mistake.",
+            text: "Oportun had bought Digit, a savings app with about ten years of goodwill behind it, and the two products were being merged into one. That put a savings audience and a lending audience in the same app with completely different ideas about what it was for. The credit card was the newest thing in the lineup and none of the loan infrastructure underneath it fit.",
           },
         ],
       },
       {
         id: "decision",
-        no: "04",
-        title: "The system decision",
+        no: "02",
+        title: "The call that had to happen before any design",
         body: [
           {
             kind: "p",
-            text: "The decision that mattered most was not a design decision. It was architectural, it had to happen before any visual work, and it meant arguing against a direction that already had momentum.",
-          },
-          {
-            kind: "h",
-            text: "The pull toward a parallel system",
+            text: "The fast answer was to build a separate credit design system next to the existing one. Its own components, its own patterns, nothing shared. It looked contained and it had support already.",
           },
           {
             kind: "p",
-            text: "The easy answer was a separate credit design system: its own components, its own patterns, sitting next to the existing one. It looked fast. It looked contained. Some stakeholders were already leaning that way.",
-          },
-          {
-            kind: "h",
-            text: "Making the case against it",
+            text: "I pushed back. Two component libraries doing the same job stop matching each other within a couple of quarters, and members were already confused by the rebrand. The last thing they needed was a second set of patterns to learn inside the same app.",
           },
           {
             kind: "p",
-            text: "A second system would have piled up debt and inconsistencies members feel for years. Two component libraries built for the same job drift apart no matter how carefully you manage them. I took the friction data from members already confused by the rebrand to product and engineering leads, and argued that the last thing this app needed was another seam.",
+            text: "What actually settled it was the cost. Extending the existing system was slightly more work up front and cheaper on every feature after it, and that was the version product and engineering could agree to.",
           },
           {
             kind: "callout",
             tone: "plus",
-            text: "We extended the existing design system instead of forking it. Credit components were built on top of what was there, not beside it. Less ambiguity for the next person, and no new fault line.",
+            text: "We extended the design system instead of forking it. Credit components were built on top of what already existed rather than beside it.",
           },
           {
             kind: "p",
-            text: "Getting alignment took a lot of conversations outside the sprint team. What finally landed was the math: extending cost slightly more up front and saved on every feature after it.",
+            text: "That decision had to be made before anyone drew a real screen, so I spent the first two weeks mapping the whole servicing flow end to end. The map is what showed exactly where loan infrastructure could carry the credit card and where it could not.",
+          },
+          {
+            kind: "img",
+            src: `${OCS}/09-flow-architecture.png`,
+            alt: "End to end credit card servicing flow architecture from app home through payments, transaction history and auto-pay",
+            caption: "The flow map, drawn before any screens. Everything that follows is downstream of where these lines split.",
           },
           {
             kind: "imgGrid",
             items: [
               {
-                src: `${OCS}/10-sketches-payment.png`,
-                alt: "Early hand-drawn wireframes for payment flow layout variations",
-                caption: "Payment flow sketches, working out status hierarchy and action placement before any system decisions were locked.",
+                src: `${OCS}/11-sketches-overview.png`,
+                alt: "Early wireframes exploring how the credit card tab extends existing app navigation",
+                caption: "Working out how the credit card tab could hang off the existing navigation.",
               },
               {
-                src: `${OCS}/11-sketches-overview.png`,
-                alt: "Early wireframes for credit card account overview and navigation",
-                caption: "Account overview sketches, figuring out how the credit card tab could extend the existing navigation without splintering it.",
+                src: `${OCS}/10-sketches-payment.png`,
+                alt: "Early hand drawn wireframes for payment flow layout variations",
+                caption: "Payment layouts, sketched while the system question was still open.",
               },
             ],
           },
@@ -631,149 +554,131 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         id: "status",
-        no: "05",
-        title: "Designing for trust",
+        no: "03",
+        title: "Answering where do I stand",
         body: [
           {
             kind: "p",
-            text: "Credit card servicing is one of the highest-trust screens in a financial app. People open it because they need to pay something, and they want one question answered: where do I stand. Answering that plainly without bending the regulatory language was the whole problem.",
-          },
-          {
-            kind: "h",
-            text: "Making the status card the anchor",
+            text: "People open a credit card screen for one reason. They want to know whether they owe anything and when.",
           },
           {
             kind: "p",
-            text: "I pinned the status card to the top of the credit card view instead of showing it only when something was wrong. People should see where they stand every time they open the app, not just when the system decides it is worth mentioning.",
+            text: "Reading the support documentation against our usability sessions turned up the thing members never said out loud but were clearly calling in about. The status labels were accurate and still confusing, because they had been written for legal precision rather than for someone working out whether they were late.",
           },
           {
             kind: "p",
-            text: "The card had to hold three states: upcoming, due, and auto-pay active. Each has its own urgency and its own required legal wording. The hard part was making them readable at a glance without using color to carry the meaning, since color alone does not meet accessibility requirements.",
+            text: "So I pinned the status card to the top of the credit view instead of showing it only when something was wrong. It had to hold three states, each with its own urgency and its own required legal wording, and it had to be readable without using color to carry the meaning, since color on its own does not meet accessibility requirements.",
           },
           {
             kind: "imgGrid",
             items: [
               {
                 src: `${OCS}/03-status-upcoming.png`,
-                alt: "Status card: Upcoming payment state",
-                caption: "Upcoming payment. Informational, no alarm.",
+                alt: "Status card in the upcoming payment state",
+                caption: "Upcoming. Informational, no alarm.",
               },
               {
                 src: `${OCS}/04-status-due.png`,
-                alt: "Status card: Payment due state",
-                caption: "Payment due. Urgency comes from the label and badge, not color alone.",
+                alt: "Status card in the payment due state",
+                caption: "Due. The urgency comes from the label and the badge.",
               },
               {
                 src: `${OCS}/05-status-autopay.png`,
-                alt: "Status card: Auto pay enabled state",
+                alt: "Status card in the auto pay enabled state",
                 caption: "Auto pay on. Nothing to do.",
               },
             ],
           },
           {
             kind: "p",
-            text: "I built the hierarchy out of type weight, spacing, and a small amount of badge color. The badges still carry the required legal label, but the layout around them makes the meaning obvious. The same screen passes compliance and still reads in the two seconds someone actually gives it.",
-          },
-          {
-            kind: "img",
-            src: `${OCS}/02-account-overview.png`,
-            alt: "Full credit card account overview screen with status card, auto-pay nudge, pay CTA, and recent activity",
-            caption: "The full account overview. Status card at the top, a standing auto-pay nudge, the Pay button, and recent activity below.",
+            text: "The hierarchy is built from type weight, spacing and a small amount of badge color. Each badge still carries the legally required label, but the layout around it makes the meaning obvious, so the same screen clears compliance and still reads in the two seconds someone actually gives it.",
           },
         ],
       },
       {
         id: "autopay",
-        no: "06",
-        title: "The auto-pay enrollment flow",
+        no: "04",
+        title: "Fixing the auto-pay drop-off",
         body: [
           {
             kind: "p",
-            text: "Auto-pay is the most useful thing a credit card member can turn on. No late fees, no credit score damage, one less thing to remember. So enrollment mattered. Research showed people dropping out of the existing flow, and the reason was simple: the setup steps arrived at the wrong moment without enough context.",
-          },
-          {
-            kind: "h",
-            text: "Folding in the funding source",
+            text: "Auto-pay is the most useful thing a cardholder can turn on. No late fees, no credit damage, nothing to remember. People were starting the old flow and not finishing it.",
           },
           {
             kind: "p",
-            text: "The old flow sent you to a settings page to add a bank account before you could start enrolling. That detour killed the intent right when it was highest. I moved funding source setup inside enrollment, so someone who has never linked an account can finish in one pass.",
-          },
-          {
-            kind: "h",
-            text: "Keeping dates inside the billing cycle",
+            text: "Two things were causing it, and both showed up in testing rather than in the data.",
           },
           {
             kind: "p",
-            text: "People were picking auto-pay dates outside their billing cycle without knowing it, so payments bounced or hit the wrong statement. The fix was a calendar that only offers valid dates, with the disclosure written on the page instead of behind a tooltip nobody taps.",
+            text: "The old flow sent you out to a settings page to add a bank account before you could enroll, which lost people at the exact moment they had decided to do it. I moved funding source setup inside enrollment so someone who has never linked an account can finish in one pass.",
+          },
+          {
+            kind: "p",
+            text: "The other one was quieter. People were picking payment dates outside their billing cycle without knowing it, so payments bounced or landed on the wrong statement. The calendar now only offers dates that work, and the disclosure sits on the page instead of behind a tooltip nobody taps.",
           },
           {
             kind: "imgGrid",
             items: [
               {
                 src: `${OCS}/06-autopay-amount.png`,
-                alt: "Auto-pay: select amount screen",
-                caption: "Step 1, pick an amount. Three options, with the billing disclosures right there instead of behind a link.",
+                alt: "Auto-pay enrollment, selecting a payment amount",
+                caption: "Pick an amount, with the billing disclosures right there.",
               },
               {
                 src: `${OCS}/07-autopay-date.png`,
-                alt: "Auto-pay: select date with billing-cycle-constrained calendar",
-                caption: "Step 2, pick a date. The calendar only offers valid billing-cycle dates, due date highlighted.",
+                alt: "Auto-pay enrollment, selecting a date from a calendar limited to valid billing cycle dates",
+                caption: "Pick a date. Only the valid ones are selectable.",
               },
             ],
           },
           {
             kind: "img",
             src: `${OCS}/08-autopay-confirm.png`,
-            alt: "Auto-pay: review and confirm with full regulatory disclosure",
-            caption: "Step 3, review and confirm. The full ACH authorization language sits above the final button, not tucked away.",
+            alt: "Auto-pay review and confirm screen with full ACH authorization language",
+            caption: "Review and confirm. The full ACH authorization sits above the button rather than behind a link.",
           },
         ],
       },
       {
         id: "parity",
-        no: "07",
-        title: "Building both platforms at once",
+        no: "05",
+        title: "Both platforms at the same time",
         body: [
           {
             kind: "p",
-            text: "The usual approach is to design one platform, ship it, then adapt the second. It sounds efficient. What happens instead is drift, because the second platform inherits decisions made around the first one's quirks.",
+            text: "The normal way to do this is design for one platform, ship it, then adapt the second. It sounds cheaper. What you get is a second platform carrying decisions that were made around the first one's quirks.",
           },
           {
             kind: "p",
-            text: "On a regulated payment product that drift is a compliance problem, not just a design one. Payment status has to behave identically on iOS and Android, because the law does not care which phone you bought. So I designed both at once.",
+            text: "On a regulated payment product that is a compliance problem rather than a tidiness one. A payment status has to behave the same way on iOS and Android because the rules apply to both. So I designed them together and specified every status, disclosure and confirmation once for both.",
+          },
+          {
+            kind: "p",
+            text: "Delivery went out in the order of member impact and regulatory exposure. Account overview, payment flows and the status hierarchy first, then auto-pay enrollment, secure payment and transaction detail on top of them.",
           },
           {
             kind: "callout",
-            tone: "plus",
-            text: "Designing both platforms side by side killed regulatory drift before it started. Every payment state, disclosure, and confirmation was specified once, together, instead of patched to match later.",
-          },
-          {
-            kind: "h",
-            text: "Phased delivery",
-          },
-          {
-            kind: "p",
-            text: "We shipped in order of member impact and regulatory risk. Phase 1 was account overview, payment flows, and status hierarchy: the highest traffic and the most compliance exposure. Phase 2 added auto-pay enrollment, secure payment, and transaction detail on top.",
+            tone: "note",
+            text: "Shipped on the March date with both platforms in step and no fragmentation regressions.",
           },
         ],
       },
     ],
     results: [
       {
-        stat: "4.7★",
+        stat: "4.7\u2605",
         label: "App Store rating",
-        sub: "289K+ reviews post-launch",
+        sub: "289K+ reviews after launch",
       },
       {
         stat: "1M+",
         label: "Google Play downloads",
-        sub: "Across both platforms at scale",
+        sub: "Across both platforms",
       },
       {
         stat: "Mar '23",
-        label: "Unified launch shipped on time",
-        sub: "Zero fragmentation regressions",
+        label: "Shipped on the date",
+        sub: "No fragmentation regressions",
       },
     ],
   },
@@ -785,172 +690,159 @@ export const caseStudies: CaseStudy[] = [
     org: "The Demex Group",
     status: "SHIPPED",
     tagline:
-      "First designer at a climate-risk startup, writing front-end code too. We had piles of weather data and nobody outside the analyst team could read it.",
+      "A climate risk startup with more data than anyone outside the analyst team could read. I designed the product that made it usable, and wrote the front end for it.",
     hero: `${DCC}/05.png`,
     heroScreens: [`${DCC}/05.png`, `${DCC}/08.png`],
-    role: "Founding Product Designer · Full-Stack Engineer",
-    team: "Founding design + eng team, cross-functional with data science",
-    timeframe: "First public-facing product launch",
-    tools: "Figma · React · UserTesting · Strategy",
+    role: "Founding Product Designer, also shipped the front end",
+    team: "Founding design and engineering team, working with data science",
+    timeframe: "First public product",
+    tools: "Figma \u00b7 React \u00b7 UserTesting \u00b7 Strategy",
     accent: "lime",
     brand: "demex",
     sections: [
-        {
-          id: "overview",
-          no: "01",
-          title: "Overview",
-          body: [
-            {
-              kind: "p",
-              text: "Demex is a climate-risk startup building for insurers and businesses hit by severe but non-catastrophic weather. I was the founding product designer: strategy, research, interaction, visual design, and prototyping for our first public product. I wrote front-end code alongside the founding engineers too.",
-            },
-            {
-              kind: "p",
-              text: "We had a mountain of climate and risk data that nobody outside our own analysts could read. The Climate Center was our attempt to make it legible and comparable for the people actually losing money to weather.",
-            },
-          ],
-        },
-        {
-          id: "problem",
-          no: "02",
-          title: "Understanding the problem",
-          body: [
-            {
-              kind: "p",
-              text: "Three things had to be true for this to be worth building: people could use the data, the problem was real, and the goal was specific.",
-            },
-            {
-              kind: "features",
-              items: [
-                {
-                  title: "Our users",
-                  body: "Business owners and insurers needed to act on data we already had. Before the Climate Center it was close to unreadable.",
-                },
-                {
-                  title: "The statistics",
-                  body: "Non-catastrophic weather events in the U.S. are up over 500% since 1980 and have cost more than $9.3B since 2002. Profitable businesses were getting hit with no way to defend against it.",
-                },
-                {
-                  title: "Our goal",
-                  body: "Put a usable web app on top of the data so clients could poke at it themselves and see how weather hits their business.",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: "research",
-          no: "03",
-          title: "User research",
-          body: [
-            {
-              kind: "p",
-              text: "I ran moderated and unmoderated studies with about 50 business owners on UserTesting.com, looking for gaps in their insurance experience and what climate data they actually wanted. Three findings shaped the product:",
-            },
-            {
-              kind: "features",
-              items: [
-                {
-                  title: "Business disruption",
-                  body: "78% reported real operational disruption from unpredictable weather: lost productivity, higher costs.",
-                },
-                {
-                  title: "Vulnerability",
-                  body: "In farming communities, 65% lose crop every year to weather they did not see coming. Average loss: 15% of annual yield.",
-                },
-                {
-                  title: "Insurance gaps",
-                  body: "63% said their policy did not actually cover the weather damage they got, which left them exposed.",
-                },
-              ],
-            },
-            {
-              kind: "callout",
-              tone: "note",
-              text: "So the job was turning a flood of climate signals into a few numbers a non-analyst could trust at a glance.",
-            },
-          ],
-        },
-        {
-          id: "wireframing",
-          no: "04",
-          title: "Early wireframing",
-          body: [
-            {
-              kind: "p",
-              text: "I sketched the home and search-results screens early to lock the hierarchy: one climate index up top, trend, variability, and risk scores beside it, then historical observations and a comparison view below.",
-            },
-            {
-              kind: "imgGrid",
-              items: [
-                {
-                  src: `${DCC}/06.png`,
-                  alt: "Wireframe of the Demex Climate Center home page",
-                  caption: "Home. Climate Index, search, and a short primer on parametrics.",
-                },
-                {
-                  src: `${DCC}/07.png`,
-                  alt: "Wireframe of the search results / detail view",
-                  caption: "Search results. DVI score, historical band, comparative geo views.",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: "iteration",
-          no: "05",
-          title: "Testing and iteration",
-          body: [
-            {
-              kind: "p",
-              text: "Once the thing worked end to end I ran moderated tests with five users to see whether the navigation and the index itself were landing.",
-            },
-            {
-              kind: "quote",
-              text: "4 out of 5 users said they wanted a way to look at this data in relation to other areas.",
-              speaker: "round-1 testing readout",
-            },
-            {
-              kind: "p",
-              text: "That one line reshaped the next sprint. We built a comparative geographic view: a 5×5 trend and variability matrix plotting locations against historical data, so someone looking at Seoul or London or their own zip code can see how it ranks.",
-            },
-            {
-              kind: "img",
-              src: `${DCC}/08.png`,
-              alt: "London climate trend and variability scatter chart",
-              caption: "Climate trend against variability. Every dot is a location plotted on its own historical baseline.",
-            },
-          ],
-        },
-        {
-          id: "takeaways",
-          no: "06",
-          title: "Key learnings",
-          body: [
-            {
-              kind: "h",
-              text: "Business goals versus what users need",
-            },
-            {
-              kind: "p",
-              text: "At a startup you will get pushback any time a design contradicts what a stakeholder wants. Those conversations go better with research behind you, and better still when the research shaped the brief everyone already agreed to.",
-            },
-            {
-              kind: "h",
-              text: "Five users is enough to start",
-            },
-            {
-              kind: "p",
-              text: "The five-user round caught the comparative-data gap that 50 survey responses missed. Different study sizes answer different questions. The small deep one is where the product actually improved.",
-            },
-          ],
-        },
-      ],
+      {
+        id: "shipped",
+        no: "01",
+        title: "What shipped",
+        body: [
+          {
+            kind: "p",
+            text: "The Demex Climate Center. Pick a location and it tells you how the weather there has been changing, how erratic it has become, and what that means for a business operating in it.",
+          },
+          {
+            kind: "p",
+            text: "I was the founding product designer. Strategy, research, interaction, visual design and prototyping, and I wrote the front end alongside the founding engineers.",
+          },
+          {
+            kind: "img",
+            src: `${DCC}/05.png`,
+            alt: "Demex Climate Center showing the Seoul annual average temperature report with trend and variability scores, a plain language explanation, and a historical observations chart",
+            caption: "Four scores on the left, and on the right, the same thing said in a sentence. The panel on the right is the part that made this usable.",
+          },
+        ],
+      },
+      {
+        id: "problem",
+        no: "02",
+        title: "We had the data. Nobody could read it.",
+        body: [
+          {
+            kind: "p",
+            text: "Demex sold climate risk products to insurers and to businesses getting hit by severe weather that never rises to the level of a named disaster. The company already held the data. The problem was that reading it required an analyst.",
+          },
+          {
+            kind: "p",
+            text: "Non-catastrophic weather events in the US are up over 500% since 1980 and have cost more than 9.3 billion dollars since 2002. The people absorbing that had no way to look at their own exposure.",
+          },
+          {
+            kind: "p",
+            text: "I ran moderated and unmoderated studies with about 50 business owners through UserTesting to find out what they actually wanted to know. Three findings shaped the product.",
+          },
+          {
+            kind: "features",
+            items: [
+              {
+                title: "Disruption is constant",
+                body: "78% reported real operational disruption from unpredictable weather. Lost productivity, higher costs, no way to plan around it.",
+              },
+              {
+                title: "Farming takes it worst",
+                body: "65% of agricultural respondents lose crop every year to weather they did not see coming. Average loss is 15% of annual yield.",
+              },
+              {
+                title: "Insurance does not cover it",
+                body: "63% said their policy did not actually cover the weather damage they got, which left them paying for it themselves.",
+              },
+            ],
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "So the job was turning a large amount of climate signal into a few numbers a non-analyst could trust in a couple of seconds.",
+          },
+        ],
+      },
+      {
+        id: "read",
+        no: "03",
+        title: "Designing the read",
+        body: [
+          {
+            kind: "p",
+            text: "I sketched the home and results screens early to settle the hierarchy before anything got built. One climate index at the top, the trend, variability and risk scores next to it, then historical observations and a comparison view underneath.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${DCC}/06.png`,
+                alt: "Wireframe of the Demex Climate Center home page with the climate index, search and an explainer on parametrics",
+                caption: "Home. Index first, search second, a short explainer for people who had never heard of parametrics.",
+              },
+              {
+                src: `${DCC}/07.png`,
+                alt: "Wireframe of the search results and detail view with the DVI score, historical band and comparative views",
+                caption: "Results. Score, history, comparison, in that order.",
+              },
+            ],
+          },
+          {
+            kind: "p",
+            text: "The decision that mattered most was putting a plain language explanation next to every score rather than under a help link. A trend score of 61 means nothing on its own. A sentence saying temperature has strongly increased over the past ten years and the year to year range is widening is something a business owner can act on.",
+          },
+        ],
+      },
+      {
+        id: "five",
+        no: "04",
+        title: "Five users changed the product",
+        body: [
+          {
+            kind: "p",
+            text: "Once the platform worked end to end I ran moderated sessions with five people to see whether the navigation and the index itself were landing.",
+          },
+          {
+            kind: "quote",
+            text: "4 out of 5 users said they wanted a way to look at this data in relation to other areas.",
+            speaker: "round-1 testing readout",
+          },
+          {
+            kind: "p",
+            text: "Nobody wanted a number in isolation. They wanted to know whether their location was unusual. That reshaped the next sprint, and we built a comparative view that plots locations against historical data so someone looking at Seoul or London or their own zip code can see where it sits against everywhere else.",
+          },
+          {
+            kind: "img",
+            src: `${DCC}/08.png`,
+            alt: "Climate trend against variability matrix with every dot representing a location plotted on its historical baseline",
+            caption: "Trend against variability. Every dot is a location on its own historical baseline, which is what turns a score into a comparison.",
+          },
+          {
+            kind: "callout",
+            tone: "plus",
+            text: "Fifty survey responses never surfaced this. Five moderated sessions did.",
+          },
+        ],
+      },
+      {
+        id: "building",
+        no: "05",
+        title: "Designing it and building it",
+        body: [
+          {
+            kind: "p",
+            text: "Being the only designer at a startup means the design is never the constraint. Engineering time is. Writing the front end myself meant the charts, the score components and the comparison view got built the way they were specified, and I could change my mind in code instead of filing a ticket about it.",
+          },
+          {
+            kind: "p",
+            text: "It also made the stakeholder conversations easier. At a startup somebody will always want a design changed for a reason that has nothing to do with users, and those conversations go better when you have research behind you and can say what the change will cost to build.",
+          },
+        ],
+      },
+    ],
     results: [
-      { stat: "12", label: "New clients onboarded in year one", sub: "First product launch" },
-      { stat: "14%", label: "Increase in daily active users", sub: "Year-over-year" },
-      { stat: "5/5", label: "Testing rounds where comparative views came up", sub: "Drove next sprint" },
+      { stat: "12", label: "New clients in year one", sub: "First public product" },
+      { stat: "14%", label: "More daily active users", sub: "Year over year" },
+      { stat: "5/5", label: "Test rounds that asked for comparison", sub: "Drove the next sprint" },
     ],
   },
 
