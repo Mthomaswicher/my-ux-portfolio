@@ -39,7 +39,7 @@ export default function TileDecor({ project }: { project: Project }) {
     >
       {/* Tag chips, top-right */}
       {tags.length > 0 && (
-        <div className="absolute top-2.5 right-2.5 flex flex-wrap gap-1.5 justify-end max-w-[60%]">
+        <div className="absolute top-2.5 right-2.5 hidden xl:flex flex-wrap gap-1.5 justify-end max-w-[55%]">
           {tags.map((t, i) => (
             <motion.span
               key={t}

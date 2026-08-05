@@ -1,0 +1,59 @@
+<!doctype html><meta charset="utf-8"><title>responsive</title>
+<style>body{font:12px ui-monospace,Menlo;background:#0d0d0d;color:#ddd;margin:0;padding:10px}
+pre{white-space:pre-wrap;margin:0}#f{position:absolute;left:-9999px;border:0}</style>
+<pre id="o">running…</pre><iframe id="f"></iframe>
+<script>
+const W=[320,360,390,414,428,540,768,834,1024,1280,1440,1920];
+const R=['/','/home','/about','/experience','/lab','/guestbook','/sign','/work/claude-code-tiger-team'];
+const f=document.getElementById('f'),o=document.getElementById('o');
+function load(u,w,wait){return new Promise(r=>{f.style.width=w+'px';f.style.height='900px';
+  f.onload=()=>setTimeout(r,wait);f.src=u;});}
+(async()=>{
+ const L=[]; let fails=0;
+ try{localStorage.setItem('mtw.mode','scenic');localStorage.setItem('mtw.gate.claude-code-tiger-team','1');}catch(e){}
+ L.push('══ HORIZONTAL OVERFLOW BY WIDTH ══');
+ L.push('route'.padEnd(30)+W.map(w=>String(w).padStart(6)).join(''));
+ for(const r of R){
+   let row=r.padEnd(30);
+   for(const w of W){
+     await load(r,w, r==='/'?11000:1200);
+     const d=f.contentDocument, sw=d.documentElement.scrollWidth;
+     const over=sw-w;
+     if(over>1){fails++; row+=('+'+over).padStart(6);} else row+='  ok  ';
+   }
+   L.push(row);
+ }
+ L.push('');
+ L.push('══ CLIPPED CONTENT (element wider than its clipping ancestor) ══');
+ for(const w of [320,390,768]){
+   for(const r of ['/','/home','/work/claude-code-tiger-team']){
+     await load(r,w, r==='/'?11000:1300);
+     const d=f.contentDocument, win=f.contentWindow, bad=[];
+     d.querySelectorAll('*').forEach(el=>{
+       const cs=win.getComputedStyle(el);
+       if(cs.overflow==='visible'&&cs.overflowX==='visible')return;
+       const pb=el.getBoundingClientRect(); if(!pb.width)return;
+       el.querySelectorAll('*').forEach(ch=>{
+         const b=ch.getBoundingClientRect(); if(!b.width)return;
+         const cut=Math.round(b.right-pb.right);
+         if(cut>2 && (ch.textContent||'').trim())
+           bad.push(cut+'px "'+(ch.textContent||'').trim().slice(0,22)+'"');});
+     });
+     const uniq=[...new Set(bad)];
+     if(uniq.length){fails++;L.push('  '+w+'px '+r.padEnd(30)+'CLIP '+uniq.slice(0,3).join(' | '));}
+   }
+ }
+ if(!L[L.length-1].includes('CLIP'))L.push('  none');
+ L.push('');
+ L.push('══ TILE LAYER ON TOUCH (should be inert) ══');
+ await load('/home',390,1500);
+ {const d=f.contentDocument,win=f.contentWindow;
+  const sh=d.querySelector('.tile-sheen'),ar=d.querySelector('.tile-arrow');
+  L.push('  sheen opacity '+(sh?win.getComputedStyle(sh).opacity:'-')+
+         '   arrow opacity '+(ar?win.getComputedStyle(ar).opacity:'-')+
+         '   pointer-events '+(sh?win.getComputedStyle(sh).pointerEvents:'-'));}
+ L.push('');
+ L.push('TOTAL FAILURES: '+fails);
+ o.textContent=L.join('\n');
+})();
+</script>
