@@ -110,9 +110,4 @@
   <text x="650" y="786" class="m" font-size="17" fill="#0E7C61">PASS</text>
   <text x="716" y="786" class="m" font-size="17" fill="#46586A">node v24.14.0 · npm 11.9.0 · nvm 0.40.4 · scripts installed</text>
 
-  <!-- recreation stamp: annotation layer, deliberately not part of the UI -->
-  <g>
-    <rect x="1162" y="134" width="342" height="38" rx="19" fill="#1F2D38" fill-opacity="0.92"/>
-    <text x="1333" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" letter-spacing="1.4" fill="#FFFFFF" text-anchor="middle">MOCKUP · NOT A LIVE SCREEN</text>
-  </g>
 </svg>

@@ -2,17 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import { withBase } from "@/lib/path";
+import MockDataBadge from "./MockDataBadge";
 
 export default function CaseStudyVideo({
   src,
   poster,
   alt,
   caption,
+  mockData = false,
 }: {
   src: string;
   poster?: string;
   alt: string;
   caption?: string;
+  /** Overlay a "mock data" badge; set for case studies showing real tooling. */
+  mockData?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement | null>(null);
   const [paused, setPaused] = useState(false);
@@ -58,6 +62,7 @@ export default function CaseStudyVideo({
   return (
     <figure className="my-2">
       <div className="cartridge p-1 bg-bg-deep relative group/video">
+        {mockData && <MockDataBadge />}
         <video
           ref={ref}
           src={withBase(src)}

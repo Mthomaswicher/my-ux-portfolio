@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 956" width="700" height="956" role="img" aria-label="The Claude Code onboarding task showing purpose, prerequisites, the command to run and a passing validation.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 900" width="700" height="900" role="img" aria-label="The Claude Code onboarding task showing purpose, prerequisites, the command to run and a passing validation.">
   <defs>
     <filter id="liftm" x="-8%" y="-8%" width="116%" height="116%">
       <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#013D5B" flood-opacity="0.14"/>
@@ -74,7 +74,4 @@
   <text x="164" y="859" class="m" font-size="17" fill="#46586A">node · npm · nvm installed</text>
 
 
-  <!-- recreation stamp: annotation band, deliberately outside the UI -->
-  <rect x="0" y="900" width="700" height="56" fill="#1F2D38"/>
-  <text x="350" y="936" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" letter-spacing="1.6" fill="#FFFFFF" text-anchor="middle">MOCKUP · NOT A LIVE SCREEN</text>
 </svg>

@@ -6,6 +6,7 @@ import HoloDisplay from "@/components/HoloDisplay";
 import CaseStudyVideo from "@/components/CaseStudyVideo";
 import CaseStudyGate from "@/components/CaseStudyGate";
 import ModeText from "@/components/ModeText";
+import MockDataBadge from "@/components/MockDataBadge";
 import OportunBrandHeader from "@/components/OportunBrandHeader";
 import CapitalOneBrandHeader from "@/components/CapitalOneBrandHeader";
 import DemexBrandHeader from "@/components/DemexBrandHeader";
@@ -48,10 +49,13 @@ function CaseStudyImage({
   alt,
   caption,
   srcMobile,
+  mockData = false,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  /** Overlay a "mock data" badge; set for case studies showing real tooling. */
+  mockData?: boolean;
   /** Art-directed variant for narrow screens. Dense diagrams and UI captures
    *  shrink to the point of being unreadable at phone widths, so they ship a
    *  reflowed version instead of the same asset scaled down. */
@@ -62,7 +66,8 @@ function CaseStudyImage({
 
   return (
     <figure className="my-2">
-      <div className="cartridge p-1 bg-bg-deep">
+      <div className="cartridge p-1 bg-bg-deep relative">
+        {mockData && <MockDataBadge />}
         {srcMobile ? (
           <picture>
             <source media="(max-width: 640px)" srcSet={withBase(srcMobile)} />
@@ -94,7 +99,12 @@ function CaseStudyImage({
   );
 }
 
-function renderBlock(b: Block, key: number, accent: keyof typeof ACCENT_TEXT) {
+function renderBlock(
+  b: Block,
+  key: number,
+  accent: keyof typeof ACCENT_TEXT,
+  mockData = false,
+) {
   switch (b.kind) {
     case "p":
       return (
@@ -136,6 +146,7 @@ function renderBlock(b: Block, key: number, accent: keyof typeof ACCENT_TEXT) {
           alt={b.alt}
           caption={b.caption}
           srcMobile={b.srcMobile}
+          mockData={mockData}
         />
       );
     case "imgGrid":
@@ -147,7 +158,13 @@ function renderBlock(b: Block, key: number, accent: keyof typeof ACCENT_TEXT) {
           }`}
         >
           {b.items.map((it, k) => (
-            <CaseStudyImage key={k} src={it.src} alt={it.alt} caption={it.caption} />
+            <CaseStudyImage
+              key={k}
+              src={it.src}
+              alt={it.alt}
+              caption={it.caption}
+              mockData={mockData}
+            />
           ))}
         </div>
       );
@@ -159,6 +176,7 @@ function renderBlock(b: Block, key: number, accent: keyof typeof ACCENT_TEXT) {
           poster={b.poster}
           alt={b.alt}
           caption={b.caption}
+          mockData={mockData}
         />
       );
     case "quote":
@@ -217,6 +235,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   const study = getCaseStudy(params.slug);
   if (!study) notFound();
 
+  // The Capital One work shows real internal tooling, so every screen in it is
+  // populated with mock records rather than anything from a live system. Keyed
+  // off the brand so a screen added later is covered without anyone remembering.
+  const showsMockData = study.brand === "capital-one";
+
   return (
     <main id="main" className="min-h-[100dvh]">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 md:px-10 pt-6 pb-6 md:py-10">
@@ -244,7 +267,19 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </summary>
             <nav aria-label="Sections in this case study" className="px-3 pb-3">
               <ul className="space-y-1 list-none p-0">
-                {study.sections.map((s) => (
+                {showsMockData && (
+            <div
+              className="cartridge p-3 mb-8 flex gap-3 font-mono text-[12.5px] leading-relaxed text-ink-dim"
+              role="note"
+            >
+              <span className="font-pixel text-[14px] text-glow-amber shrink-0" aria-hidden="true">
+                !
+              </span>
+              <span>All screens below use mock data.</span>
+            </div>
+          )}
+
+          {study.sections.map((s) => (
                   <li key={s.id}>
                     <a
                       href={`#${s.id}`}
@@ -437,7 +472,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 {s.title}
               </h2>
               <div className="space-y-4 max-w-3xl">
-                {s.body.map((b, i) => renderBlock(b, i, study.accent))}
+                {s.body.map((b, i) => renderBlock(b, i, study.accent, showsMockData))}
               </div>
             </section>
           ))}
