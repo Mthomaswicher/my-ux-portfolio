@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1080" width="700" height="1080" role="img" aria-label="The eight-gate access chain collapsed into a single request after working with the One Access team.">
+  <defs>
+    <linearGradient id="sm6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <filter id="g6m" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#0E7C61" flood-opacity="0.32"/>
+    </filter>
+    <style>
+      .h { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .gate { font-size: 21px; fill: #5A6E7D; }
+      .lane { font-size: 20px; letter-spacing: 2.6px; }
+    </style>
+  </defs>
+
+  <rect width="700" height="1080" fill="url(#sm6)"/>
+  <rect x="1" y="1" width="698" height="1078" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="36" y="76" class="h" font-size="40" font-weight="500" fill="#013D5B" letter-spacing="-0.5">What the map was</text>
+  <text x="36" y="122" class="h" font-size="40" font-weight="500" fill="#013D5B" letter-spacing="-0.5">actually for</text>
+  <text x="36" y="166" class="h" font-size="24" fill="#5A6E7D">We took the chain to the One Access</text>
+  <text x="36" y="198" class="h" font-size="24" fill="#5A6E7D">team, who own provisioning.</text>
+  <line x1="36" y1="232" x2="664" y2="232" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <!-- BEFORE -->
+  <text x="36" y="286" class="m lane" fill="#CC2427">BEFORE</text>
+
+  <g class="h">
+    <rect x="36" y="308" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="60" y="352" class="gate">AI coding tools CBT</text>
+
+    <rect x="360" y="308" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="384" y="352" class="gate">Claude Code access</text>
+
+    <rect x="36" y="396" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="60" y="440" class="gate">GitHub Enterprise</text>
+
+    <rect x="360" y="396" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="384" y="440" class="gate">GitHub training CBT</text>
+
+    <rect x="36" y="484" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="60" y="528" class="gate">Local admin CBT</text>
+
+    <rect x="360" y="484" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="384" y="528" class="gate">High Flex access</text>
+
+    <rect x="36" y="572" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="60" y="616" class="gate">Artifactory read-only</text>
+
+    <rect x="360" y="572" width="304" height="72" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="384" y="616" class="gate">Proxy bypass</text>
+  </g>
+
+  <text x="36" y="688" class="m" font-size="19" letter-spacing="1.6" fill="#CC2427">EIGHT SEPARATE REQUESTS</text>
+
+  <!-- funnel -->
+  <path d="M36 716 L664 716 L410 806 L290 806 Z" fill="#013D5B" fill-opacity="0.07"/>
+  <path d="M36 716 L664 716 L410 806 L290 806 Z" fill="none" stroke="#013D5B" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="350" y="772" class="m" font-size="19" letter-spacing="2" fill="#013D5B" text-anchor="middle">ONE ACCESS</text>
+
+  <!-- AFTER -->
+  <text x="36" y="868" class="m lane" fill="#0E7C61">AFTER</text>
+  <g filter="url(#g6m)">
+    <rect x="36" y="890" width="628" height="106" rx="8" fill="#0E7C61"/>
+  </g>
+  <text x="350" y="938" class="h" font-size="30" font-weight="500" fill="#FFFFFF" text-anchor="middle">Request Claude Code</text>
+  <text x="350" y="972" class="m" font-size="20" fill="#B6EBD2" text-anchor="middle">every entitlement, in the right order</text>
+
+  <text x="36" y="1046" class="h" font-size="24" fill="#1F2D38">The chain still runs underneath. You just never see it.</text>
+</svg>

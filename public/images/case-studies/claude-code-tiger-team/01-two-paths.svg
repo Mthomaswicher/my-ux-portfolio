@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1268" width="1536" height="1268" role="img" aria-label="The engineer path to Claude Code clears in three steps. The designer path runs eight gates and ends blocked on four developer-only entitlements.">
+  <defs>
+    <linearGradient id="surface" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <filter id="soft" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#013D5B" flood-opacity="0.14"/>
+    </filter>
+    <style>
+      .h  { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 54px; font-weight: 500; fill: #013D5B; letter-spacing: -1px; }
+      .t2 { font-size: 27px; fill: #5A6E7D; }
+      .lane { font-size: 21px; letter-spacing: 3px; }
+      .row { font-size: 27px; fill: #1F2D38; }
+      .sub { font-size: 23px; fill: #5A6E7D; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="1268" fill="url(#surface)"/>
+  <rect x="1" y="1" width="1534" height="1266" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="64" y="120" class="h t1">Two paths to the same tool</text>
+  <text x="64" y="168" class="h t2">Capital One had built one route to Claude Code. It assumed you were an engineer.</text>
+  <line x1="64" y1="212" x2="1472" y2="212" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <!-- ================= ENGINEER ================= -->
+  <text x="64" y="278" class="m lane" fill="#0E7C61">IF YOU WERE AN ENGINEER</text>
+
+  <g filter="url(#soft)">
+    <rect x="64" y="312" width="668" height="470" rx="6" fill="#FFFFFF" stroke="#0E7C61" stroke-opacity="0.35" stroke-width="2"/>
+  </g>
+  <rect x="64" y="312" width="668" height="7" fill="#0E7C61"/>
+
+  <line x1="122" y1="392" x2="122" y2="600" stroke="#0E7C61" stroke-opacity="0.35" stroke-width="4"/>
+
+  <circle cx="122" cy="392" r="17" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+  <text x="170" y="386" class="h row">Job role already grants the</text>
+  <text x="170" y="420" class="h row">developer entitlements</text>
+
+  <circle cx="122" cy="496" r="17" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+  <text x="170" y="490" class="h row">Request Claude Code</text>
+  <text x="170" y="524" class="h sub">Eligible by default</text>
+
+  <circle cx="122" cy="600" r="21" fill="#0E7C61"/>
+  <path d="M113 600 l6 7 12 -15" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="170" y="594" class="h row" fill="#0E7C61" font-weight="500">Working install</text>
+  <text x="170" y="628" class="h sub">Same afternoon</text>
+
+  <rect x="122" y="684" width="316" height="46" rx="23" fill="#0E7C61"/>
+  <text x="280" y="715" class="m" font-size="20" letter-spacing="2" fill="#FFFFFF" text-anchor="middle">3 STEPS · ONE DAY</text>
+
+  <!-- ================= DESIGNER ================= -->
+  <text x="804" y="278" class="m lane" fill="#CC2427">IF YOU WERE A DESIGNER</text>
+
+  <g filter="url(#soft)">
+    <rect x="804" y="312" width="668" height="708" rx="6" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.35" stroke-width="2"/>
+  </g>
+  <rect x="804" y="312" width="668" height="7" fill="#CC2427"/>
+
+  <line x1="862" y1="382" x2="862" y2="942" stroke="#CC2427" stroke-opacity="0.28" stroke-width="4"/>
+
+  <g class="h">
+    <circle cx="862" cy="382" r="14" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+    <text x="910" y="392" class="row">AI coding tools CBT</text>
+
+    <circle cx="862" cy="462" r="16" fill="#CC2427"/>
+    <path d="M856 456 l12 12 M868 456 l-12 12" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    <text x="910" y="458" class="row" fill="#CC2427" font-weight="500">Claude Code entitlement</text>
+    <text x="910" y="488" class="sub" fill="#CC2427">“You are not eligible”</text>
+
+    <circle cx="862" cy="542" r="14" fill="#FFFFFF" stroke="#B8842B" stroke-width="5"/>
+    <text x="910" y="538" class="row">GitHub Enterprise Cloud</text>
+    <text x="910" y="568" class="sub">Waiting on manager approval</text>
+
+    <circle cx="862" cy="622" r="14" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+    <text x="910" y="632" class="row">GitHub training CBT</text>
+
+    <circle cx="862" cy="702" r="14" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+    <text x="910" y="712" class="row">Local administrator CBT</text>
+
+    <circle cx="862" cy="782" r="16" fill="#B8842B"/>
+    <text x="862" y="791" class="m" font-size="22" fill="#FFFFFF" text-anchor="middle">?</text>
+    <text x="910" y="778" class="row" fill="#8A6320" font-weight="500">Non-developer High Flex</text>
+    <text x="910" y="808" class="sub" fill="#8A6320">Not searchable. Buried in a nav.</text>
+
+    <circle cx="862" cy="862" r="14" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+    <text x="910" y="872" class="row">Artifactory read-only</text>
+
+    
+  </g>
+
+  
+  <circle cx="862" cy="942" r="14" fill="#FFFFFF" stroke="#0276B1" stroke-width="5"/>
+  <text x="910" y="952" class="h row">Proxy bypass, external GitHub</text>
+
+  <!-- ================= TERMINAL BLOCKER ================= -->
+  <g filter="url(#soft)">
+    <rect x="64" y="1072" width="1408" height="150" rx="6" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.5" stroke-width="2"/>
+  </g>
+  <rect x="64" y="1072" width="9" height="150" fill="#CC2427"/>
+
+  <text x="112" y="1120" class="m" font-size="21" letter-spacing="2.4" fill="#CC2427">AND THEN, AT THE READINESS CHECK</text>
+  <text x="112" y="1166" class="h" font-size="29" fill="#1F2D38">Four remaining entitlements existed only in a developer variant.</text>
+  <text x="112" y="1202" class="h" font-size="29" fill="#1F2D38">There was no version a designer could request.</text>
+</svg>

@@ -25,6 +25,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
+/** Case studies that sit behind the shared password gate. */
+const GATED_SLUGS = new Set(["idp-release-plugin", "claude-code-tiger-team"]);
+
 const ACCENT_TEXT = {
   cyan: "text-glow-cyan",
   magenta: "text-glow-magenta",
@@ -44,22 +47,43 @@ function CaseStudyImage({
   src,
   alt,
   caption,
+  srcMobile,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  /** Art-directed variant for narrow screens. Dense diagrams and UI captures
+   *  shrink to the point of being unreadable at phone widths, so they ship a
+   *  reflowed version instead of the same asset scaled down. */
+  srcMobile?: string;
 }) {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const withBase = (p: string) => (p.startsWith("/") ? `${base}${p}` : p);
+
   return (
     <figure className="my-2">
       <div className="cartridge p-1 bg-bg-deep">
-        <Image
-          src={src}
-          alt={alt}
-          width={1920}
-          height={1080}
-          sizes="(max-width: 640px) 95vw, (max-width: 1024px) 80vw, 800px"
-          className="w-full h-auto block"
-        />
+        {srcMobile ? (
+          <picture>
+            <source media="(max-width: 640px)" srcSet={withBase(srcMobile)} />
+            <img
+              src={withBase(src)}
+              alt={alt}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto block"
+            />
+          </picture>
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            width={1920}
+            height={1080}
+            sizes="(max-width: 640px) 95vw, (max-width: 1024px) 80vw, 800px"
+            className="w-full h-auto block"
+          />
+        )}
       </div>
       {caption && (
         <figcaption className="mt-2 font-mono text-[11.5px] text-ink-mute uppercase tracking-widest">
@@ -106,7 +130,13 @@ function renderBlock(b: Block, key: number, accent: keyof typeof ACCENT_TEXT) {
       );
     case "img":
       return (
-        <CaseStudyImage key={key} src={b.src} alt={b.alt} caption={b.caption} />
+        <CaseStudyImage
+          key={key}
+          src={b.src}
+          alt={b.alt}
+          caption={b.caption}
+          srcMobile={b.srcMobile}
+        />
       );
     case "imgGrid":
       return (
@@ -194,7 +224,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       </div>
 
       <CaseStudyGate
-        enabled={study.slug === "idp-release-plugin"}
+        enabled={GATED_SLUGS.has(study.slug)}
         slug={study.slug}
         password="tokens"
         hint="If you don't have it, ask Matt."
@@ -431,7 +461,15 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               >
                 <ModeText scenic="High score." basic="Results." />
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div
+                className={`grid grid-cols-1 gap-4 ${
+                  study.results.length === 1
+                    ? "sm:grid-cols-1 sm:max-w-sm"
+                    : study.results.length === 2
+                      ? "sm:grid-cols-2"
+                      : "sm:grid-cols-3"
+                }`}
+              >
                 {study.results.map((r) => (
                   <div key={r.label} className="cartridge p-4 sm:p-5">
                     <div className="font-display text-[44px] sm:text-[56px] leading-none text-glow-amber break-words">

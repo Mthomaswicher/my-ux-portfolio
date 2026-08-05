@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1240" width="700" height="1240" role="img" aria-label="Six challenges of increasing complexity, from running a scaffolded app locally through to deploying a prototype to an internal URL.">
+  <defs>
+    <linearGradient id="sm9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <linearGradient id="ramp9m" gradientUnits="userSpaceOnUse" x1="0" y1="300" x2="0" y2="1080">
+      <stop offset="0" stop-color="#0276B1"/>
+      <stop offset="0.5" stop-color="#0E7C61"/>
+      <stop offset="1" stop-color="#B8842B"/>
+    </linearGradient>
+    <style>
+      .h { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .ct { font-size: 27px; font-weight: 500; fill: #013D5B; }
+      .cb { font-size: 22px; fill: #5A6E7D; }
+      .tg { font-size: 19px; fill: #0276B1; }
+      .nm { font-size: 19px; fill: #FFFFFF; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <rect width="700" height="1240" fill="url(#sm9)"/>
+  <rect x="1" y="1" width="698" height="1238" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="36" y="76" class="h" font-size="40" font-weight="500" fill="#013D5B" letter-spacing="-0.5">Six challenges,</text>
+  <text x="36" y="122" class="h" font-size="40" font-weight="500" fill="#013D5B" letter-spacing="-0.5">in order</text>
+  <text x="36" y="166" class="h" font-size="24" fill="#5A6E7D">Access alone does not make anyone</text>
+  <text x="36" y="198" class="h" font-size="24" fill="#5A6E7D">competent. These found out.</text>
+  <line x1="36" y1="232" x2="664" y2="232" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <line x1="72" y1="300" x2="72" y2="1080" stroke="url(#ramp9m)" stroke-width="6" stroke-linecap="round"/>
+
+  <g class="h">
+    <circle cx="72" cy="300" r="24" fill="#0276B1"/>
+    <text x="72" y="307" class="m nm" text-anchor="middle">01</text>
+    <text x="122" y="292" class="ct">Run something</text>
+    <text x="122" y="328" class="cb">Scaffold an app and get it running.</text>
+    <text x="122" y="358" class="m tg">Proves the environment works</text>
+
+    <circle cx="72" cy="456" r="24" fill="#0276B1"/>
+    <text x="72" y="463" class="m nm" text-anchor="middle">02</text>
+    <text x="122" y="448" class="ct">Change something</text>
+    <text x="122" y="484" class="cb">Edit a component, watch it update.</text>
+    <text x="122" y="514" class="m tg">First time people see their code move</text>
+
+    <circle cx="72" cy="612" r="24" fill="#0E7C61"/>
+    <text x="72" y="619" class="m nm" text-anchor="middle">03</text>
+    <text x="122" y="604" class="ct">Build from a design</text>
+    <text x="122" y="640" class="cb">Paste a frame, ask for the front end.</text>
+    <text x="122" y="670" class="m tg">The one everybody wanted first</text>
+
+    <circle cx="72" cy="768" r="24" fill="#0E7C61"/>
+    <text x="72" y="775" class="m nm" text-anchor="middle">04</text>
+    <text x="122" y="760" class="ct">Describe a workflow</text>
+    <text x="122" y="796" class="cb">Write out a flow, get a prototype.</text>
+    <text x="122" y="826" class="m tg">Where prompting stops being obvious</text>
+
+    <circle cx="72" cy="924" r="24" fill="#B8842B"/>
+    <text x="72" y="931" class="m nm" text-anchor="middle">05</text>
+    <text x="122" y="916" class="ct">Improve real components</text>
+    <text x="122" y="952" class="cb">Components already in production.</text>
+    <text x="122" y="982" class="m tg">Not a sandbox</text>
+
+    <circle cx="72" cy="1080" r="24" fill="#B8842B"/>
+    <text x="72" y="1087" class="m nm" text-anchor="middle">06</text>
+    <text x="122" y="1072" class="ct">Ship it somewhere</text>
+    <text x="122" y="1108" class="cb">Deploy to a URL, send it to a partner.</text>
+    <text x="122" y="1138" class="m tg">Where it stops being a demo</text>
+  </g>
+
+  <rect x="36" y="1170" width="628" height="46" rx="6" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.16" stroke-width="2"/>
+  <rect x="36" y="1170" width="8" height="46" fill="#013D5B"/>
+  <text x="72" y="1200" class="h" font-size="22" fill="#1F2D38">Each takes an afternoon. Each needs the last.</text>
+</svg>

@@ -29,11 +29,11 @@ export default function BasicHome() {
               className="text-[clamp(1rem,2vw,1.25rem)] leading-[1.55] text-ink-dim max-w-2xl"
               style={{ fontFamily: "var(--font-garamond)" }}
             >
-              I design software for banks, insurers, and other places where the
-              rules are strict and the stakes are real. Nine years of it, most
-              recently at Capital One, where I work on AI tooling for people who
-              do not write code. Before that, Berkeley Research Group, Oportun,
-              and Demex.
+              I&apos;m a product designer with a strong background in full-stack
+              engineering, so I design with a clear view of how things actually
+              get built. Seven years of SaaS and fintech, currently at Capital
+              One on the Developer Experience team, building data-heavy
+              enterprise platforms and AI products.
             </p>
           </header>
 
@@ -126,6 +126,17 @@ export default function BasicHome() {
   );
 }
 
+/**
+ * Reading Room shows `org · status`, so a tag already covered by either would
+ * read as a repeat. Return only the ones that add something new.
+ */
+function extraTags(p: (typeof projects)[number]): string[] {
+  const shown = new Set(
+    [...p.org.split("·"), p.status].map((s) => s.trim().toLowerCase()),
+  );
+  return (p.tags ?? []).filter((t) => !shown.has(t.trim().toLowerCase()));
+}
+
 function BasicProjectCard({ project: p }: { project: (typeof projects)[number] }) {
   const isExternal = !!p.external;
   const Wrapper: React.ElementType = isExternal ? "a" : Link;
@@ -166,6 +177,16 @@ function BasicProjectCard({ project: p }: { project: (typeof projects)[number] }
           <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-ink-mute">
             {p.status}
           </span>
+          {extraTags(p).map((t) => (
+            <span key={t} className="contents">
+              <span aria-hidden="true" className="hidden sm:inline text-ink-ghost">
+                ·
+              </span>
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-ink-mute">
+                {t}
+              </span>
+            </span>
+          ))}
         </div>
         <p
           className="text-[15px] leading-relaxed text-ink-dim"

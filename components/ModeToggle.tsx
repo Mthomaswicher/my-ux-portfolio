@@ -32,11 +32,11 @@ export default function ModeToggle() {
       aria-label={
         mounted
           ? isScenic
-            ? "Switch to basic mode"
-            : "Switch to scenic route"
+            ? "Switch to Just the work"
+            : "Switch to Interactive"
           : "Switch display mode"
       }
-      title={mounted ? (isScenic ? "Basic mode" : "Scenic route") : undefined}
+      title={mounted ? (isScenic ? "Just the work" : "Interactive") : undefined}
       className="mode-toggle inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-3 py-2 border border-ink-ghost text-ink-mute hover:text-ink bg-bg-deep/95 backdrop-blur-sm transition-all font-pixel text-[10px] tracking-widest uppercase hover:border-neon-cyan/60"
     >
       <ModeText
@@ -45,10 +45,10 @@ export default function ModeToggle() {
             <span aria-hidden="true" className="text-[14px] md:text-[12px] leading-none">
               ▦
             </span>
-            <span>BASIC</span>
+            <span>JUST THE WORK</span>
           </>
         }
-        basic={<span>Scenic route</span>}
+        basic={<span>Interactive</span>}
       />
     </button>
   );

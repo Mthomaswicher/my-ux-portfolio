@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 956" width="700" height="956" role="img" aria-label="A failed validation showing the missing entitlement, why it cannot be requested automatically, and the remediation steps inline.">
+  <defs>
+    <filter id="liftm8" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#013D5B" flood-opacity="0.14"/>
+    </filter>
+    <style>
+      .h { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .body { font-size: 22px; fill: #46586A; }
+      .lbl { font-size: 18px; letter-spacing: 1.8px; fill: #7B8B99; }
+    </style>
+  </defs>
+
+  <rect width="700" height="900" fill="#F1F4F7"/>
+
+  <rect x="0" y="0" width="700" height="66" fill="#013D5B"/>
+  <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round">
+    <line x1="26" y1="26" x2="46" y2="26"/><line x1="26" y1="33" x2="46" y2="33"/><line x1="26" y1="40" x2="46" y2="40"/>
+  </g>
+  <text x="66" y="41" class="h" font-size="22" fill="#FFFFFF" font-weight="500">Developer Experience</text>
+  <circle cx="656" cy="33" r="17" fill="#0276B1"/>
+  <text x="656" y="40" class="h" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="500">MT</text>
+
+  <rect x="0" y="66" width="700" height="44" fill="#FFFFFF"/>
+  <line x1="0" y1="110" x2="700" y2="110" stroke="#013D5B" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="26" y="95" class="h" font-size="18" fill="#7B8B99">Onboarding</text>
+  <text x="146" y="95" class="h" font-size="18" fill="#B4C0CA">/</text>
+  <text x="164" y="95" class="h" font-size="18" fill="#013D5B" font-weight="500">Claude Code</text>
+
+  <text x="26" y="164" class="h" font-size="30" fill="#013D5B" font-weight="500">Claude Code onboarding</text>
+  <rect x="26" y="184" width="160" height="30" rx="3" fill="#FBE3E3"/>
+  <text x="106" y="205" class="m" font-size="16" fill="#A81E21" text-anchor="middle" letter-spacing="1">ACTION NEEDED</text>
+
+  <rect x="26" y="234" width="648" height="56" rx="4" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="48" y="269" class="h" font-size="20" fill="#46586A">1 of 7 tasks complete</text>
+  <rect x="272" y="255" width="240" height="14" rx="7" fill="#E3E9ED"/>
+  <rect x="272" y="255" width="34" height="14" rx="7" fill="#0E7C61"/>
+  <text x="652" y="269" class="m" font-size="16" fill="#7B8B99" text-anchor="end">09:12</text>
+
+  <g filter="url(#liftm8)">
+    <rect x="26" y="312" width="648" height="562" rx="4" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.13" stroke-width="2"/>
+  </g>
+
+  <text x="52" y="356" class="m lbl">TASK 2 OF 7</text>
+  <text x="52" y="398" class="h" font-size="28" fill="#013D5B" font-weight="500">Configure machine access</text>
+  <line x1="52" y1="424" x2="648" y2="424" stroke="#013D5B" stroke-opacity="0.1" stroke-width="2"/>
+
+  <!-- failure -->
+  <rect x="52" y="448" width="596" height="192" rx="4" fill="#FDF3F3" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="52" y="448" width="5" height="192" fill="#CC2427"/>
+  <circle cx="88" cy="486" r="12" fill="#CC2427"/>
+  <path d="M83 481 l10 10 M93 481 l-10 10" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="112" y="493" class="m" font-size="17" fill="#A81E21">FAIL</text>
+
+  <text x="82" y="536" class="h" font-size="22" fill="#013D5B" font-weight="500">Local Administrator (High Flex)</text>
+  <text x="82" y="564" class="h" font-size="22" fill="#013D5B" font-weight="500">entitlement not found</text>
+  <text x="82" y="598" class="h" font-size="20" fill="#46586A">Tasks 3 through 7 depend on it.</text>
+  <text x="82" y="626" class="h" font-size="19" fill="#8A6320">Not returned by All Access search.</text>
+
+  <text x="52" y="682" class="h" font-size="20" fill="#013D5B" font-weight="500">Remediation</text>
+
+  <circle cx="66" cy="716" r="12" fill="#0276B1"/>
+  <text x="66" y="722" class="m" font-size="15" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="92" y="723" class="h" font-size="20" fill="#46586A">Select Local Administrator (High Flex)</text>
+
+  <circle cx="66" cy="760" r="12" fill="#0276B1"/>
+  <text x="66" y="766" class="m" font-size="15" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="92" y="767" class="h" font-size="20" fill="#46586A">Apply, refresh policies, restart</text>
+
+  <circle cx="66" cy="804" r="12" fill="#0276B1"/>
+  <text x="66" y="810" class="m" font-size="15" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="92" y="811" class="h" font-size="20" fill="#46586A">Re-run validation</text>
+
+  <rect x="380" y="828" width="268" height="44" rx="3" fill="#0276B1"/>
+  <text x="514" y="856" class="h" font-size="19" fill="#FFFFFF" font-weight="500" text-anchor="middle">Re-run validation</text>
+
+
+  <!-- recreation stamp: annotation band, deliberately outside the UI -->
+  <rect x="0" y="900" width="700" height="56" fill="#1F2D38"/>
+  <text x="350" y="936" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" letter-spacing="1.6" fill="#FFFFFF" text-anchor="middle">MOCKUP · NOT A LIVE SCREEN</text>
+</svg>

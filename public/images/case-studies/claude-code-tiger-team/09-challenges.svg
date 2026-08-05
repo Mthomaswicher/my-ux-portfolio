@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1240" width="1536" height="1240" role="img" aria-label="Six challenges of increasing complexity, from running a scaffolded app locally through to deploying a working prototype to an internal URL.">
+  <defs>
+    <linearGradient id="surface9" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <linearGradient id="ramp" gradientUnits="userSpaceOnUse" x1="0" y1="330" x2="0" y2="1050">
+      <stop offset="0" stop-color="#0276B1"/>
+      <stop offset="0.5" stop-color="#0E7C61"/>
+      <stop offset="1" stop-color="#B8842B"/>
+    </linearGradient>
+    <filter id="soft9" x="-15%" y="-25%" width="130%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#013D5B" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .h  { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 54px; font-weight: 500; fill: #013D5B; letter-spacing: -1px; }
+      .t2 { font-size: 27px; fill: #5A6E7D; }
+      .ct { font-size: 30px; font-weight: 500; fill: #013D5B; }
+      .cb { font-size: 24px; fill: #5A6E7D; }
+      .nm { font-size: 20px; fill: #FFFFFF; letter-spacing: 1px; }
+      .tag { font-size: 19px; fill: #0276B1; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="1240" fill="url(#surface9)"/>
+  <rect x="1" y="1" width="1534" height="1238" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="64" y="120" class="h t1">Six challenges, in order</text>
+  <text x="64" y="168" class="h t2">Access alone does not make anyone competent. The challenges are how we found</text>
+  <text x="64" y="204" class="h t2">out whether people could actually use the thing once they were in.</text>
+  <line x1="64" y1="248" x2="1472" y2="248" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <!-- difficulty ramp -->
+  <line x1="118" y1="330" x2="118" y2="1050" stroke="url(#ramp)" stroke-width="6" stroke-linecap="round"/>
+  <text x="30" y="336" class="m" font-size="18" letter-spacing="2" fill="#0276B1" transform="rotate(-90 30 336)">SIMPLE</text>
+  <text x="30" y="1060" class="m" font-size="18" letter-spacing="2" fill="#B8842B" transform="rotate(-90 30 1060)">REAL WORK</text>
+
+  <g class="h">
+    <circle cx="118" cy="330" r="28" fill="#0276B1"/>
+    <text x="118" y="338" class="m nm" text-anchor="middle">01</text>
+    <text x="186" y="322" class="ct">Run something</text>
+    <text x="186" y="362" class="cb">Scaffold an app and get it running on your own machine.</text>
+    <text x="186" y="396" class="m tag">Proves the environment works</text>
+
+    <circle cx="118" cy="474" r="28" fill="#0276B1"/>
+    <text x="118" y="482" class="m nm" text-anchor="middle">02</text>
+    <text x="186" y="466" class="ct">Change something</text>
+    <text x="186" y="506" class="cb">Edit a component and watch the browser update as you type.</text>
+    <text x="186" y="540" class="m tag">First time most people see their own code move</text>
+
+    <circle cx="118" cy="618" r="28" fill="#0E7C61"/>
+    <text x="118" y="626" class="m nm" text-anchor="middle">03</text>
+    <text x="186" y="610" class="ct">Build from a design</text>
+    <text x="186" y="650" class="cb">Paste a screenshot of a high-fidelity frame and ask for the front end.</text>
+    <text x="186" y="684" class="m tag">The one everybody wanted to try first</text>
+
+    <circle cx="118" cy="762" r="28" fill="#0E7C61"/>
+    <text x="118" y="770" class="m nm" text-anchor="middle">04</text>
+    <text x="186" y="754" class="ct">Describe a workflow</text>
+    <text x="186" y="794" class="cb">Write out an existing flow in plain language and get a working prototype.</text>
+    <text x="186" y="828" class="m tag">Where prompting stops being obvious</text>
+
+    <circle cx="118" cy="906" r="28" fill="#B8842B"/>
+    <text x="118" y="914" class="m nm" text-anchor="middle">05</text>
+    <text x="186" y="898" class="ct">Improve real components</text>
+    <text x="186" y="938" class="cb">Take components already in use and put them through Claude Code.</text>
+    <text x="186" y="972" class="m tag">Working against production code, not a sandbox</text>
+
+    <circle cx="118" cy="1050" r="28" fill="#B8842B"/>
+    <text x="118" y="1058" class="m nm" text-anchor="middle">06</text>
+    <text x="186" y="1042" class="ct">Ship it somewhere</text>
+    <text x="186" y="1082" class="cb">Deploy to an internal URL and send it to a partner.</text>
+    <text x="186" y="1116" class="m tag">The point at which it stops being a demo</text>
+  </g>
+
+  <g filter="url(#soft9)">
+    <rect x="64" y="1150" width="1408" height="66" rx="6" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.16" stroke-width="2"/>
+  </g>
+  <rect x="64" y="1150" width="9" height="66" fill="#013D5B"/>
+  <text x="112" y="1192" class="h" font-size="26" fill="#1F2D38">Each one is completable in an afternoon, and each one is useless without the one before it.</text>
+</svg>

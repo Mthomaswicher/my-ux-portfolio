@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="The message every designer hit on access day, and the guide that answered it.">
+  <defs>
+    <linearGradient id="deep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1A28"/>
+      <stop offset="0.55" stop-color="#08202F"/>
+      <stop offset="1" stop-color="#061520"/>
+    </linearGradient>
+    <radialGradient id="redwash" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#CC2427" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#CC2427" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tealwash" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0276B1" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#0276B1" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .h  { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#deep)"/>
+  <circle cx="220" cy="180" r="420" fill="url(#redwash)"/>
+  <circle cx="1400" cy="760" r="460" fill="url(#tealwash)"/>
+
+  <!-- scanline texture -->
+  <g opacity="0.05">
+    <rect x="0" y="0" width="1600" height="900" fill="none"/>
+    <g stroke="#FFFFFF" stroke-width="1">
+      <line x1="0" y1="120" x2="1600" y2="120"/><line x1="0" y1="160" x2="1600" y2="160"/>
+      <line x1="0" y1="200" x2="1600" y2="200"/><line x1="0" y1="240" x2="1600" y2="240"/>
+      <line x1="0" y1="280" x2="1600" y2="280"/><line x1="0" y1="320" x2="1600" y2="320"/>
+      <line x1="0" y1="360" x2="1600" y2="360"/><line x1="0" y1="400" x2="1600" y2="400"/>
+      <line x1="0" y1="440" x2="1600" y2="440"/><line x1="0" y1="480" x2="1600" y2="480"/>
+      <line x1="0" y1="520" x2="1600" y2="520"/><line x1="0" y1="560" x2="1600" y2="560"/>
+      <line x1="0" y1="600" x2="1600" y2="600"/><line x1="0" y1="640" x2="1600" y2="640"/>
+      <line x1="0" y1="680" x2="1600" y2="680"/><line x1="0" y1="720" x2="1600" y2="720"/>
+      <line x1="0" y1="760" x2="1600" y2="760"/><line x1="0" y1="800" x2="1600" y2="800"/>
+    </g>
+  </g>
+
+  <rect x="0.5" y="0.5" width="1599" height="899" fill="none" stroke="#0276B1" stroke-opacity="0.35"/>
+
+  <!-- eyebrow -->
+  <rect x="120" y="150" width="6" height="26" fill="#CC2427"/>
+  <text x="142" y="170" class="m" font-size="13" letter-spacing="2.6" fill="#E4909A">ACCESS DAY · MARCH 16</text>
+
+  <!-- the message -->
+  <text x="120" y="290" class="h" font-size="56" font-weight="300" fill="#FFFFFF" letter-spacing="-1">“Based on our records, you are</text>
+  <text x="120" y="360" class="h" font-size="56" font-weight="300" fill="#FFFFFF" letter-spacing="-1">not eligible to access Claude Code</text>
+  <text x="120" y="430" class="h" font-size="56" font-weight="300" fill="#FFFFFF" letter-spacing="-1">at this time.”</text>
+
+  <line x1="120" y1="500" x2="600" y2="500" stroke="#0276B1" stroke-opacity="0.6" stroke-width="2"/>
+
+  <text x="120" y="552" class="h" font-size="21" fill="#9FB4C2">Every designer on the team saw this. The entitlement that would have</text>
+  <text x="120" y="584" class="h" font-size="21" fill="#9FB4C2">cleared it existed, but only in a version you had to be an engineer to request.</text>
+
+  <!-- outcome strip -->
+  <g>
+    <rect x="120" y="668" width="1360" height="112" rx="4" fill="#FFFFFF" fill-opacity="0.06" stroke="#0276B1" stroke-opacity="0.4"/>
+
+    <text x="164" y="712" class="m" font-size="12" letter-spacing="2" fill="#7FD3A8">WHAT WE BUILT INSTEAD</text>
+    <text x="164" y="752" class="h" font-size="24" fill="#FFFFFF">The path that did not exist, written down so the next person never has to find it.</text>
+  </g>
+</svg>

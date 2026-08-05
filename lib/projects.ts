@@ -21,15 +21,39 @@ export type Project = {
 };
 
 const IDP = "/images/case-studies/idp-release-plugin";
+const TIGER = "/images/case-studies/claude-code-tiger-team";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
 const OCS = "/images/case-studies/oportun-credit-servicing";
-const WEB3 = "/images/case-studies/web3-remittances";
 
 export const projects: Project[] = [
   {
     no: "01",
+    title: "Claude Code Setup",
+    org: "Capital One · DevX",
+    status: "SHIPPED",
+    blurb:
+      "Claude Code only worked if you were an engineer. I led the tiger team that opened it to everyone else. 2,300+ people have since completed a build challenge.",
+    role: "Sr. Product Designer, tiger team lead",
+    team: "Lead plus 2 designers · PM, eng, One Access + senior leadership",
+    timeframe: "3 weeks · March 2026",
+    tools: "Claude Code · GitHub · Artifactory · VS Code",
+    href: "/work/claude-code-tiger-team",
+    accent: "cyan",
+    hero: `${TIGER}/00-preview.svg`,
+    tilt: 1.6,
+    tags: ["Capital One", "DevX", "SHIPPED", "AI"],
+    mascot: "◈",
+    screens: [
+      `${TIGER}/00-preview.svg`,
+      `${TIGER}/07-site-overview.svg`,
+      `${TIGER}/08-site-failed-check.svg`,
+      `${TIGER}/06-one-click.svg`,
+    ],
+  },
+  {
+    no: "02",
     title: "IDP Release Plugin",
-    org: "Capital One · Internal Developer Platform",
+    org: "Capital One · DevX",
     status: "SHIPPED",
     blurb:
       "Shipping code at Capital One meant bouncing between five tools to answer one question. I put releases in one place.",
@@ -39,19 +63,19 @@ export const projects: Project[] = [
     tools: "Figma · Lucid · Confluence · Jira",
     href: "/work/idp-release-plugin",
     accent: "cyan",
-    hero: `${IDP}/03-new-experience.png`,
+    hero: `${IDP}/00-preview.svg`,
     tilt: -2.0,
-    tags: ["#release", "#dev-platform"],
+    tags: ["Capital One", "DevX", "SHIPPED"],
     mascot: "⚙",
     screens: [
+      `${IDP}/00-preview.svg`,
       `${IDP}/03-new-experience.png`,
       `${IDP}/22-final.png`,
       `${IDP}/16-concept-3a.webp`,
-      `${IDP}/09-flow-vs-mvp.png`,
     ],
   },
   {
-    no: "02",
+    no: "03",
     title: "Oportun Homepage Widgets",
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
@@ -63,14 +87,14 @@ export const projects: Project[] = [
     tools: "Figma · A/B testing · Heuristic eval",
     href: "/work/oportun-homepage-widgets",
     accent: "magenta",
-    hero: `${OPO}/01-hero.png`,
+    hero: `${OPO}/00-preview.svg`,
     tilt: 2.2,
     tags: ["#fintech", "#onboarding"],
     mascot: "$",
-    screens: [`${OPO}/01-hero.png`, `${OPO}/03-process.png`],
+    screens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.png`, `${OPO}/03-process.png`],
   },
   {
-    no: "03",
+    no: "04",
     title: "Credit Card Servicing",
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
@@ -82,18 +106,19 @@ export const projects: Project[] = [
     tools: "Figma · iOS & Android · Usability Testing",
     href: "/work/oportun-credit-servicing",
     accent: "lime",
-    hero: `${OCS}/01-hero.png`,
+    hero: `${OCS}/00-preview.svg`,
     tilt: -1.5,
     tags: ["#fintech", "#credit", "#mobile"],
     mascot: "💳",
     screens: [
+      `${OCS}/00-preview.svg`,
       `${OCS}/01-hero.png`,
       `${OCS}/02-account-overview.png`,
       `${OCS}/05-status-autopay.png`,
     ],
   },
   {
-    no: "04",
+    no: "05",
     title: "Demex Climate Center",
     org: "The Demex Group",
     status: "SHIPPED",
@@ -105,37 +130,15 @@ export const projects: Project[] = [
     tools: "Figma · React · UserTesting",
     href: "/work/demex-climate-center",
     accent: "lime",
-    hero: "/images/case-studies/demex-climate-center/05.png",
+    hero: "/images/case-studies/demex-climate-center/00-preview.svg",
     tilt: -2.6,
     tags: ["#climate-risk", "#dataviz"],
     mascot: "△",
     screens: [
+      "/images/case-studies/demex-climate-center/00-preview.svg",
       "/images/case-studies/demex-climate-center/05.png",
       "/images/case-studies/demex-climate-center/08.png",
       "/images/case-studies/demex-climate-center/01.png",
-    ],
-  },
-  {
-    no: "05",
-    title: "Web3 Powered Remittances",
-    org: "Oportun · Hackathon",
-    status: "WON",
-    blurb:
-      "A remittance flow built on Stellar rails, cheaper and faster for members sending money home. Won Most Creative Idea at the Oportun hackathon.",
-    role: "Product Designer",
-    team: "Design + engineering hackathon team",
-    timeframe: "Hackathon · Most Creative Idea winner",
-    tools: "Figma · Stellar Network · Strategy",
-    href: "/work/web3-powered-remittances",
-    accent: "amber",
-    hero: `${WEB3}/01.png`,
-    tilt: 1.8,
-    tags: ["#web3", "#fintech"],
-    mascot: "✦",
-    screens: [
-      `${WEB3}/01.png`,
-      `${WEB3}/08.png`,
-      `${WEB3}/02.png`,
     ],
   },
 ];

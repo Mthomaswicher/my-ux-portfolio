@@ -156,12 +156,12 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
           }
         />
         <h2 className="font-pixel text-[16px] sm:text-[20px] leading-tight tracking-widest text-glow-cyan mb-1">
-          <ModeText scenic="CHOOSE YOUR PATH" basic="Choose how you read this" />
+          <ModeText scenic="CHOOSE YOUR VIEW" basic="Choose how you view this" />
         </h2>
         <p className="font-mono text-[12px] sm:text-[13px] text-ink-dim max-w-lg leading-relaxed">
           <ModeText
-            scenic="Two ways in, same work. Pick a path; the pet walks down."
-            basic="Two ways in, same work. You can switch any time from the sidebar."
+            scenic="Same work behind both. Interactive is the designed experience. Just the work is a plain, fast read."
+            basic="Same work behind both. Interactive is the designed experience. Just the work is a plain, fast read. Switch any time from the sidebar."
           />
         </p>
       </div>
@@ -435,8 +435,8 @@ function Destination({
       aria-checked={chosen}
       aria-label={
         isScenic
-          ? "Scenic route: full video-game experience"
-          : "Basic: clean portfolio layout"
+          ? "Interactive: the designed experience, with sound and motion"
+          : "Just the work: a plain, fast layout"
       }
       disabled={disabled}
       onMouseEnter={() => onHover(true)}
@@ -471,19 +471,12 @@ function Destination({
             : { fontFamily: "var(--font-garamond)", fontWeight: 500, letterSpacing: "0.02em" }
         }
       >
-        {isScenic ? (
-          <>
-            <span className="sm:hidden">SCENIC</span>
-            <span className="hidden sm:inline">SCENIC ROUTE</span>
-          </>
-        ) : (
-          "Basic"
-        )}
+        {isScenic ? "INTERACTIVE" : "Just the work"}
       </div>
       <div
         className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-mono text-ink-mute group-hover:text-ink"
       >
-        {isScenic ? "Press ▶" : "Read →"}
+        {isScenic ? "Sound + motion" : "Plain + fast"}
       </div>
     </button>
   );

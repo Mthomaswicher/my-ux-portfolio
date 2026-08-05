@@ -63,7 +63,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Matthew Thomas-Wicher · Sr. Product Designer",
   description:
-    "Sr. Product Designer and design engineer in Washington, D.C. I build software for banks and insurers, and AI tooling for the people who do not write code.",
+    "Product designer with a full-stack engineering background. Seven years of SaaS and fintech, currently at Capital One on the Developer Experience team building enterprise platforms and AI products.",
   metadataBase: new URL("http://localhost:3000"),
   formatDetection: {
     telephone: false,
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Matthew Thomas-Wicher · Sr. Product Designer",
     description:
-      "Sr. Product Designer in Washington, D.C. Currently at Capital One.",
+      "Product designer and design engineer in Washington, D.C. Currently at Capital One on the Developer Experience team.",
     type: "website",
   },
 };

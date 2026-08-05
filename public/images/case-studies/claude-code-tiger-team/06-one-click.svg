@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1000" width="1536" height="1000" role="img" aria-label="The eight-gate access chain collapsed into a single request after working with the One Access team.">
+  <defs>
+    <linearGradient id="surface6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <filter id="soft6" x="-15%" y="-25%" width="130%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#013D5B" flood-opacity="0.14"/>
+    </filter>
+    <filter id="glow6" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0E7C61" flood-opacity="0.34"/>
+    </filter>
+    <style>
+      .h  { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 54px; font-weight: 500; fill: #013D5B; letter-spacing: -1px; }
+      .t2 { font-size: 27px; fill: #5A6E7D; }
+      .lane { font-size: 21px; letter-spacing: 3px; }
+      .gate { font-size: 21px; fill: #5A6E7D; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="1000" fill="url(#surface6)"/>
+  <rect x="1" y="1" width="1534" height="998" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="64" y="120" class="h t1">What the map was actually for</text>
+  <text x="64" y="168" class="h t2">We took the chain to the One Access team, who own entitlement provisioning.</text>
+  <text x="64" y="204" class="h t2">Nobody there had seen it walked end to end from a non-engineer's side.</text>
+  <line x1="64" y1="248" x2="1472" y2="248" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <!-- ============ BEFORE ============ -->
+  <text x="64" y="322" class="m lane" fill="#CC2427">BEFORE</text>
+
+  <g class="h">
+    <rect x="64" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="146" y="390" class="gate" text-anchor="middle">AI coding</text>
+    <text x="146" y="416" class="gate" text-anchor="middle">tools CBT</text>
+
+    <rect x="242" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="324" y="390" class="gate" text-anchor="middle">Claude Code</text>
+    <text x="324" y="416" class="gate" text-anchor="middle">entitlement</text>
+
+    <rect x="420" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="502" y="390" class="gate" text-anchor="middle">GitHub</text>
+    <text x="502" y="416" class="gate" text-anchor="middle">Enterprise</text>
+
+    <rect x="598" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="680" y="390" class="gate" text-anchor="middle">GitHub</text>
+    <text x="680" y="416" class="gate" text-anchor="middle">training CBT</text>
+
+    <rect x="776" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="858" y="390" class="gate" text-anchor="middle">Local admin</text>
+    <text x="858" y="416" class="gate" text-anchor="middle">CBT</text>
+
+    <rect x="954" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="1036" y="390" class="gate" text-anchor="middle">Non-developer</text>
+    <text x="1036" y="416" class="gate" text-anchor="middle">High Flex</text>
+
+    <rect x="1132" y="352" width="164" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="1214" y="390" class="gate" text-anchor="middle">Artifactory</text>
+    <text x="1214" y="416" class="gate" text-anchor="middle">read-only</text>
+
+    <rect x="1310" y="352" width="162" height="92" rx="5" fill="#FFFFFF" stroke="#CC2427" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="1391" y="390" class="gate" text-anchor="middle">Proxy</text>
+    <text x="1391" y="416" class="gate" text-anchor="middle">bypass</text>
+  </g>
+
+  <text x="64" y="490" class="m" font-size="21" letter-spacing="2" fill="#CC2427">EIGHT SEPARATE REQUESTS · THREE OF THEM UNDOCUMENTED</text>
+
+  <!-- ============ FUNNEL ============ -->
+  <path d="M64 528 L1472 528 L860 640 L676 640 Z" fill="#013D5B" fill-opacity="0.07"/>
+  <path d="M64 528 L1472 528 L860 640 L676 640 Z" fill="none" stroke="#013D5B" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="768" y="600" class="m" font-size="22" letter-spacing="2.4" fill="#013D5B" text-anchor="middle">ONE ACCESS PARTNERSHIP</text>
+
+  <!-- ============ AFTER ============ -->
+  <text x="64" y="712" class="m lane" fill="#0E7C61">AFTER</text>
+
+  <g filter="url(#glow6)">
+    <rect x="516" y="672" width="504" height="128" rx="8" fill="#0E7C61"/>
+  </g>
+  <text x="768" y="726" class="h" font-size="34" font-weight="500" fill="#FFFFFF" text-anchor="middle">Request Claude Code access</text>
+  <text x="768" y="770" class="m" font-size="22" fill="#B6EBD2" text-anchor="middle">every entitlement, in the right order</text>
+
+  <text x="768" y="852" class="h" font-size="27" fill="#1F2D38" text-anchor="middle">The chain still runs underneath. You just never see it.</text>
+
+  <!-- footer -->
+  <g filter="url(#soft6)">
+    <rect x="64" y="892" width="1408" height="82" rx="6" fill="#FFFFFF" stroke="#0E7C61" stroke-opacity="0.45" stroke-width="2"/>
+  </g>
+  <rect x="64" y="892" width="9" height="82" fill="#0E7C61"/>
+  <text x="112" y="942" class="h" font-size="29" fill="#1F2D38">We set out to write a guide. Most of it stopped being needed.</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1500" width="1536" height="1500" role="img" aria-label="Anatomy of a single guide entry: why it matters, the steps including the ones that are not findable, and a check that proves it worked, plus the blank template that let anyone add a stage.">
+  <defs>
+    <linearGradient id="surface4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <filter id="soft4" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#013D5B" flood-opacity="0.15"/>
+    </filter>
+    <style>
+      .h  { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 54px; font-weight: 500; fill: #013D5B; letter-spacing: -1px; }
+      .t2 { font-size: 27px; fill: #5A6E7D; }
+      .lbl { font-size: 20px; letter-spacing: 2.6px; fill: #0276B1; }
+      .an  { font-size: 30px; font-weight: 500; fill: #013D5B; }
+      .ab  { font-size: 24px; fill: #5A6E7D; }
+      .doc { font-size: 24px; fill: #5A6E7D; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="1500" fill="url(#surface4)"/>
+  <rect x="1" y="1" width="1534" height="1498" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="64" y="120" class="h t1">One entry, four parts</text>
+  <text x="64" y="168" class="h t2">The same shape repeats seven times, which is what let other people extend it</text>
+  <text x="64" y="204" class="h t2">without asking me.</text>
+  <line x1="64" y1="248" x2="1472" y2="248" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <!-- ============= THE ENTRY ============= -->
+  <g filter="url(#soft4)">
+    <rect x="64" y="296" width="1408" height="644" rx="6" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+  </g>
+  <rect x="64" y="296" width="1408" height="8" fill="#0276B1"/>
+
+  <text x="112" y="368" class="h" font-size="38" font-weight="500" fill="#013D5B">Setup Artifactory for Mac</text>
+  <text x="112" y="410" class="m" font-size="22" fill="#0276B1">Progress →</text>
+  <line x1="112" y1="442" x2="1424" y2="442" stroke="#013D5B" stroke-opacity="0.1" stroke-width="2"/>
+
+  <!-- why -->
+  <rect x="112" y="474" width="7" height="98" fill="#0E7C61"/>
+  <text x="144" y="502" class="h" font-size="26" font-weight="500" fill="#013D5B">Why:</text>
+  <text x="144" y="546" class="h doc">Artifactory is the safety net every open source package resolves</text>
+  <text x="144" y="580" class="h doc">through. Nothing installs without it.</text>
+
+  <!-- steps -->
+  <rect x="112" y="618" width="7" height="188" fill="#0276B1"/>
+  <text x="144" y="646" class="h" font-size="26" font-weight="500" fill="#013D5B">Steps:</text>
+  <text x="144" y="690" class="h doc">1. Gain the non-developer high-flex entitlement</text>
+  <text x="180" y="726" class="h doc" fill="#8A6320">a. It is not searchable. Left menu bar of All Access.</text>
+  <text x="144" y="766" class="h doc">2. Install Homebrew from Self Service</text>
+  <text x="144" y="802" class="h doc">3. Generate an Artifactory identity token</text>
+
+  <!-- check -->
+  <rect x="112" y="836" width="1312" height="76" rx="4" fill="#0A1A28"/>
+  <text x="144" y="870" class="m" font-size="23" fill="#7FD3A8">$ allset tce:onboarding:status</text>
+  <text x="144" y="900" class="m" font-size="23" fill="#9FB4C2">✓ node · ✓ npm · ✓ artifactory authentication</text>
+
+  <!-- ============= ANNOTATIONS ============= -->
+  <g>
+    <text x="64" y="1024" class="m lbl" fill="#0E7C61">WHY</text>
+    <text x="64" y="1064" class="h an">The part every other guide skipped</text>
+    <text x="64" y="1104" class="h ab">If you know why Artifactory is there you can debug it.</text>
+    <text x="64" y="1136" class="h ab">If you do not, you file a ticket and wait two days.</text>
+
+    <text x="800" y="1024" class="m lbl">STEPS</text>
+    <text x="800" y="1064" class="h an">Including the unfindable ones</text>
+    <text x="800" y="1104" class="h ab">Every dead end is written where you would hit it, not in an</text>
+    <text x="800" y="1136" class="h ab">appendix at the end that nobody reaches.</text>
+
+    <text x="64" y="1226" class="m lbl" fill="#013D5B">THE CHECK</text>
+    <text x="64" y="1266" class="h an">You have to see it pass</text>
+    <text x="64" y="1306" class="h ab">You move on when the machine says so, not when you have</text>
+    <text x="64" y="1338" class="h ab">finished reading the steps.</text>
+
+    <text x="800" y="1226" class="m lbl">PROGRESS</text>
+    <text x="800" y="1266" class="h an">Where the stage stands</text>
+    <text x="800" y="1306" class="h ab">Nobody has to ask in Slack whether a step is finished or</text>
+    <text x="800" y="1338" class="h ab">still being figured out.</text>
+  </g>
+
+  <!-- ============= TEMPLATE ============= -->
+  <g filter="url(#soft4)">
+    <rect x="64" y="1382" width="1408" height="98" rx="6" fill="#FFFFFF" stroke="#0E7C61" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="10 8"/>
+  </g>
+  <text x="112" y="1428" class="m" font-size="20" letter-spacing="2.4" fill="#0E7C61">AT THE BOTTOM OF THE DOCUMENT</text>
+  <text x="112" y="1466" class="h" font-size="27" fill="#1F2D38">A blank entry in the same shape, marked COPY AND PASTE THIS SECTION.</text>
+</svg>

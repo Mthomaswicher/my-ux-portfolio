@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 const STATS = [
-  { label: "YEARS XP", basicLabel: "Experience", value: "9" },
+  { label: "YEARS XP", basicLabel: "Experience", value: "7" },
   { label: "CITY", basicLabel: "Based in", value: "WASHINGTON, D.C." },
   { label: "CURRENT QUEST", basicLabel: "Currently", value: "CAPITAL ONE" },
   { label: "CLASS", basicLabel: "Title", value: "SR. PRODUCT DESIGNER" },
@@ -206,23 +206,36 @@ export default function About() {
             </div>
             <div className="space-y-4 font-mono text-[14px] leading-relaxed text-ink-dim">
               <p>
-                I&apos;ve been designing software for{" "}
-                <span className="text-glow-cyan">nine years</span>, mostly in
-                fintech, mostly in places where a wrong screen has legal
-                consequences. Right now that&apos;s{" "}
-                <span className="text-glow-cyan">Capital One</span>, where a lot
-                of my work is getting AI tooling into the hands of people who
-                do not write code. I learned to code before I learned to
-                design, which mostly means I know what I&apos;m asking
-                engineers for, and sometimes I just build it myself. The Figma
-                plugin I shipped is used by{" "}
-                <span className="text-glow-cyan">1,700+ designers</span>.
+                I&apos;m a product designer with a strong background in
+                full-stack engineering, so I design with a clear and holistic
+                view of how things actually get built. That&apos;s{" "}
+                <span className="text-glow-cyan">seven years</span> of SaaS and
+                fintech.
               </p>
               <p>
-                The work I&apos;m best at is the unglamorous kind: figuring out
-                what a system is actually doing before deciding what it should
-                do. Before Capital One I was at Berkeley Research Group, Oportun,
-                and Demex.
+                Right now I&apos;m at{" "}
+                <span className="text-glow-cyan">Capital One</span> on the
+                Developer Experience team, building complex, data-heavy
+                enterprise platforms and working closely on our AI products. I
+                led the research that took{" "}
+                <span className="text-glow-cyan">
+                  GitHub Copilot Agent Mode
+                </span>{" "}
+                and <span className="text-glow-cyan">Claude Code</span> to GA
+                here, and I started the team that helps non-engineers use tools
+                like Claude Code to extend what their roles can cover.
+              </p>
+              <p>
+                On my own time I built{" "}
+                <span className="text-glow-cyan">Quick Screenshot to Code</span>,
+                a Figma plugin that takes a screenshot of any website and turns
+                it into front-end code in whatever framework you want. It is
+                used by <span className="text-glow-cyan">1,700+ designers</span>.
+              </p>
+              <p>
+                I like ambiguous problems that matter. AI products, developer
+                tools, things nobody has figured out yet. Before Capital One I
+                was at Berkeley Research Group, Oportun, and Demex.
               </p>
               <p>
                 I live in D.C. with my wife{" "}

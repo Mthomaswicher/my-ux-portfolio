@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 864" width="1536" height="864" role="img" aria-label="The Claude Code onboarding module inside the internal developer experience platform, showing task five with its purpose, prerequisites, command and validation output.">
+  <defs>
+    <filter id="lift" x="-8%" y="-12%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#013D5B" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .h { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .nav { font-size: 21px; fill: #46586A; }
+      .navq { font-size: 21px; fill: #013D5B; font-weight: 500; }
+      .lbl { font-size: 17px; letter-spacing: 1.6px; fill: #7B8B99; }
+      .body { font-size: 21px; fill: #46586A; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="864" fill="#F1F4F7"/>
+
+  <!-- ============ GLOBAL BAR ============ -->
+  <rect x="0" y="0" width="1536" height="62" fill="#013D5B"/>
+  <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round">
+    <line x1="28" y1="25" x2="48" y2="25"/><line x1="28" y1="31" x2="48" y2="31"/><line x1="28" y1="37" x2="48" y2="37"/>
+  </g>
+  <text x="70" y="39" class="h" font-size="21" fill="#FFFFFF" font-weight="500">Developer Experience</text>
+  <rect x="278" y="18" width="88" height="26" rx="3" fill="#FFFFFF" fill-opacity="0.16"/>
+  <text x="322" y="37" class="m" font-size="15" fill="#BBD3E1" text-anchor="middle" letter-spacing="1">INTERNAL</text>
+
+  <rect x="1092" y="15" width="222" height="32" rx="3" fill="#FFFFFF" fill-opacity="0.13"/>
+  <circle cx="1116" cy="31" r="7" fill="none" stroke="#8FB4C9" stroke-width="2"/>
+  <line x1="1121" y1="36" x2="1127" y2="42" stroke="#8FB4C9" stroke-width="2" stroke-linecap="round"/>
+  <text x="1138" y="38" class="h" font-size="16" fill="#8FB4C9">Search</text>
+
+  <circle cx="1352" cy="31" r="18" fill="#0276B1"/>
+  <text x="1352" y="38" class="h" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="500">MT</text>
+  <text x="1382" y="37" class="h" font-size="17" fill="#BBD3E1">Thomas-Wicher</text>
+
+  <!-- ============ BREADCRUMB ============ -->
+  <rect x="0" y="62" width="1536" height="46" fill="#FFFFFF"/>
+  <line x1="0" y1="108" x2="1536" y2="108" stroke="#013D5B" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="28" y="92" class="h" font-size="17" fill="#7B8B99">Developer Experience</text>
+  <text x="228" y="92" class="h" font-size="17" fill="#B4C0CA">/</text>
+  <text x="246" y="92" class="h" font-size="17" fill="#7B8B99">Onboarding</text>
+  <text x="366" y="92" class="h" font-size="17" fill="#B4C0CA">/</text>
+  <text x="384" y="92" class="h" font-size="17" fill="#013D5B" font-weight="500">Claude Code</text>
+
+  <!-- ============ LEFT NAV ============ -->
+  <rect x="0" y="108" width="300" height="756" fill="#FAFBFC"/>
+  <line x1="300" y1="108" x2="300" y2="864" stroke="#013D5B" stroke-opacity="0.1" stroke-width="2"/>
+
+  <text x="28" y="152" class="m lbl">ONBOARDING</text>
+
+  <rect x="0" y="176" width="300" height="42" fill="#0276B1" fill-opacity="0.09"/>
+  <rect x="0" y="176" width="4" height="42" fill="#0276B1"/>
+  <text x="28" y="204" class="h navq">Claude Code</text>
+
+  <text x="28" y="256" class="h nav">GitHub Copilot</text>
+  <text x="28" y="304" class="h nav">Local environment</text>
+  <text x="28" y="352" class="h nav">Artifactory</text>
+
+  <line x1="28" y1="392" x2="272" y2="392" stroke="#013D5B" stroke-opacity="0.1" stroke-width="2"/>
+  <text x="28" y="436" class="m lbl">RESOURCES</text>
+  <text x="28" y="480" class="h nav">Platform docs</text>
+  <text x="28" y="528" class="h nav">Entitlement catalog</text>
+  <text x="28" y="576" class="h nav">Support</text>
+
+  <!-- ============ PAGE HEADER ============ -->
+  <text x="336" y="164" class="h" font-size="34" fill="#013D5B" font-weight="500">Claude Code onboarding</text>
+  <rect x="768" y="140" width="132" height="28" rx="3" fill="#FDF0D8"/>
+  <text x="834" y="160" class="m" font-size="15" fill="#8A6320" text-anchor="middle" letter-spacing="1">IN PROGRESS</text>
+
+  <text x="336" y="200" class="h" font-size="19" fill="#7B8B99">Provisions access and local tooling for Claude Code. Owner: DevX Platform.</text>
+
+  <rect x="336" y="228" width="1168" height="56" rx="4" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="360" y="262" class="h" font-size="19" fill="#46586A">4 of 7 tasks complete</text>
+  <rect x="560" y="248" width="360" height="14" rx="7" fill="#E3E9ED"/>
+  <rect x="560" y="248" width="206" height="14" rx="7" fill="#0E7C61"/>
+  <text x="1480" y="262" class="m" font-size="17" fill="#7B8B99" text-anchor="end">Last validated 09:41</text>
+
+  <!-- ============ TASK CARD ============ -->
+  <g filter="url(#lift)">
+    <rect x="336" y="308" width="1168" height="518" rx="4" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.13" stroke-width="2"/>
+  </g>
+
+  <text x="364" y="352" class="m lbl">TASK 5 OF 7</text>
+  <text x="364" y="392" class="h" font-size="27" fill="#013D5B" font-weight="500">Install system dependencies</text>
+  <line x1="364" y1="416" x2="1476" y2="416" stroke="#013D5B" stroke-opacity="0.1" stroke-width="2"/>
+
+  <text x="364" y="452" class="h" font-size="19" fill="#013D5B" font-weight="500">Purpose</text>
+  <text x="364" y="482" class="h body">Installs the Node runtime, package manager and supporting scripts required to build and run</text>
+  <text x="364" y="510" class="h body">applications locally. Tasks 6 and 7 cannot complete without it.</text>
+
+  <text x="364" y="558" class="h" font-size="19" fill="#013D5B" font-weight="500">Prerequisites</text>
+  <rect x="364" y="574" width="228" height="30" rx="15" fill="#E7F4EF"/>
+  <text x="386" y="595" class="m" font-size="16" fill="#0E7C61">✓ Artifactory token</text>
+  <rect x="608" y="574" width="256" height="30" rx="15" fill="#E7F4EF"/>
+  <text x="630" y="595" class="m" font-size="16" fill="#0E7C61">✓ High Flex entitlement</text>
+
+  <rect x="364" y="628" width="1112" height="76" rx="4" fill="#0A1A28"/>
+  <text x="388" y="674" class="m" font-size="20" fill="#7FD3A8">allset tce:onboarding:install --program=tech-connect</text>
+  <rect x="1352" y="646" width="100" height="40" rx="3" fill="#FFFFFF" fill-opacity="0.14"/>
+  <text x="1402" y="672" class="h" font-size="17" fill="#C6D6E0" text-anchor="middle">Copy</text>
+
+  <text x="364" y="734" class="h" font-size="17" fill="#7B8B99">Approximate runtime 20 minutes. Sudo credentials will be requested during installation.</text>
+
+  <rect x="364" y="756" width="212" height="46" rx="3" fill="#0276B1"/>
+  <text x="470" y="785" class="h" font-size="19" fill="#FFFFFF" font-weight="500" text-anchor="middle">Run validation</text>
+
+  <rect x="600" y="756" width="876" height="46" rx="3" fill="#F2F9F6" stroke="#0E7C61" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="628" cy="779" r="11" fill="#0E7C61"/>
+  <path d="M622 779 l4 5 8 -10" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="650" y="786" class="m" font-size="17" fill="#0E7C61">PASS</text>
+  <text x="716" y="786" class="m" font-size="17" fill="#46586A">node v24.14.0 · npm 11.9.0 · nvm 0.40.4 · scripts installed</text>
+
+  <!-- recreation stamp: annotation layer, deliberately not part of the UI -->
+  <g>
+    <rect x="1162" y="134" width="342" height="38" rx="19" fill="#1F2D38" fill-opacity="0.92"/>
+    <text x="1333" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" letter-spacing="1.4" fill="#FFFFFF" text-anchor="middle">MOCKUP · NOT A LIVE SCREEN</text>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 956" width="700" height="956" role="img" aria-label="The Claude Code onboarding task showing purpose, prerequisites, the command to run and a passing validation.">
+  <defs>
+    <filter id="liftm" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#013D5B" flood-opacity="0.14"/>
+    </filter>
+    <style>
+      .h { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .body { font-size: 22px; fill: #46586A; }
+      .lbl { font-size: 18px; letter-spacing: 1.8px; fill: #7B8B99; }
+    </style>
+  </defs>
+
+  <rect width="700" height="900" fill="#F1F4F7"/>
+
+  <!-- app chrome -->
+  <rect x="0" y="0" width="700" height="66" fill="#013D5B"/>
+  <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round">
+    <line x1="26" y1="26" x2="46" y2="26"/><line x1="26" y1="33" x2="46" y2="33"/><line x1="26" y1="40" x2="46" y2="40"/>
+  </g>
+  <text x="66" y="41" class="h" font-size="22" fill="#FFFFFF" font-weight="500">Developer Experience</text>
+  <circle cx="656" cy="33" r="17" fill="#0276B1"/>
+  <text x="656" y="40" class="h" font-size="16" fill="#FFFFFF" text-anchor="middle" font-weight="500">MT</text>
+
+  <rect x="0" y="66" width="700" height="44" fill="#FFFFFF"/>
+  <line x1="0" y1="110" x2="700" y2="110" stroke="#013D5B" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="26" y="95" class="h" font-size="18" fill="#7B8B99">Onboarding</text>
+  <text x="146" y="95" class="h" font-size="18" fill="#B4C0CA">/</text>
+  <text x="164" y="95" class="h" font-size="18" fill="#013D5B" font-weight="500">Claude Code</text>
+
+  <!-- page header -->
+  <text x="26" y="164" class="h" font-size="30" fill="#013D5B" font-weight="500">Claude Code onboarding</text>
+  <rect x="26" y="184" width="140" height="30" rx="3" fill="#FDF0D8"/>
+  <text x="96" y="205" class="m" font-size="16" fill="#8A6320" text-anchor="middle" letter-spacing="1">IN PROGRESS</text>
+
+  <rect x="26" y="234" width="648" height="56" rx="4" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="48" y="269" class="h" font-size="20" fill="#46586A">4 of 7 tasks complete</text>
+  <rect x="272" y="255" width="240" height="14" rx="7" fill="#E3E9ED"/>
+  <rect x="272" y="255" width="137" height="14" rx="7" fill="#0E7C61"/>
+  <text x="652" y="269" class="m" font-size="16" fill="#7B8B99" text-anchor="end">09:41</text>
+
+  <!-- task card -->
+  <g filter="url(#liftm)">
+    <rect x="26" y="312" width="648" height="562" rx="4" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.13" stroke-width="2"/>
+  </g>
+
+  <text x="52" y="356" class="m lbl">TASK 5 OF 7</text>
+  <text x="52" y="398" class="h" font-size="28" fill="#013D5B" font-weight="500">Install system dependencies</text>
+  <line x1="52" y1="424" x2="648" y2="424" stroke="#013D5B" stroke-opacity="0.1" stroke-width="2"/>
+
+  <text x="52" y="464" class="h" font-size="20" fill="#013D5B" font-weight="500">Purpose</text>
+  <text x="52" y="498" class="h body">Installs the Node runtime, package manager</text>
+  <text x="52" y="528" class="h body">and supporting scripts required to build and</text>
+  <text x="52" y="558" class="h body">run applications locally.</text>
+
+  <text x="52" y="608" class="h" font-size="20" fill="#013D5B" font-weight="500">Prerequisites</text>
+  <rect x="52" y="624" width="238" height="32" rx="16" fill="#E7F4EF"/>
+  <text x="74" y="646" class="m" font-size="17" fill="#0E7C61">✓ Artifactory token</text>
+  <rect x="304" y="624" width="262" height="32" rx="16" fill="#E7F4EF"/>
+  <text x="326" y="646" class="m" font-size="17" fill="#0E7C61">✓ High Flex entitlement</text>
+
+  <rect x="52" y="682" width="596" height="64" rx="4" fill="#0A1A28"/>
+  <text x="74" y="720" class="m" font-size="17" fill="#7FD3A8">allset tce:onboarding:install</text>
+  <rect x="556" y="696" width="76" height="36" rx="3" fill="#FFFFFF" fill-opacity="0.14"/>
+  <text x="594" y="720" class="h" font-size="16" fill="#C6D6E0" text-anchor="middle">Copy</text>
+
+  <rect x="52" y="768" width="192" height="46" rx="3" fill="#0276B1"/>
+  <text x="148" y="797" class="h" font-size="19" fill="#FFFFFF" font-weight="500" text-anchor="middle">Run validation</text>
+
+  <rect x="52" y="830" width="596" height="44" rx="3" fill="#F2F9F6" stroke="#0E7C61" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="78" cy="852" r="11" fill="#0E7C61"/>
+  <path d="M72 852 l4 5 8 -10" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="859" class="m" font-size="17" fill="#0E7C61">PASS</text>
+  <text x="164" y="859" class="m" font-size="17" fill="#46586A">node · npm · nvm installed</text>
+
+
+  <!-- recreation stamp: annotation band, deliberately outside the UI -->
+  <rect x="0" y="900" width="700" height="56" fill="#1F2D38"/>
+  <text x="350" y="936" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" letter-spacing="1.6" fill="#FFFFFF" text-anchor="middle">MOCKUP · NOT A LIVE SCREEN</text>
+</svg>

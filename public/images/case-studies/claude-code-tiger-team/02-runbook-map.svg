@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1420" width="1536" height="1420" role="img" aria-label="The seven stages of the setup guide, each with what it covers and the check that proves it worked.">
+  <defs>
+    <linearGradient id="surface2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.6" stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#EAF1F5"/>
+    </linearGradient>
+    <linearGradient id="rail" gradientUnits="userSpaceOnUse" x1="0" y1="316" x2="0" y2="1176">
+      <stop offset="0" stop-color="#CC2427"/>
+      <stop offset="0.18" stop-color="#B8842B"/>
+      <stop offset="0.55" stop-color="#0276B1"/>
+      <stop offset="1" stop-color="#0E7C61"/>
+    </linearGradient>
+    <filter id="soft2" x="-15%" y="-25%" width="130%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#013D5B" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .h  { font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 54px; font-weight: 500; fill: #013D5B; letter-spacing: -1px; }
+      .t2 { font-size: 27px; fill: #5A6E7D; }
+      .ct { font-size: 31px; font-weight: 500; fill: #013D5B; }
+      .cb { font-size: 25px; fill: #5A6E7D; }
+      .cv { font-size: 22px; fill: #0E7C61; }
+      .nm { font-size: 21px; fill: #FFFFFF; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="1420" fill="url(#surface2)"/>
+  <rect x="1" y="1" width="1534" height="1418" fill="none" stroke="#013D5B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <text x="64" y="120" class="h t1">The guide, end to end</text>
+  <text x="64" y="168" class="h t2">Seven stages. Every one says why it matters, the exact steps, and how you</text>
+  <text x="64" y="204" class="h t2">know it worked.</text>
+  <line x1="64" y1="248" x2="1472" y2="248" stroke="#013D5B" stroke-opacity="0.14" stroke-width="2"/>
+
+  <line x1="118" y1="316" x2="118" y2="1176" stroke="url(#rail)" stroke-width="6" stroke-linecap="round"/>
+
+  <g class="h">
+    <circle cx="118" cy="316" r="30" fill="#CC2427"/>
+    <text x="118" y="325" class="m nm" text-anchor="middle">01</text>
+    <text x="188" y="308" class="ct">Entitlements</text>
+    <text x="188" y="348" class="cb">Eight requests, in an order that matters. Three are not where you would look.</text>
+    <text x="188" y="382" class="m cv">✓ All Access shows them granted</text>
+
+    <circle cx="118" cy="460" r="30" fill="#B8842B"/>
+    <text x="118" y="469" class="m nm" text-anchor="middle">02</text>
+    <text x="188" y="452" class="ct">Machine access</text>
+    <text x="188" y="492" class="cb">Local administrator and non-developer High Flex, then refresh policies.</text>
+    <text x="188" y="526" class="m cv">✓ BeyondTrust reports a new policy</text>
+
+    <circle cx="118" cy="604" r="30" fill="#0276B1"/>
+    <text x="118" y="613" class="m nm" text-anchor="middle">03</text>
+    <text x="188" y="596" class="ct">The terminal</text>
+    <text x="188" y="636" class="cb">First time in a shell for most of the team. Homebrew, GitHub CLI, then auth.</text>
+    <text x="188" y="670" class="m cv">✓ gh auth status</text>
+
+    <circle cx="118" cy="748" r="30" fill="#0276B1"/>
+    <text x="118" y="757" class="m nm" text-anchor="middle">04</text>
+    <text x="188" y="740" class="ct">Artifactory</text>
+    <text x="188" y="780" class="cb">The safety net every package resolves through. Generate one identity token.</text>
+    <text x="188" y="814" class="m cv">✓ Token stored</text>
+
+    <circle cx="118" cy="892" r="30" fill="#0276B1"/>
+    <text x="118" y="901" class="m nm" text-anchor="middle">05</text>
+    <text x="188" y="884" class="ct">Dependencies</text>
+    <text x="188" y="924" class="cb">One command installs node, npm and nvm, plus everything they quietly need.</text>
+    <text x="188" y="958" class="m cv">✓ Three version numbers print</text>
+
+    <circle cx="118" cy="1036" r="30" fill="#0E7C61"/>
+    <text x="118" y="1045" class="m nm" text-anchor="middle">06</text>
+    <text x="188" y="1028" class="ct">First app</text>
+    <text x="188" y="1068" class="cb">Scaffold it, change one heading, watch the browser update as you type.</text>
+    <text x="188" y="1102" class="m cv">✓ Running on localhost:5173</text>
+
+    <circle cx="118" cy="1176" r="30" fill="#0E7C61"/>
+    <text x="118" y="1185" class="m nm" text-anchor="middle">07</text>
+    <text x="188" y="1168" class="ct">Deploy</text>
+    <text x="188" y="1208" class="cb">Two lines of config and one command put the work on a URL a partner can open.</text>
+    <text x="188" y="1242" class="m cv">✓ A live link</text>
+  </g>
+
+  <g filter="url(#soft2)">
+    <rect x="64" y="1286" width="1408" height="106" rx="6" fill="#FFFFFF" stroke="#013D5B" stroke-opacity="0.16" stroke-width="2"/>
+  </g>
+  <rect x="64" y="1286" width="9" height="106" fill="#013D5B"/>
+  <text x="112" y="1332" class="h" font-size="29" fill="#1F2D38">If you cannot confirm a stage worked, you skip it,</text>
+  <text x="112" y="1370" class="h" font-size="29" fill="#1F2D38">and then the next four fall over.</text>
+</svg>

@@ -10,7 +10,6 @@ import SoundToggle from "./SoundToggle";
 import ThemeToggle from "./ThemeToggle";
 import ModeText from "./ModeText";
 import { useSound } from "./SoundProvider";
-import { log } from "@/lib/log";
 
 const NAV = [
   { no: "01", label: "WORK", basicLabel: "Work", href: "/home" },
@@ -32,7 +31,6 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const latest = log[0];
   const { play } = useSound();
   const firstNavLinkRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -173,13 +171,15 @@ export default function Sidebar() {
                     SR. PRODUCT DESIGNER
                   </div>
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
-                    I design software for banks, insurers, and other places where
-                    the rules are strict and the stakes are real. Currently at{" "}
-                    <span className="text-glow-cyan">Capital One</span>, working
-                    on AI tooling for people who do not write code.
+                    Product designer with a full-stack engineering background, so
+                    I design with a clear view of how things get built. Currently
+                    at <span className="text-glow-cyan">Capital One</span> on the
+                    Developer Experience team, on enterprise platforms and AI
+                    products.
                   </p>
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
-                    Before that, Berkeley Research Group, Oportun, and Demex.
+                    Seven years of SaaS and fintech. Before this, Berkeley
+                    Research Group, Oportun, and Demex.
                   </p>
                 </>
               }
@@ -188,10 +188,11 @@ export default function Sidebar() {
                   className="text-[14px] leading-relaxed text-ink-dim"
                   style={{ fontFamily: "var(--font-garamond)" }}
                 >
-                  I design software for banks, insurers, and other places where the
-                  rules are strict and the stakes are real. Currently at Capital One,
-                  working on AI tooling for people who do not write code. Before
-                  that, Berkeley Research Group, Oportun, and Demex.
+                  Product designer with a full-stack engineering background, so I
+                  design with a clear view of how things get built. Seven years of
+                  SaaS and fintech, currently at Capital One on the Developer
+                  Experience team. Before this, Berkeley Research Group, Oportun,
+                  and Demex.
                 </p>
               }
             />
@@ -333,33 +334,6 @@ export default function Sidebar() {
               </div>
             </div>
           </div>
-
-          <div className="dash-divider" aria-hidden="true" />
-
-          <section aria-labelledby="latest-log-heading">
-            <div
-              id="latest-log-heading"
-              className="section-label font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute mb-2"
-            >
-              <ModeText scenic="LATEST LOG" basic="Latest update" />
-            </div>
-            <time
-              className="font-mono text-[11px] text-ink-mute block mb-1"
-              dateTime={latest.date}
-            >
-              {new Date(latest.date).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </time>
-            <p className="sidebar-log-body leading-relaxed text-ink-dim font-mono text-[12px]">
-              <ModeText
-                scenic={latest.body}
-                basic={latest.basicBody ?? latest.body}
-              />
-            </p>
-          </section>
 
           <div className="mt-auto pt-6">
             <Link

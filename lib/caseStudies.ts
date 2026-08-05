@@ -2,7 +2,7 @@ export type Block =
   | { kind: "p"; text: string }
   | { kind: "h"; text: string }
   | { kind: "list"; items: string[] }
-  | { kind: "img"; src: string; alt: string; caption?: string }
+  | { kind: "img"; src: string; alt: string; caption?: string; srcMobile?: string }
   | { kind: "imgGrid"; items: Array<{ src: string; alt: string; caption?: string }> }
   | { kind: "video"; src: string; poster?: string; caption?: string; alt: string }
   | { kind: "quote"; text: string; speaker?: string }
@@ -39,12 +39,182 @@ export type CaseStudy = {
 };
 
 const IDP = "/images/case-studies/idp-release-plugin";
+const TIGER = "/images/case-studies/claude-code-tiger-team";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
 const OCS = "/images/case-studies/oportun-credit-servicing";
 const DCC = "/images/case-studies/demex-climate-center";
-const WEB3 = "/images/case-studies/web3-remittances";
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: "claude-code-tiger-team",
+    title: "Claude Code Setup",
+    org: "Capital One · DevX",
+    status: "SHIPPED",
+    tagline:
+      "Claude Code showed up with one way in, and it only worked if you were an engineer. I led the tiger team that opened it to everyone else, and we shipped a setup site that walks you from no access to a running app without needing anyone's help.",
+    hero: `${TIGER}/00-preview.svg`,
+    heroScreens: [
+      `${TIGER}/00-preview.svg`,
+      `${TIGER}/07-site-overview.svg`,
+      `${TIGER}/08-site-failed-check.svg`,
+      `${TIGER}/06-one-click.svg`,
+    ],
+    role: "Sr. Product Designer, tiger team lead",
+    team: "Lead plus 2 designers · working with PM, engineering, One Access and senior leadership",
+    timeframe: "3 weeks, March 2026",
+    tools: "Claude Code · GitHub · Artifactory · VS Code",
+    accent: "cyan",
+    brand: "capital-one",
+    sections: [
+      {
+        id: "shipped",
+        no: "01",
+        title: "The setup site",
+        body: [
+          {
+            kind: "p",
+            text: "We shipped an onboarding module inside the internal developer experience platform. Seven tasks, in order, each gated on a validation that has to pass before the next one opens.",
+          },
+          {
+            kind: "img",
+            src: `${TIGER}/07-site-overview.svg`,
+            srcMobile: `${TIGER}/07-site-overview-m.svg`,
+            alt: "The setup site with a step list on the left and the current step on the right",
+            caption:
+              "Rebuilt here from the internal original, which I cannot show.",
+          },
+          {
+            kind: "p",
+            text: "Each task ends in a validation the platform runs against your machine and reports back on. Progress is never self-reported, which is the difference between this and the document it replaced.",
+          },
+          {
+            kind: "p",
+            text: "Failure states were the harder problem. In the document version a failed step meant posting in a support channel and losing a day, so every failure names the specific thing that is missing and carries its remediation inline.",
+          },
+          {
+            kind: "img",
+            src: `${TIGER}/08-site-failed-check.svg`,
+            srcMobile: `${TIGER}/08-site-failed-check-m.svg`,
+            alt: "A failed check on the setup site, with a plain-language explanation and the fix inline",
+            caption:
+              "The failure that cost us two days, with the fix on the page.",
+          },
+          {
+            kind: "p",
+            text: "The copy carries a lot of the work. Most people going through this have never heard of an entitlement and do not need to, so every task says what it gives you and what breaks if it is missing.",
+          },
+        ],
+      },
+      {
+        id: "why",
+        no: "02",
+        title: "Why it existed",
+        body: [
+          {
+            kind: "p",
+            text: "Claude Code went live to the engineering org in March, with designers, PMs and the rest of the technology organization to follow. Access had not been tested outside engineering.",
+          },
+          {
+            kind: "p",
+            text: "Access at a bank is a chain of entitlements, and every link had been built around a job role none of us had. Two of us requested access on day one and were told we were not eligible. The error did not name the missing entitlement, and the request form did not offer a version we could ask for.",
+          },
+          {
+            kind: "img",
+            src: `${TIGER}/01-two-paths.svg`,
+            srcMobile: `${TIGER}/01-two-paths-m.svg`,
+            alt: "The engineer path clears in three steps. The designer path runs eight gates and ends blocked on four developer-only entitlements.",
+            caption: "Same tool, same week, two very different distances.",
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "We assumed the hard part would be teaching people the tool. It was getting them through the door. Everyone who built that door already had the entitlements it asked for, so nobody had noticed.",
+          },
+          {
+            kind: "p",
+            text: "Three of us spent nine days finding every dead end. That was supposed to be the setup week before the real work, and it turned into the work.",
+          },
+        ],
+      },
+      {
+        id: "changed",
+        no: "03",
+        title: "What changed",
+        body: [
+          {
+            kind: "p",
+            text: "The site fixed the experience. It did not fix the underlying chain, and a site that walks you politely through eight unnecessary requests is still eight unnecessary requests.",
+          },
+          {
+            kind: "p",
+            text: "So we took the whole map to the One Access team, who own entitlement provisioning. They had never seen it end to end from a non-engineer's side, because nobody had walked it and written it down. We built a one-click setup with them that requests everything at once, in the right order.",
+          },
+          {
+            kind: "img",
+            src: `${TIGER}/06-one-click.svg`,
+            srcMobile: `${TIGER}/06-one-click-m.svg`,
+            alt: "The eight-gate access chain collapsed into a single request",
+            caption: "The first two steps of the site are now a button.",
+          },
+          {
+            kind: "callout",
+            tone: "plus",
+            text: "We set out to write a guide. The better result was that most of it stopped being needed.",
+          },
+        ],
+      },
+      {
+        id: "challenges",
+        no: "04",
+        title: "Proving people could actually use it",
+        body: [
+          {
+            kind: "p",
+            text: "Access is not competence. Someone can be fully provisioned and still have no idea what to do with a terminal, and we would have had no way of knowing. So we built a set of challenges, each one harder than the last, and shipped them alongside the onboarding.",
+          },
+          {
+            kind: "img",
+            src: `${TIGER}/09-challenges.svg`,
+            srcMobile: `${TIGER}/09-challenges-m.svg`,
+            alt: "Six challenges of increasing complexity, from running a scaffolded app locally through to deploying a prototype to an internal URL",
+            caption: "Each one takes an afternoon. Each one needs the one before it.",
+          },
+          {
+            kind: "p",
+            text: "The ramp is the design. Challenge one is just proof your environment works. By challenge three you are pasting a high-fidelity frame into the terminal and asking for the front end, which is the one everybody wanted to try first and the one that would have put them off entirely if we had led with it.",
+          },
+          {
+            kind: "p",
+            text: "More than 2,300 people across the technology organization have completed at least one. That number is the reason I can say this worked, because it is people doing something rather than people being granted something.",
+          },
+        ],
+      },
+      {
+        id: "measure",
+        no: "05",
+        title: "What I would still measure",
+        body: [
+          {
+            kind: "p",
+            text: "I can tell you what the work removed and how many people came through it. Eight separate access requests became one, and the two steps that ate the most time now happen before anyone opens the module.",
+          },
+          {
+            kind: "p",
+            text: "What I do not have is the shape of the drop-off. I know how many people started and I know the challenges got harder on purpose, but I never got completion rates per challenge, and that is the number that would have told us which step was too big a jump. The other one I would want is time from first request to first running app, since that is the thing the work actually shortened.",
+          },
+          {
+            kind: "p",
+            text: "The other thing I would do differently is start writing on day one instead of day four. The first three days of fixes got reconstructed from memory and Slack scrollback, and some of them are certainly missing.",
+          },
+        ],
+      },
+    ],
+    results: [
+      { stat: "2,300+", label: "Completed at least one challenge", sub: "Across the technology org" },
+      { stat: "8 → 1", label: "Access requests for a non-engineer", sub: "After the One Access build" },
+    ],
+  },
+
   {
     slug: "idp-release-plugin",
     title: "IDP Release Plugin",
@@ -52,12 +222,12 @@ export const caseStudies: CaseStudy[] = [
     status: "SHIPPED",
     tagline:
       "Shipping code meant checking five tools to answer one question. I designed the release plugin that put it in one place, and it went out to 3,600 engineers.",
-    hero: `${IDP}/22-final.png`,
+    hero: `${IDP}/00-preview.svg`,
     heroScreens: [
+      `${IDP}/00-preview.svg`,
       `${IDP}/22-final.png`,
       `${IDP}/03-new-experience.png`,
       `${IDP}/16-concept-3a.webp`,
-      `${IDP}/17-concept-3b.webp`,
     ],
     role: "Sr. Product Designer, owned release experience end to end",
     team: "2 designers \u00b7 product, engineering, audit and cyber partners",
@@ -325,8 +495,8 @@ export const caseStudies: CaseStudy[] = [
     status: "SHIPPED",
     tagline:
       "The home screen was advertising features while people churned. I replaced the ads with balances you could act on, and auto-pay setup went up 37%.",
-    hero: `${OPO}/01-hero.png`,
-    heroScreens: [`${OPO}/01-hero.png`, `${OPO}/03-process.png`],
+    hero: `${OPO}/00-preview.svg`,
+    heroScreens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.png`, `${OPO}/03-process.png`],
     role: "Sr. Product Designer, owned the widget system across three product teams",
     team: "Design \u00b7 Loans, Savings and Credit PODs",
     timeframe: "32 weeks",
@@ -465,8 +635,8 @@ export const caseStudies: CaseStudy[] = [
     status: "SHIPPED",
     tagline:
       "Two million members, two products that agreed on nothing, and a March 2023 date nobody could move. I designed credit card servicing into the app without forking the design system to do it.",
-    hero: `${OCS}/01-hero.png`,
-    heroScreens: [
+    hero: `${OCS}/00-preview.svg`,
+    heroScreens: [`${OCS}/00-preview.svg`,
       `${OCS}/01-hero.png`,
       `${OCS}/02-account-overview.png`,
       `${OCS}/09-flow-architecture.png`,
@@ -691,8 +861,8 @@ export const caseStudies: CaseStudy[] = [
     status: "SHIPPED",
     tagline:
       "A climate risk startup with more data than anyone outside the analyst team could read. I designed the product that made it usable, and wrote the front end for it.",
-    hero: `${DCC}/05.png`,
-    heroScreens: [`${DCC}/05.png`, `${DCC}/08.png`],
+    hero: `${DCC}/00-preview.svg`,
+    heroScreens: [`${DCC}/00-preview.svg`,`${DCC}/05.png`, `${DCC}/08.png`],
     role: "Founding Product Designer, also shipped the front end",
     team: "Founding design and engineering team, working with data science",
     timeframe: "First public product",
@@ -843,206 +1013,6 @@ export const caseStudies: CaseStudy[] = [
       { stat: "12", label: "New clients in year one", sub: "First public product" },
       { stat: "14%", label: "More daily active users", sub: "Year over year" },
       { stat: "5/5", label: "Test rounds that asked for comparison", sub: "Drove the next sprint" },
-    ],
-  },
-
-  /* ─── Web3 Powered Remittances (Oportun hackathon) ───────────────── */
-  {
-    slug: "web3-powered-remittances",
-    title: "Web3 Powered Remittances",
-    org: "Oportun · Hackathon",
-    status: "WON",
-    tagline:
-      "A remittance flow on the Stellar network, so members could send money home faster and cheaper than Western Union or PayPal. Won Most Creative Idea at the Oportun hackathon.",
-    hero: `${WEB3}/01.png`,
-    heroScreens: [`${WEB3}/01.png`, `${WEB3}/08.png`, `${WEB3}/02.png`],
-    role: "Product Designer",
-    team: "Cross-functional design + engineering hackathon team",
-    timeframe: "Oportun hackathon · Most Creative Idea winner",
-    tools: "Figma · Stellar Network · Strategy · User research",
-    accent: "amber",
-    brand: "oportun",
-    sections: [
-      {
-        id: "overview",
-        no: "01",
-        title: "Overview",
-        body: [
-          {
-            kind: "p",
-            text: "Oportun exists to serve people traditional banks skip. A big share of those members send money abroad every month, and their options are either slow or expensive. For the hackathon we tried to build a remittance flow on web3 rails that was neither.",
-          },
-          {
-            kind: "p",
-            text: "It won Most Creative Idea. The flow looks like the rest of the Oportun app, but crypto does the settlement underneath, so the money lands in seconds for a fraction of the fee.",
-          },
-          {
-            kind: "img",
-            src: `${WEB3}/02.png`,
-            alt: "Three-up section showing Our Users, The Statistics, and Our Goal",
-            caption: "Who sends money, how big the market is, and what we were trying to do about it.",
-          },
-        ],
-      },
-      {
-        id: "problem",
-        no: "02",
-        title: "Understanding the problem",
-        body: [
-          {
-            kind: "p",
-            text: "Remittance is a lifeline for millions of households, and the rails are a generation behind the rest of fintech. Western Union still runs on cash and storefronts. Wires are slow and opaque. PayPal is fast but takes 5 to 11% per transfer, and often the person receiving the money does not have an account.",
-          },
-          {
-            kind: "img",
-            src: `${WEB3}/05.png`,
-            alt: "Two-up callout: P2P Can be Slow and No Better Option",
-            caption: "The same two complaints, over and over. You could have it fast or cheap, not both.",
-          },
-          {
-            kind: "quote",
-            text: "I always get nervous when it takes longer and sometimes I don't get a notification. The time it takes is most stressful.",
-            speaker: "Luis, Oportun member since 2017",
-          },
-          {
-            kind: "p",
-            text: "Luis was not unusual. Across the research, members were already shopping around because nothing served them well.",
-          },
-        ],
-      },
-      {
-        id: "research",
-        no: "03",
-        title: "User research",
-        body: [
-          {
-            kind: "p",
-            text: "We interviewed and surveyed 30+ Oportun members who send money internationally. What they do now, what annoys them, what they wish existed. Three things came through loud.",
-          },
-          {
-            kind: "list",
-            items: [
-              "Speed is the biggest source of anxiety. People watch the clock between sending and confirmation.",
-              "Fees that look small add up fast when you send two or three times a month.",
-              "Nobody wants the drive to a Western Union counter or the cash in hand.",
-            ],
-          },
-          {
-            kind: "img",
-            src: `${WEB3}/04.png`,
-            alt: "Quote from Francisco about Western Union friction",
-            caption: "Francisco said what a lot of people said. The trip and the cash were as much of a barrier as the fee.",
-          },
-        ],
-      },
-      {
-        id: "stories",
-        no: "04",
-        title: "Key user stories",
-        body: [
-          {
-            kind: "p",
-            text: "We boiled the research down to three user stories and built against them.",
-          },
-          {
-            kind: "features",
-            items: [
-              {
-                title: "Instant delivery",
-                body: "I want the money to land in seconds so I am not sitting there wondering whether it went through.",
-              },
-              {
-                title: "Home-based",
-                body: "I want to send from my phone instead of driving somewhere with cash in my pocket.",
-              },
-              {
-                title: "Cost efficient",
-                body: "I want the fee small enough to ignore, so the money goes to my family and not a middleman.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: "engineering",
-        no: "05",
-        title: "Engineering considerations",
-        body: [
-          {
-            kind: "p",
-            text: "The idea was to keep crypto entirely in the back end rather than making it the product. Members never see a token, a wallet seed, or a block explorer. We picked Stellar for speed, low fees, and its anchor model, where regulated partners on each end handle the on-ramp and off-ramp in local currency.",
-          },
-          {
-            kind: "img",
-            src: `${WEB3}/08.png`,
-            alt: "Diagram of the anchor pathway: Financial Institution Member to Stellar Network to Remittance Recipient via FinClusive and Biccos anchors",
-            caption: "The anchor pathway. Sender deposits US$ through a U.S. anchor, the value crosses Stellar in seconds, and a local anchor pays out MX$.",
-          },
-          {
-            kind: "p",
-            text: "Bringing engineering in early is what made the design work. We mapped which steps had to be on chain, which could stay in the existing Oportun stack, and where compliance and KYC landed. By prototype time the flow was feasible and scoped to something we could actually build in a hackathon.",
-          },
-        ],
-      },
-      {
-        id: "solution",
-        no: "06",
-        title: "What we proposed",
-        body: [
-          {
-            kind: "p",
-            text: "The product sits on the Oportun home dashboard next to savings, bills, and goals. You tap in, pick a recipient and an amount, and confirm. Underneath, the U.S. anchor converts to a Stellar asset, settles, and the destination anchor pays out in local currency.",
-          },
-          {
-            kind: "imgGrid",
-            items: [
-              {
-                src: `${WEB3}/01.png`,
-                alt: "Mobile mockup of the Oportun home dashboard with savings and bills cards",
-                caption: "Where the remittance flow sits, next to savings and bills.",
-              },
-              {
-                src: `${WEB3}/07.jpg`,
-                alt: "Oportun mobile splash screen on a device frame",
-                caption: "Inside the Oportun app people already have. No separate crypto wallet.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: "takeaways",
-        no: "07",
-        title: "Key takeaways",
-        body: [
-          {
-            kind: "h",
-            text: "Bring engineering in on day one",
-          },
-          {
-            kind: "p",
-            text: "The best part of this project was that design and engineering scoped it together from the first whiteboard. Stellar, the anchor model, and where the MVP stopped all got decided in the same room. That is why the judges believed it could ship.",
-          },
-          {
-            kind: "h",
-            text: "Keep the crypto in the back end",
-          },
-          {
-            kind: "p",
-            text: "Keeping the chain out of sight is what made it work. Members get the Oportun app they already know, the back end gets Stellar's speed and cost, and nobody has to learn what an anchor is to send money home.",
-          },
-          {
-            kind: "callout",
-            tone: "plus",
-            text: "Won Most Creative Idea for reframing remittances around what members actually asked for. Faster, cheaper, from their phone.",
-          },
-        ],
-      },
-    ],
-    results: [
-      { stat: "$5", label: "Saved per remittance transaction", sub: "vs. Western Union baseline" },
-      { stat: "8,500", label: "New remittance users projected", sub: "First 3 months" },
-      { stat: "WON", label: "Most Creative Idea", sub: "Oportun hackathon" },
     ],
   },
 ];
