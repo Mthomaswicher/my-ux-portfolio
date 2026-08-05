@@ -27,6 +27,9 @@
       <feDropShadow dx="-14" dy="22" stdDeviation="30" flood-color="#000000" flood-opacity="0.55"/>
     </filter>
     <clipPath id="edge"><rect x="0" y="0" width="1536" height="864"/></clipPath>
+    <clipPath id="cardFaceClip">
+      <rect x="-370" y="-233" width="740" height="466" rx="38"/>
+    </clipPath>
 
     <!-- Oportun mark: two arcs and a dot, drawn so it can be recoloured -->
     <g id="opoMark">
@@ -49,6 +52,20 @@
       }
       .h { font-family: 'TT Commons', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
       .m { font-family: 'TT Commons', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+      /* Ambient only, and applied to elements that carry no transform of
+         their own so nothing composes with the card's rotation. */
+      @keyframes sheenPass { 0%, 62%, 100% { opacity: .55 } 74% { opacity: 1 } }
+      @keyframes tick      { 0%, 100% { opacity: 1 } 50% { opacity: .3 } }
+
+      .sheen  { animation: sheenPass 6.5s ease-in-out infinite; }
+      .tick   { animation: tick 3.6s ease-in-out infinite; }
+      .tick-2 { animation-delay: .6s }
+      .tick-3 { animation-delay: 1.2s }
+
+      @media (prefers-reduced-motion: reduce) {
+        .sheen, .tick { animation: none; }
+      }
     </style>
   </defs>
 
@@ -71,7 +88,7 @@
         <rect x="-370" y="-233" width="740" height="466" rx="38" fill="url(#cardFace)"
               stroke="#6CDB8B" stroke-opacity="0.28" stroke-width="2"/>
       </g>
-      <path d="M-370,-233 L370,-233 L370,-60 L-370,120 Z" fill="url(#sheen)"/>
+      <path class="sheen" d="M-370,-233 L370,-233 L370,-60 L-370,120 Z" fill="url(#sheen)" clip-path="url(#cardFaceClip)"/>
 
       <!-- mark -->
       <g transform="translate(-268 -128) scale(0.44)">
@@ -107,15 +124,15 @@
 
     <!-- ============ CONSTRAINTS ============ -->
     <g>
-      <rect x="128" y="414" width="26" height="4" fill="#00C859"/>
+      <rect class="tick" x="128" y="414" width="26" height="4" fill="#00C859"/>
       <text x="174" y="440" class="h" font-size="32" font-weight="600" fill="#FFFFFF">2M+ members</text>
       <text x="174" y="474" class="m" font-size="16" fill="#8FBE9E" letter-spacing="1.4">already on the app</text>
 
-      <rect x="128" y="520" width="26" height="4" fill="#00C859"/>
+      <rect class="tick tick-2" x="128" y="520" width="26" height="4" fill="#00C859"/>
       <text x="174" y="546" class="h" font-size="32" font-weight="600" fill="#FFFFFF">Two platforms</text>
       <text x="174" y="580" class="m" font-size="16" fill="#8FBE9E" letter-spacing="1.4">iOS and Android, in parallel</text>
 
-      <rect x="128" y="626" width="26" height="4" fill="#00C859"/>
+      <rect class="tick tick-3" x="128" y="626" width="26" height="4" fill="#00C859"/>
       <text x="174" y="652" class="h" font-size="32" font-weight="600" fill="#FFFFFF">One design system</text>
       <text x="174" y="686" class="m" font-size="16" fill="#8FBE9E" letter-spacing="1.4">not forked to make it fit</text>
 

@@ -36,6 +36,22 @@
       .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
       .stg { font-size: 21px; fill: #FFFFFF; }
       .lab { font-size: 19px; fill: #A9C7DE; }
+
+      @keyframes stagePop  { 0%,72%,100% { opacity: 1 } 76% { opacity: .45 } }
+      @keyframes approveRing { 0% { r: 26; opacity: .55 } 70%,100% { r: 44; opacity: 0 } }
+      @keyframes approveDot { 0%,100% { opacity: 1 } 50% { opacity: .72 } }
+      @keyframes ribbonDrift { 0%,100% { opacity: .9 } 50% { opacity: .55 } }
+
+      .stage { animation: stagePop 5.2s ease-in-out infinite; }
+      .stage-2 { animation-delay: .5s } .stage-3 { animation-delay: 1s }
+      .halo  { animation: approveRing 2.6s cubic-bezier(.2,.7,.3,1) infinite; }
+      .adot  { animation: approveDot 2.6s ease-in-out infinite; }
+      .ribbon{ animation: ribbonDrift 9s ease-in-out infinite; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .stage, .halo, .adot, .ribbon { animation: none; }
+        .halo { opacity: .45 }
+      }
     </style>
   </defs>
 
@@ -44,7 +60,7 @@
 
     <!-- ribbon sweep, held to the upper right so it never crosses the content -->
     <path d="M980,470 C 1180,380 1320,240 1640,-70" fill="none" stroke="url(#swooshFaint)" stroke-width="190" stroke-linecap="round"/>
-    <path d="M1006,432 C 1200,348 1338,214 1620,-60" fill="none" stroke="url(#swoosh)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M1006,432 C 1200,348 1338,214 1620,-60" fill="none" class="ribbon" stroke="url(#swoosh)" stroke-width="14" stroke-linecap="round"/>
     <path d="M1006,486 C 1200,402 1338,268 1620,-6" fill="none" stroke="url(#swoosh)" stroke-width="4" stroke-opacity="0.55" stroke-linecap="round"/>
 
     <!-- ============ EYEBROW ============ -->
@@ -83,20 +99,20 @@
     <line x1="260" y1="636" x2="1275" y2="636" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2"/>
 
     <g class="h">
-      <circle cx="260" cy="636" r="17" fill="#FFFFFF" fill-opacity="0.9"/>
+      <circle class="stage" cx="260" cy="636" r="17" fill="#FFFFFF" fill-opacity="0.9"/>
       <path d="M252 636 l5 6 10 -13" fill="none" stroke="#255F8C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="260" y="694" class="stg" text-anchor="middle">Build</text>
 
-      <circle cx="463" cy="636" r="17" fill="#FFFFFF" fill-opacity="0.9"/>
+      <circle class="stage stage-2" cx="463" cy="636" r="17" fill="#FFFFFF" fill-opacity="0.9"/>
       <path d="M455 636 l5 6 10 -13" fill="none" stroke="#255F8C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="463" y="694" class="stg" text-anchor="middle">Scan</text>
 
-      <circle cx="666" cy="636" r="17" fill="#FFFFFF" fill-opacity="0.9"/>
+      <circle class="stage stage-3" cx="666" cy="636" r="17" fill="#FFFFFF" fill-opacity="0.9"/>
       <path d="M658 636 l5 6 10 -13" fill="none" stroke="#255F8C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="666" y="694" class="stg" text-anchor="middle">Audit</text>
 
-      <circle cx="869" cy="636" r="26" fill="#CC2427"/>
-      <circle cx="869" cy="636" r="34" fill="none" stroke="#CC2427" stroke-opacity="0.45" stroke-width="3"/>
+      <circle class="adot" cx="869" cy="636" r="26" fill="#CC2427"/>
+      <circle class="halo" cx="869" cy="636" r="34" fill="none" stroke="#CC2427" stroke-opacity="0.45" stroke-width="3"/>
       <text x="869" y="702" class="h" font-size="23" font-weight="700" fill="#FFFFFF" text-anchor="middle">Approve</text>
       <text x="869" y="728" class="m" font-size="16" fill="#F2A9AB" text-anchor="middle">audit questions on the page</text>
 

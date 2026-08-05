@@ -434,6 +434,123 @@ html[data-scroll-locked="true"] body {
   border-top: 1px dashed rgba(168, 168, 192, 0.18);
 }
 
+/* ---------------------------------------------------------------------------
+   Project tile lighting
+
+   Hover/focus only. The tile already cycles its screens, so a second
+   always-on layer would compete with both the reel and the cover art. This
+   rewards intent instead: nothing renders until a pointer is over the card,
+   and `hover: hover` keeps touch devices out of it entirely.
+   --------------------------------------------------------------------------- */
+.tile-sheen {
+  --mx: 50%;
+  --my: 50%;
+  opacity: 0;
+  transition: opacity 260ms ease-out;
+  mix-blend-mode: screen;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.tile-sheen > span {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* Cursor-tracked highlight. */
+.tile-sheen-spot {
+  background: radial-gradient(
+    38% 46% at var(--mx) var(--my),
+    rgb(255 255 255 / 0.3) 0%,
+    color-mix(in srgb, var(--tile-accent) 42%, transparent) 34%,
+    transparent 72%
+  );
+}
+
+/* Accent bleed, pulled toward the pointer. */
+.tile-sheen-rim {
+  background: radial-gradient(
+    120% 120% at var(--mx) var(--my),
+    transparent 42%,
+    color-mix(in srgb, var(--tile-accent) 26%, transparent) 100%
+  );
+}
+
+/* Single diagonal pass on enter. */
+.tile-sheen-sweep {
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.17) 48%,
+    rgb(255 255 255 / 0.03) 56%,
+    transparent 64%
+  );
+  transform: translateX(-115%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-tile]:hover .tile-sheen,
+  [data-tile]:focus-within .tile-sheen {
+    opacity: 1;
+  }
+
+  [data-tile]:hover .tile-sheen-sweep,
+  [data-tile]:focus-within .tile-sheen-sweep {
+    animation: tile-sweep 900ms cubic-bezier(0.22, 0.75, 0.3, 1) forwards;
+  }
+}
+
+@keyframes tile-sweep {
+  from {
+    transform: translateX(-115%);
+  }
+  to {
+    transform: translateX(115%);
+  }
+}
+
+/* Keyboard users get the highlight without the travelling sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .tile-sheen {
+    transition: none;
+  }
+  .tile-sheen-sweep {
+    display: none;
+  }
+}
+
+
+/* Corner arrow: appears with the highlight so the tile reads as a link. */
+.tile-arrow {
+  position: absolute;
+  /* Bottom-right: the tag chips already occupy the top-right corner. */
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition:
+    opacity 200ms ease-out,
+    transform 260ms cubic-bezier(0.22, 0.75, 0.3, 1);
+  filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.6));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-tile]:hover .tile-arrow,
+  [data-tile]:focus-within .tile-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-arrow {
+    transition: none;
+    transform: none;
+  }
+}
+
 /* Design-system showcase accents. The neon values are only legible on the
    dark surface; on the light theme they drop to ~1.5:1, so each has a
    darkened twin that clears 4.5:1 on the showcase's off-white cards. */

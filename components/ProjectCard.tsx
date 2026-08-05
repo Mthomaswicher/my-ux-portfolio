@@ -3,6 +3,7 @@ import type { Project } from "@/lib/projects";
 import ProductReel from "./ProductReel";
 import SfxLink from "./SfxLink";
 import TileDecor from "./TileDecor";
+import TileSheen from "./TileSheen";
 
 const STATUS_STYLES: Record<Project["status"], string> = {
   SHIPPED: "text-glow-lime",
@@ -114,7 +115,10 @@ export function ProjectCardBody({ project }: { project: Project }) {
 
           {/* Hero / interactive screen */}
           {screens.length > 0 && (
-            <div className="relative bg-bg-void overflow-hidden aspect-[16/10]">
+            <div
+              data-tile
+              className="relative bg-bg-void overflow-hidden aspect-[16/10]"
+            >
               <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.04]">
                 <ProductReel
                   screens={screens}
@@ -122,6 +126,7 @@ export function ProjectCardBody({ project }: { project: Project }) {
                   accent={reelAccent}
                 />
               </div>
+              <TileSheen accentHex={accentHex} />
               <TileDecor project={project} />
             </div>
           )}

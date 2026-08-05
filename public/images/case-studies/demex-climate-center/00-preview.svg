@@ -46,6 +46,31 @@
       }
       .h { font-family: 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; }
       .m { font-family: 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; }
+
+
+      /* The signal breathes. transform-box keeps each bar scaling about its
+         own centre so the ripple stays pinned to the axis, and the per-bar
+         delay makes it travel left to right like a real reading. */
+      @keyframes barPulse {
+        0%, 100% { transform: scaleY(1); }
+        50%      { transform: scaleY(1.34); }
+      }
+      .bar {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: barPulse 2.8s ease-in-out infinite;
+        will-change: transform;
+      }
+
+      @keyframes tailPulse {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: .4; }
+      }
+      .tail { animation: tailPulse 2.2s ease-in-out infinite; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bar, .tail { animation: none; }
+      }
     </style>
   </defs>
 
@@ -82,64 +107,64 @@
     <line x1="60" y1="590" x2="1476" y2="590" stroke="#6A6AB8" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="7 9"/>
 
     <g fill="url(#heat)">
-      <rect x="128.0" y="571" width="13" height="38" rx="3"/>
-      <rect x="151.9" y="564" width="13" height="52" rx="3"/>
-      <rect x="175.8" y="568" width="13" height="44" rx="3"/>
-      <rect x="199.7" y="557" width="13" height="66" rx="3"/>
-      <rect x="223.6" y="561" width="13" height="58" rx="3"/>
-      <rect x="247.5" y="554" width="13" height="72" rx="3"/>
-      <rect x="271.4" y="565" width="13" height="50" rx="3"/>
-      <rect x="295.3" y="548" width="13" height="84" rx="3"/>
-      <rect x="319.2" y="559" width="13" height="62" rx="3"/>
-      <rect x="343.1" y="552" width="13" height="76" rx="3"/>
-      <rect x="367.0" y="545" width="13" height="90" rx="3"/>
-      <rect x="390.9" y="556" width="13" height="68" rx="3"/>
-      <rect x="414.8" y="542" width="13" height="96" rx="3"/>
-      <rect x="438.7" y="553" width="13" height="74" rx="3"/>
-      <rect x="462.6" y="561" width="13" height="58" rx="3"/>
-      <rect x="486.5" y="547" width="13" height="86" rx="3"/>
-      <rect x="510.4" y="558" width="13" height="64" rx="3"/>
-      <rect x="534.3" y="539" width="13" height="102" rx="3"/>
-      <rect x="558.2" y="551" width="13" height="78" rx="3"/>
-      <rect x="582.1" y="557" width="13" height="66" rx="3"/>
-      <rect x="606.0" y="544" width="13" height="92" rx="3"/>
-      <rect x="629.9" y="555" width="13" height="70" rx="3"/>
-      <rect x="653.8" y="534" width="13" height="112" rx="3"/>
-      <rect x="677.7" y="548" width="13" height="84" rx="3"/>
-      <rect x="701.6" y="553" width="13" height="74" rx="3"/>
-      <rect x="725.5" y="541" width="13" height="98" rx="3"/>
-      <rect x="749.4" y="550" width="13" height="80" rx="3"/>
-      <rect x="773.3" y="530" width="13" height="120" rx="3"/>
-      <rect x="797.2" y="546" width="13" height="88" rx="3"/>
-      <rect x="821.1" y="552" width="13" height="76" rx="3"/>
-      <rect x="845.0" y="538" width="13" height="104" rx="3"/>
-      <rect x="868.9" y="544" width="13" height="92" rx="3"/>
-      <rect x="892.8" y="524" width="13" height="132" rx="3"/>
-      <rect x="916.7" y="542" width="13" height="96" rx="3"/>
-      <rect x="940.6" y="548" width="13" height="84" rx="3"/>
-      <rect x="964.5" y="532" width="13" height="116" rx="3"/>
-      <rect x="988.4" y="540" width="13" height="100" rx="3"/>
-      <rect x="1012.3" y="517" width="13" height="146" rx="3"/>
-      <rect x="1036.2" y="536" width="13" height="108" rx="3"/>
-      <rect x="1060.1" y="492" width="13" height="196" rx="3"/>
-      <rect x="1084.0" y="528" width="13" height="124" rx="3"/>
-      <rect x="1107.9" y="539" width="13" height="102" rx="3"/>
-      <rect x="1131.8" y="521" width="13" height="138" rx="3"/>
-      <rect x="1155.7" y="535" width="13" height="110" rx="3"/>
-      <rect x="1179.6" y="545" width="13" height="90" rx="3"/>
-      <rect x="1203.5" y="527" width="13" height="126" rx="3"/>
-      <rect x="1227.4" y="541" width="13" height="98" rx="3"/>
-      <rect x="1251.3" y="549" width="13" height="82" rx="3"/>
-      <rect x="1275.2" y="533" width="13" height="114" rx="3"/>
-      <rect x="1299.1" y="546" width="13" height="88" rx="3"/>
-      <rect x="1323.0" y="555" width="13" height="70" rx="3"/>
-      <rect x="1346.9" y="542" width="13" height="96" rx="3"/>
-      <rect x="1370.8" y="558" width="13" height="64" rx="3"/>
-      <rect x="1394.7" y="566" width="13" height="48" rx="3"/>
+      <rect class="bar" x="128.0" y="571" width="13" height="38" rx="3" style="animation-delay:0.0s"/>
+      <rect class="bar" x="151.9" y="564" width="13" height="52" rx="3" style="animation-delay:0.045s"/>
+      <rect class="bar" x="175.8" y="568" width="13" height="44" rx="3" style="animation-delay:0.09s"/>
+      <rect class="bar" x="199.7" y="557" width="13" height="66" rx="3" style="animation-delay:0.135s"/>
+      <rect class="bar" x="223.6" y="561" width="13" height="58" rx="3" style="animation-delay:0.18s"/>
+      <rect class="bar" x="247.5" y="554" width="13" height="72" rx="3" style="animation-delay:0.225s"/>
+      <rect class="bar" x="271.4" y="565" width="13" height="50" rx="3" style="animation-delay:0.27s"/>
+      <rect class="bar" x="295.3" y="548" width="13" height="84" rx="3" style="animation-delay:0.315s"/>
+      <rect class="bar" x="319.2" y="559" width="13" height="62" rx="3" style="animation-delay:0.36s"/>
+      <rect class="bar" x="343.1" y="552" width="13" height="76" rx="3" style="animation-delay:0.405s"/>
+      <rect class="bar" x="367.0" y="545" width="13" height="90" rx="3" style="animation-delay:0.45s"/>
+      <rect class="bar" x="390.9" y="556" width="13" height="68" rx="3" style="animation-delay:0.495s"/>
+      <rect class="bar" x="414.8" y="542" width="13" height="96" rx="3" style="animation-delay:0.54s"/>
+      <rect class="bar" x="438.7" y="553" width="13" height="74" rx="3" style="animation-delay:0.585s"/>
+      <rect class="bar" x="462.6" y="561" width="13" height="58" rx="3" style="animation-delay:0.63s"/>
+      <rect class="bar" x="486.5" y="547" width="13" height="86" rx="3" style="animation-delay:0.675s"/>
+      <rect class="bar" x="510.4" y="558" width="13" height="64" rx="3" style="animation-delay:0.72s"/>
+      <rect class="bar" x="534.3" y="539" width="13" height="102" rx="3" style="animation-delay:0.765s"/>
+      <rect class="bar" x="558.2" y="551" width="13" height="78" rx="3" style="animation-delay:0.81s"/>
+      <rect class="bar" x="582.1" y="557" width="13" height="66" rx="3" style="animation-delay:0.855s"/>
+      <rect class="bar" x="606.0" y="544" width="13" height="92" rx="3" style="animation-delay:0.9s"/>
+      <rect class="bar" x="629.9" y="555" width="13" height="70" rx="3" style="animation-delay:0.945s"/>
+      <rect class="bar" x="653.8" y="534" width="13" height="112" rx="3" style="animation-delay:0.99s"/>
+      <rect class="bar" x="677.7" y="548" width="13" height="84" rx="3" style="animation-delay:1.035s"/>
+      <rect class="bar" x="701.6" y="553" width="13" height="74" rx="3" style="animation-delay:1.08s"/>
+      <rect class="bar" x="725.5" y="541" width="13" height="98" rx="3" style="animation-delay:1.125s"/>
+      <rect class="bar" x="749.4" y="550" width="13" height="80" rx="3" style="animation-delay:1.17s"/>
+      <rect class="bar" x="773.3" y="530" width="13" height="120" rx="3" style="animation-delay:1.215s"/>
+      <rect class="bar" x="797.2" y="546" width="13" height="88" rx="3" style="animation-delay:1.26s"/>
+      <rect class="bar" x="821.1" y="552" width="13" height="76" rx="3" style="animation-delay:1.305s"/>
+      <rect class="bar" x="845.0" y="538" width="13" height="104" rx="3" style="animation-delay:1.35s"/>
+      <rect class="bar" x="868.9" y="544" width="13" height="92" rx="3" style="animation-delay:1.395s"/>
+      <rect class="bar" x="892.8" y="524" width="13" height="132" rx="3" style="animation-delay:1.44s"/>
+      <rect class="bar" x="916.7" y="542" width="13" height="96" rx="3" style="animation-delay:1.485s"/>
+      <rect class="bar" x="940.6" y="548" width="13" height="84" rx="3" style="animation-delay:1.53s"/>
+      <rect class="bar" x="964.5" y="532" width="13" height="116" rx="3" style="animation-delay:1.575s"/>
+      <rect class="bar" x="988.4" y="540" width="13" height="100" rx="3" style="animation-delay:1.62s"/>
+      <rect class="bar" x="1012.3" y="517" width="13" height="146" rx="3" style="animation-delay:1.665s"/>
+      <rect class="bar" x="1036.2" y="536" width="13" height="108" rx="3" style="animation-delay:1.71s"/>
+      <rect class="bar" x="1060.1" y="492" width="13" height="196" rx="3" style="animation-delay:1.755s"/>
+      <rect class="bar" x="1084.0" y="528" width="13" height="124" rx="3" style="animation-delay:1.8s"/>
+      <rect class="bar" x="1107.9" y="539" width="13" height="102" rx="3" style="animation-delay:1.845s"/>
+      <rect class="bar" x="1131.8" y="521" width="13" height="138" rx="3" style="animation-delay:1.89s"/>
+      <rect class="bar" x="1155.7" y="535" width="13" height="110" rx="3" style="animation-delay:1.935s"/>
+      <rect class="bar" x="1179.6" y="545" width="13" height="90" rx="3" style="animation-delay:1.98s"/>
+      <rect class="bar" x="1203.5" y="527" width="13" height="126" rx="3" style="animation-delay:2.025s"/>
+      <rect class="bar" x="1227.4" y="541" width="13" height="98" rx="3" style="animation-delay:2.07s"/>
+      <rect class="bar" x="1251.3" y="549" width="13" height="82" rx="3" style="animation-delay:2.115s"/>
+      <rect class="bar" x="1275.2" y="533" width="13" height="114" rx="3" style="animation-delay:2.16s"/>
+      <rect class="bar" x="1299.1" y="546" width="13" height="88" rx="3" style="animation-delay:2.205s"/>
+      <rect class="bar" x="1323.0" y="555" width="13" height="70" rx="3" style="animation-delay:2.25s"/>
+      <rect class="bar" x="1346.9" y="542" width="13" height="96" rx="3" style="animation-delay:2.295s"/>
+      <rect class="bar" x="1370.8" y="558" width="13" height="64" rx="3" style="animation-delay:2.34s"/>
+      <rect class="bar" x="1394.7" y="566" width="13" height="48" rx="3" style="animation-delay:2.385s"/>
     </g>
 
     <line x1="1066.6" y1="462" x2="1066.6" y2="484" stroke="#FF4D4D" stroke-width="2"/>
-    <circle cx="1066.6" cy="456" r="5" fill="#FF4D4D"/>
+    <circle class="tail" cx="1066.6" cy="456" r="5" fill="#FF4D4D"/>
     <text x="1048.6" y="462" class="m" font-size="16" fill="#FF8A8A" letter-spacing="1.4" text-anchor="end">THE TAIL THEY UNDERWRITE</text>
 
     <text x="128" y="726" class="m" font-size="16" fill="#7A7ABC" letter-spacing="3">SEVERE WEATHER SIGNAL · WHAT THE WHOLE PRODUCT IS ABOUT</text>
