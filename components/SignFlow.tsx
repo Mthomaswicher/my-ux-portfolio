@@ -377,7 +377,7 @@ export default function SignFlow() {
             </button>
             <Link
               href="/home"
-              className="sign-skip py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
+              className="sign-skip inline-flex items-center min-h-[44px] py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-magenta"
             >
               <ModeText
                 scenic="SKIP, TAKE ME TO THE WORK"

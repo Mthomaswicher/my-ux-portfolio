@@ -260,7 +260,7 @@ export default function GuestbookGallery() {
         </h2>
         <Link
           href="/sign"
-          className="gb-add-yours font-pixel text-[10px] tracking-widest text-glow-cyan hover:underline focus-visible:underline"
+          className="gb-add-yours inline-flex items-center min-h-[44px] py-2 font-pixel text-[10px] tracking-widest text-glow-cyan hover:underline focus-visible:underline"
         >
           <C k="addYours" />
         </Link>

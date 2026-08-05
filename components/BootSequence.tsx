@@ -180,10 +180,10 @@ export default function BootSequence() {
 
   return (
     <main id="main" className="min-h-[100dvh] flex items-center justify-center px-5 sm:px-6 py-10 sm:py-12">
-      <div className="w-full max-w-2xl">
+      <div className="w-full min-w-0 max-w-2xl">
         {!skipBoot && (
           <div
-            className="font-mono text-[13px] leading-relaxed text-ink-dim space-y-1 mb-10"
+            className="font-mono text-[12px] sm:text-[13px] leading-relaxed text-ink-dim space-y-1 mb-10 break-words"
             role="log"
             aria-live="polite"
             aria-atomic="false"
@@ -222,10 +222,13 @@ export default function BootSequence() {
           <ModeText
             scenic={
               <div
-                className="font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-magenta"
+                className="font-pixel text-[9px] sm:text-[12px] tracking-[0.12em] sm:tracking-widest text-glow-magenta break-words"
                 aria-hidden="true"
               >
-                ░ A PORTFOLIO BY MATTHEW THOMAS-WICHER ░
+                <span className="sm:hidden">░ A PORTFOLIO BY MTW ░</span>
+                <span className="hidden sm:inline">
+                  ░ A PORTFOLIO BY MATTHEW THOMAS-WICHER ░
+                </span>
               </div>
             }
             basic={

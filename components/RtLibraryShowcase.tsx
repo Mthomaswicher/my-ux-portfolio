@@ -129,7 +129,7 @@ export default function RtLibraryShowcase() {
           <ModeText scenic="░ COLOR TOKENS ░" basic="Color tokens" />
         </div>
         <div className="grid gap-4 lg:grid-cols-3">
-          <Tier number="01" label="Primitives" subtitle="Raw values" accent="#22d3ee">
+          <Tier number="01" label="Primitives" subtitle="Raw values" accent="var(--rt-cyan)">
             <ul className="list-none p-0 m-0 space-y-1">
               {COLOR_PRIMITIVES.map((p) => (
                 <TokenRow
@@ -147,7 +147,7 @@ export default function RtLibraryShowcase() {
             </ul>
           </Tier>
 
-          <Tier number="02" label="Semantic" subtitle="Purpose-bound aliases" accent="#ff2bd6">
+          <Tier number="02" label="Semantic" subtitle="Purpose-bound aliases" accent="var(--rt-magenta)">
             <ul className="list-none p-0 m-0 space-y-1">
               {SEMANTIC_COLORS.map((s) => (
                 <TokenRow
@@ -165,7 +165,7 @@ export default function RtLibraryShowcase() {
             </ul>
           </Tier>
 
-          <Tier number="03" label="Component" subtitle="Slot-specific bindings" accent="#a3e635">
+          <Tier number="03" label="Component" subtitle="Slot-specific bindings" accent="var(--rt-lime)">
             <ul className="list-none p-0 m-0 space-y-1">
               {COMPONENT_TOKENS.map((c) => (
                 <TokenRow
@@ -249,7 +249,7 @@ function Tier({
   return (
     <section
       className="cartridge p-4 relative"
-      style={{ boxShadow: `inset 0 0 0 1px ${accent}33` }}
+      style={{ boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${accent} 20%, transparent)` }}
     >
       <header className="mb-3 pb-3 border-b border-ink-ghost">
         <div className="flex items-baseline justify-between">
@@ -265,7 +265,7 @@ function Tier({
         </div>
         <h3
           className="font-display text-[28px] leading-none mt-1"
-          style={{ color: accent, textShadow: `0 0 8px ${accent}88` }}
+          style={{ color: accent, textShadow: `0 0 8px color-mix(in srgb, ${accent} 53%, transparent)` }}
         >
           {label}
         </h3>
@@ -390,8 +390,9 @@ function RoundupArticleCard() {
         >
           Read full ›
         </span>
-        <span style={{ color: "#ADBBC8", fontSize: 12 }}>
-          {/* Color/Text/subtext-light */}
+        <span style={{ color: "#60798F", fontSize: 12 }}>
+          {/* Color/Text/subtext-light, darkened from the library's #ADBBC8:
+              the original is 1.96:1 on white and fails WCAG AA for body text. */}
           Updated 2d ago
         </span>
       </div>

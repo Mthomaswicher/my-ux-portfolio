@@ -24,17 +24,30 @@ const DESTINATION_DEFAULT = "/home";
 const STAGE_W = 800;
 const STAGE_H = 500;
 const FORK = { x: STAGE_W / 2, y: 380 };
-const BASIC_END = { x: 110, y: 110 };
-const SCENIC_END = { x: STAGE_W - 110, y: 110 };
 
-function endFor(mode: Mode) {
-  return mode === "basic" ? BASIC_END : SCENIC_END;
+/**
+ * How far in from the stage edge each destination sits. The markers are
+ * centred on these points and their labels extend either side, so on a
+ * phone-width stage a 110 inset pushes the label past the edge and the
+ * stage's overflow clips it. Pull them further in when the stage is narrow.
+ */
+function endsFor(compact: boolean) {
+  const inset = compact ? 190 : 110;
+  return {
+    basic: { x: inset, y: 110 },
+    scenic: { x: STAGE_W - inset, y: 110 },
+  };
+}
+
+function endFor(mode: Mode, compact: boolean) {
+  const ends = endsFor(compact);
+  return mode === "basic" ? ends.basic : ends.scenic;
 }
 
 /** Walk waypoints, a curve looks more "walking down a path"
  * than a straight line. */
-function pathFor(mode: Mode) {
-  const end = endFor(mode);
+function pathFor(mode: Mode, compact: boolean) {
+  const end = endFor(mode, compact);
   const mid = {
     x: (FORK.x + end.x) / 2 + (mode === "basic" ? -10 : 10),
     y: (FORK.y + end.y) / 2 + 40,
@@ -48,11 +61,21 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
   const { play } = useSound();
   const reduced = useReducedMotion();
 
+  const [compact, setCompact] = useState(false);
   const [hovered, setHovered] = useState<Mode | null>(null);
   const [chosen, setChosen] = useState<Mode | null>(null);
   const [walkProgress, setWalkProgress] = useState(0); // 0..1 along the chosen path
   const [stride, setStride] = useState<0 | 1>(0);
   const [closing, setClosing] = useState(false);
+
+  // Narrow stages need the destinations pulled inboard so their labels fit.
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   // Idle eye-look at the hovered destination.
   const eyeOffset = (() => {
@@ -119,7 +142,7 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
   // Position of robot in stage space, at fork until chosen, then animates.
   const robotPos = (() => {
     if (!chosen) return FORK;
-    const [a, b, c] = pathFor(chosen);
+    const [a, b, c] = pathFor(chosen, compact);
     // Quadratic-bezier lerp through three points.
     const p = walkProgress;
     const x = (1 - p) * (1 - p) * a.x + 2 * (1 - p) * p * b.x + p * p * c.x;
@@ -128,6 +151,7 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
   })();
 
   const robotFacing: 1 | -1 = chosen === "basic" ? -1 : 1;
+  const ends = endsFor(compact);
 
   return (
     <div
@@ -155,10 +179,10 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
             </div>
           }
         />
-        <h2 className="font-pixel text-[16px] sm:text-[20px] leading-tight tracking-widest text-glow-cyan mb-1">
+        <h2 className="font-pixel text-[14px] sm:text-[20px] leading-tight tracking-[0.12em] sm:tracking-widest text-glow-cyan mb-1 break-words">
           <ModeText scenic="CHOOSE YOUR VIEW" basic="Choose how you view this" />
         </h2>
-        <p className="font-mono text-[12px] sm:text-[13px] text-ink-dim max-w-lg leading-relaxed">
+        <p className="font-mono text-[12px] sm:text-[13px] text-ink-dim max-w-lg leading-relaxed break-words">
           <ModeText
             scenic="Same work behind both. Interactive is the designed experience. Just the work is a plain, fast read."
             basic="Same work behind both. Interactive is the designed experience. Just the work is a plain, fast read. Switch any time from the sidebar."
@@ -179,21 +203,22 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
         <Path
           mode="basic"
           start={FORK}
-          end={BASIC_END}
+          end={ends.basic}
           lit={hovered === "basic" || chosen === "basic"}
           progress={chosen === "basic" ? walkProgress : 0}
         />
         <Path
           mode="scenic"
           start={FORK}
-          end={SCENIC_END}
+          end={ends.scenic}
           lit={hovered === "scenic" || chosen === "scenic"}
           progress={chosen === "scenic" ? walkProgress : 0}
         />
 
         <Destination
           mode="basic"
-          pos={BASIC_END}
+          pos={ends.basic}
+          compact={compact}
           hovered={hovered === "basic"}
           chosen={chosen === "basic"}
           disabled={chosen !== null && chosen !== "basic"}
@@ -202,7 +227,8 @@ export default function PathChooser({ active, destination = DESTINATION_DEFAULT 
         />
         <Destination
           mode="scenic"
-          pos={SCENIC_END}
+          pos={ends.scenic}
+          compact={compact}
           hovered={hovered === "scenic"}
           chosen={chosen === "scenic"}
           disabled={chosen !== null && chosen !== "scenic"}
@@ -413,6 +439,7 @@ function Destination({
   hovered,
   chosen,
   disabled,
+  compact,
   onHover,
   onSelect,
 }: {
@@ -421,6 +448,7 @@ function Destination({
   hovered: boolean;
   chosen: boolean;
   disabled: boolean;
+  compact: boolean;
   onHover: (h: boolean) => void;
   onSelect: () => void;
 }) {
@@ -447,9 +475,12 @@ function Destination({
       className={`absolute flex flex-col items-center gap-1.5 sm:gap-2 group disabled:cursor-default ${
         chosen ? "z-10" : ""
       }`}
+      // Cap the label box so a long word can never push past the stage edge.
+      // 44% of the stage each, leaving room between the two destinations.
       style={{
         left: `${xPct}%`,
         top: `${yPct}%`,
+        width: compact ? "44%" : "auto",
         transform: `translate(-50%, -50%) scale(${hovered || chosen ? 1.05 : 1})`,
         transition: "transform 0.25s ease",
       }}
@@ -462,8 +493,8 @@ function Destination({
       <div
         className={`text-center ${
           isScenic
-            ? "font-pixel text-[10px] sm:text-[12px] tracking-widest text-glow-cyan group-hover:text-glow-magenta whitespace-nowrap"
-            : "text-[12px] sm:text-[15px] text-ink whitespace-nowrap"
+            ? "font-pixel text-[9px] sm:text-[12px] tracking-widest text-glow-cyan group-hover:text-glow-magenta"
+            : "text-[12px] sm:text-[15px] text-ink"
         }`}
         style={
           isScenic
@@ -474,7 +505,7 @@ function Destination({
         {isScenic ? "INTERACTIVE" : "Just the work"}
       </div>
       <div
-        className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-mono text-ink-mute group-hover:text-ink"
+        className="text-[8px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] font-mono text-ink-mute group-hover:text-ink"
       >
         {isScenic ? "Sound + motion" : "Plain + fast"}
       </div>

@@ -10,11 +10,11 @@ type Props = { variant: "top" | "bottom" };
 export default function CaseStudyNavBack({ variant }: Props) {
   const isTop = variant === "top";
   const scenicClass = isTop
-    ? "inline-block py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
-    : "font-pixel text-[12px] tracking-widest text-ink hover:text-glow-cyan focus-visible:text-glow-cyan";
+    ? "inline-flex items-center min-h-[44px] py-2 font-pixel text-[10px] tracking-widest text-ink-mute hover:text-glow-cyan focus-visible:text-glow-cyan"
+    : "inline-flex items-center min-h-[44px] py-2 font-pixel text-[12px] tracking-widest text-ink hover:text-glow-cyan focus-visible:text-glow-cyan";
   const basicClass = isTop
-    ? "inline-block py-2 text-[13px] font-mono text-ink-mute hover:text-ink underline-offset-4 hover:underline"
-    : "inline-block text-[14px] font-mono text-ink hover:text-ink-mute underline-offset-4 hover:underline";
+    ? "inline-flex items-center min-h-[44px] py-2 text-[13px] font-mono text-ink-mute hover:text-ink underline-offset-4 hover:underline"
+    : "inline-flex items-center min-h-[44px] py-2 text-[14px] font-mono text-ink hover:text-ink-mute underline-offset-4 hover:underline";
 
   return (
     <ModeText

@@ -434,10 +434,33 @@ html[data-scroll-locked="true"] body {
   border-top: 1px dashed rgba(168, 168, 192, 0.18);
 }
 
-/* Focus rings */
+/* Design-system showcase accents. The neon values are only legible on the
+   dark surface; on the light theme they drop to ~1.5:1, so each has a
+   darkened twin that clears 4.5:1 on the showcase's off-white cards. */
+:root {
+  --rt-cyan: #22d3ee;
+  --rt-magenta: #ff2bd6;
+  --rt-lime: #a3e635;
+}
+
+[data-theme="light"],
+[data-mode="basic"] {
+  --rt-cyan: #0b8193;
+  --rt-magenta: #d600ad;
+  --rt-lime: #557f10;
+}
+
+/* Focus rings.
+   The colour tokens are bare RGB tuples ("34 211 238"), so they must be
+   wrapped in rgb(). Passing the tuple straight to `outline` makes the whole
+   declaration invalid and the ring silently disappears (WCAG 2.4.7).
+   The paired dark/light outline keeps the ring visible on any background
+   (WCAG 2.4.11 focus appearance). */
 *:focus-visible {
-  outline: 2px solid var(--neon-cyan);
+  outline: 3px solid rgb(var(--neon-cyan));
   outline-offset: 2px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 5px rgb(var(--bg-void) / 0.85);
 }
 
 /* ---------------------------------------------------------------------------
@@ -536,6 +559,7 @@ html[data-scroll-locked="true"] body {
 }
 [data-mode="basic"] *:focus-visible {
   outline-color: rgb(var(--ink));
+  box-shadow: 0 0 0 5px rgb(var(--bg-void) / 0.9);
 }
 [data-mode="basic"] * {
   -webkit-tap-highlight-color: rgb(var(--ink) / 0.08);

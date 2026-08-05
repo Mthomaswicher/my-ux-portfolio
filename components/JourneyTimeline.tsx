@@ -230,7 +230,21 @@ function StageCardItem({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
-  const initial = reduce ? {} : { opacity: 0, x: isLeft ? -60 : 60, y: 30 };
+  // The horizontal entrance offset only has room on the two-column desktop
+  // layout. Below lg the cards are full-width, so a ±60px slide pushes them
+  // past the viewport (and they sit there until the observer fires).
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setWide(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const initial = reduce
+    ? {}
+    : { opacity: 0, x: wide ? (isLeft ? -60 : 60) : 0, y: 30 };
   const animate = inView
     ? { opacity: 1, x: 0, y: 0 }
     : reduce
