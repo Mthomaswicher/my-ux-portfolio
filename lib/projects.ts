@@ -41,7 +41,7 @@ export const projects: Project[] = [
     accent: "cyan",
     hero: `${TIGER}/00-preview.svg`,
     tilt: 1.6,
-    tags: ["Capital One", "DevX", "SHIPPED", "AI"],
+    tags: ["Capital One", "DevX", "AI"],
     mascot: "◈",
     screens: [
       `${TIGER}/00-preview.svg`,
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     accent: "cyan",
     hero: `${IDP}/00-preview.svg`,
     tilt: -2.0,
-    tags: ["Capital One", "DevX", "SHIPPED"],
+    tags: ["Capital One", "DevX"],
     mascot: "⚙",
     screens: [
       `${IDP}/00-preview.svg`,
