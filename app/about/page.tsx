@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import ResumeDisk from "@/components/ResumeDisk";
@@ -227,7 +228,13 @@ export default function About() {
               </p>
               <p>
                 On my own time I built{" "}
-                <span className="text-glow-cyan">Quick Screenshot to Code</span>,
+                <Link
+                  href="/lab/#exhibit-screenshot-to-code"
+                  className="text-glow-cyan underline decoration-dotted underline-offset-4 hover:decoration-solid"
+                >
+                  Quick Screenshot to Code
+                </Link>
+                ,
                 a Figma plugin that takes a screenshot of any website and turns
                 it into front-end code in whatever framework you want. It is
                 used by <span className="text-glow-cyan">1,700+ designers</span>.

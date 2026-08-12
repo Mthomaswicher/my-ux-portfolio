@@ -2,6 +2,7 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import RtLibraryShowcase from "@/components/RtLibraryShowcase";
+import ScreenshotToCodeShowcase from "@/components/ScreenshotToCodeShowcase";
 import ModeText from "@/components/ModeText";
 
 export const metadata = {
@@ -95,10 +96,63 @@ export default function Lab() {
             full case study. I like it anyway.
           </p>
 
-          <section aria-labelledby="exhibit-money-magnet">
+          <section aria-labelledby="exhibit-screenshot-to-code">
             <header className="mb-6 flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 gap-y-2">
               <span className="font-pixel text-[10px] tracking-widest text-ink-mute">
                 EXHIBIT 01
+              </span>
+              <h2
+                id="exhibit-screenshot-to-code"
+                className="font-display text-[26px] sm:text-[36px] md:text-[44px] leading-[1.05] sm:leading-none text-glow-lime"
+              >
+                Quick Screenshot to Code
+              </h2>
+              <span className="font-pixel text-[9px] tracking-widest text-glow-lime">
+                LIVE · 1,700+ DESIGNERS
+              </span>
+            </header>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
+              <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
+                A Figma plugin that turns a screenshot of any website into
+                working front-end code in the framework you pick. Paste into
+                FigJam, hit Convert, get code back in seconds. I designed and
+                built it solo, on my own time. 1,700+ designers use it. Try
+                the flow below.
+              </p>
+              <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
+                <dd>Design + all the code</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Tools</dt>
+                <dd>Figma Plugin API · TypeScript</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Users</dt>
+                <dd>1,700+ designers</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Status</dt>
+                <dd>Live on Figma Community</dd>
+              </dl>
+            </div>
+
+            <ScreenshotToCodeShowcase />
+
+            <a
+              href="https://www.figma.com/community/plugin/1393007160057387991/quick-screenshot-to-code"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cartridge group mt-8 inline-flex items-center gap-3 px-5 py-3 font-pixel text-[10px] tracking-widest text-glow-lime"
+            >
+              INSTALL ON FIGMA COMMUNITY
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
+                ↗
+              </span>
+            </a>
+          </section>
+
+          <hr className="border-0 border-t border-ink-ghost my-16 sm:my-20" />
+
+          <section aria-labelledby="exhibit-money-magnet">
+            <header className="mb-6 flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 gap-y-2">
+              <span className="font-pixel text-[10px] tracking-widest text-ink-mute">
+                EXHIBIT 02
               </span>
               <h2
                 id="exhibit-money-magnet"
@@ -168,7 +222,7 @@ export default function Lab() {
           <section aria-labelledby="exhibit-rt-library">
             <header className="mb-6 flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 gap-y-2">
               <span className="font-pixel text-[10px] tracking-widest text-ink-mute">
-                EXHIBIT 02
+                EXHIBIT 03
               </span>
               <h2
                 id="exhibit-rt-library"
