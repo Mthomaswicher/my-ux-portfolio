@@ -2,7 +2,6 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import RtLibraryShowcase from "@/components/RtLibraryShowcase";
-import ScreenshotToCodeShowcase from "@/components/ScreenshotToCodeShowcase";
 import ModeText from "@/components/ModeText";
 
 export const metadata = {
@@ -14,6 +13,28 @@ type Screen = {
   alt: string;
   caption: string;
 };
+
+const PLUGIN_URL =
+  "https://www.figma.com/community/plugin/1393007160057387991/quick-screenshot-to-code";
+
+// The plugin's actual Community listing slides, pulled from the live page.
+const PLUGIN_SLIDES: Screen[] = [
+  {
+    src: "/lab/screenshot-to-code/carousel-1.png",
+    alt: "Quick Screenshot to Code listing slide: eight output targets across web and mobile, from HTML and Tailwind to SwiftUI and Jetpack Compose",
+    caption: "Eight targets, web and mobile.",
+  },
+  {
+    src: "/lab/screenshot-to-code/carousel-2.png",
+    alt: "Quick Screenshot to Code listing slide: three steps, select a layer, pick a stack, read the code, in about twenty seconds",
+    caption: "Three steps, about twenty seconds.",
+  },
+  {
+    src: "/lab/screenshot-to-code/carousel-3.png",
+    alt: "Quick Screenshot to Code listing slide: the generated code appears on the canvas next to the design",
+    caption: "Code lands next to the design.",
+  },
+];
 
 const MONEY_MAGNET_SCREENS: Screen[] = [
   {
@@ -112,39 +133,65 @@ export default function Lab() {
               </span>
             </header>
 
+            <a
+              href={PLUGIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Install Quick Screenshot to Code on Figma Community"
+              className="cartridge group block relative overflow-hidden mb-10 aspect-video"
+            >
+              <Image
+                src="/lab/screenshot-to-code/cover.png"
+                alt="Quick Screenshot to Code cover art: the frame you drew, in the stack you ship, a wireframe card converting into React code"
+                fill
+                sizes="(max-width: 1024px) 100vw, 900px"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg-void/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 font-pixel text-[10px] tracking-widest text-glow-lime">
+                INSTALL ON FIGMA COMMUNITY ↗
+              </div>
+            </a>
+
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-x-10 gap-y-6 mb-10">
               <p className="font-mono text-[14px] text-ink-dim leading-relaxed max-w-xl">
-                A Figma plugin that turns a screenshot of any website into
-                working front-end code in the framework you pick. Paste into
-                FigJam, hit Convert, get code back in seconds. I designed and
-                built it solo, on my own time. 1,700+ designers use it. Try
-                the flow below.
+                A Figma plugin that turns a frame or screenshot on your canvas
+                into working code. Select a layer, pick one of eight stacks,
+                from Tailwind to SwiftUI, and the code lands on the board next
+                to the design about twenty seconds later. I designed and built
+                the whole thing solo: plugin, prompts, and listing. 1,700+
+                designers have used it.
               </p>
               <dl className="grid grid-cols-[68px_1fr] gap-y-1.5 font-mono text-[11.5px] text-ink-dim self-start">
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
                 <dd>Design + all the code</dd>
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Tools</dt>
-                <dd>Figma Plugin API · TypeScript</dd>
+                <dd>Figma Plugin API · TypeScript · OpenAI</dd>
+                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">When</dt>
+                <dd>2024&ndash;now · 18 releases</dd>
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Users</dt>
                 <dd>1,700+ designers</dd>
-                <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Status</dt>
-                <dd>Live on Figma Community</dd>
               </dl>
             </div>
 
-            <ScreenshotToCodeShowcase />
-
-            <a
-              href="https://www.figma.com/community/plugin/1393007160057387991/quick-screenshot-to-code"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cartridge group mt-8 inline-flex items-center gap-3 px-5 py-3 font-pixel text-[10px] tracking-widest text-glow-lime"
-            >
-              INSTALL ON FIGMA COMMUNITY
-              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
-                ↗
-              </span>
-            </a>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 md:gap-7">
+              {PLUGIN_SLIDES.map((slide) => (
+                <figure key={slide.src} className="group">
+                  <div className="cartridge relative overflow-hidden aspect-video bg-bg-deep">
+                    <Image
+                      src={slide.src}
+                      alt={slide.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <figcaption className="mt-3 font-pixel text-[9px] tracking-widest text-ink-mute uppercase">
+                    {slide.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </section>
 
           <hr className="border-0 border-t border-ink-ghost my-16 sm:my-20" />
