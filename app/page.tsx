@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import BootSequence from "@/components/BootSequence";
 
 export const metadata = {
-  title: "Matthew Thomas-Wicher · Sr. Product Designer",
+  title: "Matthew Thomas-Wicher · Senior Product Designer Portfolio",
 };
 
 export default function BootPage() {
