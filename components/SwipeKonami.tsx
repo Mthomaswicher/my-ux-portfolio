@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { cycleAccent } from "@/lib/accentEgg";
 import { useSound } from "./SoundProvider";
 

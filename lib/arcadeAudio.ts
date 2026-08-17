@@ -15,9 +15,11 @@ class ArcadeAudio {
     if (this.ctx) return;
     if (typeof window === "undefined") return;
     const Ctor =
-      (window as any).AudioContext || (window as any).webkitAudioContext;
+      window.AudioContext ??
+      (window as Window & { webkitAudioContext?: typeof AudioContext })
+        .webkitAudioContext;
     if (!Ctor) return;
-    this.ctx = new Ctor() as AudioContext;
+    this.ctx = new Ctor();
     this.master = this.ctx.createGain();
     this.master.gain.value = 0.15;
     this.master.connect(this.ctx.destination);

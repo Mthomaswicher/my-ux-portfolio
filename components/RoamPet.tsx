@@ -370,7 +370,7 @@ export default function RoamPet() {
     setY(e.clientY - dragOffsetRef.current.y);
   }
 
-  function onDrop(e: React.PointerEvent<HTMLDivElement>) {
+  function onDrop() {
     if (!dragging) return;
     setDragging(false);
     play("select");

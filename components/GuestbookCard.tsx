@@ -1,4 +1,5 @@
 import type { GuestbookRow } from "@/lib/supabase";
+import type { CSSVars } from "@/lib/cssVars";
 
 const COLOR_CLASSES: Record<GuestbookRow["color"], { glow: string; hex: string }> = {
   magenta: { glow: "text-glow-magenta", hex: "#ff2bd6" },
@@ -9,6 +10,7 @@ const COLOR_CLASSES: Record<GuestbookRow["color"], { glow: string; hex: string }
 
 export default function GuestbookCard({ entry }: { entry: GuestbookRow }) {
   const c = COLOR_CLASSES[entry.color] ?? COLOR_CLASSES.cyan;
+  const accentStyle: CSSVars = { "--accent": c.hex };
   const date = new Date(entry.created_at);
   const stamp = date.toLocaleDateString("en-US", {
     month: "2-digit",
@@ -19,7 +21,7 @@ export default function GuestbookCard({ entry }: { entry: GuestbookRow }) {
   return (
     <article
       className="cartridge p-3 break-inside-avoid mb-4"
-      style={{ ["--accent" as any]: c.hex }}
+      style={accentStyle}
     >
       <header className="flex items-center justify-between mb-2">
         <span className={`font-pixel text-[14px] tracking-widest ${c.glow}`}>{entry.tag}</span>

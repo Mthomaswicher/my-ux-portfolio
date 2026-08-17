@@ -61,8 +61,8 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
 
   const play = useCallback((name: SfxName) => {
     if (!arcade.isEnabled()) return;
-    const fn = (arcade as any)[name];
-    if (typeof fn === "function") fn.call(arcade);
+    // SfxName is the union of the no-arg sfx methods, so this is total.
+    arcade[name]();
   }, []);
 
   // Keyboard shortcut: M to toggle (skip when typing in inputs)

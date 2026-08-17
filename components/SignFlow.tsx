@@ -7,6 +7,7 @@ import SignatureCanvas, { SignatureCanvasHandle } from "./SignatureCanvas";
 import ModeText from "./ModeText";
 import { useSound } from "./SoundProvider";
 import { haptic } from "@/lib/haptic";
+import type { CSSVars } from "@/lib/cssVars";
 import { normalizeTag, randomTag } from "@/lib/visitorTags";
 import {
   getPublicClient,
@@ -20,6 +21,10 @@ const COLORS: Array<{ key: "magenta" | "cyan" | "lime" | "amber"; hex: string; l
   { key: "lime", hex: "#a3e635", label: "LIME" },
   { key: "amber", hex: "#fbbf24", label: "AMBER" },
 ];
+
+/** The swatch buttons drive their glow off --col rather than a class, so the
+ *  colour can stay data. */
+const swatchStyle = (hex: string): CSSVars => ({ "--col": hex });
 
 export default function SignFlow() {
   const router = useRouter();
@@ -285,11 +290,7 @@ export default function SignFlow() {
                       ? `border-transparent shadow-[0_0_0_1px_var(--col),0_0_12px_var(--col)] text-glow-${c.key}`
                       : "border-ink-ghost text-ink-dim hover:text-ink"
                   }`}
-                  style={
-                    {
-                      ["--col" as any]: c.hex,
-                    } as React.CSSProperties
-                  }
+                  style={swatchStyle(c.hex)}
                 >
                   {c.label}
                 </button>
