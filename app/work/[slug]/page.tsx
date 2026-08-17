@@ -20,9 +20,24 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const c = getCaseStudy(params.slug);
   if (!c) return {};
+  const title = `${c.title} · ${c.org}`;
   return {
-    title: `${c.title} · Matthew Thomas-Wicher`,
+    title: c.title,
     description: c.tagline,
+    alternates: { canonical: `/work/${c.slug}/` },
+    openGraph: {
+      title,
+      description: c.tagline,
+      url: `/work/${c.slug}/`,
+      type: "article",
+      images: [{ url: "/og.png", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: c.tagline,
+      images: ["/og.png"],
+    },
   };
 }
 

@@ -4,7 +4,9 @@ import GuestbookGallery from "@/components/GuestbookGallery";
 import GuestbookHero from "@/components/GuestbookHero";
 
 export const metadata = {
-  title: "Guestbook · Matthew Thomas-Wicher",
+  title: "Guestbook",
+  description: "People who signed on their way through. Every card is drawn by hand.",
+  alternates: { canonical: "/guestbook/" },
 };
 
 export default function GuestbookPage() {

@@ -14,6 +14,7 @@ import VisitorCounter from "@/components/VisitorCounter";
 import { SoundProvider } from "@/components/SoundProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ModeProvider } from "@/components/ModeProvider";
+import { SITE_URL } from "@/lib/site";
 
 const display = VT323({
   subsets: ["latin"],
@@ -60,19 +61,49 @@ export const viewport: Viewport = {
   themeColor: "#05050a",
 };
 
+const SITE_TITLE = "Matthew Thomas-Wicher · Senior Product Designer Portfolio";
+
+const DESCRIPTION =
+  "Product designer with a full-stack engineering background. Seven years of SaaS and fintech, currently at Capital One on the Developer Experience team building enterprise platforms and AI products.";
+
 export const metadata: Metadata = {
-  title: "Matthew Thomas-Wicher · Senior Product Designer Portfolio",
-  description:
-    "Product designer with a full-stack engineering background. Seven years of SaaS and fintech, currently at Capital One on the Developer Experience team building enterprise platforms and AI products.",
-  metadataBase: new URL("http://localhost:3000"),
+  title: {
+    default: SITE_TITLE,
+    template: "%s · Matthew Thomas-Wicher",
+  },
+  description: DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  authors: [{ name: "Matthew Thomas-Wicher", url: SITE_URL }],
+  creator: "Matthew Thomas-Wicher",
   formatDetection: {
     telephone: false,
   },
   openGraph: {
-    title: "Matthew Thomas-Wicher · Senior Product Designer Portfolio",
-    description:
-      "Product designer and design engineer in Washington, D.C. Currently at Capital One on the Developer Experience team.",
+    title: SITE_TITLE,
+    description: DESCRIPTION,
+    url: "/",
+    siteName: "Matthew Thomas-Wicher",
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Matthew Thomas-Wicher, Sr. Product Designer, Washington, D.C.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: DESCRIPTION,
+    images: ["/og.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

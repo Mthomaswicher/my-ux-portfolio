@@ -5,7 +5,10 @@ import RtLibraryShowcase from "@/components/RtLibraryShowcase";
 import ModeText from "@/components/ModeText";
 
 export const metadata = {
-  title: "Lab · Matthew Thomas-Wicher",
+  title: "Lab",
+  description:
+    "Experiments, small tools, and weekend builds. A hackathon-winning finance app and a 3-tier design token system.",
+  alternates: { canonical: "/lab/" },
 };
 
 type Screen = {
