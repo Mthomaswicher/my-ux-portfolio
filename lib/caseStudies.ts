@@ -166,7 +166,7 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "challenges",
         no: "04",
-        title: "Proving people could actually use it",
+        title: "Proving people could use it",
         body: [
           {
             kind: "p",
@@ -185,7 +185,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "More than 2,300 people across the technology organization have completed at least one. That number is the reason I can say this worked, because it is people doing something rather than people being granted something.",
+            text: "More than 2,300 people across the technology organization have completed at least one. Access counts would have told me nothing. Finishing a challenge takes an afternoon, so that number is people who built something.",
           },
         ],
       },
@@ -200,7 +200,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "What I do not have is the shape of the drop-off. I know how many people started and I know the challenges got harder on purpose, but I never got completion rates per challenge, and that is the number that would have told us which step was too big a jump. The other one I would want is time from first request to first running app, since that is the thing the work actually shortened.",
+            text: "What I do not have is the shape of the drop-off. I know how many people started and I know the challenges got harder on purpose, but I never got completion rates per challenge, and that is the number that would have told us which step was too big a jump. The other one I would want is time from first request to first running app, since that is what the work shortened.",
           },
           {
             kind: "p",
@@ -226,7 +226,7 @@ export const caseStudies: CaseStudy[] = [
     heroScreens: [
       `${IDP}/00-preview.svg`,
       `${IDP}/22-final.png`,
-      `${IDP}/03-new-experience.png`,
+      `${IDP}/03-new-experience.webp`,
       `${IDP}/16-concept-3a.webp`,
     ],
     role: "Sr. Product Designer, owned release experience end to end",
@@ -243,7 +243,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Capital One runs its own internal developer platform. I designed the release plugin, the part engineers use to actually ship code. Everything below is the real thing running, not a prototype.",
+            text: "Capital One runs its own internal developer platform. I designed the release plugin, the part engineers use to ship code. Everything below is the real thing running, not a prototype.",
           },
           {
             kind: "p",
@@ -269,7 +269,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Approvers were signing off on releases they could not see inside. The activity trail shows what Artemis actually did, so the decision stops being a guess.",
+            text: "Approvers were signing off on releases they could not see inside. The activity trail shows every step Artemis ran, so the decision stops being a guess.",
           },
           {
             kind: "video",
@@ -306,12 +306,12 @@ export const caseStudies: CaseStudy[] = [
             kind: "imgGrid",
             items: [
               {
-                src: `${IDP}/02-previous.png`,
+                src: `${IDP}/02-previous.webp`,
                 alt: "The previous release experience",
                 caption: "Before.",
               },
               {
-                src: `${IDP}/03-new-experience.png`,
+                src: `${IDP}/03-new-experience.webp`,
                 alt: "The new release experience",
                 caption: "After.",
               },
@@ -323,7 +323,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Nobody on design knew how the existing system really worked, so I spent the first two weeks having product and engineering walk me through it for each of the three people who touch a release. ICs, approvers, escalators.",
+            text: "Nobody on design knew how the existing system worked, so I spent the first two weeks having product and engineering walk me through it for each of the three people who touch a release. ICs, approvers, escalators.",
           },
           {
             kind: "p",
@@ -353,7 +353,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${IDP}/15-concept-1.png`,
+            src: `${IDP}/15-concept-1.webp`,
             alt: "First concept with audit questions behind a modal",
             caption: "First concept. The modal was the whole idea, and it was the one thing I could not keep.",
           },
@@ -432,7 +432,7 @@ export const caseStudies: CaseStudy[] = [
             kind: "img",
             src: `${IDP}/22-final.png`,
             alt: "Final release page with role-aware alerts and PAR activity raised up the page",
-            caption: "Where it landed. Role-aware alert up top, PAR activity and justification raised so approvers stop hunting.",
+            caption: "Where it ended up. Role-aware alert up top, PAR activity and justification raised so approvers stop hunting.",
           },
         ],
       },
@@ -457,7 +457,7 @@ export const caseStudies: CaseStudy[] = [
             kind: "img",
             src: `${IDP}/24-metrics.png`,
             alt: "Measurement framework built on the HEART model",
-            caption: "The measurement plan, built around what we could actually collect.",
+            caption: "The measurement plan, built around what we could collect.",
           },
           {
             kind: "h",
@@ -496,7 +496,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "The home screen was advertising features while people churned. I replaced the ads with balances you could act on, and auto-pay setup went up 37%.",
     hero: `${OPO}/00-preview.svg`,
-    heroScreens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.png`, `${OPO}/03-process.png`],
+    heroScreens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.webp`, `${OPO}/03-process.webp`],
     role: "Sr. Product Designer, owned the widget system across three product teams",
     team: "Design \u00b7 Loans, Savings and Credit PODs",
     timeframe: "32 weeks",
@@ -519,7 +519,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${OPO}/01-hero.png`,
+            src: `${OPO}/01-hero.webp`,
             alt: "Three Oportun app screens showing savings goals, goal selection, and the home screen with the savings widget",
             caption: "The home screen on the right is the one that changed. Balances up top, with the actions attached to them.",
           },
@@ -536,11 +536,11 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The numbers underneath said otherwise. Churn had been high for a while, referrals were sliding, and app store ratings were going with them. Digit had spent ten years as a savings app that quietly moved money for you. After the acquisition it became a savings account with a five dollar monthly fee, and the home screen was still mostly advertising features.",
+            text: "The numbers underneath said otherwise. Churn had been high for a while, referrals were sliding, and app store ratings were going with them. Digit had spent ten years as a savings app that moved money into savings for you without being asked. After the acquisition it became a savings account with a five dollar monthly fee, and the home screen was still mostly advertising features.",
           },
           {
             kind: "img",
-            src: `${OPO}/02-hypothesis.png`,
+            src: `${OPO}/02-hypothesis.webp`,
             alt: "Oportun home screen with savings and loan balances at the top and a promotional card below encouraging the user to try investing",
             caption: "Real balances at the top, and directly underneath, a card asking you to go try investing. That gap is the whole problem.",
           },
@@ -557,7 +557,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "A deck was not going to move anyone who had just won an award. I needed a number, and I needed it from their own traffic rather than a study.",
+            text: "A deck was not going to move anyone who had just won an award. I needed a number, and it had to come off their own traffic.",
           },
           {
             kind: "p",
@@ -566,7 +566,7 @@ export const caseStudies: CaseStudy[] = [
           {
             kind: "callout",
             tone: "plus",
-            text: "People were two to three times more likely to set up auto-pay or pay on time when the action was in front of them instead of a description of the action.",
+            text: "People were two to three times more likely to set up auto-pay or pay on time when the page let them do it instead of describing it.",
           },
           {
             kind: "p",
@@ -609,7 +609,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${OPO}/03-process.png`,
+            src: `${OPO}/03-process.webp`,
             alt: "Component specification showing five savings widget variants above annotated Figma property panels for the pill carousel and pill components",
             caption: "The widget across its states, and the component behind it. The annotations are there so another designer can pick it up without asking me how it works.",
           },
@@ -637,9 +637,9 @@ export const caseStudies: CaseStudy[] = [
       "Two million members, two products that agreed on nothing, and a March 2023 date nobody could move. I designed credit card servicing into the app without forking the design system to do it.",
     hero: `${OCS}/00-preview.svg`,
     heroScreens: [`${OCS}/00-preview.svg`,
-      `${OCS}/01-hero.png`,
-      `${OCS}/02-account-overview.png`,
-      `${OCS}/09-flow-architecture.png`,
+      `${OCS}/01-hero.webp`,
+      `${OCS}/02-account-overview.webp`,
+      `${OCS}/09-flow-architecture.webp`,
     ],
     role: "Sr. Product Designer, owned credit servicing end to end on iOS and Android",
     team: "Design \u00b7 Loans, Savings and Credit PODs \u00b7 iOS and Android engineering",
@@ -655,7 +655,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Credit card servicing, inside the app 2 million people were already using, on both iOS and Android, on the date it had to land.",
+            text: "Credit card servicing, inside the app 2 million people were already using, on both iOS and Android, on the date it was due.",
           },
           {
             kind: "p",
@@ -663,7 +663,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${OCS}/02-account-overview.png`,
+            src: `${OCS}/02-account-overview.webp`,
             alt: "Credit card account overview with status card, auto-pay enrollment prompt, primary pay button and recent activity",
             caption: "The account overview. Status at the top, one obvious action, activity underneath.",
           },
@@ -688,12 +688,12 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "What actually settled it was the cost. Extending the existing system was slightly more work up front and cheaper on every feature after it, and that was the version product and engineering could agree to.",
+            text: "What settled it was the cost. Extending the existing system was slightly more work up front and cheaper on every feature after it, and that was the version product and engineering could agree to.",
           },
           {
             kind: "callout",
             tone: "plus",
-            text: "We extended the design system instead of forking it. Credit components were built on top of what already existed rather than beside it.",
+            text: "We extended the design system instead of forking it. Credit components were built on top of what already existed.",
           },
           {
             kind: "p",
@@ -701,7 +701,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${OCS}/09-flow-architecture.png`,
+            src: `${OCS}/09-flow-architecture.webp`,
             alt: "End to end credit card servicing flow architecture from app home through payments, transaction history and auto-pay",
             caption: "The flow map, drawn before any screens. Everything that follows is downstream of where these lines split.",
           },
@@ -709,12 +709,12 @@ export const caseStudies: CaseStudy[] = [
             kind: "imgGrid",
             items: [
               {
-                src: `${OCS}/11-sketches-overview.png`,
+                src: `${OCS}/11-sketches-overview.webp`,
                 alt: "Early wireframes exploring how the credit card tab extends existing app navigation",
                 caption: "Working out how the credit card tab could hang off the existing navigation.",
               },
               {
-                src: `${OCS}/10-sketches-payment.png`,
+                src: `${OCS}/10-sketches-payment.webp`,
                 alt: "Early hand drawn wireframes for payment flow layout variations",
                 caption: "Payment layouts, sketched while the system question was still open.",
               },
@@ -733,7 +733,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Reading the support documentation against our usability sessions turned up the thing members never said out loud but were clearly calling in about. The status labels were accurate and still confusing, because they had been written for legal precision rather than for someone working out whether they were late.",
+            text: "Reading the support documentation against our usability sessions turned up the thing members never said out loud but were clearly calling in about. The status labels were accurate and still confusing. They had been written to satisfy legal, and legal is not the person squinting at a screen trying to work out whether they are late.",
           },
           {
             kind: "p",
@@ -743,17 +743,17 @@ export const caseStudies: CaseStudy[] = [
             kind: "imgGrid",
             items: [
               {
-                src: `${OCS}/03-status-upcoming.png`,
+                src: `${OCS}/03-status-upcoming.webp`,
                 alt: "Status card in the upcoming payment state",
                 caption: "Upcoming. Informational, no alarm.",
               },
               {
-                src: `${OCS}/04-status-due.png`,
+                src: `${OCS}/04-status-due.webp`,
                 alt: "Status card in the payment due state",
                 caption: "Due. The urgency comes from the label and the badge.",
               },
               {
-                src: `${OCS}/05-status-autopay.png`,
+                src: `${OCS}/05-status-autopay.webp`,
                 alt: "Status card in the auto pay enabled state",
                 caption: "Auto pay on. Nothing to do.",
               },
@@ -761,7 +761,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The hierarchy is built from type weight, spacing and a small amount of badge color. Each badge still carries the legally required label, but the layout around it makes the meaning obvious, so the same screen clears compliance and still reads in the two seconds someone actually gives it.",
+            text: "The hierarchy is built from type weight, spacing and a small amount of badge color. Each badge still carries the legally required label, but the layout around it makes the meaning obvious, so the same screen clears compliance and still reads in the two seconds someone gives it.",
           },
         ],
       },
@@ -776,7 +776,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Two things were causing it, and both showed up in testing rather than in the data.",
+            text: "Two things were causing it. Neither showed up in the data. Both came out of testing.",
           },
           {
             kind: "p",
@@ -784,18 +784,18 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The other one was quieter. People were picking payment dates outside their billing cycle without knowing it, so payments bounced or landed on the wrong statement. The calendar now only offers dates that work, and the disclosure sits on the page instead of behind a tooltip nobody taps.",
+            text: "The second one was harder to spot. People were picking payment dates outside their billing cycle without knowing it, so payments bounced or landed on the wrong statement. The calendar now only offers dates that work, and the disclosure sits on the page instead of behind a tooltip nobody taps.",
           },
           {
             kind: "imgGrid",
             items: [
               {
-                src: `${OCS}/06-autopay-amount.png`,
+                src: `${OCS}/06-autopay-amount.webp`,
                 alt: "Auto-pay enrollment, selecting a payment amount",
                 caption: "Pick an amount, with the billing disclosures right there.",
               },
               {
-                src: `${OCS}/07-autopay-date.png`,
+                src: `${OCS}/07-autopay-date.webp`,
                 alt: "Auto-pay enrollment, selecting a date from a calendar limited to valid billing cycle dates",
                 caption: "Pick a date. Only the valid ones are selectable.",
               },
@@ -803,9 +803,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${OCS}/08-autopay-confirm.png`,
+            src: `${OCS}/08-autopay-confirm.webp`,
             alt: "Auto-pay review and confirm screen with full ACH authorization language",
-            caption: "Review and confirm. The full ACH authorization sits above the button rather than behind a link.",
+            caption: "Review and confirm. The full ACH authorization sits above the button, not behind a link.",
           },
         ],
       },
@@ -820,7 +820,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "On a regulated payment product that is a compliance problem rather than a tidiness one. A payment status has to behave the same way on iOS and Android because the rules apply to both. So I designed them together and specified every status, disclosure and confirmation once for both.",
+            text: "On a regulated payment product that stops being a consistency preference and becomes a compliance problem. A payment status has to behave the same way on iOS and Android because the rules apply to both. So I designed them together and specified every status, disclosure and confirmation once for both.",
           },
           {
             kind: "p",
@@ -862,7 +862,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "A climate risk startup with more data than anyone outside the analyst team could read. I designed the product that made it usable, and wrote the front end for it.",
     hero: `${DCC}/00-preview.svg`,
-    heroScreens: [`${DCC}/00-preview.svg`,`${DCC}/05.png`, `${DCC}/08.png`],
+    heroScreens: [`${DCC}/00-preview.svg`,`${DCC}/05.webp`, `${DCC}/08.webp`],
     role: "Founding Product Designer, also shipped the front end",
     team: "Founding design and engineering team, working with data science",
     timeframe: "First public product",
@@ -885,7 +885,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${DCC}/05.png`,
+            src: `${DCC}/05.webp`,
             alt: "Demex Climate Center showing the Seoul annual average temperature report with trend and variability scores, a plain language explanation, and a historical observations chart",
             caption: "Four scores on the left, and on the right, the same thing said in a sentence. The panel on the right is the part that made this usable.",
           },
@@ -906,7 +906,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "I ran moderated and unmoderated studies with about 50 business owners through UserTesting to find out what they actually wanted to know. Three findings shaped the product.",
+            text: "I ran moderated and unmoderated studies with about 50 business owners through UserTesting to find out what they wanted to know. Three findings shaped the product.",
           },
           {
             kind: "features",
@@ -921,14 +921,14 @@ export const caseStudies: CaseStudy[] = [
               },
               {
                 title: "Insurance does not cover it",
-                body: "63% said their policy did not actually cover the weather damage they got, which left them paying for it themselves.",
+                body: "63% found their policy did not cover the weather damage they got, which left them paying for it themselves.",
               },
             ],
           },
           {
             kind: "callout",
             tone: "note",
-            text: "So the job was turning a large amount of climate signal into a few numbers a non-analyst could trust in a couple of seconds.",
+            text: "So the job was turning decades of climate data into a few numbers a non-analyst could trust in a couple of seconds.",
           },
         ],
       },
@@ -945,12 +945,12 @@ export const caseStudies: CaseStudy[] = [
             kind: "imgGrid",
             items: [
               {
-                src: `${DCC}/06.png`,
+                src: `${DCC}/06.webp`,
                 alt: "Wireframe of the Demex Climate Center home page with the climate index, search and an explainer on parametrics",
                 caption: "Home. Index first, search second, a short explainer for people who had never heard of parametrics.",
               },
               {
-                src: `${DCC}/07.png`,
+                src: `${DCC}/07.webp`,
                 alt: "Wireframe of the search results and detail view with the DVI score, historical band and comparative views",
                 caption: "Results. Score, history, comparison, in that order.",
               },
@@ -958,7 +958,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The decision that mattered most was putting a plain language explanation next to every score rather than under a help link. A trend score of 61 means nothing on its own. A sentence saying temperature has strongly increased over the past ten years and the year to year range is widening is something a business owner can act on.",
+            text: "The decision that mattered most was putting a plain language explanation next to every score instead of under a help link. A trend score of 61 means nothing on its own. A sentence saying temperature has strongly increased over the past ten years and the year to year range is widening is something a business owner can act on.",
           },
         ],
       },
@@ -969,7 +969,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Once the platform worked end to end I ran moderated sessions with five people to see whether the navigation and the index itself were landing.",
+            text: "Once the platform worked end to end I ran moderated sessions with five people to see whether the navigation and the index itself were working.",
           },
           {
             kind: "quote",
@@ -982,7 +982,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "img",
-            src: `${DCC}/08.png`,
+            src: `${DCC}/08.webp`,
             alt: "Climate trend against variability matrix with every dot representing a location plotted on its historical baseline",
             caption: "Trend against variability. Every dot is a location on its own historical baseline, which is what turns a score into a comparison.",
           },

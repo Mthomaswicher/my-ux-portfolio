@@ -45,8 +45,7 @@ function ScenicFooter() {
             THANKS FOR PLAYING.
           </div>
           <p className="font-mono text-[13px] text-ink-dim max-w-md leading-relaxed">
-            Built in Washington, D.C., for late-night arcades, design systems, and
-            anyone who reads the patch notes.
+            Built in Washington, D.C., for anyone who reads the patch notes.
           </p>
           <div className="flex flex-wrap gap-x-3 gap-y-2 font-mono text-[11px] text-ink-mute">
             <a href="mailto:mthomaswicher@gmail.com" className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan">

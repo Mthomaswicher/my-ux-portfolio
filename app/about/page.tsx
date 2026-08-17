@@ -5,7 +5,10 @@ import ResumeDisk from "@/components/ResumeDisk";
 import ModeText from "@/components/ModeText";
 
 export const metadata = {
-  title: "About · Matthew Thomas-Wicher",
+  title: "About",
+  description:
+    "Product designer in Washington, D.C. with a full-stack engineering background. Seven years of SaaS and fintech, now on the Developer Experience team at Capital One.",
+  alternates: { canonical: "/about/" },
 };
 
 const STATS = [
@@ -207,8 +210,8 @@ export default function About() {
             <div className="space-y-4 font-mono text-[14px] leading-relaxed text-ink-dim">
               <p>
                 I&apos;m a product designer with a strong background in
-                full-stack engineering, so I design with a clear and holistic
-                view of how things actually get built. That&apos;s{" "}
+                full-stack engineering, so I design knowing how the thing gets
+                built. That&apos;s{" "}
                 <span className="text-glow-cyan">seven years</span> of SaaS and
                 fintech.
               </p>
@@ -233,8 +236,8 @@ export default function About() {
                 used by <span className="text-glow-cyan">1,700+ designers</span>.
               </p>
               <p>
-                I like ambiguous problems that matter. AI products, developer
-                tools, things nobody has figured out yet. Before Capital One I
+                I like ambiguous problems. AI products, developer tools, things
+                nobody has figured out yet. Before Capital One I
                 was at Berkeley Research Group, Oportun, and Demex.
               </p>
               <p>

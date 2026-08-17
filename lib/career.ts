@@ -152,7 +152,7 @@ export const BONUS_TRACK: BonusItem[] = [
     year: "2014",
     title: "B.A., Political Science",
     org: "Flagler College · St. Augustine, FL",
-    body: "Four years of reading arguments closely. It stuck.",
+    body: "Four years of reading arguments closely. I still do it for a living.",
   },
   {
     year: "2017",

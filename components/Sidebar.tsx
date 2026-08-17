@@ -172,7 +172,7 @@ export default function Sidebar() {
                   </div>
                   <p className="font-mono text-[13px] leading-relaxed text-ink-dim">
                     Product designer with a full-stack engineering background, so
-                    I design with a clear view of how things get built. Currently
+                    I design knowing how the thing gets built. Currently
                     at <span className="text-glow-cyan">Capital One</span> on the
                     Developer Experience team, on enterprise platforms and AI
                     products.
@@ -189,7 +189,7 @@ export default function Sidebar() {
                   style={{ fontFamily: "var(--font-garamond)" }}
                 >
                   Product designer with a full-stack engineering background, so I
-                  design with a clear view of how things get built. Seven years of
+                  design knowing how the thing gets built. Seven years of
                   SaaS and fintech, currently at Capital One on the Developer
                   Experience team. Before this, Berkeley Research Group, Oportun,
                   and Demex.

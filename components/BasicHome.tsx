@@ -30,8 +30,8 @@ export default function BasicHome() {
               style={{ fontFamily: "var(--font-garamond)" }}
             >
               I&apos;m a product designer with a strong background in full-stack
-              engineering, so I design with a clear view of how things actually
-              get built. Seven years of SaaS and fintech, currently at Capital
+              engineering, so I design knowing how the thing gets built. Seven
+              years of SaaS and fintech, currently at Capital
               One on the Developer Experience team, building data-heavy
               enterprise platforms and AI products.
             </p>
