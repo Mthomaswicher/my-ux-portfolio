@@ -69,7 +69,7 @@ export const projects: Project[] = [
     mascot: "⚙",
     screens: [
       `${IDP}/00-preview.svg`,
-      `${IDP}/03-new-experience.png`,
+      `${IDP}/03-new-experience.webp`,
       `${IDP}/22-final.png`,
       `${IDP}/16-concept-3a.webp`,
     ],
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     tilt: 2.2,
     tags: ["#fintech", "#onboarding"],
     mascot: "$",
-    screens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.png`, `${OPO}/03-process.png`],
+    screens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.webp`, `${OPO}/03-process.webp`],
   },
   {
     no: "04",
@@ -112,9 +112,9 @@ export const projects: Project[] = [
     mascot: "💳",
     screens: [
       `${OCS}/00-preview.svg`,
-      `${OCS}/01-hero.png`,
-      `${OCS}/02-account-overview.png`,
-      `${OCS}/05-status-autopay.png`,
+      `${OCS}/01-hero.webp`,
+      `${OCS}/02-account-overview.webp`,
+      `${OCS}/05-status-autopay.webp`,
     ],
   },
   {
@@ -136,9 +136,9 @@ export const projects: Project[] = [
     mascot: "△",
     screens: [
       "/images/case-studies/demex-climate-center/00-preview.svg",
-      "/images/case-studies/demex-climate-center/05.png",
-      "/images/case-studies/demex-climate-center/08.png",
-      "/images/case-studies/demex-climate-center/01.png",
+      "/images/case-studies/demex-climate-center/05.webp",
+      "/images/case-studies/demex-climate-center/08.webp",
+      "/images/case-studies/demex-climate-center/01.webp",
     ],
   },
 ];
