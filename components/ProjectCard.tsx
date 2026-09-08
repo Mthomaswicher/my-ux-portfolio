@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { Project } from "@/lib/projects";
 import ProductReel from "./ProductReel";
 import SfxLink from "./SfxLink";
+import SiftTile from "./SiftTile";
 import TileDecor from "./TileDecor";
 import TileSheen from "./TileSheen";
 
@@ -120,11 +121,15 @@ export function ProjectCardBody({ project }: { project: Project }) {
               className="relative bg-bg-void overflow-hidden aspect-[16/10]"
             >
               <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.04]">
-                <ProductReel
-                  screens={screens}
-                  alt={project.title}
-                  accent={reelAccent}
-                />
+                {project.href === "/work/sift" ? (
+                  <SiftTile />
+                ) : (
+                  <ProductReel
+                    screens={screens}
+                    alt={project.title}
+                    accent={reelAccent}
+                  />
+                )}
               </div>
               <TileSheen accentHex={accentHex} />
               <TileDecor project={project} />

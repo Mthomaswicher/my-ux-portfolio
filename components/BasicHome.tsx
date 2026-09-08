@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
+import SiftTile from "./SiftTile";
 
 /**
  * Basic-mode home: a plain editorial portfolio. No arcade copy, no
@@ -149,7 +150,11 @@ function BasicProjectCard({ project: p }: { project: (typeof projects)[number] }
         {...wrapperProps}
         className="block group focus:outline-none"
       >
-        {p.hero && (
+        {p.href === "/work/sift" ? (
+          <div className="relative aspect-[16/10] overflow-hidden border border-ink-ghost bg-bg-deep mb-3">
+            <SiftTile />
+          </div>
+        ) : p.hero ? (
           <div className="relative aspect-[16/10] overflow-hidden border border-ink-ghost bg-bg-deep mb-3">
             <Image
               src={p.hero}
@@ -159,7 +164,7 @@ function BasicProjectCard({ project: p }: { project: (typeof projects)[number] }
               className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
             />
           </div>
-        )}
+        ) : null}
         <h3
           className="text-[18px] sm:text-[20px] leading-snug text-ink group-hover:underline underline-offset-4 mb-1"
           style={{ fontFamily: "var(--font-garamond)", fontWeight: 500 }}

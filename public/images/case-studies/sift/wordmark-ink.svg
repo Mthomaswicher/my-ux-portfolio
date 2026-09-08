@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1.5 1.5 34.5 19.5" width="345" height="195">
+  <!-- The Sift wordmark, drawn rather than set: monoline, one stroke weight (2.1 on
+       the 24 grid), round caps, the f and t sharing one crossbar, the i dotted with a
+       grain from the mark. From components/Wordmark.tsx, verbatim geometry.
+       Ids are stable for animation: glyph-s, glyph-i, glyph-f, glyph-t, crossbar, tittle.
+       The stroke paths can be trimmed (draw-on) in any motion tool; the tittle is the
+       one filled shape and reads as a grain landing. -->
+  <g id="wordmark" stroke="#101014" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path id="glyph-s" d="M11.6 11.2 C11.6 9.9 9.9 9.2 8.0 9.2 C6.0 9.2 4.0 9.8 4.0 11.2 C4.0 12.6 5.9 13.0 7.9 13.4 C9.9 13.8 11.8 14.3 11.8 15.9 C11.8 17.5 9.9 18.8 7.7 18.8 C5.7 18.8 3.6 18.1 3.6 16.6"/>
+    <path id="glyph-i" d="M16.3 9.4 L16.3 18.6"/>
+    <path id="glyph-f" d="M21.9 18.6 L21.9 7.4 C21.9 4.6 24.0 3.6 26.2 4.6"/>
+    <path id="glyph-t" d="M29.2 5.0 L29.2 15.9 C29.2 18.2 30.9 19.2 33.2 18.2"/>
+    <path id="crossbar" d="M20.4 9.4 L32.1 9.4"/>
+  </g>
+  <circle id="tittle" cx="16.3" cy="5.5" r="1.75" fill="#101014"/>
+</svg>
