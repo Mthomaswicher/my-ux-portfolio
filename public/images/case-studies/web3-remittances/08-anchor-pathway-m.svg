@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1120" width="700" height="1120" role="img" aria-label="The anchor pathway. An Oportun member deposits dollars through a U.S. anchor, value crosses the Stellar network in seconds, and a local anchor pays out pesos to the recipient.">
+  <defs>
+    <filter id="soft" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1A1A23" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .h  { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 34px; font-weight: 600; fill: #1A1A23; letter-spacing: -0.5px; }
+      .t2 { font-size: 19px; fill: #5A5A64; }
+      .kick { font-size: 15px; letter-spacing: 2px; fill: #6E6E78; }
+      .row { font-size: 21px; fill: #1A1A23; font-weight: 500; }
+      .sub { font-size: 17px; fill: #5A5A64; }
+      .cur { font-size: 26px; font-weight: 600; fill: #1A1A23; }
+    </style>
+  </defs>
+
+  <rect width="700" height="1120" fill="#FAFAFA"/>
+  <rect x="1" y="1" width="698" height="1118" fill="none" stroke="#1A1A23" stroke-opacity="0.14" stroke-width="2"/>
+
+  <text x="36" y="72" class="h t1">The anchor pathway</text>
+  <text x="36" y="106" class="h t2">Dollars in through a U.S. anchor, across Stellar</text>
+  <text x="36" y="132" class="h t2">in seconds, pesos out through a local one.</text>
+  <line x1="36" y1="164" x2="664" y2="164" stroke="#E4E4E7" stroke-width="2"/>
+
+  <g filter="url(#soft)"><rect x="36" y="200" width="628" height="200" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="64" y="248" class="m kick">THE SENDER</text>
+  <text x="64" y="284" class="h row">An Oportun member</text>
+  <text x="64" y="316" class="h sub">Taps in from the home dashboard and confirms.</text>
+  <text x="64" y="368" class="h cur">US$ in</text>
+
+  <line x1="350" y1="412" x2="350" y2="452" stroke="#71717A" stroke-width="3"/>
+  <path d="M350 464 l-10 -16 20 0 z" fill="#71717A"/>
+
+  <g filter="url(#soft)"><rect x="36" y="476" width="628" height="264" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <rect x="36" y="476" width="628" height="7" fill="#00871D"/>
+  <text x="64" y="528" class="m kick">THE STELLAR NETWORK</text>
+  <text x="64" y="564" class="h row">Settlement in seconds</text>
+  <text x="64" y="598" class="h sub">Anchor 1 &#183; FinClusive, U.S.</text>
+  <text x="64" y="624" class="h sub">Anchor 2 &#183; Biccos, MX</text>
+  <line x1="64" y1="652" x2="636" y2="652" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="64" y="686" class="h sub">Regulated partners on each end handle the</text>
+  <text x="64" y="712" class="h sub">ramps in local currency.</text>
+
+  <line x1="350" y1="752" x2="350" y2="792" stroke="#71717A" stroke-width="3"/>
+  <path d="M350 804 l-10 -16 20 0 z" fill="#71717A"/>
+
+  <g filter="url(#soft)"><rect x="36" y="816" width="628" height="200" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="64" y="864" class="m kick">THE RECIPIENT</text>
+  <text x="64" y="900" class="h row">Family at home</text>
+  <text x="64" y="932" class="h sub">Paid out in local currency, no crypto account.</text>
+  <text x="64" y="984" class="h cur">MX$ out</text>
+
+  <text x="36" y="1072" class="h sub">Redrawn from the hackathon deck for this page.</text>
+</svg>

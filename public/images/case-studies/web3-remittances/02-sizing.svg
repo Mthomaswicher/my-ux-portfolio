@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 620" width="1536" height="620" role="img" aria-label="Who sends and how big it is: a large share of Oportun members send remittances, U.S. consumers send 76 billion dollars abroad a year, and 41 million dollars moved in the last 12 months.">
+  <defs>
+    <filter id="soft" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#1A1A23" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .h  { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 52px; font-weight: 600; fill: #1A1A23; letter-spacing: -1px; }
+      .t2 { font-size: 26px; fill: #5A5A64; }
+      .kick { font-size: 19px; letter-spacing: 3px; fill: #6E6E78; }
+      .big { font-size: 64px; font-weight: 600; fill: #00871D; letter-spacing: -1px; }
+      .row { font-size: 27px; fill: #1A1A23; font-weight: 500; }
+      .sub { font-size: 23px; fill: #5A5A64; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="620" fill="#FAFAFA"/>
+  <rect x="1" y="1" width="1534" height="618" fill="none" stroke="#1A1A23" stroke-opacity="0.14" stroke-width="2"/>
+
+  <text x="64" y="112" class="h t1">Who sends, and how big it is</text>
+  <text x="64" y="158" class="h t2">The two facts that carried the pitch.</text>
+  <line x1="64" y1="200" x2="1472" y2="200" stroke="#E4E4E7" stroke-width="2"/>
+
+  <g filter="url(#soft)"><rect x="64" y="248" width="684" height="288" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="100" y="312" class="m kick">OUR USERS</text>
+  <text x="100" y="360" class="h row">A financial lifeline</text>
+  <text x="100" y="406" class="h sub">A large share of Oportun members send</text>
+  <text x="100" y="436" class="h sub">remittances, part of the millions in the</text>
+  <text x="100" y="466" class="h sub">U.S. with family abroad to support.</text>
+
+  <g filter="url(#soft)"><rect x="788" y="248" width="684" height="288" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="824" y="312" class="m kick">THE MARKET</text>
+  <text x="824" y="386" class="h big">$76B</text>
+  <text x="824" y="428" class="h sub">Sent abroad every year by U.S. consumers,</text>
+  <text x="824" y="458" class="h sub">with $41M moved in the last 12 months.</text>
+
+  <text x="64" y="576" class="h sub">Redrawn from the pitch deck for this page.</text>
+</svg>
