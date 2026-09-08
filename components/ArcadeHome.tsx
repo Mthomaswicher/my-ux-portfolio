@@ -24,13 +24,14 @@ export default function ArcadeHome() {
               <span className="caret" aria-hidden="true" />
             </h1>
             <p className="font-mono text-[14.5px] sm:text-[15px] md:text-[16px] leading-relaxed text-ink-dim max-w-2xl">
-              You found my game cabinet. Sign the{" "}
+              This is the arcade version of my portfolio, and every cartridge
+              below is a real case study. Sign the{" "}
               <Link href="/guestbook" className="underline hover:text-glow-cyan">
                 guestbook
               </Link>{" "}
-              on your way in, or skip the intro and head straight to the{" "}
+              on your way in, or jump straight to{" "}
               <a href="#cabinet" className="underline hover:text-glow-cyan">
-                game cartridges
+                the work
               </a>
               .
             </p>
