@@ -31,7 +31,7 @@ export const projects: Project[] = [
   {
     no: "01",
     title: "Sift",
-    org: "Solo product · App Store",
+    org: "Solo Side Project · App Store",
     status: "SHIPPED",
     blurb:
       "Recipe pages bury the recipe, and the screen sleeps while you cook. I fixed both solo, seven days from first commit to the App Store.",
