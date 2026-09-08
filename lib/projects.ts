@@ -43,7 +43,7 @@ export const projects: Project[] = [
     accent: "rose",
     hero: `${SIFT}/00-tile.webp`,
     tilt: 2.0,
-    tags: ["#ios", "#AI-built"],
+    tags: ["#ios"],
     mascot: "∴",
     screens: [`${SIFT}/00-tile.webp`, `${SIFT}/00-preview.webp`, `${SIFT}/01-trio.webp`],
   },
