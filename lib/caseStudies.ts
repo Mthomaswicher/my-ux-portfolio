@@ -60,7 +60,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "sift",
     title: "Sift",
-    org: "Solo Side Project · iOS + web",
+    org: "Solo Side Project, iOS and web",
     status: "SHIPPED",
     tagline:
       "Recipe pages bury four ingredients under ads and somebody's life story, and the screen goes dark while your hands are covered in something. I designed and shipped the fix solo, first commit to the App Store in seven days: every screen out of Figma, microinteractions and animations included, some code mine, and Claude vibe coding the rest to App Store standards.",
@@ -68,8 +68,8 @@ export const caseStudies: CaseStudy[] = [
     heroScreens: [`${SIFT}/00-preview.webp`, `${SIFT}/01-trio.webp`],
     role: "Everything. Product, design system, brand, code with Claude, App Store",
     team: "One person, with Claude Code as the instrument",
-    timeframe: "August to September 2026 · 7 days to 1.0, then three releases in ten days",
-    tools: "Figma · Claude Code · Next.js · Capacitor · Xcode",
+    timeframe: "August to September 2026, 7 days to 1.0, then three releases in ten days",
+    tools: "Figma, Claude Code, Next.js, Capacitor, Xcode",
     accent: "rose",
     brand: "sift",
     sections: [
@@ -447,7 +447,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "claude-code-tiger-team",
     title: "Claude Code Setup",
-    org: "Capital One · DevX",
+    org: "Capital One, DevX",
     status: "SHIPPED",
     tagline:
       "Claude Code showed up with one way in, and it only worked if you were an engineer. I led the tiger team that opened it to everyone else, and we shipped a setup site that walks you from no access to a running app without needing anyone's help.",
@@ -459,9 +459,9 @@ export const caseStudies: CaseStudy[] = [
       `${TIGER}/06-one-click.svg`,
     ],
     role: "Sr. Product Designer, tiger team lead",
-    team: "Lead plus 2 designers · working with PM, engineering, One Access and senior leadership",
+    team: "Lead plus 2 designers, working with PM, engineering, One Access and senior leadership",
     timeframe: "3 weeks, March 2026",
-    tools: "Claude Code · GitHub · Artifactory · VS Code",
+    tools: "Claude Code, GitHub, Artifactory, VS Code",
     accent: "cyan",
     brand: "capital-one",
     sections: [
@@ -617,7 +617,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "idp-release-plugin",
     title: "IDP Release Plugin",
-    org: "Capital One \u00b7 Internal Developer Platform",
+    org: "Capital One, Internal Developer Platform",
     status: "SHIPPED",
     tagline:
       "Shipping code meant checking five tools to answer one question. I designed the release plugin that put it in one place, and it went out to 3,600 engineers.",
@@ -629,9 +629,9 @@ export const caseStudies: CaseStudy[] = [
       `${IDP}/16-concept-3a.webp`,
     ],
     role: "Sr. Product Designer, owned release experience end to end",
-    team: "2 designers \u00b7 product, engineering, audit and cyber partners",
+    team: "2 designers, product, engineering, audit and cyber partners",
     timeframe: "32 weeks",
-    tools: "Figma \u00b7 Lucid \u00b7 Confluence \u00b7 Jira",
+    tools: "Figma, Lucid, Confluence, Jira",
     accent: "cyan",
     brand: "capital-one",
     sections: [
@@ -897,9 +897,9 @@ export const caseStudies: CaseStudy[] = [
     hero: `${OPO}/00-preview.svg`,
     heroScreens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.webp`, `${OPO}/03-process.webp`],
     role: "Sr. Product Designer, owned the widget system across three product teams",
-    team: "Design \u00b7 Loans, Savings and Credit PODs",
+    team: "Design, Loans, Savings and Credit PODs",
     timeframe: "32 weeks",
-    tools: "Figma \u00b7 A/B testing \u00b7 Heuristic eval",
+    tools: "Figma, A/B testing, Heuristic eval",
     accent: "lime",
     brand: "oportun",
     sections: [
@@ -1041,9 +1041,9 @@ export const caseStudies: CaseStudy[] = [
       `${OCS}/09-flow-architecture.webp`,
     ],
     role: "Sr. Product Designer, owned credit servicing end to end on iOS and Android",
-    team: "Design \u00b7 Loans, Savings and Credit PODs \u00b7 iOS and Android engineering",
+    team: "Design, Loans, Savings and Credit PODs, iOS and Android engineering",
     timeframe: "Jul 2022 sprint to Mar 2023 launch",
-    tools: "Figma \u00b7 iOS and Android \u00b7 Benchmarking \u00b7 Usability testing",
+    tools: "Figma, iOS and Android, Benchmarking, Usability testing",
     accent: "lime",
     brand: "oportun",
     sections: [
@@ -1265,7 +1265,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Founding Product Designer, also shipped the front end",
     team: "Founding design and engineering team, working with data science",
     timeframe: "First public product",
-    tools: "Figma \u00b7 React \u00b7 UserTesting \u00b7 Strategy",
+    tools: "Figma, React, UserTesting, Strategy",
     accent: "lime",
     brand: "demex",
     sections: [
@@ -1418,7 +1418,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "web3-powered-remittances",
     title: "Web3 Powered Remittances",
-    org: "Oportun · Hackathon",
+    org: "Oportun, Hackathon",
     status: "WON",
     tagline:
       "Sending money home from an Oportun account meant a Western Union counter or PayPal's fees. Our hackathon team put a remittance flow on Stellar rails, with the money landing in seconds for cents, and it won Most Creative Idea.",
@@ -1426,8 +1426,8 @@ export const caseStudies: CaseStudy[] = [
     heroScreens: [`${WEB3}/01.png`, `${WEB3}/08-anchor-pathway.svg`, `${WEB3}/02-sizing.svg`],
     role: "Product Designer. Research, the flow, and the pitch",
     team: "Cross-functional design and engineering hackathon team",
-    timeframe: "Oportun hackathon · one sprint",
-    tools: "Figma · Stellar network · User research",
+    timeframe: "Oportun hackathon, one sprint",
+    tools: "Figma, Stellar network, User research",
     accent: "amber",
     brand: "oportun",
     sections: [
