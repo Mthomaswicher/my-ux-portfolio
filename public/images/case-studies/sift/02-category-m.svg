@@ -24,7 +24,7 @@
   <text x="36" y="132" class="h t2">ratings shown. Capture assumes you come to the app.</text>
   <line x1="36" y1="164" x2="664" y2="164" stroke="#E4E4E7" stroke-width="2"/>
 
-  <text x="36" y="212" class="m lane">THE FIELD &#183; PASTE A LINK OR SHARE SHEET</text>
+  <text x="36" y="212" class="m lane">THE FIELD / PASTE A LINK OR SHARE SHEET</text>
 
   <g filter="url(#soft)"><rect x="36" y="236" width="628" height="510" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
   <g>
@@ -65,6 +65,6 @@
   <text x="64" y="1174" class="h row">Zero of twelve claim a Safari extension</text>
   <text x="64" y="1204" class="h sub">Read from their own store listings.</text>
 
-  <text x="36" y="1264" class="h sub">Where the field wins instead: 12 of 12 have a grocery</text>
+  <text x="36" y="1264" class="h sub">The field wins elsewhere. 12 of 12 have a grocery</text>
   <text x="36" y="1290" class="h sub">list, 11 of 12 plan meals. Sift competes on capture.</text>
 </svg>

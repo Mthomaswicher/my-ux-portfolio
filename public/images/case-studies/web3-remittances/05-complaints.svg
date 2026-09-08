@@ -25,7 +25,7 @@
   <text x="100" y="312" class="m kick">SLOW</text>
   <text x="100" y="358" class="h row">The counter and the wait</text>
   <text x="100" y="404" class="h sub">Western Union and wires cost the most in</text>
-  <text x="100" y="434" class="h sub">time: the trip to a store, cash in hand, and</text>
+  <text x="100" y="434" class="h sub">time. The trip to a store, cash in hand, and</text>
   <text x="100" y="464" class="h sub">a clock that runs until confirmation.</text>
 
   <g filter="url(#soft)"><rect x="788" y="248" width="684" height="288" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>

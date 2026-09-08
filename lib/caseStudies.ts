@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
     org: "Solo Side Project, iOS and web",
     status: "SHIPPED",
     tagline:
-      "Recipe pages bury four ingredients under ads and somebody's life story, and the screen goes dark while your hands are covered in something. I designed and shipped the fix solo, first commit to the App Store in seven days: every screen out of Figma, microinteractions and animations included, some code mine, and Claude vibe coding the rest to App Store standards.",
+      "Recipe pages bury four ingredients under ads and somebody's life story, and the screen goes dark while your hands are covered in something. I designed and shipped the fix solo in seven days. Every screen came out of Figma, microinteractions and animations included, some code is mine, and Claude vibe coded the rest to App Store standards.",
     hero: `${SIFT}/00-preview.webp`,
     heroScreens: [`${SIFT}/00-preview.webp`, `${SIFT}/01-trio.webp`],
     role: "Everything. Product, design system, brand, code with Claude, App Store",
@@ -217,7 +217,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The rest of the scope came off Mobbin, which documents exactly one rival: ReciMe, 214 screens, 64 flows, and no cook mode anywhere in them. Its flow list is dominated by account and paywall screens, so Sift launched with no account and no onboarding. And its three separate import paths confirmed capture has to degrade. One path that falls through four tiers beat three doors the user has to diagnose.",
+            text: "The rest of the scope came off Mobbin, which documents exactly one rival, ReciMe. Its 214 screens and 64 flows have no cook mode anywhere in them. Its flow list is dominated by account and paywall screens, so Sift launched with no account and no onboarding. And its three separate import paths confirmed capture has to degrade. One path that falls through four tiers beat three doors the user has to diagnose.",
           },
           {
             kind: "p",
@@ -232,7 +232,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "Version one went from nothing to on-screen in a day: warm cream paper, a rust accent, serif titles, every control a 999px pill. On an actual phone it looked cheap.",
+            text: "Version one went from nothing to on-screen in a day. Warm cream paper, a rust accent, serif titles, every control a 999px pill. On an actual phone it looked cheap.",
           },
           {
             kind: "p",
@@ -260,7 +260,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The replacement is cold monochrome with one rule you can check in a screenshot: color appears exactly once per screen, on the one thing you can act on. The serif survives only inside the recipe itself, because the recipe is a document and the app around it is furniture. And the committed move survived untouched. Cook Mode type stays sized for two feet away.",
+            text: "The replacement is cold monochrome with one rule you can check in a screenshot. Color appears exactly once per screen, on the one thing you can act on. The serif survives only inside the recipe itself, because the recipe is a document and the app around it is furniture. And the committed move survived untouched. Cook Mode type stays sized for two feet away.",
           },
           {
             kind: "imgGrid",
@@ -268,7 +268,7 @@ export const caseStudies: CaseStudy[] = [
               {
                 src: `${SIFT}/03-shipped-recipe.webp`,
                 alt: "The shipped recipe page in cold monochrome, with the red Cook this button as the only color",
-                caption: "The face that shipped. One color on it: Cook this.",
+                caption: "The face that shipped. The one color on it is Cook this.",
               },
               {
                 src: `${SIFT}/03-shipped-cook.webp`,
@@ -289,7 +289,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The palette held from there. The typeface got one more turn: two weeks in, the interface font started reading as AI-default too, and 1.2.0 reset the whole product in Bricolage Grotesque. Most screens on this page wear it.",
+            text: "The palette held from there. The typeface got one more turn. Two weeks in, the interface font started reading as AI-default too, and 1.2.0 reset the whole product in Bricolage Grotesque. Most screens on this page wear it.",
           },
         ],
       },
@@ -304,7 +304,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The audits were the formal half. A pass against Nielsen's ten heuristics on the running build logged 23 findings: 12 fixed, 11 still open and written down. A scripted contrast sweep caught 7 pairings that looked fine to the eye and failed WCAG, one at 1.14 to 1, and that check exits non-zero on any regression so it can gate a build.",
+            text: "The audits were the formal half. A pass against Nielsen's ten heuristics on the running build logged 23 findings, 12 fixed and 11 still open and written down. A scripted contrast sweep caught 7 pairings that looked fine to the eye and failed WCAG, one at 1.14 to 1, and that check exits non-zero on any regression so it can gate a build.",
           },
           {
             kind: "quote",
@@ -318,7 +318,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "She found the worst bug too. Ten minutes on a couch beat every automated check I had running: she tapped Take Photo on the profile screen and the app died over a missing permission string, two taps from the home screen. Three more changes shipped straight out of using it.",
+            text: "She found the worst bug too. Ten minutes on a couch beat every automated check I had running. She tapped Take Photo on the profile screen, two taps from the home screen, and the app died over a missing permission string. Three more changes shipped straight out of using it.",
           },
           {
             kind: "features",
@@ -358,7 +358,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "Ask a model whether search results look good and you get a yes. Have it hit the live API and count, and 'keto recipe' returned zero usable recipes out of twenty. Filtering on the structured-data signal fixed it: dish queries now keep 15 of 20, and roundup pages score as lists before anyone sees them.",
+            text: "Ask a model whether search results look good and you get a yes. Have it hit the live API and count, and 'keto recipe' returned zero usable recipes out of twenty. Filtering on the structured-data signal fixed it. Dish queries now keep 15 of 20, and roundup pages score as lists before anyone sees them.",
           },
           {
             kind: "p",
@@ -385,7 +385,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "The evening Sift went live I read the store listings of twelve rivals, their claims and their one-to-three-star reviews. Every one of them waits for you to bring it a link. None claims a Safari extension. That reset the listing overnight: compete on capture, where nobody else is standing.",
+            text: "The evening Sift went live I read the store listings of twelve rivals, their claims and their one-to-three-star reviews. Every one of them waits for you to bring it a link. None claims a Safari extension. That reset the listing overnight. Compete on capture, where nobody else is standing.",
           },
           {
             kind: "img",
@@ -401,7 +401,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "What did move was the listing. I renamed the app to 'Sift: Recipe Keeper & Saver' off AppFigures keyword data and rewrote the subtitle to the one claim no rival can copy: Auto-saves recipes from Safari.",
+            text: "What did move was the listing. I renamed the app to 'Sift: Recipe Keeper & Saver' off AppFigures keyword data and rewrote the subtitle to the one claim no rival can copy, 'Auto-saves recipes from Safari.'",
           },
           {
             kind: "imgGrid",
@@ -423,7 +423,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "A three-tier paywall got built and wired to Stripe, then killed twice. The first version would have been an automatic rejection under App Store guideline 3.1.1, caught before it went up. The second died on judgment: pricing a product before knowing what people use is guessing, and a wall with no door behind it is worse than no wall. The tiers sit behind a flag, switched off, until StoreKit.",
+            text: "A three-tier paywall got built and wired to Stripe, then killed twice. The first version would have been an automatic rejection under App Store guideline 3.1.1, caught before it went up. The second died on judgment. Pricing a product before knowing what people use is guessing, and a wall with no door behind it is worse than no wall. The tiers sit behind a flag, switched off, until StoreKit.",
           },
           {
             kind: "callout",
@@ -1503,7 +1503,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The rule we set on day one: crypto stays in the back end, and the product never asks a member to learn it. That single call drove the architecture. We picked Stellar for speed and near-zero fees, and for its anchor model, where regulated partners on each end handle the on-ramp and off-ramp in local currency.",
+            text: "We set the rule on day one. Crypto stays in the back end, and the product never asks a member to learn it. That single call drove the architecture. We picked Stellar for speed and near-zero fees, and for its anchor model, where regulated partners on each end handle the on-ramp and off-ramp in local currency.",
           },
           {
             kind: "img",
@@ -1525,7 +1525,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "We interviewed and surveyed more than 30 Oportun members who send money internationally. Speed was the anxiety: people watch the clock between sending and confirmation. A fee that looks small compounds fast at two or three sends a month, and the trip to a counter with cash in a pocket was its own barrier.",
+            text: "We interviewed and surveyed more than 30 Oportun members who send money internationally. Speed was the anxiety. People watch the clock between sending and confirmation. A fee that looks small compounds fast at two or three sends a month, and the trip to a counter with cash in a pocket was its own barrier.",
           },
           {
             kind: "quote",
@@ -1566,7 +1566,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The judges gave it Most Creative Idea, and the reason they believed it could ship is the part I'd repeat on any project: design and engineering scoped it together from the first hour. Stellar, the anchor model, and where the MVP stopped all got decided in the same room.",
+            text: "The judges gave it Most Creative Idea, and the reason they believed it could ship is the part I'd repeat on any project. Design and engineering scoped it together from the first hour. Stellar, the anchor model, and where the MVP stopped all got decided in the same room.",
           },
           {
             kind: "p",
@@ -1574,7 +1574,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             kind: "p",
-            text: "And the honest ending: it stayed a concept. Oportun never built it, so the win and the research are the whole outcome.",
+            text: "And the honest ending is that it stayed a concept. Oportun never built it, so the win and the research are the whole outcome.",
           },
         ],
       },

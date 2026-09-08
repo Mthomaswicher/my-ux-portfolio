@@ -35,8 +35,8 @@
   <rect x="532" y="240" width="472" height="8" fill="#00871D"/>
   <text x="564" y="302" class="m kick">THE STELLAR NETWORK</text>
   <text x="564" y="348" class="h row">Settlement in seconds</text>
-  <text x="564" y="396" class="h sub">Anchor 1 &#183; FinClusive, U.S.</text>
-  <text x="564" y="426" class="h sub">Anchor 2 &#183; Biccos, MX</text>
+  <text x="564" y="396" class="h sub">FinClusive anchors the U.S. side</text>
+  <text x="564" y="426" class="h sub">Biccos anchors the MX side</text>
   <line x1="564" y1="458" x2="972" y2="458" stroke="#E4E4E7" stroke-width="2"/>
   <text x="564" y="500" class="h sub">Regulated partners on each end</text>
   <text x="564" y="530" class="h sub">handle the ramps in local currency.</text>

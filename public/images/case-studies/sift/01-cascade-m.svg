@@ -24,28 +24,28 @@
   <line x1="36" y1="164" x2="664" y2="164" stroke="#E4E4E7" stroke-width="2"/>
 
   <g filter="url(#soft)"><rect x="36" y="196" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="60" y="232" class="m kick">TIER 1 &#183; STRUCTURED DATA</text>
+  <text x="60" y="232" class="m kick">TIER 1 / STRUCTURED DATA</text>
   <text x="60" y="266" class="h row">schema.org/Recipe JSON-LD</text>
 
   <line x1="350" y1="292" x2="350" y2="322" stroke="#6E6E7A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
   <text x="368" y="312" class="m miss">MISSES</text>
 
   <g filter="url(#soft)"><rect x="36" y="322" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="60" y="358" class="m kick">TIER 2 &#183; MICRODATA</text>
+  <text x="60" y="358" class="m kick">TIER 2 / MICRODATA</text>
   <text x="60" y="392" class="h row">The same fields, the older way</text>
 
   <line x1="350" y1="418" x2="350" y2="448" stroke="#6E6E7A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
   <text x="368" y="438" class="m miss">MISSES</text>
 
   <g filter="url(#soft)"><rect x="36" y="448" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="60" y="484" class="m kick">TIER 3 &#183; HEURISTIC</text>
+  <text x="60" y="484" class="m kick">TIER 3 / HEURISTIC</text>
   <text x="60" y="518" class="h row">A readability pass over the page</text>
 
   <line x1="350" y1="544" x2="350" y2="574" stroke="#6E6E7A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
   <text x="368" y="564" class="m miss">MISSES</text>
 
   <g filter="url(#soft)"><rect x="36" y="574" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="60" y="610" class="m kick">TIER 4 &#183; MANUAL</text>
+  <text x="60" y="610" class="m kick">TIER 4 / MANUAL</text>
   <text x="60" y="644" class="h row">You paste the text in yourself</text>
 
   <!-- convergence -->
@@ -61,8 +61,8 @@
   <text x="60" y="874" class="h sub">Title, ingredients, steps. A clean parse just</text>
   <text x="60" y="900" class="h sub">needs no edits.</text>
   <line x1="60" y1="928" x2="640" y2="928" stroke="#E4E4E7" stroke-width="2"/>
-  <text x="60" y="964" class="h sub">What never renders: &#8220;This site is not</text>
-  <text x="60" y="990" class="h sub">supported.&#8221;</text>
+  <text x="60" y="964" class="h sub">The one screen Sift does not have.</text>
+  <text x="60" y="990" class="h sub">&#8220;This site is not supported.&#8221;</text>
 
   <text x="36" y="1105" class="h sub">The unsupported-site error never got designed. It can't happen.</text>
 </svg>

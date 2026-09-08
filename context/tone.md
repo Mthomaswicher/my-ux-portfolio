@@ -80,6 +80,9 @@ paragraph lengths on purpose. Prose over bullets when the ideas connect.
   reaction", "here is the honest version". Say the thing without the setup.
 - Comma-appositive fragments: "The claim, on the store." "The error state,
   designed out." Machine cadence. Write it straight or split it with a period.
+- Colon-then-fragment elaborations: "one rule: color appears once", "died on
+  judgment: pricing early is guessing". Use a period and a full sentence.
+- Middot, plus, and arrow separators in prose or labels. Commas and words.
 
 ## Always
 

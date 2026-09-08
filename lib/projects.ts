@@ -35,7 +35,7 @@ export const projects: Project[] = [
     status: "SHIPPED",
     blurb:
       "Recipe pages bury the recipe, and the screen sleeps while you cook. I fixed both solo, seven days from first commit to the App Store.",
-    role: "Everything: product, design, code, store",
+    role: "Everything. Product, design, code, store",
     team: "One person, with Claude Code as the instrument",
     timeframe: "7 days to 1.0, August 2026",
     tools: "Claude Code, Next.js, Capacitor, Xcode",

@@ -24,22 +24,22 @@
 
   <!-- Tier 1 -->
   <g filter="url(#soft)"><rect x="64" y="248" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="92" y="292" class="m kick">TIER 1 &#183; STRUCTURED DATA</text>
+  <text x="92" y="292" class="m kick">TIER 1 / STRUCTURED DATA</text>
   <text x="92" y="332" class="h row">The schema.org/Recipe JSON-LD in the page</text>
 
   <!-- Tier 2 -->
   <g filter="url(#soft)"><rect x="64" y="398" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="92" y="442" class="m kick">TIER 2 &#183; MICRODATA</text>
+  <text x="92" y="442" class="m kick">TIER 2 / MICRODATA</text>
   <text x="92" y="482" class="h row">The same fields, marked up the older way</text>
 
   <!-- Tier 3 -->
   <g filter="url(#soft)"><rect x="64" y="548" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="92" y="592" class="m kick">TIER 3 &#183; HEURISTIC</text>
+  <text x="92" y="592" class="m kick">TIER 3 / HEURISTIC</text>
   <text x="92" y="632" class="h row">A readability pass over the page itself</text>
 
   <!-- Tier 4 -->
   <g filter="url(#soft)"><rect x="64" y="698" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
-  <text x="92" y="742" class="m kick">TIER 4 &#183; MANUAL</text>
+  <text x="92" y="742" class="m kick">TIER 4 / MANUAL</text>
   <text x="92" y="782" class="h row">You paste the text in yourself</text>
 
   <!-- misses -->
@@ -74,8 +74,8 @@
   <text x="1036" y="516" class="h sub">Title, ingredients, steps. A clean parse</text>
   <text x="1036" y="546" class="h sub">just needs no edits.</text>
   <line x1="1036" y1="576" x2="1440" y2="576" stroke="#E4E4E7" stroke-width="2"/>
-  <text x="1036" y="620" class="h sub">What never renders: &#8220;This site is</text>
-  <text x="1036" y="650" class="h sub">not supported.&#8221;</text>
+  <text x="1036" y="620" class="h sub">The one screen Sift does not have.</text>
+  <text x="1036" y="650" class="h sub">&#8220;This site is not supported.&#8221;</text>
 
   <text x="64" y="862" class="h sub">The unsupported-site error never got designed. It can't happen.</text>
 </svg>

@@ -24,7 +24,7 @@
   <text x="64" y="158" class="h t2">Twelve rivals audited on the App Store, the eleven with public ratings shown. Capture assumes you come to the app.</text>
   <line x1="64" y1="200" x2="1472" y2="200" stroke="#E4E4E7" stroke-width="2"/>
 
-  <text x="64" y="262" class="m lane">THE FIELD &#183; IMPORT MEANS PASTE A LINK OR THE SHARE SHEET</text>
+  <text x="64" y="262" class="m lane">THE FIELD / IMPORT MEANS PASTE A LINK OR THE SHARE SHEET</text>
 
   <g filter="url(#soft)"><rect x="64" y="292" width="800" height="638" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
 
@@ -70,5 +70,5 @@
   <text x="984" y="842" class="h row">Safari extension</text>
   <text x="984" y="886" class="h sub">Read from their own store listings.</text>
 
-  <text x="64" y="976" class="h sub">Where the field wins instead: 12 of 12 have a grocery list, 11 of 12 plan meals. Sift competes on capture.</text>
+  <text x="64" y="976" class="h sub">The field wins elsewhere. 12 of 12 have a grocery list, 11 of 12 plan meals. Sift competes on capture.</text>
 </svg>
