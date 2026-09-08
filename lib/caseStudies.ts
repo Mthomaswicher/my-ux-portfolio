@@ -300,7 +300,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "No lab, no moderated sessions, and pretending otherwise would show. Sift got tested two ways: instrumented audits, and real hands on real dinners. Both changed the product.",
+            text: "No lab, no moderated sessions, and pretending otherwise would show. Sift got tested two ways, instrumented audits and real hands on real dinners. Both changed the product.",
           },
           {
             kind: "p",
@@ -373,7 +373,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             kind: "p",
-            text: "The multiplier work went into my own tooling. The project-interview framework and the design-research skill written for Sift got promoted to my global setup, so every project since starts with them, this portfolio included. Same for the contrast gate, and for the habit that produced this page: a process log appended as work happened, wrong turns kept in.",
+            text: "The multiplier work went into my own tooling. The project-interview framework and the design-research skill written for Sift got promoted to my global setup, so every project since starts with them, this portfolio included. Same for the contrast gate, and for the habit that produced this page, a process log appended as work happened with the wrong turns kept in.",
           },
           {
             kind: "h",
@@ -397,7 +397,7 @@ export const caseStudies: CaseStudy[] = [
           {
             kind: "callout",
             tone: "note",
-            text: "The audit also backed a call already shipped: all twelve rivals have a grocery list, Sift launched without one, and a half-built table-stakes feature invites a comparison you lose.",
+            text: "The audit also backed a call already shipped. All twelve rivals have a grocery list, Sift launched without one, and a half-built table-stakes feature invites a comparison you lose.",
           },
           {
             kind: "p",
@@ -610,7 +610,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     results: [
       { stat: "2,300+", label: "Completed at least one challenge", sub: "Across the technology org" },
-      { stat: "8 → 1", label: "Access requests for a non-engineer", sub: "After the One Access build" },
+      { stat: "8 to 1", label: "Access requests for a non-engineer", sub: "After the One Access build" },
     ],
   },
 

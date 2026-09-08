@@ -47,7 +47,7 @@ export default function VisitorCounter() {
       <span aria-hidden="true" className="text-glow-cyan mr-1">
         ★
       </span>
-      <span aria-hidden="true">SESSIONS · </span>
+      <span aria-hidden="true">SESSIONS / </span>
       <span className="tabular-nums text-ink">
         {count.toLocaleString()}
       </span>

@@ -107,7 +107,7 @@ export default function CaseStudyVideo({
             aria-hidden="true"
           >
             <span className="font-pixel text-[9px] tracking-widest text-ink-mute bg-bg-void/80 px-2 py-1">
-              MOTION DISABLED · TAP PLAY TO START
+              MOTION DISABLED. TAP PLAY TO START
             </span>
           </div>
         )}

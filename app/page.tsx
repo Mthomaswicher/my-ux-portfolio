@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import BootSequence from "@/components/BootSequence";
 
 export const metadata = {
-  title: { absolute: "Matthew Thomas-Wicher · Senior Product Designer Portfolio" },
+  title: { absolute: "Matthew Thomas-Wicher, Senior Product Designer Portfolio" },
   alternates: { canonical: "/" },
 };
 

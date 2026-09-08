@@ -30,7 +30,7 @@ const COMMUNITIES = [
     body: "Military spouse. I help out with veteran and military family associates across 15 local chapters.",
   },
   {
-    name: "Flatiron Alumni · Hackonomics",
+    name: "Flatiron Alumni, Hackonomics",
     role: "Team Lead, 2024 Winner",
     body: "Led design and engineering on an AI personal finance app. Built it in 19 days and won.",
   },
@@ -352,7 +352,7 @@ export default function About() {
                   className="font-mono text-[10px] uppercase tracking-widest text-ink-mute"
                   aria-hidden="true"
                 >
-                  <ModeText scenic="░" basic="·" />
+                  <ModeText scenic="░" basic="-" />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-widest text-ink-mute">
                   March 29, 2023
@@ -361,7 +361,7 @@ export default function About() {
                   className="font-mono text-[10px] uppercase tracking-widest text-ink-mute"
                   aria-hidden="true"
                 >
-                  <ModeText scenic="░" basic="·" />
+                  <ModeText scenic="░" basic="-" />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-widest text-glow-amber">
                   Alumni Feature
@@ -427,7 +427,7 @@ export default function About() {
                       {r.name}
                     </div>
                     <div className="font-mono text-[11px] uppercase tracking-widest text-ink-mute mt-1">
-                      {r.role} · {r.org}
+                      {r.role}, {r.org}
                     </div>
                     <div className="font-mono text-[11px] text-ink-dim mt-1">
                       {r.relationship}

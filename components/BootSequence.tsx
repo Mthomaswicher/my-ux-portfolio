@@ -11,7 +11,7 @@ import { bumpVisitCount, eggBootLines } from "@/lib/bootEggs";
 import { cycleAccent } from "@/lib/accentEgg";
 
 const STATIC_LINES = [
-  "MTW BIOS v0.1 · © 2026 mthomaswicher",
+  "MTW BIOS v0.1, © 2026 mthomaswicher",
   "MEM TEST .... 65,536K OK",
   "DETECTING DESIGN SYSTEMS .... [OK]",
   "MOUNTING /portfolio .... [OK]",
@@ -236,7 +236,7 @@ export default function BootSequence() {
                 className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.18em] text-ink-mute"
                 aria-hidden="true"
               >
-                Sr. Product Designer · Washington, D.C.
+                Sr. Product Designer, Washington, D.C.
               </div>
             }
           />

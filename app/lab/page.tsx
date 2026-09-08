@@ -21,22 +21,22 @@ const MONEY_MAGNET_SCREENS: Screen[] = [
   {
     src: "/lab/money-magnet/signup.png",
     alt: "Money Magnet welcome screen with the tagline Your money, your goals",
-    caption: "01 · Welcome",
+    caption: "01. Welcome",
   },
   {
     src: "/lab/money-magnet/home.png",
     alt: "Money Magnet home dashboard, empty state",
-    caption: "02 · Home (empty)",
+    caption: "02. Home (empty)",
   },
   {
     src: "/lab/money-magnet/goals.png",
     alt: "Money Magnet home dashboard, first goal added",
-    caption: "03 · First goal",
+    caption: "03. First goal",
   },
   {
     src: "/lab/money-magnet/insights.png",
     alt: "Money Magnet insights screen showing spending breakdown and cash flow",
-    caption: "04 · Insights",
+    caption: "04. Insights",
   },
 ];
 
@@ -110,7 +110,7 @@ export default function Lab() {
                 Money Magnet
               </h2>
               <span className="font-pixel text-[9px] tracking-widest text-glow-magenta">
-                WON · HACKATHON
+                WON, HACKATHON
               </span>
             </header>
 
@@ -180,7 +180,7 @@ export default function Lab() {
                 Roundtable Design Library
               </h2>
               <span className="font-pixel text-[9px] tracking-widest text-glow-cyan">
-                BRG · 2023&ndash;2025
+                BRG, 2023&ndash;2025
               </span>
             </header>
 
@@ -195,7 +195,7 @@ export default function Lab() {
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Role</dt>
                 <dd>Sr. Product Designer</dd>
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Tools</dt>
-                <dd>Figma · Tokens Studio</dd>
+                <dd>Figma, Tokens Studio</dd>
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">When</dt>
                 <dd>2023&ndash;2025</dd>
                 <dt className="text-ink-mute uppercase tracking-widest text-[10px] pt-0.5">Impact</dt>

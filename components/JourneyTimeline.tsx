@@ -301,7 +301,7 @@ function StageCardItem({
                 className="font-pixel text-[10px] tracking-widest"
                 style={{ color: accentHex }}
               >
-                STAGE {stage.no} · {stage.headline}
+                STAGE {stage.no}. {stage.headline}
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
                 {stage.period}
@@ -314,7 +314,7 @@ function StageCardItem({
               {stage.company}
             </h2>
             <div className="font-mono text-[12px] uppercase tracking-widest text-ink-dim mb-4">
-              {stage.role} · {stage.location}
+              {stage.role}, {stage.location}
             </div>
 
             {/* WIN stat block */}

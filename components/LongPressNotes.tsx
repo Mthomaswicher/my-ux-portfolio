@@ -161,7 +161,7 @@ export default function LongPressNotes() {
       onClick={() => setNote(null)}
     >
       <div className="font-pixel text-[8px] tracking-widest text-glow-magenta mb-1">
-        ▶ B-SIDE · {project.title}
+        ▶ B-SIDE / {project.title}
       </div>
       <p className="font-mono text-[12px] text-ink leading-relaxed">{text}</p>
     </div>

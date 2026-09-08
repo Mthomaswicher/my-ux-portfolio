@@ -422,7 +422,7 @@ function PolicyCard() {
           marginBottom: 6,
         }}
       >
-        Maryland · HB-247
+        Maryland, HB-247
       </div>
       <h4
         style={{

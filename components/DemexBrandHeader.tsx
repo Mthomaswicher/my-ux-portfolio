@@ -81,7 +81,7 @@ export default function DemexBrandHeader({ study }: { study: CaseStudy }) {
               className="font-mono text-[10px] uppercase tracking-[0.2em]"
               style={{ color: "#A89DFF" }}
             >
-              The Demex Group · Climate-risk
+              The Demex Group, Climate-risk
             </span>
           </div>
 

@@ -28,13 +28,13 @@ export function bumpVisitCount(): number {
 function visitLine(count: number): string | null {
   if (count <= 0) return null;
   if (count === 1) return "FIRST BOOT ░ WELCOME";
-  if (count === 5) return "★ 5 BOOTS · NICE";
+  if (count === 5) return "★ 5 BOOTS. NICE";
   if (count === 10) return "WELCOME BACK, REGULAR ░ 10 BOOTS";
-  if (count === 25) return "VIP STATUS · ACTIVE";
-  if (count === 50) return "SAVE FILE LOADED · 50 BOOTS";
-  if (count === 100) return "★ HALL OF FAMER · 100 BOOTS";
+  if (count === 25) return "VIP STATUS ACTIVE";
+  if (count === 50) return "SAVE FILE LOADED. 50 BOOTS";
+  if (count === 100) return "★ HALL OF FAMER. 100 BOOTS";
   if (count > 100 && count % 100 === 0)
-    return `★ ${count} BOOTS · YOU OK?`;
+    return `★ ${count} BOOTS. YOU OK?`;
   return null;
 }
 

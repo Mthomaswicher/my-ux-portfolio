@@ -65,7 +65,7 @@ export default function CapitalOneBrandHeader({
               className="font-mono text-[10px] uppercase tracking-[0.2em]"
               style={{ color: "#013D5B" }}
             >
-              Internal · Developer Platform
+              Internal Developer Platform
             </span>
           </div>
 

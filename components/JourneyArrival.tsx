@@ -29,7 +29,7 @@ export default function JourneyArrival() {
         className="relative font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
         aria-hidden="true"
       >
-        ░ PRESENT DAY · 2026 ░
+        ░ PRESENT DAY, 2026 ░
       </div>
 
       <h2 className="relative font-display text-[clamp(2.75rem,11vw,5rem)] sm:text-[72px] md:text-[96px] leading-[0.95] text-glow-cyan mb-5">

@@ -61,7 +61,7 @@ export const viewport: Viewport = {
   themeColor: "#05050a",
 };
 
-const SITE_TITLE = "Matthew Thomas-Wicher · Senior Product Designer Portfolio";
+const SITE_TITLE = "Matthew Thomas-Wicher, Senior Product Designer Portfolio";
 
 const DESCRIPTION =
   "Product designer with a full-stack engineering background. Seven years of SaaS and fintech, currently at Capital One on the Developer Experience team building enterprise platforms and AI products.";
@@ -69,7 +69,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: {
     default: SITE_TITLE,
-    template: "%s · Matthew Thomas-Wicher",
+    template: "%s, Matthew Thomas-Wicher",
   },
   description: DESCRIPTION,
   metadataBase: new URL(SITE_URL),

@@ -24,7 +24,7 @@ export const CAREER_STAGES: CareerStage[] = [
     headline: "PROLOGUE",
     win: { label: "Practice", value: "International Antitrust" },
     bullets: [],
-    tools: "Discovery · Document Review · Antitrust",
+    tools: "Discovery, Document Review, Antitrust",
   },
   {
     no: "02",
@@ -39,7 +39,7 @@ export const CAREER_STAGES: CareerStage[] = [
       "Full-stack program: HTML, CSS, JavaScript, Ruby on Rails.",
       "First time I shipped anything end to end. It stuck.",
     ],
-    tools: "HTML · CSS · JavaScript · Rails",
+    tools: "HTML, CSS, JavaScript, Rails",
   },
   {
     no: "03",
@@ -54,7 +54,7 @@ export const CAREER_STAGES: CareerStage[] = [
       "Ran trial prep on the Monsanto Roundup litigation through the preliminary phase, mostly on my own.",
       "Spent two years finding patterns in documents nobody wanted to read. Turns out that is most of design research.",
     ],
-    tools: "Discovery · Synthesis · Trial Prep",
+    tools: "Discovery, Synthesis, Trial Prep",
   },
   {
     no: "04",
@@ -69,7 +69,7 @@ export const CAREER_STAGES: CareerStage[] = [
       "Daily critique, weekly sprints, a capstone that shipped.",
       "This is where I stopped being a paralegal.",
     ],
-    tools: "Sketch · InVision · Wireframing",
+    tools: "Sketch, InVision, Wireframing",
   },
   {
     no: "05",
@@ -85,7 +85,7 @@ export const CAREER_STAGES: CareerStage[] = [
       "Owned product and marketing design start to finish. Nobody handed me a brief.",
       "Built the “North Star” design system and shipped the React components myself.",
     ],
-    tools: "React · Figma · Design Tokens",
+    tools: "React, Figma, Design Tokens",
   },
   {
     no: "06",
@@ -101,7 +101,7 @@ export const CAREER_STAGES: CareerStage[] = [
       "Built the member insights area: 5% retention, 15% weekly active members.",
       "A lot of A/B tests. Money products have long feedback loops, so you learn to wait.",
     ],
-    tools: "Figma · A/B Testing · Lifecycle",
+    tools: "Figma, A/B Testing, Lifecycle",
   },
   {
     no: "07",
@@ -117,17 +117,17 @@ export const CAREER_STAGES: CareerStage[] = [
       "Tore the design library apart and rebuilt it as a 3-tier token system. Front-end delivery got about 25% faster.",
       "Most of the job was turning dense business rules into components engineers could reuse.",
     ],
-    tools: "Tokens · Component Lib · Research",
+    tools: "Tokens, Component Lib, Research",
   },
   {
     no: "08",
     role: "Senior Product Designer",
     company: "Capital One",
-    location: "McLean, VA · Hybrid",
+    location: "McLean, VA, Hybrid",
     period: "Feb 2025 – Present",
     accent: "magenta",
     headline: "BOSS LEVEL",
-    win: { label: "Adoption", value: "25% → 75%" },
+    win: { label: "Adoption", value: "25% to 75%" },
     bullets: [
       "Led a cross-functional AI enablement team that got agentic coding tools working for people outside engineering, which is where most of the adoption came from.",
       "Ran the user research on GitHub Copilot Agent Mode. It went to GA on the back of it.",
@@ -136,7 +136,7 @@ export const CAREER_STAGES: CareerStage[] = [
       "Release engagement work reached 6,000 users. 3.6% opted out.",
       "Reworked the internal developer platform. Support tickets fell 39% and UMUX-Lite for the release experience went from 66 to 82.7 year over year.",
     ],
-    tools: "Strategy · Research · AI tooling · DataViz",
+    tools: "Strategy, Research, AI tooling, DataViz",
   },
 ];
 
@@ -151,19 +151,19 @@ export const BONUS_TRACK: BonusItem[] = [
   {
     year: "2014",
     title: "B.A., Political Science",
-    org: "Flagler College · St. Augustine, FL",
+    org: "Flagler College, St. Augustine, FL",
     body: "Four years of reading arguments closely. I still do it for a living.",
   },
   {
     year: "2017",
     title: "Full-Stack Engineering Cert",
-    org: "General Assembly · Washington, D.C.",
+    org: "General Assembly, Washington, D.C.",
     body: "The first time code stopped being someone else\u2019s job.",
   },
   {
     year: "2020",
     title: "UX/UI Design Certificate",
-    org: "Flatiron School · Chicago, IL",
+    org: "Flatiron School, Chicago, IL",
     body: "Made the career change official.",
   },
   {

@@ -21,7 +21,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const c = getCaseStudy(params.slug);
   if (!c) return {};
-  const title = `${c.title} · ${c.org}`;
+  const title = `${c.title}, ${c.org}`;
   return {
     title: c.title,
     description: c.tagline,
@@ -480,7 +480,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                     className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute mb-2"
                     aria-hidden="true"
                   >
-                    {s.no} · {s.title}
+                    {s.no}. {s.title}
                   </div>
                 }
               />

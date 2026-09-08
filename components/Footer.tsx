@@ -51,7 +51,7 @@ function ScenicFooter() {
             <a href="mailto:mthomaswicher@gmail.com" className="inline-flex items-center min-h-[44px] py-2 hover:text-glow-cyan">
               EMAIL
             </a>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true">/</span>
             <a
               href="https://linkedin.com/in/mthomaswicher"
               target="_blank"
@@ -60,7 +60,7 @@ function ScenicFooter() {
             >
               LINKEDIN
             </a>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true">/</span>
             <a
               href="https://github.com/Mthomaswicher"
               target="_blank"
@@ -69,7 +69,7 @@ function ScenicFooter() {
             >
               GITHUB
             </a>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true">/</span>
             <a
               href="https://dribbble.com/mthomaswicher"
               target="_blank"

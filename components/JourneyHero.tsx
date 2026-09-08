@@ -10,7 +10,7 @@ export default function JourneyHero() {
         className="font-pixel text-[10px] tracking-widest text-ink-mute mb-3"
         aria-hidden="true"
       >
-        ░ DEPARTURE · 2018 ░
+        ░ DEPARTURE, 2018 ░
       </div>
 
       <h1 className="font-display text-[clamp(3rem,12vw,5.5rem)] sm:text-[80px] md:text-[112px] leading-[0.95] text-glow-magenta mb-6">

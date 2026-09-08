@@ -18,7 +18,7 @@ export default function BasicHome() {
               className="text-[11px] uppercase tracking-[0.18em] text-ink-mute mb-4 font-mono"
               aria-hidden="true"
             >
-              Sr. Product Designer · Washington, D.C.
+              Sr. Product Designer, Washington, D.C.
             </div>
             <h1
               className="text-[clamp(1.625rem,6vw,3.25rem)] leading-[1.05] text-ink mb-5 break-words"
@@ -120,7 +120,7 @@ export default function BasicHome() {
           </section>
 
           <p className="mt-16 md:mt-20 text-[12px] text-ink-mute font-mono">
-            © {new Date().getFullYear()} Matthew Thomas-Wicher · Built in
+            © {new Date().getFullYear()} Matthew Thomas-Wicher. Built in
             Washington, D.C.
           </p>
         </div>
@@ -133,7 +133,7 @@ export default function BasicHome() {
  */
 function extraTags(p: (typeof projects)[number]): string[] {
   const shown = new Set(
-    [...p.org.split("·"), p.status].map((s) => s.trim().toLowerCase()),
+    [...p.org.split(","), p.status].map((s) => s.trim().toLowerCase()),
   );
   return (p.tags ?? []).filter((t) => !shown.has(t.trim().toLowerCase()));
 }
@@ -177,7 +177,7 @@ function BasicProjectCard({ project: p }: { project: (typeof projects)[number] }
             aria-hidden="true"
             className="hidden sm:inline text-ink-ghost"
           >
-            ·
+            /
           </span>
           <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-ink-mute">
             {p.status}

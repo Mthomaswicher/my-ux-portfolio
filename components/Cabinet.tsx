@@ -278,7 +278,7 @@ function HardCabinet() {
           <span aria-hidden="true">▌</span>AVAILABLE CARTRIDGES
         </h2>
         <span className="font-mono text-[10px] sm:text-[11px] text-ink-mute">
-          {projects.length} CARTRIDGES · DRAG OR TAP
+          {projects.length} CARTRIDGES. DRAG OR TAP
         </span>
       </div>
 

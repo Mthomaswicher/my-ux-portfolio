@@ -199,7 +199,7 @@ function Roles({
           Roles
         </h2>
         <span className="text-[12px] text-ink-mute font-mono">
-          {stages.length} positions · most recent first
+          {stages.length} positions, most recent first
         </span>
       </div>
 
@@ -270,7 +270,7 @@ function RoleEntry({
           />
         </h3>
         <div className="text-[13px] font-mono text-ink-dim mt-1">
-          {stage.company} · {stage.location}
+          {stage.company}, {stage.location}
         </div>
 
         {stage.bullets.length > 0 && (
@@ -301,7 +301,7 @@ function RoleEntry({
 
         {stage.tools && (
           <div className="mt-4 flex flex-wrap gap-1.5">
-            {stage.tools.split("·").map((t, i) => (
+            {stage.tools.split(",").map((t, i) => (
               <span
                 key={i}
                 className="text-[10.5px] font-mono uppercase tracking-[0.14em] text-ink-mute border border-ink-ghost px-2 py-1 hover:border-ink-dim hover:text-ink transition-colors"

@@ -112,7 +112,7 @@ export default function ResumeDisk() {
               MATTHEW THOMAS-WICHER
             </div>
             <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest mt-1 text-[#3a3a30]">
-              SR. PRODUCT DESIGNER · 2026
+              SR. PRODUCT DESIGNER, 2026
             </div>
             <div className="font-mono text-[11px] mt-3 text-[#5a5a48]">
               <span className="font-pixel text-[9px] tracking-widest text-[#8a4f12]">
@@ -156,7 +156,7 @@ export default function ResumeDisk() {
             {transferring ? "↓↓↓" : "GET"}
           </div>
           <div className="font-pixel text-[7px] tracking-widest text-ink-mute" aria-hidden="true">
-            95K · PDF
+            95K PDF
           </div>
         </div>
 
@@ -219,7 +219,7 @@ function BasicResume() {
         >
           Resume
         </h2>
-        <span className="text-[12px] text-ink-mute font-mono">PDF · 95K</span>
+        <span className="text-[12px] text-ink-mute font-mono">PDF, 95K</span>
       </div>
       <a
         href={HREF}

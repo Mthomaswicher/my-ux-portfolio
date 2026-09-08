@@ -1,7 +1,7 @@
 import NotFoundView from "./not-found-view";
 
 export const metadata = {
-  title: { absolute: "404 · Page not found" },
+  title: { absolute: "404, page not found" },
   robots: { index: false, follow: false },
 };
 

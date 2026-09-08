@@ -16,7 +16,7 @@ export default function AccentToast() {
     let timer: number | undefined;
     function onCycle(e: Event) {
       const accent = (e as CustomEvent<Accent>).detail;
-      setToast(`1UP · ACCENT: ${accent.name}`);
+      setToast(`1UP! ACCENT ${accent.name}`);
       window.clearTimeout(timer);
       timer = window.setTimeout(() => setToast(null), 2400);
     }
