@@ -16,6 +16,8 @@ const ACCENT_HEX = {
   lime: "#a3e635",
   amber: "#fbbf24",
   rose: "#fb7185",
+  /* Sift's ember, so the counter and underglow stay inside its system. */
+  ember: "#C2181D",
 } as const;
 
 type Accent = keyof typeof ACCENT_HEX;

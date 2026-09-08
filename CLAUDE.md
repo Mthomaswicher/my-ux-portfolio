@@ -120,6 +120,9 @@ what it looks like before scrolling once.
 
 ### Voice
 
+Full site voice guide: `context/tone.md`. Read it before writing or editing any copy
+on this site, every time. The rules below are the short version.
+
 - Plain and spoken. First person, specific about what I actually did.
 - **No em dashes.** Anywhere.
 - No writerly tells. No "in this case study I'll walk you through", no rhetorical

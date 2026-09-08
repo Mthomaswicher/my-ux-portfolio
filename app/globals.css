@@ -832,3 +832,14 @@ html[data-scroll-locked="true"] body {
     display: none;
   }
 }
+
+/* Sift case study: magenta accent tokens re-skinned to the product's ember,
+   with a theme-aware companion so small glow text clears AA on both grounds. */
+.brand-sift {
+  --neon-magenta: 194 24 29;
+  --glow-magenta: 224 82 87;
+}
+[data-theme="light"] .brand-sift {
+  --neon-magenta: 194 24 29;
+  --glow-magenta: 154 18 22;
+}

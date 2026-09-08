@@ -10,6 +10,7 @@ import MockDataBadge from "@/components/MockDataBadge";
 import OportunBrandHeader from "@/components/OportunBrandHeader";
 import CapitalOneBrandHeader from "@/components/CapitalOneBrandHeader";
 import DemexBrandHeader from "@/components/DemexBrandHeader";
+import SiftBrandHeader from "@/components/SiftBrandHeader";
 import { caseStudies, getCaseStudy } from "@/lib/caseStudies";
 import type { Block } from "@/lib/caseStudies";
 
@@ -191,6 +192,7 @@ function renderBlock(
           poster={b.poster}
           alt={b.alt}
           caption={b.caption}
+          frame={b.frame}
           mockData={mockData}
         />
       );
@@ -365,7 +367,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </aside>
 
         <article
-          className="min-w-0"
+          className={`min-w-0${study.brand === "sift" ? " brand-sift" : ""}`}
           style={
             study.brand === "oportun"
               ? {
@@ -399,6 +401,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <CapitalOneBrandHeader study={study} />
           ) : study.brand === "demex" ? (
             <DemexBrandHeader study={study} />
+          ) : study.brand === "sift" ? (
+            <SiftBrandHeader study={study} />
           ) : (
             <header className="mb-10 md:mb-12">
               <div className="flex flex-wrap items-baseline gap-3 mb-4">
@@ -522,7 +526,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               >
                 {study.results.map((r) => (
                   <div key={r.label} className="cartridge p-4 sm:p-5">
-                    <div className="font-display text-[44px] sm:text-[56px] leading-none text-glow-amber break-words">
+                    <div className="font-display text-[clamp(30px,9vw,44px)] sm:text-[clamp(36px,4.5vw,56px)] leading-none text-glow-amber">
                       {r.stat}
                     </div>
                     <div className="font-mono text-[12.5px] text-ink-dim mt-2 leading-snug">

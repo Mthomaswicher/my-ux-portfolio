@@ -9,12 +9,16 @@ export default function CaseStudyVideo({
   poster,
   alt,
   caption,
+  frame,
   mockData = false,
 }: {
   src: string;
   poster?: string;
   alt: string;
   caption?: string;
+  /** "phone" renders portrait footage at phone width, centered, instead of
+   *  stretching it to the full article column. */
+  frame?: "phone";
   /** Overlay a "mock data" badge; set for case studies showing real tooling. */
   mockData?: boolean;
 }) {
@@ -61,7 +65,11 @@ export default function CaseStudyVideo({
 
   return (
     <figure className="my-2">
-      <div className="cartridge p-1 bg-bg-deep relative group/video">
+      <div
+        className={`cartridge p-1 bg-bg-deep relative group/video ${
+          frame === "phone" ? "max-w-[400px] mx-auto" : ""
+        }`}
+      >
         {mockData && <MockDataBadge />}
         <video
           ref={ref}
@@ -106,7 +114,11 @@ export default function CaseStudyVideo({
       </div>
 
       {caption && (
-        <figcaption className="mt-2 font-mono text-[11.5px] text-ink-mute uppercase tracking-widest">
+        <figcaption
+          className={`mt-2 font-mono text-[11.5px] text-ink-mute uppercase tracking-widest ${
+            frame === "phone" ? "text-center" : ""
+          }`}
+        >
           {caption}
         </figcaption>
       )}

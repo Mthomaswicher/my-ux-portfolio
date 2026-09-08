@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- The Sift mark, flat, on the 24 grid components/Icon.tsx draws it on.
+       Three grains descending and thinning along one diagonal. Dispersal is carried
+       by size and position, never by opacity: every grain is fully opaque. -->
+  <g id="mark" fill="#101014">
+    <circle id="grain-1" cx="6.4" cy="7.4" r="2.3"/>
+    <circle id="grain-2" cx="12" cy="12.4" r="1.85"/>
+    <circle id="grain-3" cx="17.1" cy="17.4" r="1.4"/>
+  </g>
+</svg>

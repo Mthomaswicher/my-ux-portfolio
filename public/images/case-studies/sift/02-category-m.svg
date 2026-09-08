@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1310" width="700" height="1310" role="img" aria-label="Eleven competing recipe apps, from ReciMe at 279,233 ratings to Umami at 464. Every one imports by pasting a link or using the share sheet. Sift is the only one where a bar appears on the page in Safari.">
+  <defs>
+    <filter id="soft" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#101014" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .h  { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 34px; font-weight: 600; fill: #101014; letter-spacing: -0.5px; }
+      .t2 { font-size: 19px; fill: #5B5B66; }
+      .lane { font-size: 15px; letter-spacing: 2px; fill: #6E6E7A; }
+      .app { font-size: 20px; fill: #101014; font-weight: 500; }
+      .num { font-size: 17px; fill: #5B5B66; }
+      .row { font-size: 21px; fill: #101014; font-weight: 500; }
+      .sub { font-size: 17px; fill: #5B5B66; }
+    </style>
+  </defs>
+
+  <rect width="700" height="1310" fill="#F8F8FA"/>
+  <rect x="1" y="1" width="698" height="1308" fill="none" stroke="#101014" stroke-opacity="0.14" stroke-width="2"/>
+
+  <text x="36" y="72" class="h t1">Where the category makes you start</text>
+  <text x="36" y="106" class="h t2">Twelve rivals audited, the eleven with public</text>
+  <text x="36" y="132" class="h t2">ratings shown. Capture assumes you come to the app.</text>
+  <line x1="36" y1="164" x2="664" y2="164" stroke="#E4E4E7" stroke-width="2"/>
+
+  <text x="36" y="212" class="m lane">THE FIELD &#183; PASTE A LINK OR SHARE SHEET</text>
+
+  <g filter="url(#soft)"><rect x="36" y="236" width="628" height="510" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <g>
+    <text x="64" y="282" class="h app">ReciMe</text><text x="380" y="282" class="m num">279,233 ratings</text>
+    <line x1="64" y1="300" x2="636" y2="300" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="328" class="h app">AnyList</text><text x="380" y="328" class="m num">80,016</text>
+    <line x1="64" y1="346" x2="636" y2="346" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="374" class="h app">Paprika 3</text><text x="380" y="374" class="m num">53,555</text>
+    <line x1="64" y1="392" x2="636" y2="392" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="420" class="h app">Recipe Keeper</text><text x="380" y="420" class="m num">30,038</text>
+    <line x1="64" y1="438" x2="636" y2="438" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="466" class="h app">Samsung Food</text><text x="380" y="466" class="m num">6,302</text>
+    <line x1="64" y1="484" x2="636" y2="484" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="512" class="h app">Crouton</text><text x="380" y="512" class="m num">2,791</text>
+    <line x1="64" y1="530" x2="636" y2="530" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="558" class="h app">Pestle</text><text x="380" y="558" class="m num">1,788</text>
+    <line x1="64" y1="576" x2="636" y2="576" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="604" class="h app">Flavorish</text><text x="380" y="604" class="m num">1,613</text>
+    <line x1="64" y1="622" x2="636" y2="622" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="650" class="h app">Copy Me That</text><text x="380" y="650" class="m num">1,182</text>
+    <line x1="64" y1="668" x2="636" y2="668" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="696" class="h app">Mela</text><text x="380" y="696" class="m num">853</text>
+    <line x1="64" y1="714" x2="636" y2="714" stroke="#E4E4E7" stroke-width="1.5"/>
+    <text x="64" y="736" class="h app">Umami</text><text x="380" y="736" class="m num">464</text>
+  </g>
+
+  <text x="36" y="800" class="m lane">SIFT</text>
+  <g filter="url(#soft)"><rect x="36" y="824" width="628" height="240" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <rect x="36" y="824" width="628" height="7" fill="#C2181D"/>
+  <text x="64" y="880" class="h row">The recipe finds you</text>
+  <text x="64" y="914" class="h sub">A Safari extension reads the structured data the</text>
+  <text x="64" y="940" class="h sub">site already publishes. A bar appears on the page.</text>
+  <line x1="64" y1="968" x2="636" y2="968" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="64" y="1015" class="h sub">No app to open first. Nothing to paste.</text>
+
+  <g filter="url(#soft)"><rect x="36" y="1092" width="628" height="130" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="64" y="1136" class="m lane">THE AUDIT LINE</text>
+  <text x="64" y="1174" class="h row">Zero of twelve claim a Safari extension</text>
+  <text x="64" y="1204" class="h sub">Read from their own store listings.</text>
+
+  <text x="36" y="1264" class="h sub">Where the field wins instead: 12 of 12 have a grocery</text>
+  <text x="36" y="1290" class="h sub">list, 11 of 12 plan meals. Sift competes on capture.</text>
+</svg>

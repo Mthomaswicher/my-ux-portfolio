@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 900" width="1536" height="900" role="img" aria-label="The four-tier parse cascade. JSON-LD, microdata, a readability heuristic, and manual paste all land on the same editable card, so no tier ends in an error.">
+  <defs>
+    <filter id="soft" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#101014" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .h  { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 52px; font-weight: 600; fill: #101014; letter-spacing: -1px; }
+      .t2 { font-size: 26px; fill: #5B5B66; }
+      .kick { font-size: 20px; letter-spacing: 3px; fill: #6E6E7A; }
+      .row { font-size: 27px; fill: #101014; font-weight: 500; }
+      .sub { font-size: 22px; fill: #5B5B66; }
+      .miss { font-size: 20px; letter-spacing: 2px; fill: #6E6E7A; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="900" fill="#F8F8FA"/>
+  <rect x="1" y="1" width="1534" height="898" fill="none" stroke="#101014" stroke-opacity="0.14" stroke-width="2"/>
+
+  <text x="64" y="112" class="h t1">Four ways down to the same card</text>
+  <text x="64" y="158" class="h t2">Every tier lands in the same place, so there is no page Sift has to refuse.</text>
+  <line x1="64" y1="200" x2="1472" y2="200" stroke="#E4E4E7" stroke-width="2"/>
+
+  <!-- Tier 1 -->
+  <g filter="url(#soft)"><rect x="64" y="248" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="92" y="292" class="m kick">TIER 1 &#183; STRUCTURED DATA</text>
+  <text x="92" y="332" class="h row">The schema.org/Recipe JSON-LD in the page</text>
+
+  <!-- Tier 2 -->
+  <g filter="url(#soft)"><rect x="64" y="398" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="92" y="442" class="m kick">TIER 2 &#183; MICRODATA</text>
+  <text x="92" y="482" class="h row">The same fields, marked up the older way</text>
+
+  <!-- Tier 3 -->
+  <g filter="url(#soft)"><rect x="64" y="548" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="92" y="592" class="m kick">TIER 3 &#183; HEURISTIC</text>
+  <text x="92" y="632" class="h row">A readability pass over the page itself</text>
+
+  <!-- Tier 4 -->
+  <g filter="url(#soft)"><rect x="64" y="698" width="620" height="118" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="92" y="742" class="m kick">TIER 4 &#183; MANUAL</text>
+  <text x="92" y="782" class="h row">You paste the text in yourself</text>
+
+  <!-- misses -->
+  <g>
+    <line x1="364" y1="366" x2="364" y2="398" stroke="#6E6E7A" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+    <line x1="364" y1="516" x2="364" y2="548" stroke="#6E6E7A" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+    <line x1="364" y1="666" x2="364" y2="698" stroke="#6E6E7A" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+    <text x="388" y="389" class="m miss">MISSES</text>
+    <text x="388" y="539" class="m miss">MISSES</text>
+    <text x="388" y="689" class="m miss">MISSES</text>
+  </g>
+
+  <!-- converging arrows -->
+  <g stroke="#71717A" stroke-width="2.5" fill="none">
+    <path d="M684 307 C 850 307, 880 430, 992 470"/>
+    <path d="M684 457 C 830 457, 870 470, 992 495"/>
+    <path d="M684 607 C 830 607, 870 560, 992 525"/>
+    <path d="M684 757 C 850 757, 880 600, 992 550"/>
+  </g>
+  <g fill="#71717A">
+    <path d="M992 470 l-16 -12 2 19 z"/>
+    <path d="M992 495 l-17 -8 -1 19 z"/>
+    <path d="M992 525 l-18 -2 8 18 z"/>
+    <path d="M992 550 l-18 3 11 16 z"/>
+  </g>
+
+  <!-- the one card -->
+  <g filter="url(#soft)"><rect x="1004" y="368" width="468" height="288" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <rect x="1004" y="368" width="468" height="8" fill="#C2181D"/>
+  <text x="1036" y="428" class="m kick">ONE RESULT</text>
+  <text x="1036" y="472" class="h row">The same editable card</text>
+  <text x="1036" y="516" class="h sub">Title, ingredients, steps. A clean parse</text>
+  <text x="1036" y="546" class="h sub">just needs no edits.</text>
+  <line x1="1036" y1="576" x2="1440" y2="576" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="1036" y="620" class="h sub">What never renders: &#8220;This site is</text>
+  <text x="1036" y="650" class="h sub">not supported.&#8221;</text>
+
+  <text x="64" y="862" class="h sub">The unsupported-site error never got designed. It can't happen.</text>
+</svg>

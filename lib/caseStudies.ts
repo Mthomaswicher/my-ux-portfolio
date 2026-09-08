@@ -4,7 +4,16 @@ export type Block =
   | { kind: "list"; items: string[] }
   | { kind: "img"; src: string; alt: string; caption?: string; srcMobile?: string }
   | { kind: "imgGrid"; items: Array<{ src: string; alt: string; caption?: string }> }
-  | { kind: "video"; src: string; poster?: string; caption?: string; alt: string }
+  | {
+      kind: "video";
+      src: string;
+      poster?: string;
+      caption?: string;
+      alt: string;
+      /** "phone" renders portrait footage at phone width, centered, instead
+       *  of stretching it to the full article column. */
+      frame?: "phone";
+    }
   | { kind: "quote"; text: string; speaker?: string }
   | { kind: "features"; items: Array<{ title: string; body: string }> }
   | { kind: "callout"; tone: "plus" | "minus" | "note"; text: string };
@@ -32,19 +41,409 @@ export type CaseStudy = {
   /** Optional brand re-skin applied to the case-study header + accent
    *  tokens within the article scope (e.g. "oportun" pulls in the green
    *  palette + logo, "capital-one" pulls in navy + ribbon red, "demex"
-   *  pulls in electric purple + deep navy). */
-  brand?: "oportun" | "capital-one" | "demex";
+   *  pulls in electric purple + deep navy, "sift" pulls in the product's
+   *  own paper/ink/ember system). */
+  brand?: "oportun" | "capital-one" | "demex" | "sift";
   sections: CaseStudySection[];
   results?: Array<{ stat: string; label: string; sub?: string }>;
 };
 
+const SIFT = "/images/case-studies/sift";
 const IDP = "/images/case-studies/idp-release-plugin";
 const TIGER = "/images/case-studies/claude-code-tiger-team";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
 const OCS = "/images/case-studies/oportun-credit-servicing";
 const DCC = "/images/case-studies/demex-climate-center";
+const WEB3 = "/images/case-studies/web3-remittances";
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: "sift",
+    title: "Sift",
+    org: "Solo product · iOS + web",
+    status: "SHIPPED",
+    tagline:
+      "Recipe pages bury four ingredients under ads and somebody's life story, and the screen goes dark while your hands are covered in something. I designed and shipped the fix solo, first commit to the App Store in seven days: every screen out of Figma, microinteractions and animations included, some code mine, and Claude vibe coding the rest to App Store standards.",
+    hero: `${SIFT}/00-preview.webp`,
+    heroScreens: [`${SIFT}/00-preview.webp`, `${SIFT}/01-trio.webp`],
+    role: "Everything. Product, design system, brand, code with Claude, App Store",
+    team: "One person, with Claude Code as the instrument",
+    timeframe: "August to September 2026 · 7 days to 1.0, then three releases in ten days",
+    tools: "Figma · Claude Code · Next.js · Capacitor · Xcode",
+    accent: "rose",
+    brand: "sift",
+    sections: [
+      {
+        id: "shipped",
+        no: "01",
+        title: "What shipped",
+        body: [
+          {
+            kind: "p",
+            text: "Sift is an iPhone app that pulls the recipe out of a hostile web page and keeps the screen awake while you cook. It's free on the App Store and runs in a browser at siftapp.me. Everything below is the real product running, not a prototype.",
+          },
+          {
+            kind: "p",
+            text: "One person made this. The product decisions, the design system, the parser, the Safari and share extensions in the binary, and the store submission are all mine. Claude Code wrote most of the code. The process log behind this page runs to 332KB.",
+          },
+          {
+            kind: "h",
+            text: "The recipe finds you",
+          },
+          {
+            kind: "p",
+            text: "Turn on the Safari extension and a bar appears when a page has a recipe on it. One tap lands the ingredients and steps on a clean card, with a link back to whoever wrote it.",
+          },
+          {
+            kind: "video",
+            frame: "phone",
+            src: `${SIFT}/v01-capture.mp4`,
+            poster: `${SIFT}/v01-capture-poster.webp`,
+            alt: "The App Store preview: a recipe blog in Safari, the Sift bar appearing, the same recipe as a clean card, then Cook Mode in dark theme.",
+            caption: "The App Store preview without its captions. Safari to saved card in one tap.",
+          },
+          {
+            kind: "h",
+            text: "Cook Mode",
+          },
+          {
+            kind: "p",
+            text: "Type sized for a phone propped at arm's length, about 1.7 times what rivals use. Steps check off as you pass them. The screen stays awake until you leave, and when a step says bake for 35 minutes, that's a named timer that keeps counting with the app closed.",
+          },
+          {
+            kind: "video",
+            frame: "phone",
+            src: `${SIFT}/v02-cook.mp4`,
+            poster: `${SIFT}/v02-cook-poster.webp`,
+            alt: "Tapping Cook this, checking off ingredients with the screen-awake indicator showing, then a named Baking timer counting down.",
+            caption: "Cook this, then a timer named for what it's timing.",
+          },
+          {
+            kind: "h",
+            text: "Quit the app, keep your cook",
+          },
+          {
+            kind: "p",
+            text: "Leave mid-cook, force-quit, whatever. A bar above the tabs offers to pick up exactly where you were, timer still counting.",
+          },
+          {
+            kind: "video",
+            frame: "phone",
+            src: `${SIFT}/v03-resume.mp4`,
+            poster: `${SIFT}/v03-resume-poster.webp`,
+            alt: "The resume bar above the tab bar with a running timer, then Cook Mode reopening where it left off.",
+            caption: "The resume bar. A cook survives anything.",
+          },
+          {
+            kind: "h",
+            text: "Search that filters the junk",
+          },
+          {
+            kind: "p",
+            text: "Results come from across the web, filtered on the same structured-data signal the extension reads, so category pages and listicles fall out before you ever see them.",
+          },
+          {
+            kind: "video",
+            frame: "phone",
+            src: `${SIFT}/v04-search.mp4`,
+            poster: `${SIFT}/v04-search-poster.webp`,
+            alt: "Typing brisket into Find and getting twenty web results that are all actual recipes.",
+            caption: "Twenty results, all of them recipes.",
+          },
+          {
+            kind: "h",
+            text: "Scale without arithmetic",
+          },
+          {
+            kind: "p",
+            text: "Half a batch to 10×, applied to the quantities and nothing else. When you're out of buttermilk, substitutions come with the ratio and what changes.",
+          },
+          {
+            kind: "video",
+            frame: "phone",
+            src: `${SIFT}/v05-scale.mp4`,
+            poster: `${SIFT}/v05-scale-poster.webp`,
+            alt: "Tapping the 5x scaling chip and every ingredient amount updating in place.",
+            caption: "5× on the fly.",
+          },
+        ],
+      },
+      {
+        id: "why",
+        no: "02",
+        title: "Why it needed to exist",
+        body: [
+          {
+            kind: "p",
+            text: "Sift started as a take-home for another company's interview process. The brief asked for something real, built with AI, about a problem from your own life. I cook from my phone propped on the counter, and every recipe page is somebody's essay with a video that follows you down the page.",
+          },
+          {
+            kind: "p",
+            text: "The bigger problem is the screen. Hands covered in chicken, display asleep every thirty seconds. I used to set the phone to never sleep and forget to put it back. Dead battery by dinner. That round trip shows up in no rival's feature list, and it became the reason the app exists.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${SIFT}/02-before-page.webp`,
+                alt: "A recipe blog with an ad and a life story above the recipe",
+                caption: "Before. The recipe is down there somewhere.",
+              },
+              {
+                src: `${SIFT}/02-after-card.webp`,
+                alt: "The same recipe in Sift: title, source, photo, Cook this",
+                caption: "After. Just the recipe.",
+              },
+            ],
+          },
+          {
+            kind: "h",
+            text: "Where the scope came from",
+          },
+          {
+            kind: "p",
+            text: "Two facts got verified before any design happened. The Screen Wake Lock API has shipped in Safari since iOS 16.4, so holding the screen awake is a web capability. And recipe sites publish schema.org structured data to get Google's rich recipe cards, so the recipe is already sitting in the page as data. Extraction is a parse.",
+          },
+          {
+            kind: "p",
+            text: "Parsing runs four levels down, and the last level is you pasting the text in yourself, so every page lands on the same editable card. There is no unsupported-site error anywhere in Sift, because that message is the moment people delete these apps. Of everything in the product, that's the call I'd defend hardest.",
+          },
+          {
+            kind: "img",
+            src: `${SIFT}/01-cascade.svg`,
+            srcMobile: `${SIFT}/01-cascade-m.svg`,
+            alt: "The four parse tiers, JSON-LD, microdata, heuristic, and manual paste, all converging on one editable card",
+            caption: "The parse cascade. No tier ends in an error.",
+          },
+          {
+            kind: "p",
+            text: "The rest of the scope came off Mobbin, which documents exactly one rival: ReciMe, 214 screens, 64 flows, and no cook mode anywhere in them. Its flow list is dominated by account and paywall screens, so Sift launched with no account and no onboarding. And its three separate import paths confirmed capture has to degrade. One path that falls through four tiers beat three doors the user has to diagnose.",
+          },
+          {
+            kind: "p",
+            text: "The first commit landed at the exercise's three-hour cap with capture, the reader, and Cook Mode working on the web. Thirty-one more commits landed over the next three days.",
+          },
+        ],
+      },
+      {
+        id: "redesign",
+        no: "03",
+        title: "The critique that killed the first design",
+        body: [
+          {
+            kind: "p",
+            text: "Version one went from nothing to on-screen in a day: warm cream paper, a rust accent, serif titles, every control a 999px pill. On an actual phone it looked cheap.",
+          },
+          {
+            kind: "p",
+            text: "Cream plus rust is the artisan-bakery palette that generated design reaches for constantly, and a display serif on titles reads as an editorial blog. The pill is worse, the strongest consumer-casual signal a control can carry. None of those faults were brightness, so the fix stayed light.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${SIFT}/03-killed-library.webp`,
+                alt: "The killed first design: a warm cream library with serif recipe titles and pill chips",
+                caption: "The killed library. Run from an old commit for this page.",
+              },
+              {
+                src: `${SIFT}/03-killed-recipe.webp`,
+                alt: "The killed recipe page: Fraunces serif title and a rust pill reading Cook this",
+                caption: "Fraunces on cream. The rust pill.",
+              },
+              {
+                src: `${SIFT}/03-killed-cook.webp`,
+                alt: "The killed Cook Mode with a warm pink wash background",
+                caption: "Cook Mode's warm wash. All of it died.",
+              },
+            ],
+          },
+          {
+            kind: "p",
+            text: "The replacement is cold monochrome with one rule you can check in a screenshot: color appears exactly once per screen, on the one thing you can act on. The serif survives only inside the recipe itself, because the recipe is a document and the app around it is furniture. And the committed move survived untouched. Cook Mode type stays sized for two feet away.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${SIFT}/03-shipped-recipe.webp`,
+                alt: "The shipped recipe page in cold monochrome, with the red Cook this button as the only color",
+                caption: "The face that shipped. One color on it: Cook this.",
+              },
+              {
+                src: `${SIFT}/03-shipped-cook.webp`,
+                alt: "Shipped Cook Mode with checkable ingredients and the screen-awake indicator",
+                caption: "Cook Mode. The committed move survived untouched.",
+              },
+              {
+                src: `${SIFT}/03-shipped-find.webp`,
+                alt: "The shipped Find screen, monochrome except the red Search button",
+                caption: "Find. Ember lands on Search and nowhere else.",
+              },
+            ],
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "When a screen has two colored things, one of them is wrong and has to become type or space instead. That sentence governed more decisions than any component spec.",
+          },
+          {
+            kind: "p",
+            text: "The palette held from there. The typeface got one more turn: two weeks in, the interface font started reading as AI-default too, and 1.2.0 reset the whole product in Bricolage Grotesque. Most screens on this page wear it.",
+          },
+        ],
+      },
+      {
+        id: "testing",
+        no: "04",
+        title: "What testing changed",
+        body: [
+          {
+            kind: "p",
+            text: "No lab, no moderated sessions, and pretending otherwise would show. Sift got tested two ways: instrumented audits, and real hands on real dinners. Both changed the product.",
+          },
+          {
+            kind: "p",
+            text: "The audits were the formal half. A pass against Nielsen's ten heuristics on the running build logged 23 findings: 12 fixed, 11 still open and written down. A scripted contrast sweep caught 7 pairings that looked fine to the eye and failed WCAG, one at 1.14 to 1, and that check exits non-zero on any regression so it can gate a build.",
+          },
+          {
+            kind: "quote",
+            text: "i opened a mac and cheese recipe in chrome and mise did not auto detect it",
+            speaker: "My own bug report. The extension had never loaded, and Sift was still called Mise.",
+          },
+          {
+            kind: "quote",
+            text: "and it just continues trying to open and never does",
+            speaker: "My wife, on a search hang I never reproduced. Hardening bounded the worst case to 19 seconds, where before it was forever.",
+          },
+          {
+            kind: "p",
+            text: "She found the worst bug too. Ten minutes on a couch beat every automated check I had running: she tapped Take Photo on the profile screen and the app died over a missing permission string, two taps from the home screen. Three more changes shipped straight out of using it.",
+          },
+          {
+            kind: "features",
+            items: [
+              {
+                title: "Start over",
+                body: "Checked steps persist so you keep your place mid-cook. Cooking the same recipe again started with every box already ticked. One button, shown only when it applies.",
+              },
+              {
+                title: "The resume bar",
+                body: "I force-quit the app mid-brisket and lost the cook. That loss is why the resume bar exists.",
+              },
+              {
+                title: "Two-tap stop",
+                body: "A stray touch shouldn't end a two-hour rest, so stopping a timer takes two deliberate taps.",
+              },
+            ],
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${SIFT}/04-timer-startover.webp`,
+                alt: "Cook Mode with a named Baking timer counting down and the Start over button above the steps",
+                caption: "The named timer. Start over appears once steps are checked.",
+              },
+              {
+                src: `${SIFT}/04-resume-bar.webp`,
+                alt: "The resume bar above the tab bar, dish name and timer still counting, with a Resume button",
+                caption: "The resume bar above the tabs.",
+              },
+            ],
+          },
+          {
+            kind: "h",
+            text: "Measuring instead of asking",
+          },
+          {
+            kind: "p",
+            text: "Ask a model whether search results look good and you get a yes. Have it hit the live API and count, and 'keto recipe' returned zero usable recipes out of twenty. Filtering on the structured-data signal fixed it: dish queries now keep 15 of 20, and roundup pages score as lists before anyone sees them.",
+          },
+          {
+            kind: "p",
+            text: "The overnight sprints ran the same way. Implementation agents worked in parallel worktrees while verification agents diffed the built app against its claims, and one overnight run's verify lane caught a Live Activity sitting silently dead in the built bundle.",
+          },
+        ],
+      },
+      {
+        id: "after",
+        no: "05",
+        title: "What outlasted the app",
+        body: [
+          {
+            kind: "p",
+            text: "The multiplier work went into my own tooling. The project-interview framework and the design-research skill written for Sift got promoted to my global setup, so every project since starts with them, this portfolio included. Same for the contrast gate, and for the habit that produced this page: a process log appended as work happened, wrong turns kept in.",
+          },
+          {
+            kind: "h",
+            text: "Proving it worked",
+          },
+          {
+            kind: "p",
+            text: "Sift launched free, with no ads and no account required, seven days after the first commit. Week one closed with six App Store ratings, all five stars, roughly fifteen users, and no top-50 rank for any category term. It's nine ratings now, still 5.0. Recipes live on the device and searches stay anonymous, so behavioral data is thin by design.",
+          },
+          {
+            kind: "p",
+            text: "The evening Sift went live I read the store listings of twelve rivals, their claims and their one-to-three-star reviews. Every one of them waits for you to bring it a link. None claims a Safari extension. That reset the listing overnight: compete on capture, where nobody else is standing.",
+          },
+          {
+            kind: "img",
+            src: `${SIFT}/02-category.svg`,
+            srcMobile: `${SIFT}/02-category-m.svg`,
+            alt: "Eleven of the twelve audited rivals ranked by ratings count, every one importing by paste or share sheet, against Sift, where a bar appears on the page",
+            caption: "The launch-evening audit. Data from the rivals' own listings.",
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "The audit also backed a call already shipped: all twelve rivals have a grocery list, Sift launched without one, and a half-built table-stakes feature invites a comparison you lose.",
+          },
+          {
+            kind: "p",
+            text: "What did move was the listing. I renamed the app to 'Sift: Recipe Keeper & Saver' off AppFigures keyword data and rewrote the subtitle to the one claim no rival can copy: Auto-saves recipes from Safari.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${SIFT}/05-store-hero.webp`,
+                alt: "App Store panel: Just the recipe, above the brisket recipe card",
+              },
+              {
+                src: `${SIFT}/05-store-detect.webp`,
+                alt: "App Store panel: Auto-detect, no share sheet, showing the detection bar on a recipe page",
+                caption: "The claim on the store.",
+              },
+            ],
+          },
+          {
+            kind: "h",
+            text: "What did not make it",
+          },
+          {
+            kind: "p",
+            text: "A three-tier paywall got built and wired to Stripe, then killed twice. The first version would have been an automatic rejection under App Store guideline 3.1.1, caught before it went up. The second died on judgment: pricing a product before knowing what people use is guessing, and a wall with no door behind it is worse than no wall. The tiers sit behind a flag, switched off, until StoreKit.",
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "There's also a Bluetooth probe feature I got reading a real Chef iQ thermometer, then parked. Fifteen users don't need hardware support yet.",
+          },
+          {
+            kind: "p",
+            text: "iPad support got cut from 1.0 to make the deadline and came back in 1.0.1. By 1.3.0 it had its own screenshot set, shot from the app's real two-column layout.",
+          },
+        ],
+      },
+    ],
+    results: [
+      { stat: "7 days", label: "First commit to the App Store", sub: "Aug 17 to Aug 24, 2026" },
+      { stat: "3", label: "Releases in the first ten days", sub: "1.1.0, 1.2.0, 1.3.0" },
+      { stat: "5.0", label: "App Store rating", sub: "Nine ratings. Small n" },
+    ],
+  },
+
   {
     slug: "claude-code-tiger-team",
     title: "Claude Code Setup",
@@ -1013,6 +1412,177 @@ export const caseStudies: CaseStudy[] = [
       { stat: "12", label: "New clients in year one", sub: "First public product" },
       { stat: "14%", label: "More daily active users", sub: "Year over year" },
       { stat: "5/5", label: "Test rounds that asked for comparison", sub: "Drove the next sprint" },
+    ],
+  },
+
+  {
+    slug: "web3-powered-remittances",
+    title: "Web3 Powered Remittances",
+    org: "Oportun · Hackathon",
+    status: "WON",
+    tagline:
+      "Sending money home from an Oportun account meant a Western Union counter or PayPal's fees. Our hackathon team put a remittance flow on Stellar rails, with the money landing in seconds for cents, and it won Most Creative Idea.",
+    hero: `${WEB3}/01.png`,
+    heroScreens: [`${WEB3}/01.png`, `${WEB3}/08-anchor-pathway.svg`, `${WEB3}/02-sizing.svg`],
+    role: "Product Designer. Research, the flow, and the pitch",
+    team: "Cross-functional design and engineering hackathon team",
+    timeframe: "Oportun hackathon · one sprint",
+    tools: "Figma · Stellar network · User research",
+    accent: "amber",
+    brand: "oportun",
+    sections: [
+      {
+        id: "pitch",
+        no: "01",
+        title: "What we pitched",
+        body: [
+          {
+            kind: "p",
+            text: "This one never shipped. It's a hackathon concept, it won Most Creative Idea, and everything on this page is labelled as the pitch it was. The flow puts remittances on the Oportun home dashboard next to savings and bills. Pick a recipient, pick an amount, confirm. Stellar settles it underneath in seconds, and the member never sees a token, a wallet seed, or a block explorer.",
+          },
+          {
+            kind: "callout",
+            tone: "note",
+            text: "Concept work throughout. The screens below are the hackathon prototype, and none of it reached production.",
+          },
+          {
+            kind: "imgGrid",
+            items: [
+              {
+                src: `${WEB3}/01.png`,
+                alt: "Mobile mockup of the Oportun home dashboard with savings and bills cards",
+                caption: "Where it sits. Next to savings and bills.",
+              },
+              {
+                src: `${WEB3}/07.jpg`,
+                alt: "Oportun mobile splash screen on a device frame",
+                caption: "Inside the app members already have. No separate wallet.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "why",
+        no: "02",
+        title: "Why it needed to exist",
+        body: [
+          {
+            kind: "p",
+            text: "Oportun exists to serve people traditional banks skip, and a big share of those members send money abroad every month. Western Union still runs on cash and storefronts. Wires are slow and opaque. PayPal is fast but takes 5 to 11% per transfer, and the person receiving the money often has no account.",
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/05-complaints.svg`,
+            srcMobile: `${WEB3}/05-complaints-m.svg`,
+            alt: "Two panels: transfers through Western Union and wires are slow and inconvenient, and PayPal takes 5 to 11 percent while recipients often have no account",
+            caption: "The same two complaints in every interview. Fast or cheap, never both.",
+          },
+          {
+            kind: "quote",
+            text: "I always get nervous when it takes longer and sometimes I don't get a notification. The time it takes is most stressful.",
+            speaker: "Luis, Oportun member since 2017",
+          },
+          {
+            kind: "p",
+            text: "Luis was typical. Members were already shopping around because nothing served them well, and the market sizing made the case for building it inside the app they already trusted.",
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/02-sizing.svg`,
+            srcMobile: `${WEB3}/02-sizing-m.svg`,
+            alt: "Two panels: a large share of Oportun members send remittances, and U.S. consumers send 76 billion dollars abroad a year",
+            caption: "Who sends, and how big it is.",
+          },
+        ],
+      },
+      {
+        id: "constraint",
+        no: "03",
+        title: "The constraint that shaped the flow",
+        body: [
+          {
+            kind: "p",
+            text: "The rule we set on day one: crypto stays in the back end, and the product never asks a member to learn it. That single call drove the architecture. We picked Stellar for speed and near-zero fees, and for its anchor model, where regulated partners on each end handle the on-ramp and off-ramp in local currency.",
+          },
+          {
+            kind: "img",
+            src: `${WEB3}/08-anchor-pathway.svg`,
+            srcMobile: `${WEB3}/08-anchor-pathway-m.svg`,
+            alt: "Diagram of the anchor pathway: an Oportun member deposits dollars, value crosses the Stellar network through FinClusive and Biccos anchors, and the recipient is paid in pesos",
+            caption: "The anchor pathway. Dollars in, pesos out, seconds in between.",
+          },
+          {
+            kind: "p",
+            text: "Engineering sat in the room from the first whiteboard. We mapped which steps had to be on chain, which could stay in the existing Oportun stack, and where compliance and KYC landed. By prototype time the flow was feasible and scoped to something a hackathon could actually build.",
+          },
+        ],
+      },
+      {
+        id: "research",
+        no: "04",
+        title: "What the research changed",
+        body: [
+          {
+            kind: "p",
+            text: "We interviewed and surveyed more than 30 Oportun members who send money internationally. Speed was the anxiety: people watch the clock between sending and confirmation. A fee that looks small compounds fast at two or three sends a month, and the trip to a counter with cash in a pocket was its own barrier.",
+          },
+          {
+            kind: "quote",
+            text: "The most frustrating thing [with Western Union] is that I have to go to a store to do it and carry cash with me.",
+            speaker: "Francisco, Oportun member since 2021",
+          },
+          {
+            kind: "p",
+            text: "Francisco said what a lot of people said. The trip was as much of a barrier as the fee.",
+          },
+          {
+            kind: "p",
+            text: "The research boiled down to three user stories, and the prototype got built against them.",
+          },
+          {
+            kind: "features",
+            items: [
+              {
+                title: "Instant delivery",
+                body: "I want the money to land in seconds so I am not sitting there wondering whether it went through.",
+              },
+              {
+                title: "Home-based",
+                body: "I want to send from my phone instead of driving somewhere with cash in my pocket.",
+              },
+              {
+                title: "Cost efficient",
+                body: "I want the fee small enough to ignore, so the money goes to my family and not a middleman.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "after",
+        no: "05",
+        title: "What outlasted the weekend",
+        body: [
+          {
+            kind: "p",
+            text: "The judges gave it Most Creative Idea, and the reason they believed it could ship is the part I'd repeat on any project: design and engineering scoped it together from the first hour. Stellar, the anchor model, and where the MVP stopped all got decided in the same room.",
+          },
+          {
+            kind: "p",
+            text: "The other keeper is the framing. Members get the Oportun app they already know, the back end gets Stellar's speed and cost, and nobody has to learn what an anchor is to send money home. The chain is plumbing.",
+          },
+          {
+            kind: "p",
+            text: "And the honest ending: it stayed a concept. Oportun never built it, so the win and the research are the whole outcome.",
+          },
+        ],
+      },
+    ],
+    results: [
+      { stat: "$5", label: "Cheaper per send than Western Union", sub: "Projected, hackathon math" },
+      { stat: "8,500", label: "Remittance users projected", sub: "First three months, pitch model" },
+      { stat: "WON", label: "Most Creative Idea", sub: "Oportun hackathon" },
     ],
   },
 ];

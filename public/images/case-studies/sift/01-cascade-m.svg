@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1150" width="700" height="1150" role="img" aria-label="The four-tier parse cascade. JSON-LD, microdata, a readability heuristic, and manual paste all land on the same editable card, so no tier ends in an error.">
+  <defs>
+    <filter id="soft" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#101014" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .h  { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .m  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t1 { font-size: 34px; font-weight: 600; fill: #101014; letter-spacing: -0.5px; }
+      .t2 { font-size: 19px; fill: #5B5B66; }
+      .kick { font-size: 15px; letter-spacing: 2px; fill: #6E6E7A; }
+      .row { font-size: 20px; fill: #101014; font-weight: 500; }
+      .sub { font-size: 17px; fill: #5B5B66; }
+      .miss { font-size: 14px; letter-spacing: 1.5px; fill: #6E6E7A; }
+    </style>
+  </defs>
+
+  <rect width="700" height="1150" fill="#F8F8FA"/>
+  <rect x="1" y="1" width="698" height="1148" fill="none" stroke="#101014" stroke-opacity="0.14" stroke-width="2"/>
+
+  <text x="36" y="72" class="h t1">Four ways down to the same card</text>
+  <text x="36" y="106" class="h t2">Every tier lands in the same place, so there is</text>
+  <text x="36" y="132" class="h t2">no page Sift has to refuse.</text>
+  <line x1="36" y1="164" x2="664" y2="164" stroke="#E4E4E7" stroke-width="2"/>
+
+  <g filter="url(#soft)"><rect x="36" y="196" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="60" y="232" class="m kick">TIER 1 &#183; STRUCTURED DATA</text>
+  <text x="60" y="266" class="h row">schema.org/Recipe JSON-LD</text>
+
+  <line x1="350" y1="292" x2="350" y2="322" stroke="#6E6E7A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+  <text x="368" y="312" class="m miss">MISSES</text>
+
+  <g filter="url(#soft)"><rect x="36" y="322" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="60" y="358" class="m kick">TIER 2 &#183; MICRODATA</text>
+  <text x="60" y="392" class="h row">The same fields, the older way</text>
+
+  <line x1="350" y1="418" x2="350" y2="448" stroke="#6E6E7A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+  <text x="368" y="438" class="m miss">MISSES</text>
+
+  <g filter="url(#soft)"><rect x="36" y="448" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="60" y="484" class="m kick">TIER 3 &#183; HEURISTIC</text>
+  <text x="60" y="518" class="h row">A readability pass over the page</text>
+
+  <line x1="350" y1="544" x2="350" y2="574" stroke="#6E6E7A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+  <text x="368" y="564" class="m miss">MISSES</text>
+
+  <g filter="url(#soft)"><rect x="36" y="574" width="628" height="96" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <text x="60" y="610" class="m kick">TIER 4 &#183; MANUAL</text>
+  <text x="60" y="644" class="h row">You paste the text in yourself</text>
+
+  <!-- convergence -->
+  <g stroke="#71717A" stroke-width="2.5" fill="none">
+    <path d="M350 670 L350 726"/>
+  </g>
+  <path d="M350 736 l-11 -16 22 0 z" fill="#71717A"/>
+
+  <g filter="url(#soft)"><rect x="36" y="748" width="628" height="270" rx="8" fill="#FFFFFF" stroke="#71717A" stroke-width="1.5"/></g>
+  <rect x="36" y="748" width="628" height="7" fill="#C2181D"/>
+  <text x="60" y="800" class="m kick">ONE RESULT</text>
+  <text x="60" y="838" class="h row">The same editable card</text>
+  <text x="60" y="874" class="h sub">Title, ingredients, steps. A clean parse just</text>
+  <text x="60" y="900" class="h sub">needs no edits.</text>
+  <line x1="60" y1="928" x2="640" y2="928" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="60" y="964" class="h sub">What never renders: &#8220;This site is not</text>
+  <text x="60" y="990" class="h sub">supported.&#8221;</text>
+
+  <text x="36" y="1105" class="h sub">The unsupported-site error never got designed. It can't happen.</text>
+</svg>

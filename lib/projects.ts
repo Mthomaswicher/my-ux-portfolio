@@ -20,6 +20,8 @@ export type Project = {
   mascot?: string;
 };
 
+const SIFT = "/images/case-studies/sift";
+const WEB3 = "/images/case-studies/web3-remittances";
 const IDP = "/images/case-studies/idp-release-plugin";
 const TIGER = "/images/case-studies/claude-code-tiger-team";
 const OPO = "/images/case-studies/oportun-homepage-widgets";
@@ -28,6 +30,25 @@ const OCS = "/images/case-studies/oportun-credit-servicing";
 export const projects: Project[] = [
   {
     no: "01",
+    title: "Sift",
+    org: "Solo product · App Store",
+    status: "SHIPPED",
+    blurb:
+      "Recipe pages bury the recipe, and the screen sleeps while you cook. I fixed both solo, seven days from first commit to the App Store.",
+    role: "Everything: product, design, code, store",
+    team: "One person, with Claude Code as the instrument",
+    timeframe: "7 days to 1.0 · August 2026",
+    tools: "Claude Code · Next.js · Capacitor · Xcode",
+    href: "/work/sift",
+    accent: "rose",
+    hero: `${SIFT}/00-tile.webp`,
+    tilt: 2.0,
+    tags: ["#ios", "#AI-built"],
+    mascot: "∴",
+    screens: [`${SIFT}/00-tile.webp`, `${SIFT}/00-preview.webp`, `${SIFT}/01-trio.webp`],
+  },
+  {
+    no: "02",
     title: "Claude Code Setup",
     org: "Capital One · DevX",
     status: "SHIPPED",
@@ -51,7 +72,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    no: "02",
+    no: "03",
     title: "IDP Release Plugin",
     org: "Capital One · DevX",
     status: "SHIPPED",
@@ -75,7 +96,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    no: "03",
+    no: "04",
     title: "Oportun Homepage Widgets",
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
@@ -94,7 +115,7 @@ export const projects: Project[] = [
     screens: [`${OPO}/00-preview.svg`, `${OPO}/01-hero.webp`, `${OPO}/03-process.webp`],
   },
   {
-    no: "04",
+    no: "05",
     title: "Credit Card Servicing",
     org: "Oportun (formerly Digit)",
     status: "SHIPPED",
@@ -118,7 +139,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    no: "05",
+    no: "06",
     title: "Demex Climate Center",
     org: "The Demex Group",
     status: "SHIPPED",
@@ -140,5 +161,24 @@ export const projects: Project[] = [
       "/images/case-studies/demex-climate-center/08.webp",
       "/images/case-studies/demex-climate-center/01.webp",
     ],
+  },
+  {
+    no: "07",
+    title: "Web3 Remittances",
+    org: "Oportun · Hackathon",
+    status: "WON",
+    blurb:
+      "Money home in seconds for cents, on Stellar rails under the Oportun app members already trust. A hackathon concept that won Most Creative Idea. It never shipped, and the page says so.",
+    role: "Product Designer",
+    team: "Cross-functional design + engineering hackathon team",
+    timeframe: "Oportun hackathon · one sprint",
+    tools: "Figma · Stellar network · User research",
+    href: "/work/web3-powered-remittances",
+    accent: "amber",
+    hero: `${WEB3}/01.png`,
+    tilt: -1.8,
+    tags: ["#fintech", "#web3", "#hackathon"],
+    mascot: "✦",
+    screens: [`${WEB3}/01.png`, `${WEB3}/08-anchor-pathway.svg`, `${WEB3}/02-sizing.svg`],
   },
 ];
