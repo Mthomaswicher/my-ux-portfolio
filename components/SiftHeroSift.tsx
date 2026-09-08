@@ -13,7 +13,7 @@ import { withBase } from "@/lib/path";
  * states of the same page.
  */
 export default function SiftHeroSift() {
-  const [pos, setPos] = useState(40);
+  const [pos, setPos] = useState(50);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const dragging = useRef(false);
 
@@ -65,7 +65,7 @@ export default function SiftHeroSift() {
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       data-sift-slider
-      className="relative overflow-hidden select-none aspect-[16/9] touch-pan-y"
+      className="relative overflow-hidden select-none aspect-[720/1458] max-w-[460px] mx-auto touch-pan-y"
       style={{
         border: "1px solid #E4E4E7",
         borderRadius: 8,
