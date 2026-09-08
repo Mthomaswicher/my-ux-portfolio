@@ -60,7 +60,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "sift",
     title: "Sift",
-    org: "Solo product · iOS + web",
+    org: "Solo Side Project · iOS + web",
     status: "SHIPPED",
     tagline:
       "Recipe pages bury four ingredients under ads and somebody's life story, and the screen goes dark while your hands are covered in something. I designed and shipped the fix solo, first commit to the App Store in seven days: every screen out of Figma, microinteractions and animations included, some code mine, and Claude vibe coding the rest to App Store standards.",
